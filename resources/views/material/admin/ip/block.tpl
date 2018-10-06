@@ -11,7 +11,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<h1 class="content-heading">节点被封IP</h1>
+				<h1 class="content-heading">已封禁 IP</h1>
 			</div>
 		</div>
 		<div class="container">

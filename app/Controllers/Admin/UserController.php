@@ -160,6 +160,7 @@ class UserController extends AdminController
             $user->clean_link();
         }
 
+        $user->user_name = $request->getParam('user_name');
         $user->auto_reset_day =  $request->getParam('auto_reset_day');
         $user->auto_reset_bandwidth = $request->getParam('auto_reset_bandwidth');
         $origin_port = $user->port;

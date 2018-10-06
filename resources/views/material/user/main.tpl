@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<meta name="theme-color" content="#ff9800">
+	<meta name="theme-color" content="#000000">
 	<title>{$config["appName"]}</title>
 
 	
@@ -12,7 +12,8 @@
 	<!-- css -->
 	<link href="/theme/material/css/base.min.css" rel="stylesheet">
 	<link href="/theme/material/css/project.min.css" rel="stylesheet">
-	<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.loli.net/css?family=Roboto:300,300italic,400,400italic,500,500italic" rel="stylesheet">
+	<link href="https://fonts.loli.net/css?family=Material+Icons">
 	
 
 	
@@ -178,7 +179,7 @@
 		}
 		
 		.page-orange .ui-content-header {
-			background-image: url(/theme/material/css/images/bg/amber.jpg);
+			background-image: url(/theme/material/css/images/bg/red.jpg);
 		}
 		
 		.content-heading {
@@ -218,7 +219,7 @@
 					</ul>
 				{else}
 					<span class="access-hide">未登录</span>
-					<span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="/theme/material/images/users/avatar-001.jpg"></span>
+					<span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="/theme/material/images/users/avatar.png"></span>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right">
 						<li>
@@ -242,8 +243,14 @@
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">我的</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_me">
 							<li>
+								<a href="https://dlercloud.com">
+									<i class="icon icon-lg">account_balance</i>&nbsp;首页
+								</a>
+							</li>
+
+							<li>
 								<a href="/user">
-									<i class="icon icon-lg">recent_actors</i>&nbsp;首页
+									<i class="icon icon-lg">recent_actors</i>&nbsp;用户中心
 								</a>
 							</li>
 							
@@ -252,25 +259,18 @@
 									<i class="icon icon-lg">info</i>&nbsp;账户信息
 								</a>
 							</li>
-							
+
 							<li>
 								<a href="/user/edit">
-									<i class="icon icon-lg">sync_problem</i>&nbsp;资料编辑
+									<i class="icon icon-lg">sync_problem</i>&nbsp;账户编辑
 								</a>
 							</li>
 							
 							<li>
 								<a href="/user/invite">
-									<i class="icon icon-lg">loyalty</i>&nbsp;邀请码
+									<i class="icon icon-lg">loyalty</i>&nbsp;推介计划
 								</a>
 							</li>
-							
-							<li>
-								<a href="/user/announcement">
-									<i class="icon icon-lg">announcement</i>&nbsp;查看公告
-								</a>
-							</li>
-							
 							
 							{if $config['enable_donate']=='true'}
 							<li>
@@ -279,8 +279,6 @@
 								</a>
 							</li>
 							{/if}
-							
-							
 						</ul>
 						
 						
@@ -297,23 +295,38 @@
 									<i class="icon icon-lg">compare_arrows</i>&nbsp;中转规则
 								</a>
 							</li>
-							
+						</ul>
+
+
+						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_help">交易</a>
+						<ul class="menu-collapse collapse in" id="ui_menu_help">
 							<li>
-								<a href="/user/trafficlog">
-									<i class="icon icon-lg">traffic</i>&nbsp;流量记录
+								<a href="/user/code">
+									<i class="icon icon-lg">code</i>&nbsp;在线充值
 								</a>
 							</li>
-							
+
+							<li>
+								<a href="/user/shop">
+									<i class="icon icon-lg">shopping_cart</i>&nbsp;购买套餐
+								</a>
+							</li>
+
+							<li><a href="/user/bought"><i class="icon icon-lg">shop</i>&nbsp;购买记录</a></li>
+						</ul>
+<!--
+						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">监控</a>
+						<ul class="menu-collapse collapse in" id="ui_menu_use">
 							<li>
 								<a href="/user/lookingglass">
-									<i class="icon icon-lg">youtube_searched_for</i>&nbsp;观察窗
+									<i class="icon icon-lg">youtube_searched_for</i>&nbsp;三网监控
 								</a>
 							</li>
 						</ul>
-
+-->
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_detect">审计</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_detect">
-							<li><a href="/user/detect"><i class="icon icon-lg">account_balance</i>&nbsp;审计规则</a></li>
+							<li><a href="/user/detect"><i class="icon icon-lg">assignment_late</i>&nbsp;审计规则</a></li>
 							<li><a href="/user/detect/log"><i class="icon icon-lg">assignment_late</i>&nbsp;审计记录</a></li>
 						</ul>
 						
@@ -326,33 +339,28 @@
 								</a>
 							</li>
 							{/if}
-							
+
 							<li>
 								<a href="/user/ticket">
 									<i class="icon icon-lg">question_answer</i>&nbsp;工单系统
 								</a>
 							</li>
-						</ul>
 
-						
-						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_help">交易</a>
-						<ul class="menu-collapse collapse in" id="ui_menu_help">
-						
-						
 							<li>
-								<a href="/user/shop">
-									<i class="icon icon-lg">shop</i>&nbsp;商店
+								<a href="/client.html" target="_blank">
+									<i class="icon icon-lg">library_books</i>&nbsp;软件中心
+								</a>
+							</li>
+
+							<li>
+								<a href="https://docs.lhie1.com/black-hole" target="_blank">
+									<i class="icon icon-lg">library_books</i>&nbsp;文档中心
 								</a>
 							</li>
 							
-							<li><a href="/user/bought"><i class="icon icon-lg">shopping_cart</i>&nbsp;购买记录</a></li>
-							
-							
-
-
 							<li>
-								<a href="/user/code">
-									<i class="icon icon-lg">code</i>&nbsp;充值
+								<a href="https://github.com/lhie1/Rules/blob/master/README.md" target="_blank">
+									<i class="icon icon-lg">library_books</i>&nbsp;规则项目
 								</a>
 							</li>
 						</ul>

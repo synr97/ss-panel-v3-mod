@@ -37,7 +37,7 @@
 						<div class="modal-content">
 							<div class="modal-heading">
 								<a class="modal-close" data-dismiss="modal">×</a>
-								<h2 class="modal-title">确认要退订？</h2>
+								<h2 class="modal-title">确定取消自动续费？</h2>
 							</div>
 							<div class="modal-inner">
 								<p>请您确认。</p>
@@ -90,7 +90,7 @@ $(document).ready(function(){
 					$("#result").modal();
 					$("#msg").html(data.msg);
 					$("#row_delete_"+deleteid).attr("disabled","true");
-				}else{
+				} else {
 					$("#result").modal();
 					$("#msg").html(data.msg);
 				}

@@ -12,7 +12,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<h1 class="content-heading">工单</h1>
+				<h1 class="content-heading"> 工单</h1>
 			</div>
 		</div>
 		<div class="container">
@@ -22,7 +22,10 @@
 					<div class="card">
 						<div class="card-main">
 							<div class="card-inner">
-								<p>您发出的工单</p>
+								<p>仅处理账户问题</p>
+								<p>不提供任何技术帮助与指导，请自行观看使用 <a href="https://docs.lhie1.com/black-hole" target="_blank">使用教程</a>（<a href="https://github.com/lhie1/Document/blob/master/SUMMARY.md" target="_blank">备用</a>） </p>
+								<p>工作日通常 6 小时内回复或处理</p>
+								<p>休息日通常 48 小时内回复或处理</p>
 							</div>
 						</div>
 					</div>

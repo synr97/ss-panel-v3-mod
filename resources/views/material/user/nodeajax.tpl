@@ -225,35 +225,6 @@
 				{
 					type: "line", 
 					showInLegend: true,
-					legendText: "电信下载速度",
-					dataPoints: [
-						{$i=0}
-						{foreach $speedtests as $single_speedtest}
-							{if $i==0}
-								{literal}
-								{
-								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()}
-								{literal}
-								}
-								{/literal}
-								{$i=1}
-							{else}
-								{literal}
-								,{
-								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()}
-								{literal}
-								}
-								{/literal}
-							{/if}
-						{/foreach}
-						
-					]
-				},
-				{
-					type: "line", 
-					showInLegend: true,
 					legendText: "电信上传速度",
 					dataPoints: [
 						{$i=0}
@@ -262,7 +233,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()}
 								{literal}
 								}
 								{/literal}
@@ -271,7 +242,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomUpload()}
 								{literal}
 								}
 								{/literal}
@@ -283,7 +254,7 @@
 				{
 					type: "line", 
 					showInLegend: true,
-					legendText: "联通下载速度",
+					legendText: "电信下载速度",
 					dataPoints: [
 						{$i=0}
 						{foreach $speedtests as $single_speedtest}
@@ -291,7 +262,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()}
 								{literal}
 								}
 								{/literal}
@@ -300,7 +271,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getTelecomDownload()}
 								{literal}
 								}
 								{/literal}
@@ -313,6 +284,35 @@
 					type: "line", 
 					showInLegend: true,
 					legendText: "联通上传速度",
+					dataPoints: [
+						{$i=0}
+						{foreach $speedtests as $single_speedtest}
+							{if $i==0}
+								{literal}
+								{
+								{/literal}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()}
+								{literal}
+								}
+								{/literal}
+								{$i=1}
+							{else}
+								{literal}
+								,{
+								{/literal}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getUnicomUpload()}
+								{literal}
+								}
+								{/literal}
+							{/if}
+						{/foreach}
+						
+					]
+				},
+				{
+					type: "line", 
+					showInLegend: true,
+					legendText: "联通下载速度",
 					dataPoints: [
 						{$i=0}
 						{foreach $speedtests as $single_speedtest}
@@ -349,7 +349,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()}
 								{literal}
 								}
 								{/literal}
@@ -358,7 +358,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()}
 								{literal}
 								}
 								{/literal}
@@ -378,7 +378,7 @@
 								{literal}
 								{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()}
 								{literal}
 								}
 								{/literal}
@@ -387,7 +387,7 @@
 								{literal}
 								,{
 								{/literal}
-									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccUpload()}
+									x: new Date({$single_speedtest->datetime*1000}), y:{$single_speedtest->getCmccDownload()}
 								{literal}
 								}
 								{/literal}
@@ -395,7 +395,7 @@
 						{/foreach}
 						
 					]
-				}
+				},
 				]
 			});
 			

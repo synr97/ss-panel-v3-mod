@@ -12,7 +12,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<h1 class="content-heading">我的账户</h1>
+				<h1 class="content-heading">账户信息</h1>
 			</div>
 		</div>
 		<div class="container">
@@ -23,10 +23,8 @@
 							<div class="card-main">
 								<div class="card-inner">
 									<div class="card-inner">
-										<p class="card-heading">我的帐号</p>
+										<p class="card-heading">账户信息</p>
 										<dl class="dl-horizontal">
-											<dt>用户名</dt>
-											<dd>{$user->user_name}</dd>
 											<dt>邮箱</dt>
 											<dd>{$user->email}</dd>
 										</dl>
@@ -43,8 +41,8 @@
 						<div class="card">
 							<div class="card-main">
 								<div class="card-inner margin-bottom-no">
-									<p class="card-heading">最近五分钟使用IP</p>
-									<p>请确认都为自己的IP，如有异常请及时修改连接密码。</p>
+									<p class="card-heading">最近在线 IP</p>
+									<p>如有异常请及时修改连接密码</p>
 									<div class="card-table">
 										<div class="table-responsive">
 											<table class="table">
@@ -71,8 +69,8 @@
 						<div class="card">
 							<div class="card-main">
 								<div class="card-inner margin-bottom-no">
-									<p class="card-heading">最近十次登录IP</p>
-									<p>请确认都为自己的IP，如有异常请及时修改密码。</p>
+									<p class="card-heading">最近登录 IP</p>
+									<p>如有异常请及时修改登录密码</p>
 									<div class="card-table">
 										<div class="table-responsive">
 											<table class="table">
@@ -92,7 +90,6 @@
 										</div>
 									</div>
 								</div>
-
 							</div>
 						</div>
 
@@ -102,7 +99,7 @@
 							<div class="card-main">
 								<div class="card-inner">
 									<div class="card-inner">
-										<p class="card-heading">返利记录</p>
+										<p class="card-heading">返利列表</p>
 										<div class="card-table">
 											<div class="table-responsive">
 											{$paybacks->render()}
@@ -110,7 +107,7 @@
 													<thead>
 													<tr>
 														<th>###</th>
-														<th>返利用户</th>
+														<th>邀请用户</th>
 														<th>返利金额</th>
 													</tr>
 													</thead>
@@ -126,7 +123,7 @@
 																</td>
 															{/if}
 															</td>
-															<td>{$payback->ref_get} 元</td>
+															<td><span class="payback-num">{$payback->ref_get}</span> <span>元</span></td>
 														</tr>
 													{/foreach}
 													</tbody>
@@ -148,9 +145,23 @@
 
 
 
-
-
-
+	<script>
+	function countPayBack() {
+    	var b = 0;
+    	for (var i=0;i<document.getElementsByClassName('payback-num').length;i+=1){
+        	var a = parseFloat(document.getElementsByClassName('payback-num')[i].innerHTML);
+        	if (a > 0) {
+            	var b = a + b;
+        	} else {
+            	var b = b;
+        	}
+    	}
+    	document.getElementById('payback-num-all').innerHTML = b.toFixed(2);
+	}
+	window.onload = function() {
+    	countPayBack();
+	};
+	</script>
 
 
 

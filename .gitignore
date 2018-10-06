@@ -1,6 +1,7 @@
 .env
+*/.DS_Store
+.DS_Store
 vendor/
-composer.phar
 .user.ini
 public/.user.ini
 storage/*

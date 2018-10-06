@@ -1,4 +1,4 @@
- {include file='admin/main.tpl'}
+{include file='admin/main.tpl'}
 
 
 

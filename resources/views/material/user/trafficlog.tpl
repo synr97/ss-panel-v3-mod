@@ -1,12 +1,4 @@
-
-
-
-
-
-
 {include file='user/main.tpl'}
-
-
 
 
 
@@ -40,8 +32,8 @@
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
 										<div id="log_chart" style="height: 300px; width: 100%;"></div>
-										
-										<script src="//cdn.staticfile.org/canvasjs/1.7.0/canvasjs.js"></script>
+                                      
+										<script src="/assets/js/canvasjs.min.js"> </script>
 											
 										<script type="text/javascript">
 											window.onload = function () {
@@ -57,7 +49,7 @@
 													axisX: {
 														title:"时间",
 														labelFontSize: 14,
-														titleFontSize: 18                            
+														titleFontSize: 18
 													},
 													axisY:{
 														title: "流量/KB",
@@ -97,37 +89,22 @@
 																{/literal}
 															{/if}
 														{/foreach}
-														
-														
-														
-														
+
 														]
 													}
-													
 													]
 												});
-
 											log_chart.render();
 										}
 										</script>
-										
 									</div>
-									
 								</div>
 							</div>
 						</div>
-						
-						
 					</div>
 				</div>
 			</section>
 		</div>
 	</main>
-
-
-
-
-
-
 
 {include file='user/footer.tpl'}

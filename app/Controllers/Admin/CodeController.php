@@ -43,7 +43,6 @@ class CodeController extends AdminController
         $type = $request->getParam('type');
         $number = $request->getParam('number');
 
-
         for ($i = 0; $i < $n; $i++) {
             $char = Tools::genRandomChar(32);
             $code = new Code();

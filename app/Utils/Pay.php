@@ -14,6 +14,8 @@ class Pay
     {
         $driver = Config::get("payment_system");
         switch ($driver) {
+            case "doiampay":
+                return Pay::doiampay_html($user);
             case "paymentwall":
                 return Pay::pmw_html($user);
             case 'spay':
@@ -25,24 +27,44 @@ class Pay
         }
         return null;
     }
-
-
+    /**
+      * DoiamPay
+      * @param  User   $user User
+      * @return String       HTML
+      */
     private static function spay_html($user)
     {
         return '
-						<form action="/user/alipay" method="get" target="_blank" >
-							<h3>支付宝充值</h3>
-							<p>充值金额: <input type="text" name="amount" /></p>
-							<input type="submit" value="提交" />
-						</form>
+                        <form action="/user/alipay" method="get" target="_blank">
+                            <div class="card-inner">
+                                <p class="card-heading">支付宝充值</p>
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="money">充值金额</label>
+                                    <input class="form-control" id="money" type="text" name="amount">
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <div class="card-action-btn pull-left">
+                                    <button class="btn btn-flat waves-attach waves-effect">
+                                    <span class="icon">check</span>&nbsp;充值</button>
+                                </div>
+                            </div>
+                        </form>
 ';
     }
+
+     public static function doiampay_html(User $user){
+         return \App\Utils\DoiAMPay::render();
+     }
 
     private static function zfbjk_html($user)
     {
         return '
-						<p>请扫码，给我转账来充值，记得备注上 <code>'.$user->id.'</code>。<br></p>
-						<img src="'.Config::get('zfbjk_qrcodeurl').'"/>
+                        <h5>1. #吱口令#复制此条消息，打开支付宝转账充值X9sPMI19GW</h5>
+                        <h5>2. 扫描二维码进行转账充值</h5>
+                        <h5>* 转账时请填写备注（数字）： <code>'.$user->id.'</code>（不备注不会自动到账）</h5>
+                        <h5>* 转账时请填写备注（数字）： <code>'.$user->id.'</code>（乱备注不会自动到账）</h5><br>
+                        <img src="'.Config::get('zfbjk_qrcodeurl').'"/>
 ';
     }
 
@@ -188,33 +210,33 @@ class Pay
 
 
 
-                $user=User::find($trade->userid);
-                $user->money=$user->money+$_POST['total_fee'];
+                $user = User::find($trade->userid);
+                $user->money = $user->money + $_POST['total_fee'];
                 $user->save();
 
-                $codeq=new Code();
-                $codeq->code="支付宝 充值";
-                $codeq->isused=1;
-                $codeq->type=-1;
-                $codeq->number=$_POST['total_fee'];
-                $codeq->usedatetime=date("Y-m-d H:i:s");
-                $codeq->userid=$user->id;
+                $codeq = new Code();
+                $codeq->code = "支付宝 充值";
+                $codeq->isused = 1;
+                $codeq->type = -1;
+                $codeq->number = $_POST['total_fee'];
+                $codeq->usedatetime = date("Y-m-d H:i:s");
+                $codeq->userid = $user->id;
                 $codeq->save();
 
 
 
 
-                if ($user->ref_by!=""&&$user->ref_by!=0&&$user->ref_by!=null) {
+                if ($user->ref_by != "" && $user->ref_by != 0 && $user->ref_by != null) {
                     $gift_user=User::where("id", "=", $user->ref_by)->first();
-                    $gift_user->money=($gift_user->money+($codeq->number*(Config::get('code_payback')/100)));
+                    $gift_user->money = ($gift_user->money + ($codeq->number * (Config::get('code_payback') / 100)));
                     $gift_user->save();
 
-                    $Payback=new Payback();
-                    $Payback->total=$_POST['total_fee'];
-                    $Payback->userid=$user->id;
-                    $Payback->ref_by=$user->ref_by;
-                    $Payback->ref_get=$codeq->number*(Config::get('code_payback')/100);
-                    $Payback->datetime=time();
+                    $Payback = new Payback();
+                    $Payback->total = $_POST['total_fee'];
+                    $Payback->userid = $user->id;
+                    $Payback->ref_by = $user->ref_by;
+                    $Payback->ref_get = $codeq->number * (Config::get('code_payback') / 100);
+                    $Payback->datetime = time();
                     $Payback->save();
                 }
             } elseif ($_POST['trade_status'] == 'TRADE_SUCCESS') {
@@ -229,33 +251,33 @@ class Pay
                 //调试用，写文本函数记录程序运行情况是否正常
                 //logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
 
-                $user=User::find($trade->userid);
-                $user->money=$user->money+$_POST['total_fee'];
+                $user = User::find($trade->userid);
+                $user->money = $user->money + $_POST['total_fee'];
                 $user->save();
 
-                $codeq=new Code();
-                $codeq->code="支付宝 充值";
-                $codeq->isused=1;
-                $codeq->type=-1;
-                $codeq->number=$_POST['total_fee'];
-                $codeq->usedatetime=date("Y-m-d H:i:s");
-                $codeq->userid=$user->id;
+                $codeq = new Code();
+                $codeq->code = "支付宝 充值";
+                $codeq->isused = 1;
+                $codeq->type = -1;
+                $codeq->number = $_POST['total_fee'];
+                $codeq->usedatetime = date("Y-m-d H:i:s");
+                $codeq->userid = $user->id;
                 $codeq->save();
 
 
 
 
-                if ($user->ref_by!=""&&$user->ref_by!=0&&$user->ref_by!=null) {
-                    $gift_user=User::where("id", "=", $user->ref_by)->first();
-                    $gift_user->money=($gift_user->money+($codeq->number*(Config::get('code_payback')/100)));
+                if ($user->ref_by != "" && $user->ref_by != 0 && $user->ref_by != null) {
+                    $gift_user = User::where("id", "=", $user->ref_by)->first();
+                    $gift_user->money = ($gift_user->money + ($codeq->number * (Config::get('code_payback') / 100)));
                     $gift_user->save();
 
-                    $Payback=new Payback();
-                    $Payback->total=$_POST['total_fee'];
-                    $Payback->userid=$user->id;
-                    $Payback->ref_by=$user->ref_by;
-                    $Payback->ref_get=$codeq->number*(Config::get('code_payback')/100);
-                    $Payback->datetime=time();
+                    $Payback = new Payback();
+                    $Payback->total = $_POST['total_fee'];
+                    $Payback->userid = $user->id;
+                    $Payback->ref_by = $user->ref_by;
+                    $Payback->ref_get = $codeq->number * (Config::get('code_payback') / 100);
+                    $Payback->datetime = time();
                     $Payback->save();
                 }
             }
@@ -306,29 +328,29 @@ class Pay
                 $user->money=$user->money+$pingback->getVirtualCurrencyAmount();
                 $user->save();
 
-                $codeq=new Code();
-                $codeq->code="Payment Wall 充值";
-                $codeq->isused=1;
-                $codeq->type=-1;
-                $codeq->number=$pingback->getVirtualCurrencyAmount();
-                $codeq->usedatetime=date("Y-m-d H:i:s");
-                $codeq->userid=$user->id;
+                $codeq = new Code();
+                $codeq->code = "Payment Wall 充值";
+                $codeq->isused = 1;
+                $codeq->type = -1;
+                $codeq->number = $pingback->getVirtualCurrencyAmount();
+                $codeq->usedatetime = date("Y-m-d H:i:s");
+                $codeq->userid = $user->id;
                 $codeq->save();
 
 
 
 
-                if ($user->ref_by!=""&&$user->ref_by!=0&&$user->ref_by!=null) {
-                    $gift_user=User::where("id", "=", $user->ref_by)->first();
-                    $gift_user->money=($gift_user->money+($codeq->number*(Config::get('code_payback')/100)));
+                if ($user->ref_by != "" && $user->ref_by != 0 && $user->ref_by != null) {
+                    $gift_user = User::where("id", "=", $user->ref_by)->first();
+                    $gift_user->money = ($gift_user->money + ($codeq->number * (Config::get('code_payback') / 100)));
                     $gift_user->save();
 
-                    $Payback=new Payback();
-                    $Payback->total=$pingback->getVirtualCurrencyAmount();
-                    $Payback->userid=$user->id;
-                    $Payback->ref_by=$user->ref_by;
-                    $Payback->ref_get=$codeq->number*(Config::get('code_payback')/100);
-                    $Payback->datetime=time();
+                    $Payback = new Payback();
+                    $Payback->total = $pingback->getVirtualCurrencyAmount();
+                    $Payback->userid = $user->id;
+                    $Payback->ref_by = $user->ref_by;
+                    $Payback->ref_get = $codeq->number * (Config::get('code_payback') / 100);
+                    $Payback->datetime = time();
                     $Payback->save();
                 }
 
@@ -381,38 +403,38 @@ class Pay
                     exit("IncorrectOrder");
                 }
                 $pl = new Paylist();
-                $pl->userid=$title;
-                $pl->tradeno=$tradeNo;
-                $pl->total=$Money;
-                $pl->datetime=time();
-                $pl->status=1;
+                $pl->userid = $title;
+                $pl->tradeno = $tradeNo;
+                $pl->total = $Money;
+                $pl->datetime = time();
+                $pl->status = 1;
                 $pl->save();
-                $user->money=$user->money+$Money;
+                $user->money = $user->money + $Money;
                 $user->save();
 
-                $codeq=new Code();
-                $codeq->code="支付宝充值";
-                $codeq->isused=1;
-                $codeq->type=-1;
-                $codeq->number=$Money;
-                $codeq->usedatetime=date("Y-m-d H:i:s");
-                $codeq->userid=$user->id;
+                $codeq = new Code();
+                $codeq->code = "支付宝充值";
+                $codeq->isused = 1;
+                $codeq->type = -1;
+                $codeq->number = $Money;
+                $codeq->usedatetime = date("Y-m-d H:i:s");
+                $codeq->userid = $user->id;
                 $codeq->save();
 
 
 
 
-                if ($user->ref_by!=""&&$user->ref_by!=0&&$user->ref_by!=null) {
-                    $gift_user=User::where("id", "=", $user->ref_by)->first();
-                    $gift_user->money=($gift_user->money+($codeq->number*(Config::get('code_payback')/100)));
+                if ($user->ref_by != "" && $user->ref_by != 0 && $user->ref_by != null) {
+                    $gift_user = User::where("id", "=", $user->ref_by)->first();
+                    $gift_user->money = ($gift_user->money + ($codeq->number * (Config::get('code_payback') / 100)));
                     $gift_user->save();
 
-                    $Payback=new Payback();
-                    $Payback->total=$Money;
-                    $Payback->userid=$user->id;
-                    $Payback->ref_by=$user->ref_by;
-                    $Payback->ref_get=$codeq->number*(Config::get('code_payback')/100);
-                    $Payback->datetime=time();
+                    $Payback = new Payback();
+                    $Payback->total = $Money;
+                    $Payback->userid = $user->id;
+                    $Payback->ref_by = $user->ref_by;
+                    $Payback->ref_get = $codeq->number * (Config::get('code_payback') / 100);
+                    $Payback->datetime = time();
                     $Payback->save();
                 }
 

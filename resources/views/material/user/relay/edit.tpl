@@ -47,6 +47,7 @@
 									<div class="form-group form-group-label">
 										<label class="floating-label" for="port">端口</label>
 										<select id="port" class="form-control" name="port">
+											<option value="0">所有端口</option>
 											{foreach $ports as $port}
 												<option value="{$port}" {if $rule->port == $port}selected{/if}>{$port}</option>
 											{/foreach}

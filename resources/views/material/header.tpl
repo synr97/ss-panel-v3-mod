@@ -4,13 +4,14 @@
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<meta name="theme-color" content="#3f51b5">
+	<meta name="theme-color" content="#000000">
 	<title>{$config["appName"]}</title>
 
 	<!-- css -->
 	<link href="/theme/material/css/base.min.css" rel="stylesheet">
 	<link href="/theme/material/css/project.min.css" rel="stylesheet">
-	<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.loli.net/css?family=Roboto:300,300italic,400,400italic,500,500italic" rel="stylesheet">
+	<link href="https://fonts.loli.net/css?family=Material+Icons">
 	
 	<!-- favicon -->
 	<!-- ... -->
@@ -42,31 +43,31 @@
 					</ul>
 				{else}
 					<span class="access-hide">未登录</span>
-					<span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="/theme/material/images/users/avatar-001.jpg"></span>
+					<span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="/theme/material/images/users/avatar.png"></span>
 					</a>
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li>
-							<a class="padding-right-lg waves-attach" href="/auth/login"><span class="icon icon-lg margin-right">account_box</span>登录</a>
-						</li>
-						<li>
-							<a class="padding-right-lg waves-attach" href="/auth/register"><span class="icon icon-lg margin-right">pregnant_woman</span>注册</a>
-						</li>
-					</ul>
 				{/if}
-					
 			</li>
 		</ul>
 	</header>
 	<nav aria-hidden="true" class="menu menu-left nav-drawer nav-drawer-md" id="ui_menu" tabindex="-1">
 		<div class="menu-scroll">
 			<div class="menu-content">
-				<a class="menu-logo" href="/"><i class="icon icon-lg">restaurant_menu</i>&nbsp;菜单</a>
+				<a class="menu-logo" href="/user"><i class="icon icon-lg">restaurant_menu</i>&nbsp;菜单</a>
 				<ul class="nav">
 					<li>
-						<a  href="/"><i class="icon icon-lg">bookmark_border</i>&nbsp;首页</a>
+						<a  href="https://dlercloud.com"><i class="icon icon-lg">home</i>&nbsp;首页</a>
 					</li>
 					<li>
-						<a  href="/tos"><i class="icon icon-lg">text_format</i>&nbsp;TOS</a>
+						<a  href="/tos.html"><i class="icon icon-lg">text_format</i>&nbsp;TOS</a>
+					</li>
+					<li>
+						<a  href="/use_policy.html"><i class="icon icon-lg">text_format</i>&nbsp;AUP</a>
+					</li>
+					<li>
+						<a  href="/client.html" target="_blank"><i class="icon icon-lg">library_books</i>&nbsp;软件中心</a>
+					</li>
+					<li>
+						<a  href="https://docs.lhie1.com/black-hole" target="_blank"><i class="icon icon-lg">library_books</i>&nbsp;文档中心</a>
 					</li>
 					<li>
 						<a  href="/code"><i class="icon icon-lg">code</i>&nbsp;邀请码</a>
@@ -80,10 +81,7 @@
 					</li>
 					{else}
 					<li>
-						<a  href="/auth/login"><i class="icon icon-lg">vpn_key</i>&nbsp;登录</a>
-					</li>
-					<li>
-						<a  href="/auth/register"><i class="icon icon-lg">pregnant_woman</i>&nbsp;注册</a>
+						<a  href="/password/reset"><i class="icon icon-lg">security</i>&nbsp;忘记密码</a>
 					</li>
 					{/if}
 				</ul>

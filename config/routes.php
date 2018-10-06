@@ -81,7 +81,6 @@ $app->get('/staff', 'App\Controllers\HomeController:staff');
 $app->get('/gfwlistjs', 'App\Controllers\LinkController:GetGfwlistJs');
 $app->post('/telegram_callback', 'App\Controllers\HomeController:telegram');
 
-
 // User Center
 $app->group('/user', function () {
     $this->get('', 'App\Controllers\UserController:index');
@@ -127,6 +126,8 @@ $app->group('/user', function () {
     $this->post('/ssr', 'App\Controllers\UserController:updateSSR');
     $this->post('/theme', 'App\Controllers\UserController:updateTheme');
     $this->post('/mail', 'App\Controllers\UserController:updateMail');
+    $this->post('/email','App\Controllers\UserController:updateEmail');
+    $this->post('/verifyEmail','App\Controllers\UserController:verifyEmail');
     $this->post('/sspwd', 'App\Controllers\UserController:updateSsPwd');
     $this->post('/method', 'App\Controllers\UserController:updateMethod');
     $this->post('/hide', 'App\Controllers\UserController:updateHide');
@@ -164,6 +165,7 @@ $app->group('/auth', function () {
     $this->post('/register', 'App\Controllers\AuthController:registerHandle');
     $this->post('/send', 'App\Controllers\AuthController:sendVerify');
     $this->get('/logout', 'App\Controllers\AuthController:logout');
+    $this->get('/telegram_oauth', 'App\Controllers\AuthController:telegram_oauth');
 })->add(new Guest());
 
 // Password
@@ -178,8 +180,10 @@ $app->group('/password', function () {
 $app->group('/admin', function () {
     $this->get('', 'App\Controllers\AdminController:index');
     $this->get('/', 'App\Controllers\AdminController:index');
+
     $this->get('/trafficlog', 'App\Controllers\AdminController:trafficLog');
     $this->post('/trafficlog/ajax', 'App\Controllers\AdminController:ajax_trafficLog');
+
     // Node Mange
     $this->get('/node', 'App\Controllers\Admin\NodeController:index');
 
@@ -266,6 +270,8 @@ $app->group('/admin', function () {
     $this->post('/code/ajax', 'App\Controllers\Admin\CodeController:ajax_code');
 
     // User Mange
+    $this->get('/find', 'App\Controllers\AdminController:find');
+    $this->post('/finduser', 'App\Controllers\AdminController:finduser');
     $this->get('/user', 'App\Controllers\Admin\UserController:index');
     $this->get('/user/{id}/edit', 'App\Controllers\Admin\UserController:edit');
     $this->put('/user/{id}', 'App\Controllers\Admin\UserController:update');
@@ -291,6 +297,7 @@ $app->group('/api', function () {
     $this->post('/token', 'App\Controllers\ApiController:newToken');
     $this->get('/node', 'App\Controllers\ApiController:node')->add(new Api());
     $this->get('/user/{id}', 'App\Controllers\ApiController:userInfo')->add(new Api());
+    $this->post('/login','App\Controllers\Client\leon:apilogin');
 });
 
 // mu
@@ -335,7 +342,14 @@ $app->group('/link', function () {
     $this->get('/{token}', 'App\Controllers\LinkController:GetContent');
 });
 
-
+$app->group('/user', function () {
+    $this->post("/doiam", "App\Utils\DoiAMPay:handle");
+})->add(new Auth());
+$app->group("/doiam", function () {
+    $this->post("/callback/{type}", "App\Utils\DoiAMPay:handle_callback");
+    $this->get("/return/alipay", "App\Utils\DoiAMPay:handle_return");
+    $this->post("/status", "App\Utils\DoiAMPay:status");
+});
 
 
 

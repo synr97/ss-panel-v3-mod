@@ -88,7 +88,7 @@ class IpController extends AdminController
 
 
         $res['ret'] = 1;
-        $res['msg'] = "发送解封命令解封 ".$ip." 成功";
+        $res['msg'] = "解除封禁 ".$ip." 成功";
         return $this->echoJson($response, $res);
     }
 

@@ -15,7 +15,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header">
 			<div class="container">
-				<h1 class="content-heading">观察窗</h1>
+				<h1 class="content-heading">下载速度</h1>
 			</div>
 		</div>
 		<div class="container">
@@ -27,7 +27,7 @@
 								<div class="card-main">
 									<div class="card-inner margin-bottom-no">
 										<p class="card-heading">注意!</p>
-										<p>此处只展示最近{$hour}小时的记录.</p><b>测试节点来自 <a href="http://speedtest.net">Speedtest</a>，数据仅供参考~</b>
+										<p>最近 {$hour} 小时的记录.</p><b>测试节点来自 <a href="http://speedtest.net">Speedtest</a>，数据仅供参考~</b>
 									</div>
 									
 								</div>
@@ -45,14 +45,14 @@
 													<tr>
 														<th>节点</th>
 														<th>电信延迟</th>
-														<th>电信下载速度</th>
 														<th>电信上传速度</th>
+														<th>电信下载速度</th>
 														<th>联通延迟</th>
-														<th>联通下载速度</th>
 														<th>联通上传速度</th>
+														<th>联通下载速度</th>
 														<th>移动延迟</th>
-														<th>移动下载速度</th>
 														<th>移动上传速度</th>
+														<th>移动下载速度</th>
 													</tr>
 													{foreach $speedtest as $single}
 														<tr>

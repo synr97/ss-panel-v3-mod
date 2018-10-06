@@ -43,16 +43,13 @@ class Node extends Model
     public function getNodeUpRate()
     {
         $id = $this->attributes['id'];
-        $log = NodeOnlineLog::where('node_id', $id)->where('log_time', '>=', time()-86400)->count();
-
-        return $log/1440;
-    }
-
-    public function getNodeLoad()
-    {
-        $id = $this->attributes['id'];
-        $log = NodeInfoLog::where('node_id', $id)->orderBy('id', 'desc')->whereRaw('`log_time`%1800<60')->limit(48)->get();
-        return $log;
+        $log = NodeOnlineLog::where('node_id', $id)->where('log_time', '>=', time() - 86400)->count();
+        $rate = $log / 1440;
+        if ($rate >= 0.97){
+            return 1;
+        }else{
+            return $rate;
+        }
     }
 
     public function getNodeAlive()
@@ -82,8 +79,8 @@ class Node extends Model
 
 
         return "电信延迟：".$log->telecomping." 下载：".$log->telecomeupload." 上传：".$log->telecomedownload."<br>
-		联通延迟：".$log->unicomping." 下载：".$log->unicomupload." 上传：".$log->unicomdownload."<br>
-		移动延迟：".$log->cmccping." 下载：".$log->cmccupload." 上传：".$log->cmccdownload."<br>定时测试，仅供参考";
+        联通延迟：".$log->unicomping." 下载：".$log->unicomupload." 上传：".$log->unicomdownload."<br>
+        移动延迟：".$log->cmccping." 下载：".$log->cmccupload." 上传：".$log->cmccdownload."<br>定时测试，仅供参考";
     }
 
     public function getSpeedtestResult()
@@ -111,20 +108,24 @@ class Node extends Model
         return Tools::flowAutoShow($traffic);
     }
 
+    /**
+     * Judge node status via database.
+     * @return bool
+     */
     public function isNodeOnline()
     {
-        $node_heartbeat = $this->attributes['node_heartbeat'];
+        $online_status = $this->attributes['online_status'];
         $sort = $this->attributes['sort'];
 
-        if (!($sort == 0 || $sort == 7 || $sort == 8 || $sort==10)) {
+        if (!($sort == 0 || $sort == 7 || $sort == 8 || $sort==10 || $sort==11)) {
             return null;
         }
 
-        if ($node_heartbeat == 0) {
+        if ($online_status == 0) {
             return null;
         }
 
-        if (time() - $node_heartbeat > 300) {
+        if ($online_status == -1) {
             return false;
         } else {
             return true;

@@ -6,10 +6,6 @@ use App\Services\Config;
 
 class Telegram
 {
-
-    /**
-     * ·¢ËÍÏûÏ¢
-     */
     public static function Send($messageText)
     {
         if (Config::get('enable_telegram') == 'true') {

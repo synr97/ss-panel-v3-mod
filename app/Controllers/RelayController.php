@@ -205,7 +205,7 @@ class RelayController extends UserController
                     ->orWhere("node_group", "=", 0);
             }
         )->where('type', 1)->where('sort', 9)->where("node_class", "<=", $user->class)->first();
-        if ($port_raw == null && $port != $user->port) {
+        if ($port_raw == null && $port != $user->port && $port != 0) {
             $rs['ret'] = 0;
             $rs['msg'] = "我和他谈笑风生";
             return $response->getBody()->write(json_encode($rs));
@@ -359,7 +359,7 @@ class RelayController extends UserController
                     ->orWhere("node_group", "=", 0);
             }
         )->where('type', 1)->where('sort', 9)->where("node_class", "<=", $user->class)->first();
-        if ($port_raw == null && $port != $user->port) {
+        if ($port_raw == null && $port != $user->port && $port != 0) {
             $rs['ret'] = 0;
             $rs['msg'] = "西方的哪个国家我没去过";
             return $response->getBody()->write(json_encode($rs));

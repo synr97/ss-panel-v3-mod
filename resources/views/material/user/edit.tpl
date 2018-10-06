@@ -3,11 +3,15 @@
 
 {include file='user/main.tpl'}
 
+<style>.kaobei {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
 
-
-
-
-
+.kaobei:hover {
+    background-color: #000000; /* prink */
+    color: white;
+}</style>
 
 	<main class="content">
 		<div class="content-header ui-content-header">
@@ -24,7 +28,7 @@
 							<div class="card-main">
 								<div class="card-inner">
 									<div class="card-inner">
-										<p class="card-heading">修改密码</p>
+										<p class="card-heading">账户密码</p>
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="oldpwd">当前密码</label>
 											<input class="form-control" id="oldpwd" type="password">
@@ -50,11 +54,43 @@
 						</div>
 
 						<div class="card margin-bottom-no">
+                            <div class="card-main">
+                                <div class="card-inner">
+                                    <div class="card-inner">
+                                        <p class="card-heading">邮箱修改</p>
+                                        <div class="form-group form-group-label">
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-push-1">
+                                                    <label class="floating-label" for="email">邮箱</label>
+                                                    <input class="form-control" id="email" type="text">
+                                                    <button id="email_verify" class="btn btn-block btn-brand-accent waves-attach waves-light">获取验证码</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-label">
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-push-1">
+                                                    <label class="floating-label" for="email_code">邮箱验证码</label>
+                                                    <input class="form-control" id="email_code" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <div class="card-action-btn pull-left">
+                                            <button class="btn btn-flat waves-attach" id="email-update" ><span class="icon">check</span>&nbsp;提交</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+						<div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
 									<div class="card-inner">
 										<p class="card-heading">连接密码修改</p>
-										<p>当前连接密码：{$user->passwd}</p>
+										<p>当前连接密码：<code id="ajax-user-passwd">{$user->passwd}</code>
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="sspwd">连接密码</label>
 											<input class="form-control" id="sspwd" type="text">
@@ -74,15 +110,32 @@
 							<div class="card-main">
 								<div class="card-inner">
 									<div class="card-inner">
-										<p class="card-heading">加密方式修改</p>
-										<p>注意：SS 和 SSR 支持的加密方式有所不同，请根据实际情况来进行选择！</p>
+										<p class="card-heading">重置个人端口</p>
+										<p>当前端口：<code id="ajax-user-port">{$user->port}</code></p>
+
+									</div>
+									<div class="card-action">
+										<div class="card-action-btn pull-left">
+											<button class="btn btn-flat waves-attach" id="portreset" ><span class="icon">check</span>&nbsp;重置端口</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner">
+									<div class="card-inner">
+										<p class="card-heading">加密方式</p>
+										<p>注意：SS/SSD 和 SSR 支持的加密方式有所不同，请根据实际情况来进行选择！</p>
 										<p>当前加密方式：{$user->method}</p>
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="method">加密方式</label>
 											<select id="method" class="form-control">
 												{$method_list = $config_service->getSupportParam('method')}
 												{foreach $method_list as $method}
-													<option value="{$method}" {if $user->method == $method}selected="selected"{/if}>[{if URL::CanMethodConnect($method) == 2}SS{else}SS/SSR{/if} 可连接] {$method}</option>
+													<option value="{$method}" {if $user->method == $method}selected="selected"{/if}>[{if URL::CanMethodConnect($method) == 2}SS/SSD{else}SS/SSD/SSR{/if}] {$method}</option>
 												{/foreach}
 											</select>
 										</div>
@@ -101,25 +154,142 @@
 							<div class="card-main">
 								<div class="card-inner">
 									<div class="card-inner">
-										<p class="card-heading">联络方式修改</p>
+										<p class="card-heading">协议&混淆</p>
+										<p>当前协议：<code id="ajax-user-protocol">{$user->protocol}</code></p>
+										<p>注意：如果您使用 SS/SSD 客户端此处请直接设置为：origin</p>
+										<p>注意：如果需要兼容 SS/SSD 请选择带 _compatible 的兼容选项</p>
+										<div class="form-group form-group-label">
+											<label class="floating-label" for="protocol">协议</label>
+											<select id="protocol" class="form-control">
+												{$protocol_list = $config_service->getSupportParam('protocol')}
+												{foreach $protocol_list as $protocol}
+													<option value="{$protocol}" {if $user->protocol == $protocol}selected="selected"{/if}>[{if URL::CanProtocolConnect($protocol) == 3}SS/SSD/SSR{else}SSR{/if}] {$protocol}</option>
+												{/foreach}
+											</select>
+										</div>
+
+									</div>
+
+									<div class="card-inner">
+										<p>当前混淆方式：<code id="ajax-user-obfs">{$user->obfs}</code></p>
+										<p>注意：SS/SSD 和 SSR 支持的混淆有所不同，请根据实际情况来进行选择！</p>
+										<div class="form-group form-group-label">
+											<label class="floating-label" for="obfs">混淆方式</label>
+											<select id="obfs" class="form-control">
+												{$obfs_list = $config_service->getSupportParam('obfs')}
+												{foreach $obfs_list as $obfs}
+													<option value="{$obfs}" {if $user->obfs == $obfs}selected="selected"{/if}>[{if URL::CanObfsConnect($obfs) >= 3}SS/SSD/SSR{else}{if URL::CanObfsConnect($obfs) == 1}SSR{else}SS/SSD{/if}{/if}] {$obfs}</option>
+												{/foreach}
+											</select>
+										</div>
+									</div>
+
+									<div class="card-action">
+										<div class="card-action-btn pull-left">
+											<button class="btn btn-flat waves-attach" id="ssr-update" ><span class="icon">check</span>&nbsp;提交</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-lg-6 col-md-6">
+						{if $config['enable_telegram'] == 'true'}
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner">
+									<div class="card-inner">
+										<p class="card-heading">Telegram 绑定</p>
+										<p>绑定 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，拍下下面这张二维码发给它</p>
+										<div class="form-group form-group-label">
+											<div class="text-center">
+												<div id="telegram-qr"></div>
+												{if $user->telegram_id != 0}当前绑定：<a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>{/if}
+											</div>
+										</div>
+									</div>
+									<div class="card-action">
+										<div class="card-action-btn pull-left">
+											<a class="btn btn-brand-accent btn-flat waves-attach" href="/user/telegram_reset" ><span class="icon">format_color_reset</span>&nbsp;解绑</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						{/if}
+
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner">
+									<div class="card-inner">
+										<p class="card-heading">Google Authenticator</p>
+										<p>请下载 Google Authenticator，扫描下面的二维码绑定。</p>
+										<p><i class="icon icon-lg" aria-hidden="true">android</i><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">&nbsp;Android</a></p>
+										<p><i class="icon icon-lg" aria-hidden="true">tablet_mac</i><a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605?mt=8">&nbsp;iOS</a></p>
+										<p>在没有测试完成之前请不要轻易开启。</p>
+										<p>当前设置：{if $user->ga_enable==1} 登录时要求验证 {else} 不要求 {/if}</p>
+										<p>当前服务器时间：{date("Y-m-d H:i:s")}</p>
+										<div class="form-group form-group-label">
+											<label class="floating-label" for="ga-enable">验证设置</label>
+											<select id="ga-enable" class="form-control">
+												<option value="0">关闭</option>
+												<option value="1">开启</option>
+											</select>
+										</div>
+
+
+										<div class="form-group form-group-label">
+											<div class="text-center">
+												<div id="ga-qr"></div>
+												密钥：{$user->ga_token}
+											</div>
+										</div>
+
+										<div class="form-group form-group-label">
+											<label class="floating-label" for="code">测试</label>
+											<input type="text" id="code" placeholder="输入验证器生成的数字来测试" class="form-control">
+										</div>
+
+									</div>
+									<div class="card-action">
+										<div class="card-action-btn pull-left">
+											<a class="btn btn-brand-accent btn-flat waves-attach" href="/user/gareset" ><span class="icon">format_color_reset</span>&nbsp;重置</a>
+											<button class="btn btn-flat waves-attach" id="ga-test" ><span class="icon">extension</span>&nbsp;测试</button>
+											<button class="btn btn-brand btn-flat waves-attach" id="ga-set" ><span class="icon">perm_data_setting</span>&nbsp;设置</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="card margin-bottom-no">
+							<div class="card-main">
+								<div class="card-inner">
+									<div class="card-inner">
+										<p class="card-heading">联络方式</p>
 										<p>当前联络方式：
-										{if $user->im_type==1}
-										微信
+										<code id="ajax-im">
+										{if $user->im_type == 1}
+										微信 - 
 										{/if}
 
-										{if $user->im_type==2}
-										QQ
+										{if $user->im_type == 2}
+										QQ - 
 										{/if}
 
-										{if $user->im_type==3}
-										Google+
+										{if $user->im_type == 3}
+										Google+ - 
 										{/if}
 
-										{if $user->im_type==4}
-										Telegram
+										{if $user->im_type == 4}
+										Telegram - 
 										{/if}
 
-										{$user->im_value}</p>
+										{$user->im_value}
+										</code>
+										</p>
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="imtype">选择您的联络方式</label>
 											<select class="form-control" id="imtype">
@@ -146,94 +316,35 @@
 							</div>
 						</div>
 
-
-
 						<div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
 									<div class="card-inner">
-										<p class="card-heading">协议&混淆设置</p>
-										<p>当前协议：{$user->protocol}</p>
-										<p>注意1：如果需要兼容原版SS请选择带_compatible的兼容选项！</p>
-										<p>注意2：如果您使用原版 SS 客户端此处请直接设置为 origin！</p>
+										<p class="card-heading">每日流量使用情况</p>
+										<p>当前状态：<code id="ajax-mail">{if $user->sendDailyMail==1}接收{else}不接收{/if}</code></p>
 										<div class="form-group form-group-label">
-											<label class="floating-label" for="protocol">协议</label>
-											<select id="protocol" class="form-control">
-												{$protocol_list = $config_service->getSupportParam('protocol')}
-												{foreach $protocol_list as $protocol}
-													<option value="{$protocol}" {if $user->protocol == $protocol}selected="selected"{/if}>[{if URL::CanProtocolConnect($protocol) == 3}SS/SSR{else}SSR{/if} 可连接] {$protocol}</option>
-												{/foreach}
-											</select>
-										</div>
-
-									</div>
-
-									<div class="card-inner">
-										<p>当前混淆方式：{$user->obfs}</p>
-										<p>注意1：如果需要兼容原版SS请选择带_compatible的兼容选项！</p>
-										<p>注意2：SS 和 SSR 支持的混淆类型有所不同，simple_obfs_* 为原版 SS 的混淆方式，其他为 SSR 的混淆方式！</p>
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="obfs">混淆方式</label>
-											<select id="obfs" class="form-control">
-												{$obfs_list = $config_service->getSupportParam('obfs')}
-												{foreach $obfs_list as $obfs}
-													<option value="{$obfs}" {if $user->obfs == $obfs}selected="selected"{/if}>[{if URL::CanObfsConnect($obfs) >= 3}SS/SSR{else}{if URL::CanObfsConnect($obfs) == 1}SSR{else}SS{/if}{/if} 可连接] {$obfs}</option>
-												{/foreach}
+											<label class="floating-label" for="mail">发送设置</label>
+											<select id="mail" class="form-control">
+												<option value="1">接收</option>
+												<option value="0">不接收</option>
 											</select>
 										</div>
 									</div>
-
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
-											<button class="btn btn-flat waves-attach" id="ssr-update" ><span class="icon">check</span>&nbsp;提交</button>
+											<button class="btn btn-flat waves-attach" id="mail-update" ><span class="icon">check</span>&nbsp;提交</button>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 
-
-
-
-
-
-
 						<div class="card margin-bottom-no">
 							<div class="card-main">
 								<div class="card-inner">
 									<div class="card-inner">
-										<p class="card-heading">主题修改</p>
-										<p>当前主题：{$user->theme}</p>
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="theme">主题</label>
-											<select id="theme" class="form-control">
-												{foreach $themes as $theme}
-													<option value="{$theme}">{$theme}</option>
-												{/foreach}
-											</select>
-										</div>
-
-									</div>
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											<button class="btn btn-flat waves-attach" id="theme-update" ><span class="icon">check</span>&nbsp;提交</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-
-					<div class="col-lg-6 col-md-6">
-
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									<div class="card-inner">
-										<p class="card-heading">IP解封</p>
-										<p>当前状态：{$Block}</p>
+										<p class="card-heading">IP 解封</p>
+										<p>当前状态：<code id="ajax-block">{$Block}</code></p>
 
 									</div>
 									<div class="card-action">
@@ -245,147 +356,7 @@
 							</div>
 						</div>
 
-
-
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									<div class="card-inner">
-										<p class="card-heading">每日邮件接收设置</p>
-										<p>当前设置：{if $user->sendDailyMail==1} 发送 {else} 不发送 {/if}</p>
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="mail">发送设置</label>
-											<select id="mail" class="form-control">
-												<option value="1">发送</option>
-												<option value="0">不发送</option>
-											</select>
-										</div>
-
-									</div>
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											<button class="btn btn-flat waves-attach" id="mail-update" ><span class="icon">check</span>&nbsp;提交</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									<div class="card-inner">
-										<p class="card-heading">两步验证</p>
-										<p>请下载 Google 的两步验证器，扫描下面的二维码。</p>
-										<p><i class="icon icon-lg" aria-hidden="true">android</i><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">&nbsp;Android</a></p>
-										<p><i class="icon icon-lg" aria-hidden="true">tablet_mac</i><a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605?mt=8">&nbsp;iOS</a></p>
-										<p>在没有测试完成绑定成功之前请不要启用。</p>
-										<p>当前设置：{if $user->ga_enable==1} 登录时要求验证 {else} 不要求 {/if}</p>
-										<p>当前服务器时间：{date("Y-m-d H:i:s")}</p>
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="ga-enable">验证设置</label>
-											<select id="ga-enable" class="form-control">
-												<option value="0">不要求</option>
-												<option value="1">要求验证</option>
-											</select>
-										</div>
-
-
-										<div class="form-group form-group-label">
-											<div class="text-center">
-												<div id="ga-qr"></div>
-												密钥：{$user->ga_token}
-											</div>
-										</div>
-
-
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="code">测试一下</label>
-											<input type="text" id="code" placeholder="输入验证器生成的数字来测试" class="form-control">
-										</div>
-
-									</div>
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											<a class="btn btn-brand-accent btn-flat waves-attach" href="/user/gareset" ><span class="icon">format_color_reset</span>&nbsp;重置</a>
-											<button class="btn btn-flat waves-attach" id="ga-test" ><span class="icon">extension</span>&nbsp;测试</button>
-											<button class="btn btn-brand btn-flat waves-attach" id="ga-set" ><span class="icon">perm_data_setting</span>&nbsp;设置</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									<div class="card-inner">
-										<p class="card-heading">重置端口</p>
-										<p>当前端口：{$user->port}</p>
-
-									</div>
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											<button class="btn btn-flat waves-attach" id="portreset" ><span class="icon">check</span>&nbsp;重置端口</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									<div class="card-inner">
-										<p class="card-heading">自定义ACL/PAC/Surge</p>
-										<p>您可以在此处追加 Gfwlist 规则。</p>
-										<p>格式参看<a href="https://adblockplus.org/zh_CN/filters">https://adblockplus.org/zh_CN/filters</a></p>
-										<p>IP 段请使用 |127.0.0.0/8 类似格式表示</p>
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="pac">规则书写区</label>
-											<textarea class="form-control" id="pac" rows="8">{$user->pac}</textarea>
-										</div>
-
-									</div>
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											<button class="btn btn-flat waves-attach" id="setpac" ><span class="icon">check</span>&nbsp;设置</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						{if $config['enable_telegram'] == 'true'}
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									<div class="card-inner">
-										<p class="card-heading">Telegram 绑定</p>
-										<p>Telegram 添加机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，拍下下面这张二维码发给它。</p>
-										<div class="form-group form-group-label">
-											<div class="text-center">
-												<div id="telegram-qr"></div>
-												{if $user->telegram_id != 0}当前绑定：<a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>{/if}
-											</div>
-										</div>
-
-									</div>
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											<a class="btn btn-brand-accent btn-flat waves-attach" href="/user/telegram_reset" ><span class="icon">format_color_reset</span>&nbsp;解绑</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						{/if}
 					</div>
-
-
-
 
 					{include file='dialog.tpl'}
 
@@ -401,6 +372,16 @@
 
 {include file='user/footer.tpl'}
 
+<script>
+$(function(){
+	new Clipboard('.copy-text');
+});
+
+$(".copy-text").click(function () {
+	$("#result").modal();
+	$("#msg").html("已复制到您的剪贴板。");
+});
+</script>
 
 <script>
     $(document).ready(function () {
@@ -415,36 +396,8 @@
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
-						$("#msg").html(data.msg);
-                    } else {
-                        $("#result").modal();
-						$("#msg").html(data.msg);
-                    }
-                },
-                error: function (jqXHR) {
-                    $("#result").modal();
-					$("#msg").html(data.msg+"     出现了一些错误。");
-                }
-            })
-        })
-    })
-</script>
-
-
-<script>
-    $(document).ready(function () {
-        $("#setpac").click(function () {
-            $.ajax({
-                type: "POST",
-                url: "pacset",
-                dataType: "json",
-                data: {
-                   pac: $("#pac").val()
-                },
-                success: function (data) {
-                    if (data.ret) {
-                        $("#result").modal();
-						$("#msg").html(data.msg);
+						$("#ajax-user-port").html(date.msg);
+						$("#msg").html("设置成功，新端口是"+data.msg);
                     } else {
                         $("#result").modal();
 						$("#msg").html(data.msg);
@@ -473,7 +426,7 @@
                 },
                 success: function (data) {
                     if (data.ret) {
-                         $("#result").modal();
+                        $("#result").modal();
 						$("#msg").html(data.msg);
                     } else {
                         $("#result").modal();
@@ -519,6 +472,7 @@
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
+						$("#ajax-im").html($("#imtype").find("option:selected").text()+" "+$("#wechat").val());
 						$("#msg").html(data.msg);
                     } else {
                         $("#result").modal();
@@ -543,11 +497,13 @@
                 dataType: "json",
                 data: {
                     protocol: $("#protocol").val(),
-					obfs: $("#obfs").val()
+					obfs: $("#obfs").val(),
                 },
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
+						$("#ajax-user-protocol").html($("#protocol").val());
+						$("ajax-user-obfs").html($("#obfs").val());
 						$("#msg").html(data.msg);
                     } else {
                         $("#result").modal();
@@ -605,7 +561,8 @@
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
-						$("#msg").html(data.msg);
+						$("#ajax-block").html("IP: "+data.msg+" 没有被封");
+						$("#msg").html("发送解封命令解封 "+data.msg+" 成功");
                     } else {
                         $("#result").modal();
 						$("#msg").html(data.msg);
@@ -691,6 +648,7 @@
                  success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
+						$("#ajax-user-passwd").html($("#sspwd").val());
 						$("#msg").html("成功了");
                     } else {
                         $("#result").modal();
@@ -720,6 +678,7 @@
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
+						$("#ajax-mail").html($("#mail").val()=="1"?"发送":"不发送");
 						$("#msg").html(data.msg);
                     } else {
                         $("#result").modal();
@@ -763,8 +722,6 @@
     })
 </script>
 
-
-
 <script>
     $(document).ready(function () {
         $("#method-update").click(function () {
@@ -787,6 +744,80 @@
                 error: function (jqXHR) {
                     $("#result").modal();
 					$("#msg").html(data.msg+"     出现了一些错误。");
+                }
+            })
+        })
+    })
+</script>
+
+<script>
+    var wait=60;
+    function time(o) {
+        if (wait == 0) {
+            o.removeAttr("disabled");
+            o.text("获取验证码");
+            wait = 60;
+        } else {
+            o.attr("disabled","disabled");
+            o.text("重新发送(" + wait + ")");
+            wait--;
+            setTimeout(function() {
+                time(o)
+            },
+            1000)
+        }
+    }
+    $(document).ready(function () {
+        $("#email_verify").click(function () {
+            time($("#email_verify"));
+            $.ajax({
+                type: "POST",
+                url: "verifyEmail",
+                dataType: "json",
+                data: {
+                    email: $("#email").val()
+                },
+                success: function (data) {
+                    if (data.ret) {
+                        $("#result").modal();
+                        $("#msg").html(data.msg);
+                    } else {
+                        $("#result").modal();
+                        $("#msg").html(data.msg);
+                    }
+                },
+                error: function (jqXHR) {
+                    $("#result").modal();
+                    $("#msg").html(data.msg+"     出现了一些错误。");
+                }
+            })
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#email-update").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "email",
+                dataType: "json",
+                data: {
+                    email: $("#email").val(),
+                    code: $("#email_code").val()
+                },
+                success: function (data) {
+                    if (data.ret) {
+                        $("#result").modal();
+                        $("#msg").html(data.msg);
+                    } else {
+                        $("#result").modal();
+                        $("#msg").html(data.msg);
+                    }
+                },
+                error: function (jqXHR) {
+                    $("#result").modal();
+                    $("#msg").html(data.msg+"     出现了一些错误。");
                 }
             })
         })

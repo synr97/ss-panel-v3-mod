@@ -29,15 +29,44 @@
 
 								<div class="form-group form-group-label">
 									<label class="floating-label" for="price">价格</label>
-									<input class="form-control" id="price" type="text" >
+									<input class="form-control" id="price" type="number" >
 								</div>
 
 								<div class="form-group form-group-label">
 									<label class="floating-label" for="auto_renew">自动续订天数（0为不允许自动续订，其他为到了那么多天之后就会自动从用户的账户上划钱抵扣）</label>
-									<input class="form-control" id="auto_renew" type="text" value="0">
+									<input class="form-control" id="auto_renew" type="number" value="0">
 								</div>
 
 
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-main">
+							<div class="card-inner">
+								<div class="form-group form-group-label">
+									<label class="floating-label" for="group_limit">群组限制（不填即为所有群组可用，多个的话用英文半角逗号分割）</label>
+									<input class="form-control" id="group_limit" type="number">
+								</div>
+
+								<div class="form-group form-group-label">
+									<label class="floating-label" for="class_limit_operator">等级限制运算符</label>
+									<select id="class_limit_operator" class="form-control" name="class_limit_operator">
+										<option value="none">无</option>
+										<option value="equal">等于</option>
+										<option value="greater">大于</option>
+										<option value="greater_equal">大于等于</option>
+										<option value="less">小于</option>
+										<option value="less_equal">小于等于</option>
+										<option value="not">非</option>
+									</select>
+								</div>
+
+								<div class="form-group form-group-label">
+									<label class="floating-label" for="class_limit_content">等级限制内容（不填即为所有等级可用，多个的话用英文半角逗号分割）</label>
+									<input class="form-control" id="class_limit_content" type="number">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -48,7 +77,7 @@
 
 								<div class="form-group form-group-label">
 									<label class="floating-label" for="bandwidth">流量（GB）</label>
-									<input class="form-control" id="bandwidth" type="text" value="0">
+									<input class="form-control" id="bandwidth" type="number" value="0">
 								</div>
 
 								<div class="form-group form-group-label">
@@ -59,10 +88,33 @@
 									</div>
 								</div>
 
+								<div class="form-group form-group-label">
+									<div class="checkbox switch">
+										<label for="traffic_package">
+											<input class="access-hide" id="traffic_package" type="checkbox"><span class="switch-toggle"></span>流量包（购买时不重置流量，仅限购买过商品且未过期的账户购买）
+										</label>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</div>
 
+					<div class="card">
+						<div class="card-main">
+							<div class="card-inner">
+								<div class="form-group form-group-label">
+									<label class="floating-label" for="node_speedlimit">速度限制（0为不限制）</label>
+									<input class="form-control" id="node_speedlimit" type="number" value="0">
+								</div>
+
+								<div class="form-group form-group-label">
+									<label class="floating-label" for="node_connector">同时连接 IP 数（0为不限制）</label>
+									<input class="form-control" id="node_connector" type="number" value="0">
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<div class="card">
 						<div class="card-main">
@@ -70,7 +122,7 @@
 
 								<div class="form-group form-group-label">
 									<label class="floating-label" for="expire">账户有效期天数</label>
-									<input class="form-control" id="expire" type="text" value="0">
+									<input class="form-control" id="expire" type="number" value="0">
 								</div>
 							</div>
 						</div>
@@ -79,15 +131,19 @@
 					<div class="card">
 						<div class="card-main">
 							<div class="card-inner">
-
 								<div class="form-group form-group-label">
 									<label class="floating-label" for="class">等级</label>
-									<input class="form-control" id="class" type="text" value="0">
+									<input class="form-control" id="class" type="number" value="0">
 								</div>
 
 								<div class="form-group form-group-label">
 									<label class="floating-label" for="class_expire">等级有效期天数</label>
-									<input class="form-control" id="class_expire" type="text" value="0">
+									<input class="form-control" id="class_expire" type="number" value="0">
+								</div>
+
+								<div class="form-group form-group-label">
+									<label class="floating-label" for="node_group">群组</label>
+									<input class="form-control" id="node_group" type="number" value="0">
 								</div>
 							</div>
 						</div>
@@ -104,7 +160,7 @@
 
 								<div class="form-group form-group-label">
 									<label class="floating-label" for="reset">每多少天</label>
-									<input class="form-control" id="reset" type="number" value="0">
+									<input class="form-control" id="reset" type="number" value="30">
 								</div>
 
 								<div class="form-group form-group-label">
@@ -170,6 +226,14 @@
 			{
 				var auto_reset_bandwidth=0;
 			}
+			if(document.getElementById('traffic_package').checked)
+			{
+				var traffic_package=1;
+			}
+			else
+			{
+				var traffic_package=0;
+			}
 
             $.ajax({
                 type: "POST",
@@ -177,10 +241,17 @@
                 dataType: "json",
                 data: {
                     name: $("#name").val(),
-										auto_reset_bandwidth: auto_reset_bandwidth,
+					auto_reset_bandwidth: auto_reset_bandwidth,
                     price: $("#price").val(),
+					node_group: $("#node_group").val(),
                     auto_renew: $("#auto_renew").val(),
+                    group_limit: $("#group_limit").val(),
+                    class_limit_operator: $("#class_limit_operator").val(),
+                    class_limit_content: $("#class_limit_content").val(),
                     bandwidth: $("#bandwidth").val(),
+					traffic_package: traffic_package,
+                    node_speedlimit: $("#node_speedlimit").val(),
+                    node_connector: $("#node_connector").val(),
                     expire: $("#expire").val(),
                     class: $("#class").val(),
 										class_expire: $("#class_expire").val(),

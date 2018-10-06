@@ -51,26 +51,77 @@ class AdminController extends UserController
         return $this->view()->assign('table_config', $table_config)->display('admin/invite.tpl');
     }
 
+    public function find($request, $response, $args)
+    {
+        $id =  $request->getParam('id');
+        $view=0;
+        if ($id) {
+        $view=1;
+        $userf=User::where("id", "=", $id)->first();
+        }
+            else {
+        $view=0;
+        $userf=User::where("id", "=", 0)->first();
+        }
+        
+        return $this->view()->assign('view', $view)->assign('userf', $userf)->display('admin/find.tpl');
+    }
+
+    public function finduser($request, $response, $args)
+    {
+        $username = $request->getParam('username');
+        $email = $request->getParam('email');
+        $port = $request->getParam('port');
+        if (!$username && !$email && !$port)
+        {
+             $res['ret'] = 0;
+             $res['msg'] = "请正确输入";
+             return $response->getBody()->write(json_encode($res));
+        }
+        if($username) {
+                $user=User::where("user_name", "=", $username)->first();
+        $id=$user->id;
+        }
+        if($email) {
+                $user=User::where("email", "=", $email)->first();
+        $id=$user->id;
+        }
+        if($port) {
+                $user=User::where("port", "=", $port)->first();
+        $id=$user->id;
+        }
+        if (!$id) {
+             $res['ret'] = 0;
+             $res['msg'] = "无数据";
+             return $response->getBody()->write(json_encode($res));
+        
+        }
+        $res['id']=$id;
+        $res['ret'] = 1;
+        $res['msg'] = "正在查询";
+        return $response->getBody()->write(json_encode($res));
+    }
+
     public function addInvite($request, $response, $args)
     {
         $n = $request->getParam('num');
         $prefix = $request->getParam('prefix');
 
         if ($request->getParam('uid')!="0") {
-            if (strpos($request->getParam('uid'), "@")!=false) {
-                $user=User::where("email", "=", $request->getParam('uid'))->first();
+            if (strpos($request->getParam('uid'), "@") != false) {
+                $user = User::where("email", "=", $request->getParam('uid'))->first();
             } else {
-                $user=User::Where("id", "=", $request->getParam('uid'))->first();
+                $user = User::Where("id", "=", $request->getParam('uid'))->first();
             }
 
-            if ($user==null) {
+            if ($user == null) {
                 $res['ret'] = 0;
                 $res['msg'] = "输入不正确";
                 return $response->getBody()->write(json_encode($res));
             }
             $uid = $user->id;
         } else {
-            $uid=0;
+            $uid = 0;
         }
 
         if ($n < 1) {
@@ -93,8 +144,8 @@ class AdminController extends UserController
     public function coupon($request, $response, $args)
     {
         $table_config['total_column'] = array("id" => "ID", "code" => "优惠码",
-                          "expire" => "过期时间", "shop" => "限定商品ID",
-                          "credit" => "额度");
+                          "onetime" => "循环折扣", "expire" => "过期时间", "shop" => "限定商品ID",
+                          "credit" => "额度", "times" => "单账号使用次数", "number" => "数量", "used" => "已用数量");
         $table_config['default_show_column'] = array();
         foreach ($table_config['total_column'] as $column => $value) {
             array_push($table_config['default_show_column'], $column);
@@ -106,12 +157,14 @@ class AdminController extends UserController
     public function addCoupon($request, $response, $args)
     {
         $code = new Coupon();
-        $code->onetime=$request->getParam('onetime');
+        $code->onetime = $request->getParam('onetime');
 
-        $code->code=$request->getParam('prefix').Tools::genRandomChar(8);
-        $code->expire=time()+$request->getParam('expire')*3600;
-        $code->shop=$request->getParam('shop');
-        $code->credit=$request->getParam('credit');
+        $code->code = $request->getParam('prefix').Tools::genRandomChar(8);
+        $code->expire = time()+$request->getParam('expire')*3600;
+        $code->shop = $request->getParam('shop');
+        $code->credit = $request->getParam('credit');
+        $code->times = $request->getParam('times');
+        $code->number = $request->getParam('number');
 
         $code->save();
 
@@ -168,10 +221,22 @@ class AdminController extends UserController
     public function ajax_coupon($request, $response, $args)
     {
         $datatables = new Datatables(new DatatablesHelper());
-        $datatables->query('Select id,code,expire,shop,credit from coupon');
+        $datatables->query('Select id,code,onetime,expire,shop,credit,times,number,(select COUNT(*) from bought where coupon = code) as used from coupon');
+
+        $datatables->edit('onetime', function ($data) {
+            return $data['onetime'] == 1 ? '否' : '是';
+        });
 
         $datatables->edit('expire', function ($data) {
             return date('Y-m-d H:i:s', $data['expire']);
+        });
+
+        $datatables->edit('times', function ($data) {
+            return $data['times'] == 0 ? '不限制' : $data['times'];
+        });
+
+        $datatables->edit('number', function ($data) {
+            return $data['number'] == 0 ? '不限制' : $data['number'];
         });
 
         $body = $response->getBody();

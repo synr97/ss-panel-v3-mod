@@ -70,6 +70,19 @@ class Tools
     }
 
     //获取随机字符串
+        
+    public static function genRandomNum($length = 8)
+    {
+        // 来自Miku的 6位随机数 注册验证码 生成方案
+        $chars = '0123456789';
+        $char = '';
+        for ($i = 0; $i < $length; $i++) {
+            $char .= $chars[mt_rand(0, strlen($chars) - 1)];
+        }
+        return $char;
+    }
+
+    //获取随机字符串
     public static function genRandomChar($length = 8)
     {
         // 密码字符集，可任意添加你需要的字符
@@ -103,7 +116,7 @@ class Tools
     {
         $dtF = new DateTime("@0");
         $dtT = new DateTime("@$seconds");
-        return $dtF->diff($dtT)->format('%a 天, %h 小时, %i 分 + %s 秒');
+        return $dtF->diff($dtT)->format('%a 天, %h 小时, %i 分钟');
     }
 
     public static function genSID()

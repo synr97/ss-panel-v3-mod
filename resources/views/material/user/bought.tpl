@@ -37,13 +37,13 @@
 								<th>内容</th>
 								<th>价格</th>
                                 <th>续费时间</th>
-								<th>续费时重置流量</th>
+								<th>续费时是否重置流量</th>
                                 
                             </tr>
                             {foreach $shops as $shop}
                             <tr>
 								<td>
-                                    <a class="btn btn-brand" {if $shop->renew==0}disabled{else} href="javascript:void(0);" onClick="delete_modal_show('{$shop->id}')"{/if}>退订</a>
+                                    <a class="btn btn-brand" {if $shop->renew==0}disabled{else} href="javascript:void(0);" onClick="delete_modal_show('{$shop->id}')"{/if}>取消自动续费</a>
                                 </td>
                                 <td>#{$shop->id}</td>
                                 <td>{$shop->shop()->name}</td>
@@ -73,7 +73,7 @@
 							<div class="modal-content">
 								<div class="modal-heading">
 									<a class="modal-close" data-dismiss="modal">×</a>
-									<h2 class="modal-title">确认要退订？</h2>
+									<h2 class="modal-title">确定取消自动续费？</h2>
 								</div>
 								<div class="modal-inner">
 									<p>请您确认。</p>
@@ -125,7 +125,7 @@ $(document).ready(function(){
 					$("#result").modal();
 					$("#msg").html(data.msg);
 					window.setTimeout("location.href=window.location.href", {$config['jump_delay']});
-				}else{
+				} else {
 					$("#result").modal();
 					$("#msg").html(data.msg);
 				}

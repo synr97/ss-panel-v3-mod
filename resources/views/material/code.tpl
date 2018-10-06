@@ -14,7 +14,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 col-lg-push-0 col-sm-12 col-sm-push-0">
-						<h1 class="content-heading">邀请码</h1>
+						<h1 class="content-heading">公共邀请码</h1>
 					</div>
 				</div>
 			</div>
@@ -25,7 +25,7 @@
 					<div class="card">
 						<div class="card-main">
 							<div class="card-inner">
-								<p>{$config["appName"]} 的邀请码，没了的话就烧纸吧。</p>
+								<p>使用邀请码注册可获得奖励</p>
 							</div>
 						</div>
 					</div>

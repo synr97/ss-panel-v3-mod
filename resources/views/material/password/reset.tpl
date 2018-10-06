@@ -16,7 +16,7 @@
 								<div class="card-inner">
 									<p class="text-center">
 										<span class="avatar avatar-inline avatar-lg">
-											<img alt="Login" src="/theme/material/images/users/avatar-001.jpg">
+											<img alt="Login" src="/theme/material/images/users/avatar.png">
 										</span>
 									</p>
 									
@@ -69,7 +69,7 @@
     $(document).ready(function(){
         function reset(){
 			$("#result").modal();
-            $("#msg").html("正在发送，请稍候。。。");
+            $("#msg").html("正在发送，请稍候...");
             $.ajax({
                 type:"POST",
                 url:"/password/reset",
@@ -95,7 +95,7 @@
         }
         $("html").keydown(function(event){
             if(event.keyCode==13){
-                login();
+                reset();
             }
         });
         $("#reset").click(function(){

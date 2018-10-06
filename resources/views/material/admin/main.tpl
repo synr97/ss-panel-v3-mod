@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 
 <head>
 	<meta charset="UTF-8">
@@ -11,19 +11,18 @@
 
 
 	<!-- css -->
-	<link href="/theme/material/css/base.css" rel="stylesheet">
+	<link href="/theme/material/css/base.min.css" rel="stylesheet">
 	<link href="/theme/material/css/project.css" rel="stylesheet">
-	<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="//cdn.staticfile.org/material-design-lite/1.1.0/material.min.css" rel="stylesheet">
-	<link href="//cdn.staticfile.org/datatables/1.10.13/css/dataTables.material.min.css" rel="stylesheet">
-
-
+	<link href="https://fonts.loli.net/css?family=Roboto:300,300italic,400,400italic,500,500italic" rel="stylesheet">
+	<link href="https://fonts.loli.net/css?family=Material+Icons">
+	<link href="/theme/material/css/material.min.css" rel="stylesheet">
+	<link href="/theme/material/css/dataTables.material.min.css" rel="stylesheet">
 
 	<!-- favicon -->
 	<!-- ... -->
 </head>
 
-<body class="page-red">
+<body class="page-brand">
 	<header class="header header-red header-transparent header-waterfall ui-header">
 		<ul class="nav nav-list pull-left">
 			<div>
@@ -50,7 +49,7 @@
 				</ul>
 				{else}
 				<span class="access-hide">未登录</span>
-				<span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="/theme/material/images/users/avatar-001.jpg"></span>
+				<span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="/theme/material/images/users/avatar.png"></span>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-right">
 					<li>
@@ -76,24 +75,24 @@
 							<li><a href="/admin"><i class="icon icon-lg">business_center</i>&nbsp;系统概览</a></li>
 							<li><a href="/admin/announcement"><i class="icon icon-lg">announcement</i>&nbsp;公告管理</a></li>
 							<li><a href="/admin/ticket"><i class="icon icon-lg">question_answer</i>&nbsp;工单管理</a></li>
-							<li><a href="/admin/auto"><i class="icon icon-lg">flash_auto</i>&nbsp;下发命令</a></li>
 						</ul>
 
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_node">节点</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_node">
 							<li><a href="/admin/node"><i class="icon icon-lg">router</i>&nbsp;节点列表</a></li>
 							<li><a href="/admin/trafficlog"><i class="icon icon-lg">traffic</i>&nbsp;流量记录</a></li>
-							<li><a href="/admin/block"><i class="icon icon-lg">dialer_sip</i>&nbsp;已封禁IP</a></li>
-							<li><a href="/admin/unblock"><i class="icon icon-lg">dialer_sip</i>&nbsp;已解封IP</a></li>
+							<li><a href="/admin/block"><i class="icon icon-lg">dialer_sip</i>&nbsp;已封禁 IP</a></li>
+							<li><a href="/admin/unblock"><i class="icon icon-lg">dialer_sip</i>&nbsp;已解封 IP</a></li>
 						</ul>
 
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_user">用户</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_user">
 							<li><a href="/admin/user"><i class="icon icon-lg">supervisor_account</i>&nbsp;用户列表</a></li>
+							<li><a href="/admin/find"><i class="icon icon-lg">search</i>&nbsp;查找用户</a></li>
 							<li><a href="/admin/relay"><i class="icon icon-lg">compare_arrows</i>&nbsp;中转规则</a></li>
 							<li><a href="/admin/invite"><i class="icon icon-lg">loyalty</i>&nbsp;邀请与返利</a></li>
 							<li><a href="/admin/login"><i class="icon icon-lg">text_fields</i>&nbsp;登录记录</a></li>
-							<li><a href="/admin/alive"><i class="icon icon-lg">important_devices</i>&nbsp;在线IP</a></li>
+							<li><a href="/admin/alive"><i class="icon icon-lg">important_devices</i>&nbsp;在线 IP</a></li>
 						</ul>
 
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_detect">审计</a>
