@@ -306,6 +306,8 @@ class Shop extends Model
                         $user->last_day_t = 0;
                         $user->auto_reset_day = 1;
                         $user->auto_reset_bandwidth = $value;
+                    } else {
+                    	$user->transfer_enable = $user->transfer_enable + $value * 1024 * 1024 * 1024;
                     }
                     break;
                 case "expire":

@@ -220,19 +220,19 @@
         function submit() {
 			if(document.getElementById('auto_reset_bandwidth').checked)
 			{
-				var auto_reset_bandwidth=1;
+				var auto_reset_bandwidth = 1;
 			}
 			else
 			{
-				var auto_reset_bandwidth=0;
+				var auto_reset_bandwidth = 0;
 			}
 			if(document.getElementById('traffic_package').checked)
 			{
-				var traffic_package=1;
+				var traffic_package = 1;
 			}
 			else
 			{
-				var traffic_package=0;
+				var traffic_package = 0;
 			}
 
             $.ajax({
