@@ -163,9 +163,10 @@
 									<p id="name">商品名称：</p>
 									<p id="credit">优惠额度：</p>
 									<p id="total">总金额：</p>
+								{if $shop->traffic_package == '0'}
 									<p>注意：购买同级别套餐将叠加到期时间</p>
 									<p>注意：购买不同级别套餐将立即中断老套餐并重新计算到期时间</p>
-									
+
 									<div class="checkbox switch">
 										<label for="disableothers">
 											<input checked class="access-hide" id="disableothers" type="checkbox">
@@ -179,7 +180,7 @@
 											<span class="switch-toggle"></span>到期时自动续费
 										</label>
 									</div>
-
+								{/if}
 								</div>
 								
 								<div class="modal-footer">
@@ -236,9 +237,9 @@ $("#coupon_input").click(function () {
 			},
 			success: function (data) {
 				if (data.ret) {
-					$("#name").html("商品名称："+data.name);
-					$("#credit").html("优惠额度："+data.credit);
-					$("#total").html("总金额："+data.total);
+					$("#name").html("商品名称：" + data.name);
+					$("#credit").html("优惠额度：" + data.credit);
+					$("#total").html("总金额：" + data.total);
 					$("#order_modal").modal();
 				} else {
 					$("#result").modal();
@@ -247,7 +248,7 @@ $("#coupon_input").click(function () {
 			},
 			error: function (jqXHR) {
 				$("#result").modal();
-                $("#msg").html(data.msg+"  发生了错误。");
+                $("#msg").html(data.msg + "  发生了错误。");
 			}
 		})
 	});
@@ -256,18 +257,18 @@ $("#order_input").click(function () {
 
 		if(document.getElementById('autorenew').checked)
 		{
-			var autorenew=1;
+			var autorenew = 1;
 		}
 		else
 		{
-			var autorenew=0;
+			var autorenew = 0;
 		}
 
 		if(document.getElementById('disableothers').checked){
-			var disableothers=1;
+			var disableothers = 1;
 		}
 		else{
-			var disableothers=0;
+			var disableothers = 0;
 		}
 			
 		$.ajax({
