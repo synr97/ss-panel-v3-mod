@@ -86,6 +86,9 @@ class UserController extends BaseController
         $filterUrl = Tools::base64_url_encode('https://raw.githubusercontent.com/lhie1/Rules/master/Quantumult/Quantumult.conf');
         $rejectUrl = Tools::base64_url_encode('https://raw.githubusercontent.com/lhie1/Rules/master/Quantumult/Quantumult_URL.conf');
 
+        $showplans = Bought::where("userid", $this->user->id)->orderBy("id", "desc")->paginate(1, ['*'], 'page', $pageNum);
+        $showplans->setPath('/user');
+
 
         $uid = time() . rand(1, 10000);
         if (Config::get('enable_geetest_checkin') == 'true') {
@@ -123,7 +126,8 @@ class UserController extends BaseController
         ->assign('enable_duoshuo', Config::get('enable_duoshuo'))
         ->assign('duoshuo_shortname', Config::get('duoshuo_shortname'))
         ->assign("user", $this->user)->registerClass("URL", "App\Utils\URL")
-        ->assign('apiUrl', Config::get('apiUrl'))->display('user/index.tpl');
+        ->assign('apiUrl', Config::get('apiUrl'))->display('user/index.tpl')
+        ->assign('showplans',$showplans);
     }
 
 
