@@ -1061,10 +1061,10 @@ class UserController extends BaseController
             }
         }
 
-        $price = $shop->price * ((100-$credit)/100);
+        $price = $shop->price * ((100 - $credit) / 100);
         $user = $this->user;
 
-        if ((float)$user->money<(float)$price) {
+        if ((float)$user->money < (float)$price) {
             $res['ret'] = 0;
             $res['msg'] = '当前余额不足，总价为'.$price.'元。</br><a href="/user/code">点击进入充值界面</a>';
             return $response->getBody()->write(json_encode($res));
@@ -1085,10 +1085,10 @@ class UserController extends BaseController
         $bought->userid = $user->id;
         $bought->shopid = $shop->id;
         $bought->datetime = time();
-        if ($autorenew == 0||$shop->auto_renew == 0) {
+        if ($autorenew == 0 || $shop->auto_renew == 0) {
             $bought->renew = 0;
         } else {
-            $bought->renew = time()+$shop->auto_renew * 86400;
+            $bought->renew = time() + $shop->auto_renew * 86400;
         }
 
         $bought->coupon = $code;
@@ -1187,7 +1187,7 @@ class UserController extends BaseController
         }
 
 
-        $ticket=new Ticket();
+        $ticket = new Ticket();
 
         $antiXss = new AntiXSS();
 

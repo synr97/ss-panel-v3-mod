@@ -113,7 +113,7 @@
 																	
 																	<hr>
 																	<a class="btn btn-brand" style="background-color: #4cae4c; padding-right: 16px"
-																			{if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth})"{/if}>
+																			{if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->disable_others},{$shop->auto_reset_bandwidth})"{/if}>
 																		<span class="icon" style="margin-left: 8px; margin-right: 8px">local_grocery_store</span>立即购买</a>
 																	<a class="btn btn-brand" style="background-color: #337ab7; padding-right: 16px; margin-left: 8px" href="/user/code">
 																		<span class="icon" style="margin-left: 8px; margin-right: 8px">local_gas_station</span>充值</a>
@@ -129,8 +129,8 @@
 							</div>
 						</div>
 					</div>
-					
-					
+
+
 					<div aria-hidden="true" class="modal modal-va-middle fade" id="coupon_modal" role="dialog" tabindex="-1">
 						<div class="modal-dialog modal-xs">
 							<div class="modal-content">
@@ -150,8 +150,8 @@
 							</div>
 						</div>
 					</div>
-					
-					
+
+
 					<div aria-hidden="true" class="modal modal-va-middle fade" id="order_modal" role="dialog" tabindex="-1">
 						<div class="modal-dialog modal-xs">
 							<div class="modal-content">
@@ -166,7 +166,7 @@
 									<p>注意：购买同级别套餐将叠加到期时间</p>
 									<p>注意：购买不同级别套餐将立即中断老套餐并重新计算到期时间</p>
 									
-									<div class="checkbox switch">
+									<div class="checkbox switch" id="disableo">
 										<label for="disableothers">
 											<input checked class="access-hide" id="disableothers" type="checkbox">
 											<span class="switch-toggle"></span>关闭旧套餐自动续费
@@ -188,13 +188,8 @@
 							</div>
 						</div>
 					</div>
-					
 					{include file='dialog.tpl'}
-	
 			</div>
-			
-			
-			
 		</div>
 	</main>
 
@@ -210,20 +205,26 @@
 
 
 <script>
-function buy(id,auto,auto_reset) {
-	auto_renew=auto;
-	if(auto==0)
+function buy(id,auto,auto_reset,disable,disable_others) {
+	auto_renew = auto;
+	if(auto == 0)
 	{
-		document.getElementById('autor').style.display="none";
+		document.getElementById('autor').style.display = "none";
+	} else {
+		document.getElementById('autor').style.display = "";
 	}
-	else
+
+	disable_others = disable;
+	if(auto == 0)
 	{
-		document.getElementById('autor').style.display="";
+		document.getElementById('disableo').style.display = "none";
+	} else {
+		document.getElementById('disableo').style.display = "";
 	}
-	shop=id;
+
+	shop = id;
 	$("#coupon_modal").modal();
 }
-
 
 $("#coupon_input").click(function () {
 		$.ajax({
@@ -236,9 +237,9 @@ $("#coupon_input").click(function () {
 			},
 			success: function (data) {
 				if (data.ret) {
-					$("#name").html("商品名称："+data.name);
-					$("#credit").html("优惠额度："+data.credit);
-					$("#total").html("总金额："+data.total);
+					$("#name").html("商品名称：" + data.name);
+					$("#credit").html("优惠额度：" + data.credit);
+					$("#total").html("总金额：" + data.total);
 					$("#order_modal").modal();
 				} else {
 					$("#result").modal();
@@ -247,7 +248,7 @@ $("#coupon_input").click(function () {
 			},
 			error: function (jqXHR) {
 				$("#result").modal();
-                $("#msg").html(data.msg+"  发生了错误。");
+                $("#msg").html(data.msg + "  发生了错误。");
 			}
 		})
 	});
@@ -256,18 +257,15 @@ $("#order_input").click(function () {
 
 		if(document.getElementById('autorenew').checked)
 		{
-			var autorenew=1;
-		}
-		else
-		{
-			var autorenew=0;
+			var autorenew = 1;
+		} else {
+			var autorenew = 0;
 		}
 
 		if(document.getElementById('disableothers').checked){
-			var disableothers=1;
-		}
-		else{
-			var disableothers=0;
+			var disableothers = 1;
+		} else {
+			var disableothers = 0;
 		}
 			
 		$.ajax({
@@ -292,7 +290,7 @@ $("#order_input").click(function () {
 			},
 			error: function (jqXHR) {
 				$("#result").modal();
-                $("#msg").html(data.msg+"  发生了错误。");
+                $("#msg").html(data.msg + "  发生了错误。");
 			}
 		})
 	});
