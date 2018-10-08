@@ -355,7 +355,7 @@ class URL
         $array_all['traffic_used'] = Tools::flowToGB($user->u + $user->d);
         $array_all['traffic_total'] = Tools::flowToGB($user->transfer_enable);
         $array_all['expiry'] = $user->class_expire;
-        $array_all['url']=Config::get('baseUrl').'/link/'.LinkController::GenerateSSRSubCode($user->id, 0).'?mu=3';
+        $array_all['url'] = Config::get('apiUrl').'/link/'.LinkController::GenerateSSRSubCode($user->id, 0).'?mu=3';
         $plugin_options = '';
         if (strpos($user->obfs,'http') != FALSE){
             $plugin_options = 'obfs=http';
@@ -393,7 +393,7 @@ class URL
             )->orderBy('priority','DESC')->orderBy('id')->first();
             if ($relay_rule != null) {
                 $server['remarks'] = $node->name.' => '.$relay_rule->dist_node()->name;
-                $server['ratio'] = $node->traffic_rate+$relay_rule->dist_node()->traffic_rate;
+                $server['ratio'] = $node->traffic_rate + $relay_rule->dist_node()->traffic_rate;
             } else {
                 $server['remarks'] = $node->name;
                 $server['ratio'] = $node->traffic_rate;
@@ -405,8 +405,7 @@ class URL
         $json_all = json_encode($array_all);  
         if ($base64){
             return "ssd://".base64_encode($json_all);
-        }
-        else{
+        } else {
             return $json_all;
         }
     }
