@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Node;
 use App\Models\Relay;
 use App\Services\Config;
+use App\Controllers\LinkController;
 
 class URL
 {
