@@ -39,8 +39,8 @@ class Job
         foreach ($nodes as $node) {
             $rule = preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/",$node->server);
             if (!$rule && (!$node->sort || $node->sort == 10)) {
-                $ip=gethostbyname($node->server);
-                $node->node_ip=$ip;
+                $ip = gethostbyname($node->server);
+                $node->node_ip = $ip;
                 $node->save();
             }
         }
@@ -112,8 +112,8 @@ class Job
         foreach ($nodes as $node) {
             $rule = preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/",$node->server);
             if (!$rule && (!$node->sort || $node->sort == 10)) {
-                $ip=gethostbyname($node->server);
-                $node->node_ip=$ip;
+                $ip = gethostbyname($node->server);
+                $node->node_ip = $ip;
                 $node->save();
 
                 Radius::AddNas($node->node_ip, $node->server);
@@ -213,7 +213,7 @@ class Job
             $qqwry = file_get_contents("http://update.cz88.net/ip/qqwry.rar");
             if ($qqwry != "") {
                 $key = unpack("V6", $copywrite)[6];
-                for ($i=0; $i<0x200; $i++) {
+                for ($i=0; $i < 0x200; $i++) {
                     $key *= 0x805;
                     $key ++;
                     $key = $key & 0xFF;
@@ -228,9 +228,9 @@ class Job
         }
 
         $iplocation = new QQWry();
-        $location=$iplocation->getlocation("8.8.8.8");
+        $location = $iplocation->getlocation("8.8.8.8");
         $Userlocation = $location['country'];
-        if (iconv('gbk', 'utf-8//IGNORE', $Userlocation)!="美国") {
+        if (iconv('gbk', 'utf-8//IGNORE', $Userlocation) != "美国") {
             unlink(BASE_PATH."/storage/qqwry.dat");
             rename(BASE_PATH."/storage/qqwry.dat.bak", BASE_PATH."/storage/qqwry.dat");
         }
@@ -281,7 +281,7 @@ class Job
                             $disconnect->datetime = time();
                             $disconnect->save();
 
-                            if ($user->disconnect_ip == null||$user->disconnect_ip == "") {
+                            if ($user->disconnect_ip == null || $user->disconnect_ip == "") {
                                 $user->disconnect_ip = $alive_ip->ip;
                             } else {
                                 $user->disconnect_ip .= ",".$alive_ip->ip;
@@ -296,7 +296,7 @@ class Job
         }
 
         // Unblock IP begin
-        $disconnecteds = Disconnect::where("datetime", "<", time()-300)->get();
+        $disconnecteds = Disconnect::where("datetime", "<", time() - 300)->get();
         foreach ($disconnecteds as $disconnected) {
             $user = User::where('id', '=', $disconnected->userid)->first();
 
@@ -359,7 +359,7 @@ class Job
                 $bought_new = new Bought();
                 $bought_new->userid = $user->id;
                 $bought_new->shopid = $shop->id;
-                $bought_new->datetime=time();
+                $bought_new->datetime = time();
                 $bought_new->renew = time() + $shop->auto_renew * 86400;
                 $bought_new->price = $bought->price;
                 $bought_new->coupon = "";
@@ -415,7 +415,7 @@ class Job
                     $ip = gethostbyname($sync_host);
                     if ($ip != $node->node_ip){
                         // process ss_node table
-                        $node->node_ip=$ip;
+                        $node->node_ip = $ip;
                         $node->save();
                         // process relay table
                         $relay_rules = Relay::where('dist_node_id',$node->id)->get();
