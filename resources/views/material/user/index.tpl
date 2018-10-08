@@ -1,315 +1,321 @@
 
 
-{include file='user/main.tpl'}
+
+
+
+
+{include file='user/newui_header.tpl'}
 
 {$ssr_prefer = URL::SSRCanConnect($user, 0)}
 
 
-	<main class="content">
-		<div class="content-header ui-content-header">
-			<div class="container">
-				<h1 class="content-heading">用户中心</h1>
+	<main class="profile-page">
+		<section class="section-profile-cover section-shaped my-0">
+			<div class="shape shape-style-1 shape-default shape-skew alpha-4">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
 			</div>
-		</div>
-		<div class="container">
-			<section class="content-inner margin-top-no">
-				<div class="ui-card-wrap">
-
-						<div class="col-lg-6 col-md-6">
-
-							<div class="card">
-								<div class="card-main">
-									<div class="card-inner margin-bottom-no">
-										<p class="card-heading">Dler Cloud</p>
-										{if $user->class != 0}
-										<p><a href="https://t.me/dlercloud_talk" target="_blank">官方交流群组</a> | <a href="https://t.me/dlercloud_news" target="_blank">官方公告面板</a> | <a href="https://t.me/Licensess" target="_blank">流媒体合租</a> | <a href="/client.html" target="_blank">软件中心</a> | <a href="https://docs.lhie1.com/black-hole" target="_blank">文档中心</a></p>
-										{/if}
-									</div>
+		</section>
+		<section class="section section-skew">
+			<div class="container">
+				<div class="card card-profile shadow mt--300">
+					<div class="px-4">
+						<div class="row justify-content-center">
+							<div class="col-lg-3 order-lg-2" >
+								<div class="card-profile-image">
+									<a data-container="body" data-original-title="Popover on Top" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+										<img src="{$user->gravatar}" alt="user-image" class="rounded-circle" >
+									</a>
 								</div>
 							</div>
-
-							<div class="card">
-								<div class="card-main">
-									<div class="card-inner margin-bottom-no">
-										<p class="card-heading">All-in-One</p>
-										<p>为您提供订阅地址和托管地址，包含了所有节点信息，方便您在诸多的服务器中快速添加，快速切换！</p>
-										<p>请前往<a href="/client.html" target="_blank">「软件中心」</a>获取客户端</p> 
-										<p>请前往<a href="https://docs.lhie1.com/black-hole" target="_blank">「使用教程」</a>（<a href="https://github.com/lhie1/Document/blob/master/SUMMARY.md" target="_blank">备用地址</a>）观看使用教程</p> 
-										<p>请前往<a href="https://docs.lhie1.com/black-hole/tong-yong" target="_blank">「通用」</a>获得帮助与指导</p> 
-										{if $user->class != 0}
-										<div class="card-action">
-											<p class="card-heading">订阅地址</p>
-											{if URL::SSRCanConnect($user)}
-											<p>SSR 个人端口订阅地址</p>
-											<p><code>{$apiUrl}/link/{$ssr_sub_token}?mu=0</code></p>
-											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=0">点击拷贝</button>
-											<p><a href="Shadowrocket://add/sub://{$ssr_url_0}?remarks=Dler%20Cloud" target="_blank"><span class="icon">check</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
-											<p><a href="quantumult://configuration?server={$ssr_url_0}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon">check</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
-											<br>
-											{/if}
-											<p>SSR 公共端口订阅地址</p>
-											<p><code>{$apiUrl}/link/{$ssr_sub_token}?mu=1</code></p>
-											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=1">点击拷贝</button>
-											<p><a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud" target="_blank"><span class="icon">check</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
-											<p><a href="quantumult://configuration?server={$ssr_url_1}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon">check</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
-											<br>
-											<br>
-											{if URL::SSCanConnect($user)}
-											<p>SSD 订阅地址</p>
-											<p><code>{$apiUrl}/link/{$ssr_sub_token}?mu=3</code></p>
-											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=3">点击拷贝</button>
-											{/if}
-											<br>
-											<br>
-											<p>V2Ray 订阅地址</p>
-											<p><code>{$apiUrl}/link/{$ssr_sub_token}?mu=2</code></p>
-											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=2">点击拷贝</button>
-											<p><a class="copy-text" data-clipboard-text="{URL::getAllVMessUrl($user)}">复制所有 VMess 链接</a></p>
-											<p><a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud" target="_blank"><span class="icon">check</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
-											<p><a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon">check</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
-										</div>
-
-										<div class="card-action">
-											<p class="card-heading">托管地址</p>
-											{if URL::SSCanConnect($user)}
-											<p>Surge 2&3 / Surfboard 个人端口托管地址</p>
-											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0</code></p>
-											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_0}" target="_blank"><span class="icon">check</span>&nbsp;Surge / Surfboard：一键托管&规则</a></p>
-											<br>
-											{/if}
-											<p>Surge 2&3 / Surfboard 公共端口托管地址</p>
-											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1</code></p>
-											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_1}" target="_blank"><span class="icon">check</span>&nbsp;Surge / Surfboard：一键托管&规则</a></p>
-											<br>
-											<br>
-											{if URL::SSCanConnect($user)}
-											<p>Surge 2&3 个人端口托管地址（MitM）</p>
-											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1</code></p>
-											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_0_mitm}" target="_blank"><span class="icon">check</span>&nbsp;Surge：一键托管&规则</a></p>
-											<br>
-											{/if}
-											<p>Surge 2&3 公共端口托管地址（MitM）</p>
-											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1</code></p>
-											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1&new=1">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_1_mitm}" target="_blank"><span class="icon">check</span>&nbsp;Surge：一键托管&规则</a></p>
-											<br>
-											<br>
-											{if URL::SSCanConnect($user)}
-											<p>Surge 3 个人端口托管地址（MitM）</p>
-											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1&new=1</code></p>
-											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_0_mitm_new}" target="_blank"><span class="icon">check</span>&nbsp;Surge：一键托管&规则</a></p>
-											<br>
-											{/if}
-											<p>Surge 3 公共端口托管地址（MitM）</p>
-											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1&new=1</code></p>
-											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1&new=1">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_1_mitm_new}" target="_blank"><span class="icon">check</span>&nbsp;Surge：一键托管&规则</a></p>
-										</div>
-										
-										<div class="card-action">
-											<div class="card-action-btn pull-left">
-												<p><a class="reset-link btn btn-brand btn-flat waves-attach" ><span class="icon">autorenew</span>&nbsp;重置订阅 / 托管地址</a></p>
-											</div>
-										</div>
-										{else}
-										<div class="card-action">
-											<div class="card-action-btn pull-left">
-												<a href="/user/shop">
-													<i class="icon icon-lg">info</i>&nbsp;已到期或未购买（点此购买）
-												</a>
-											</div>
-										</div>
-										{/if}
+							<div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+								<div class="card-profile-actions py-4 mt-lg-0">
+									<a href="/user/node" class="btn btn-sm btn-primary">节点列表</a>
+									<a href="/user/shop" class="btn btn-sm btn-default float-right">商店</a>
+								</div>
+							</div>
+							<div class="col-lg-4 order-lg-1">
+								<div class="card-profile-stats d-flex justify-content-center">
+									<div>
+										<span class="heading">{$user->money}</span>
+										<span class="description">余额</span>
+									</div>
+									<div>
+										<span class="heading">L{$user->class}</span>
+										<span class="description">等级</span>
+									</div>
+									<div>
+										<span class="heading">{$user->online_ip_count()}</span>
+										<span class="description">在线 IP 数</span>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-lg-6 col-md-6">
-
-							<div class="card">
-								<div class="card-main">
-									<div class="card-inner margin-bottom-no">
-										<p class="card-heading">公告（<a href="/user/announcement"/>更多</a>）</p>
-										{if $ann != null}
-										<p>{$ann->content}</p>
-										{/if}
+							        <div class="row row-grid justify-content-between align-items-center mt-lg">
+						<div class="col-lg-6">
+                <div class="card card-lift shadow border-0">
+                  <div class="card-body">
+              <div class="progress-wrapper">
+                <div class="progress-info">
+                  <div class="progress-label">
+                    <span>流量使用情况</span>
+                  </div>
+                  <div class="progress-percentage">
+                    <span>{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}%</span>
+                  </div>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}%;"></div>
+                </div>
+              </div>
+                    {if $user->isAbleToCheckin() == 1  && $user->class > 0}
+                    <button id="checkin" class="btn btn-primary mt-4">签到</button>
+                    {else}
+                    <button disabled="disabled" class="btn btn-primary mt-4">签到</button>
+                    {/if}
+                  </div>
+                </div>
+            </div>						
+			<div class="col-lg-6">
+                <div class="card card-lift shadow border-0">
+                  <div class="card-body">
+						<h6 class="category">当前套餐套餐</h6>
+						<h2 class="card-title">{if $user->transfer_enable-($user->u+$user->d) == 0}
+									当前没有购买任何套餐或者流量用尽
+									{else}
+                            {foreach $showplans as $shop}
+                            {$shop->shop()->name}
+                            {/foreach}
+									{/if}</h2>
+									{if $shop->renew==0}
+                    <button  class="btn btn-primary mt-4" disabled="disabled">取消自动续费</button>
+					{else}
+                    <button  class="btn btn-primary mt-4"  href="javascript:void(0);" onClick="delete_modal_show('{$shop->id}')">取消自动续费</button>
+					{/if}
+                  </div>
+                </div>
+            </div>
+        </div>
+					<div class="mt-5 py-5 border-top text-center">
+						<div class="row justify-content-center">
+							<div class="col-lg-9">
+								<div class="mb-3">
+									<small class="text-uppercase font-weight-bold">{if $user->lastSsTime()=='从未使用喵'}不知道如何使用？{else}系统公告{/if}</small>
+								</div>
+								{if $user->lastSsTime()=='从未使用喵'}
+									<p style="color:#DC143C">第一次使用？<a href="https://docs.lhie1.com/black-hole"/>观看教程</a></p>
+									<hr>
+								{/if}
+									<p>{$ann->content}更新日期<code>{$ann->date}</code></p>		 
 									</div>
 								</div>
 							</div>
 
-							<div class="card">
-								<div class="card-main">
-									<div class="card-inner margin-bottom-no">
-										<p class="card-heading">账户信息</p>
-										<dl class="dl-horizontal">
-											<p><dt>用户名</dt>
-											<dd>{$user->user_name}</dd></p>
-
-											<p><dt>账号等级</dt>
-											<dd>{$user->class}</dd></p>
-
-											<p><dt>到期时间</dt>
-											<dd>{$user->class_expire}</dd></p>
-
-											<p><dt>余额</dt>
-											<dd>{$user->money} 元</p></p>
-
-											<p><dt>速度限制</dt>
-											{if $user->node_speedlimit!=0}
-											<dd>{$user->node_speedlimit} Mbps</dd>
-											{else}
-											<dd>∞</dd>
-											{/if}</p>
-
-											<p><dt>在线 IP</dt>
-											<dd>{$user->online_ip_count()} / {if $user->node_connector!=0}{$user->node_connector}{else}∞{/if}</dd></p>
-
-											<p><dt>最近使用时间</dt>
-											<dd>{$user->lastSsTime()}</dd></p>
-										</dl>
-									</div>
-								</div>
+					<div class="mt-5 py-5 border-top text-center">
+						<div class="row justify-content-center">
+							<div class="col-lg-9">
+						<div class="mb-3">
+							<small class="text-uppercase font-weight-bold">All-in-One</small>
+						</div>
+							<div class="nav-wrapper">
+								<ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-text" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link mb-sm-3 mb-md-0 active" id="all_info-tab" data-toggle="tab" href="#all_info" role="tab" aria-controls="all_info" aria-selected="true">连接信息</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link mb-sm-3 mb-md-0" id="all_ssr-tab" data-toggle="tab" href="#all_ssr" role="tab" aria-controls="all_ssr" aria-selected="false">SSR</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link mb-sm-3 mb-md-0" id="all_ss-tab" data-toggle="tab" href="#all_ss" role="tab" aria-controls="all_ss" aria-selected="false">SS</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link mb-sm-3 mb-md-0" id="all_v2-tab" data-toggle="tab" href="#all_v2" role="tab" aria-controls="all_v2" aria-selected="false">V2Ray</a>
+									</li>
+								</ul>
 							</div>
 
-							<div class="card">
-								<div class="card-main">
-									<div class="card-inner margin-bottom-no">
-										<p class="card-heading">连接信息</p>
+							<div class="card shadow">
+								<div class="card-body">
+									<div class="tab-content" id="myTabContent">
+										<div class="tab-pane fade show active" id="all_info" role="tabpanel" aria-labelledby="all_info-tab">
+																		<p>{$agent}</p>
 											<dl class="dl-horizontal">
 												<p><dt>端口</dt>
-												<dd>{$user->port}</dd></p>
+												<dd><code>{$user->port}</code></dd></p>
 
 												<p><dt>密码</dt>
-												<dd>{$user->passwd}</dd></p>
+												<dd><code>{$user->passwd}</code></dd></p>
 
 												<p><dt>加密</dt>
-												<dd>{$user->method}</dd></p>
+												<dd><code>{$user->method}</code></dd></p>
 
 												<p><dt>协议</dt>
-												<dd>{$user->protocol}</dd></p>
+												<dd><code>{$user->protocol}</code></dd></p>
 
 												<p><dt>混淆</dt>
-												<dd>{$user->obfs}</dd></p>
+												<dd><code>{$user->obfs}</code></dd></p>
 											</dl>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="card-main">
-									<div class="card-inner margin-bottom-no">
-
-										<div id="traffic_chart" style="height: 300px; width: 100%;"></div>
-
-										<script src="//cdn.staticfile.org/canvasjs/1.7.0/canvasjs.js"></script>
-										<script type="text/javascript">
-											var chart = new CanvasJS.Chart("traffic_chart",
-											{
-												title:{
-													text: "流量使用情况",
-													fontFamily: "Impact",
-													fontWeight: "normal"
-												},
-
-												legend:{
-													verticalAlign: "bottom",
-													horizontalAlign: "center"
-												},
-												data: [
-												{
-													//startAngle: 45,
-													indexLabelFontSize: 20,
-													indexLabelFontFamily: "Garamond",
-													indexLabelFontColor: "darkgrey",
-													indexLabelLineColor: "darkgrey",
-													indexLabelPlacement: "outside",
-													type: "doughnut",
-													showInLegend: true,
-													dataPoints: [
-														{if $user->transfer_enable != 0}
-														{
-															y: {$user->last_day_t/$user->transfer_enable*100},label: "过去已用", legendText:"过去已用 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}", indexLabel: "过去已用 {number_format($user->last_day_t/$user->transfer_enable*100,2)}% {$user->LastusedTraffic()}"
-														},
-														{
-															y: {($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100},label: "今日已用", legendText:"今日已用 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}", indexLabel: "今日已用 {number_format(($user->u+$user->d-$user->last_day_t)/$user->transfer_enable*100,2)}% {$user->TodayusedTraffic()}"
-														},
-														{
-															y: {($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100},label: "剩余可用", legendText:"剩余可用 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}", indexLabel: "剩余可用 {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% {$user->unusedTraffic()}"
-														}
-														{/if}
-													]
-												}
-												]
-											});
-
-											chart.render();
-										</script>
-
-									</div>
-
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="card-main">
-									<div class="card-inner margin-bottom-no">
-										<p class="card-heading">签到</p>
-											<p>每次签到可能减少/增加流量（{$config['checkinMin']} ~ {$config['checkinMax']}MB）。</p>
-
-											<p>您可以点击按钮或者摇动手机来签到。</p>
-
-											<p>上次签到时间：<code>{$user->lastCheckInTime()}</code></p>
-
-											<p id="checkin-msg"></p>
-
-											{if $geetest_html != null}
-												<div id="popup-captcha"></div>
+											<button id="reset-link" class="btn btn-primary mt-4">重置订阅/托管地址</button>
+										</div>
+										<div class="tab-pane fade" id="all_ssr" role="tabpanel" aria-labelledby="all_ssr-tab">
+											<div style="padding:18px">
+												{if URL::SSRCanConnect($user)}
+													<h4 style="margin-top:12px">SSR 个人端口订阅地址</h4>
+													<p>
+													<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=0">{$apiUrl}/link/{$ssr_sub_token}?mu=0</a></code>
+													</p>
+													<p><a href="Shadowrocket://add/sub://{$ssr_url_0}?remarks=Dler%20Cloud" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
+													<p><a href="quantumult://configuration?server={$ssr_url_0}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
+												{else}
+													<h4 style="margin-top:12px">SSR 公共端口订阅地址</h4>
+													<p>
+													<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=1">{$apiUrl}/link/{$ssr_sub_token}?mu=1</a></code>
+													</p>
+													<p>
+													<a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
+													</p>
+													<p>
+													<a href="quantumult://configuration?server={$ssr_url_1}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
+													</p>
+												{/if}
+											</div>
+										</div>
+										<div class="tab-pane fade" id="all_ss" role="tabpanel" aria-labelledby="all_ss-tab">
+											{if URL::SSCanConnect($user)}
+												<h4 style="margin-top:12px">SSD 订阅地址</h4>
+												<p>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=3">{$apiUrl}/link/{$ssr_sub_token}?mu=3</a></code>
+												</p>
+												<hr>
 											{/if}
-									</div>
-
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											{if $user->isAbleToCheckin() }
-											{if $user->class !=0}
-												<p id="checkin-btn">
-													<button id="checkin" class="btn btn-brand btn-flat waves-attach"><span class="icon">check</span>&nbsp;签到</button>
+											{if URL::SSCanConnect($user)}
+												<h4 style="margin-top:12px">Surge 2&3 / Surfboard 个人端口托管地址</h4>
+												<p>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0</a></code>
+												</p>
+												<p>
+												<a href="surge:///install-config?url={$ss_url_0}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
 												</p>
 											{else}
-												<p><a class="btn btn-brand disabled btn-flat waves-attach" href="#"><span class="icon">close</span>&nbsp;未购买不能签到</a></p>
+												<h4 style="margin-top:12px">Surge 2&3 / Surfboard 公共端口托管地址</h4>
+												<p>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1</a></code>
+												</p>
+												<p>
+												<a href="surge:///install-config?url={$ss_url_1}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
+												</p>
 											{/if}
+											{if URL::SSCanConnect($user)}
+												<h4 style="margin-top:12px">Surge 2&3 / Surfboard 个人端口托管地址（MitM）</h4>
+												<p>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1</a></code>
+												</p>
+												<p>
+												<a href="surge:///install-config?url={$ss_url_0_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
+												</p>
 											{else}
-												<p><a class="btn btn-brand disabled btn-flat waves-attach" href="#"><span class="icon">close</span>&nbsp;今天已经签到过了</a></p>
+												<h4 style="margin-top:12px">Surge 2&3 / Surfboard 公共端口托管地址（MitM）</h4>
+												<p>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1</a></code>
+												</p>
+												<p>
+												<a href="surge:///install-config?url={$ss_url_1_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
+												</p>
+											{/if}
+											{if URL::SSCanConnect($user)}
+												<h4 style="margin-top:12px">Surge 3 个人端口托管地址（MitM）</h4>
+												<p>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1</a></code>
+												</p>
+												<p>
+												<a href="surge3:///install-config?url={$ss_url_0_mitm_new}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
+												</p>
+											{else}
+												<h4 style="margin-top:12px">Surge 3 公共端口托管地址（MitM）</h4>
+												<p>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1</a></code>
+												</p>
+												<p>
+												<a href="surge3:///install-config?url={$ss_url_1_mitm_new}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
+												</p>
 											{/if}
 										</div>
+											<div class="tab-pane fade" id="all_v2" role="tabpanel" aria-labelledby="all_v2-tab">
+												<h4 style="margin-top:12px">V2Ray 订阅地址</h4>
+												<p>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=2">{$apiUrl}/link/{$ssr_sub_token}?mu=2</a></code>
+												</p>
+												<a class="btn btn-brand copy-text" data-clipboard-text="{URL::getAllVMessUrl($user)}">复制所有 VMess 链接</a>
+												<p>
+												<a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
+												</p>
+												<p>
+												<a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
+												</p>
+												</div>
 									</div>
-
 								</div>
 							</div>
-
-						{include file='dialog.tpl'}
-
+						</div>
+					</div>
 				</div>
-
-
-				</div>
-			</section>
+			</div>
 		</div>
-	</main>
+		</section>
+		
+	
+	<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+		<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+				<div class="modal-content">
+						<div class="modal-header">
+								<h6 class="modal-title" id="modal-title-default">确定取消自动续费？</h6>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">×</span>
+								</button>
+						</div>
+						<div class="modal-body">
+								<p>是否取消自动续费</p>
+						</div>
+						<div class="modal-footer">
+								<button type="button" class="btn btn-link	ml-auto" data-dismiss="modal">取消</button>
+								<button type="button" class="btn btn-primary" id="delete_input">确定</button>
+						</div>
+				</div>
+		</div>
+		</div>
+	
+	
+	
+		<div class="modal fade" id="info_form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+							<div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
+								<div class="modal-content">
+									<div class="modal-body p-0">
+										<div class="card bg-secondary shadow border-0">
+											<div class="card-body px-lg-5 py-lg-5">
+												<div class="text-center text-muted mb-4">
+													<small>账户信息</small>
+												</div>
+													<div class="text-center">
+													</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+{include file='newui_dialog.tpl'}
 
 
+{include file='user/newui_footer.tpl'}
 
+<script src="/theme/material/js/shake.js/shake.js"></script>
 
-
-
-
-{include file='user/footer.tpl'}
-
-<script src="https://cdn.jsdelivr.net/npm/shake.js@1.2.2/shake.min.js"></script>
 
 <script>
 
@@ -319,7 +325,7 @@ $(function(){
 
 $(".copy-text").click(function () {
 	$("#result").modal();
-	$("#msg").html("已拷贝到您的剪贴板，请您继续接下来的操作。");
+	$("#msg").html("已复制到您的剪贴板，请您继续接下来的操作。");
 });
 
 $(".reset-link").click(function () {
@@ -327,31 +333,18 @@ $(".reset-link").click(function () {
 	$("#msg").html("已重置订阅链接，请您继续接下来的操作。");
 	window.setTimeout("location.href='/user/url_reset'", {$config['jump_delay']});
 });
-
-{if $user->transfer_enable-($user->u+$user->d) == 0}	
-window.onload = function() {	
-    $("#result").modal();	
-    $("#msg").html("您的流量已经用完或套餐已经过期");	
-};
-{/if}
-
+  
 {if $geetest_html == null}
-
-
 window.onload = function() {
     var myShakeEvent = new Shake({
         threshold: 15
     });
-
     myShakeEvent.start();
-
     window.addEventListener('shake', shakeEventDidOccur, false);
-
     function shakeEventDidOccur () {
 		if("vibrate" in navigator){
 			navigator.vibrate(500);
 		}
-
         $.ajax({
                 type: "POST",
                 url: "/user/checkin",
@@ -361,6 +354,7 @@ window.onload = function() {
                     $("#checkin-btn").hide();
 					$("#result").modal();
                     $("#msg").html(data.msg);
+                  	window.setTimeout("location.href='/user'", {$config['jump_delay']});
                 },
                 error: function (jqXHR) {
 					$("#result").modal();
@@ -369,7 +363,6 @@ window.onload = function() {
             });
     }
 };
-
 
 $(document).ready(function () {
 	$("#checkin").click(function () {
@@ -382,6 +375,7 @@ $(document).ready(function () {
 				$("#checkin-btn").hide();
 				$("#result").modal();
 				$("#msg").html(data.msg);
+                  	window.setTimeout("location.href='/user'", {$config['jump_delay']})
 			},
 			error: function (jqXHR) {
 				$("#result").modal();
@@ -391,29 +385,21 @@ $(document).ready(function () {
 	})
 })
 
-
 {else}
-
 
 window.onload = function() {
     var myShakeEvent = new Shake({
         threshold: 15
     });
-
     myShakeEvent.start();
-
     window.addEventListener('shake', shakeEventDidOccur, false);
-
     function shakeEventDidOccur () {
 		if("vibrate" in navigator){
 			navigator.vibrate(500);
 		}
-
         c.show();
     }
 };
-
-
 
 var handlerPopup = function (captchaObj) {
 	c = captchaObj;
@@ -447,7 +433,6 @@ var handlerPopup = function (captchaObj) {
 	captchaObj.appendTo("#popup-captcha");
 	// 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
 };
-
 initGeetest({
 	gt: "{$geetest_html->gt}",
 	challenge: "{$geetest_html->challenge}",
@@ -455,9 +440,6 @@ initGeetest({
 	offline: {if $geetest_html->success}0{else}1{/if} // 表示用户后台检测极验服务器是否宕机，与SDK配合，用户一般不需要关注
 }, handlerPopup);
 
-
-
 {/if}
-
 
 </script>
