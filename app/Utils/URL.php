@@ -349,7 +349,7 @@ class URL
             return null;
         }
         $array_all = array();
-        $array_all['airport'] = Config::get("appName")." - [SSD]";;
+        $array_all['airport'] = Config::get('appName')." - [SSD]";;
         $array_all['port'] = $user->port;
         $array_all['encryption'] = $user->method;
         $array_all['password'] = $user->passwd;
