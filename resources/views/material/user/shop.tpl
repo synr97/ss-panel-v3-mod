@@ -113,7 +113,7 @@
 																	
 																	<hr>
 																	<a class="btn btn-brand" style="background-color: #4cae4c; padding-right: 16px"
-																			{if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth})"{/if}>
+																			{if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth},{$shop->traffic_package()})"{/if}>
 																		<span class="icon" style="margin-left: 8px; margin-right: 8px">local_grocery_store</span>立即购买</a>
 																	<a class="btn btn-brand" style="background-color: #337ab7; padding-right: 16px; margin-left: 8px" href="/user/code">
 																		<span class="icon" style="margin-left: 8px; margin-right: 8px">local_gas_station</span>充值</a>
@@ -205,14 +205,28 @@
 
 
 <script>
-function buy(id,auto,auto_reset) {
+function buy(id,auto,auto_reset,package) {
 	auto_renew = auto;
+    if (package == 0)
+    {
+      document.getElementById('autor').style.display = "none";
+      document.getElementById('disableo').style.display = "none";
+    }
+    else
+    {
+      document.getElementById('autor').style.display = "";
+      document.getElementById('disableo').style.display = "";
+    }
+
+
 	if(auto == 0)
 	{
 		document.getElementById('autor').style.display = "none";
 	} else {
 		document.getElementById('autor').style.display = "";
 	}
+
+
 	shop = id;
 	$("#coupon_modal").modal();
 }

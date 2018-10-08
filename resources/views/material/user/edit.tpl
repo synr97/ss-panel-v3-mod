@@ -503,7 +503,7 @@ $(".copy-text").click(function () {
                     if (data.ret) {
                         $("#result").modal();
 						$("#ajax-user-protocol").html($("#protocol").val());
-						$("ajax-user-obfs").html($("#obfs").val());
+						$("#ajax-user-obfs").html($("#obfs").val());
 						$("#msg").html(data.msg);
                     } else {
                         $("#result").modal();
