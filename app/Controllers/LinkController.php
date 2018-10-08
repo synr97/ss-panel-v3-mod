@@ -436,7 +436,7 @@ class LinkController extends BaseController
         $proxy_name = "";
         $domestic_name = "";
         $auto_name = "";
-        $proxy_group = "";
+        $proxy_list = "";
 
         if ($new == 0) {
             if ($mitm == 0) {
@@ -463,15 +463,18 @@ class LinkController extends BaseController
                 }
             }
             if (URL::getSurgeObfs($item) != "") {
-                $proxy_group .= $item['remark'].' = custom,'.$item['address'].','.$item['port'].','.$item['method'].','.$item['passwd'].',https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).',udp-relay=true,tfo=true'."\n";
+                $proxy_list .= $item['remark'].' = custom,'.$item['address'].','.$item['port'].','.$item['method'].','.$item['passwd'].',https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).',udp-relay=true,tfo=true'."\n";
             } else {
-                $proxy_group .= $item['remark'].' = custom,'.$item['address'].','.$item['port'].','.$item['method'].','.$item['passwd'].',https://dlercloud.com/SSEncrypt.module,udp-relay=true,tfo=true'."\n";
+                $proxy_list .= $item['remark'].' = custom,'.$item['address'].','.$item['port'].','.$item['method'].','.$item['passwd'].',https://dlercloud.com/SSEncrypt.module,udp-relay=true,tfo=true'."\n";
             }
 
             $proxy_name .= ",".$item['remark'];
 
             if (substr($item['remark'],-5,5) == "Relay") {
             	$domestic_name .= ",".$item['remark'];
+            }
+            if (substr($item['remark'],-5,5) == "Media") {
+            	$media_name .= ",".$item['remark'];
             }
             if (substr($item['remark'],-5,5) != "Gamer") {
                 if (substr($item['remark'],-2,2) != "Relay") {
@@ -515,14 +518,14 @@ use-keyword-filter = false
 
 [Proxy]
 DIRECT = direct
-'.$proxy_group.'
+'.$proxy_list.'
 
 [Proxy Group]
 PROXY = select,AUTO,DIRECT'.$proxy_name.'
 Domestic = select,DIRECT,PROXY'.$domestic_name.'
 Others = select,PROXY,DIRECT
 Apple = select,DIRECT,PROXY,AUTO
-Media = select,PROXY'.$proxy_name.'
+Media = select,PROXY,DIRECT'.$media_name.'
 AUTO = url-test'.$auto_name.',url = http://captive.apple.com,interval = 1200,tolerance = 300,timeout = 5
 
 '.$rules.'';

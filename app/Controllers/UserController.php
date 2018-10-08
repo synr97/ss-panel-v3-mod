@@ -81,7 +81,7 @@ class UserController extends BaseController
         $ssr_url_1 = Tools::base64_url_encode(Config::get('apiUrl').'/link/'.$ssr_sub_token.'?mu=1');
 
         $v2_url = Tools::base64_url_encode(Config::get('apiUrl').'/link/'.$ssr_sub_token.'?mu=2');
-        $v2_url_x = Tools::base64_url_encode('https://tgbot.lbyczf.com/v2rayN2quan?group=Dler%20Cloud&url='.Config::get('apiUrl').'/link/'.$ssr_sub_token.'?mu=2');
+        $v2_url_x = Tools::base64_url_encode('https://tgbot.lbyczf.com/v2rayN2quan?group=Dler%20Cloud%20-%20[V2Ray]&url='.Config::get('apiUrl').'/link/'.$ssr_sub_token.'?mu=2');
 
         $filterUrl = Tools::base64_url_encode('https://raw.githubusercontent.com/lhie1/Rules/master/Quantumult/Quantumult.conf');
         $rejectUrl = Tools::base64_url_encode('https://raw.githubusercontent.com/lhie1/Rules/master/Quantumult/Quantumult_URL.conf');
