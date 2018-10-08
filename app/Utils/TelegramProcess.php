@@ -108,7 +108,7 @@ class TelegramProcess
                  case 'shadowrocket':
                     $bot->sendMessage($message->getChat()->getId(), "Apple ID：
 																	pEdmunds139@icloud.com
-																	Dd112255
+																	Dd11225566
 																	
 																	请使用此 Apple ID 登陆到 App Store 搜索「Shadowrocket」并下载。"
                     												, $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);

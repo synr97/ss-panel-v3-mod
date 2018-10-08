@@ -207,7 +207,7 @@
 <script>
 function buy(id,auto,auto_reset,package) {
 	auto_renew = auto;
-    if (package == 0)
+    if (package == 1)
     {
       document.getElementById('autor').style.display = "none";
       document.getElementById('disableo').style.display = "none";
@@ -217,7 +217,6 @@ function buy(id,auto,auto_reset,package) {
       document.getElementById('autor').style.display = "";
       document.getElementById('disableo').style.display = "";
     }
-
 
 	if(auto == 0)
 	{
