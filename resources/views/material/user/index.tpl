@@ -43,15 +43,15 @@
 											<p>SSR 个人端口订阅地址</p>
 											<p><code>{$apiUrl}/link/{$ssr_sub_token}?mu=0</code></p>
 											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=0">点击拷贝</button>
-											<p><a href="Shadowrocket://add/sub://{$ssr_url_0}?remarks=Dler%20Cloud" target="_blank"><span class="icon">check</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
-											<p><a href="quantumult://configuration?server={$ssr_url_0}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon">check</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
+											<p><a href="Shadowrocket://add/sub://{$ssr_url_0}?remarks=Dler%20Cloud" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
+											<p><a href="quantumult://configuration?server={$ssr_url_0}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
 											<br>
 											{/if}
 											<p>SSR 公共端口订阅地址</p>
 											<p><code>{$apiUrl}/link/{$ssr_sub_token}?mu=1</code></p>
 											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=1">点击拷贝</button>
-											<p><a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud" target="_blank"><span class="icon">check</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
-											<p><a href="quantumult://configuration?server={$ssr_url_1}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon">check</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
+											<p><a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
+											<p><a href="quantumult://configuration?server={$ssr_url_1}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
 											<br>
 											<br>
 											{if URL::SSCanConnect($user)}
@@ -65,8 +65,8 @@
 											<p><code>{$apiUrl}/link/{$ssr_sub_token}?mu=2</code></p>
 											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=2">点击拷贝</button>
 											<p><a class="copy-text" data-clipboard-text="{URL::getAllVMessUrl($user)}">复制所有 VMess 链接</a></p>
-											<p><a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud%20-%20[V2Ray]" target="_blank"><span class="icon">check</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
-											<p><a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon">check</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
+											<p><a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud%20-%20[V2Ray]" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
+											<p><a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
 										</div>
 
 										<div class="card-action">
@@ -75,39 +75,39 @@
 											<p>Surge 2&3 / Surfboard 个人端口托管地址</p>
 											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0</code></p>
 											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_0}" target="_blank"><span class="icon">check</span>&nbsp;Surge / Surfboard：一键托管&规则</a></p>
+											<p><a href="surge:///install-config?url={$ss_url_0}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Surge / Surfboard：一键托管&规则</a></p>
 											<br>
 											{/if}
 											<p>Surge 2&3 / Surfboard 公共端口托管地址</p>
 											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1</code></p>
 											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_1}" target="_blank"><span class="icon">check</span>&nbsp;Surge / Surfboard：一键托管&规则</a></p>
+											<p><a href="surge:///install-config?url={$ss_url_1}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Surge / Surfboard：一键托管&规则</a></p>
 											<br>
 											<br>
 											{if URL::SSCanConnect($user)}
 											<p>Surge 2&3 个人端口托管地址（MitM）</p>
 											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1</code></p>
 											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_0_mitm}" target="_blank"><span class="icon">check</span>&nbsp;Surge：一键托管&规则</a></p>
+											<p><a href="surge:///install-config?url={$ss_url_0_mitm}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Surge：一键托管&规则</a></p>
 											<br>
 											{/if}
 											<p>Surge 2&3 公共端口托管地址（MitM）</p>
 											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1</code></p>
 											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1&new=1">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_1_mitm}" target="_blank"><span class="icon">check</span>&nbsp;Surge：一键托管&规则</a></p>
+											<p><a href="surge:///install-config?url={$ss_url_1_mitm}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Surge：一键托管&规则</a></p>
 											<br>
 											<br>
 											{if URL::SSCanConnect($user)}
 											<p>Surge 3 个人端口托管地址（MitM）</p>
 											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1&new=1</code></p>
 											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_0_mitm_new}" target="_blank"><span class="icon">check</span>&nbsp;Surge：一键托管&规则</a></p>
+											<p><a href="surge:///install-config?url={$ss_url_0_mitm_new}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Surge：一键托管&规则</a></p>
 											<br>
 											{/if}
 											<p>Surge 3 公共端口托管地址（MitM）</p>
 											<p><code>{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1&new=1</code></p>
 											<button class="copy-text btn btn-subscription" type="button" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1&new=1">点击拷贝</button>
-											<p><a href="surge:///install-config?url={$ss_url_1_mitm_new}" target="_blank"><span class="icon">check</span>&nbsp;Surge：一键托管&规则</a></p>
+											<p><a href="surge:///install-config?url={$ss_url_1_mitm_new}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Surge：一键托管&规则</a></p>
 										</div>
 										
 										<div class="card-action">
