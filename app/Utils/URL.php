@@ -395,7 +395,7 @@ class URL
                 }
             )->orderBy('priority','DESC')->orderBy('id')->first();
             if ($relay_rule != null) {
-                $server['remarks'] = $node->name.' => '.$relay_rule->dist_node()->name;
+                $server['remarks'] = $node->name.' - '.$relay_rule->dist_node()->name;
                 $server['ratio'] = $node->traffic_rate + $relay_rule->dist_node()->traffic_rate;
             } else {
                 $server['remarks'] = $node->name;
