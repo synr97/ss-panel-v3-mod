@@ -1,4 +1,4 @@
-
+	
 
 
 
@@ -36,7 +36,8 @@
 							<div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
 								<div class="card-profile-actions py-4 mt-lg-0">
 									<a href="/user/node" class="btn btn-sm btn-primary">节点列表</a>
-									<a href="/user/shop" class="btn btn-sm btn-default float-right">商店</a>
+									<a href="/user/code" class="btn btn-sm btn-default">在线充值</a>
+									<a href="/user/shop" class="btn btn-sm btn-default float-right">购买套餐</a>
 								</div>
 							</div>
 							<div class="col-lg-4 order-lg-1">
@@ -50,8 +51,8 @@
 										<span class="description">等级</span>
 									</div>
 									<div>
-										<span href="/user/profile" class="heading">{$user->online_ip_count()}</span>
-										<span href="/user/profile" class="description">在线 IP 数</span>
+										<span class="heading">{$user->online_ip_count()}</span>
+										<span class="description">在线 IP 数</span>
 									</div>
 								</div>
 							</div>
