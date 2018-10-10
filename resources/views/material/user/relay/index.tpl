@@ -79,17 +79,14 @@
             <div class="mt-5 py-5 text-center">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
-              <div class="mb-3">
-                <small class="text-uppercase font-weight-bold">配置中心</small>
-              </div>
-					{if $is_relay_able}
+			{if $is_relay_able}
               <div class="nav-wrapper">
                 <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-text" role="tablist">
                   <li class="nav-item">
                     <a class="nav-link mb-sm-3 mb-md-0 active" id="rule_table-tab" data-toggle="tab" href="#rule_table role="tab" aria-controls="rule_table" aria-selected="true">规则列表</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link mb-sm-3 mb-md-0" id="link_table-tab" data-toggle="tab" href="#link_table" role="tab" aria-controls="link_table" aria-selected="false">线路列表</a>
+                    <a class="nav-link mb-sm-3 mb-md-0" id="link_table-tab" data-toggle="tab" href="#link_table" role="tab" aria-controls="link_table" aria-selected="false">链路列表</a>
                   </li>
                 </ul>
               </div>
