@@ -111,9 +111,7 @@ class UserController extends BaseController
         ->assign("v2_url_x", $v2_url_x)
         ->assign("filterUrl", $filterUrl)
         ->assign("rejectUrl", $rejectUrl)
-        
         ->assign("ssr_sub_token", $ssr_sub_token)
-
         ->assign("router_token", $router_token)
         ->assign("router_token_without_mu", $router_token_without_mu)
         ->assign("acl_token", $acl_token)
