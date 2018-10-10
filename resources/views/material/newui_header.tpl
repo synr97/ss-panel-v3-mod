@@ -26,7 +26,7 @@
             <div class="row">
               <div class="col-6 collapse-brand">
                 <a href="/">
-                  <img src="https://cdn.godann.com/kitui/img/brand/blue.png">
+                  <img src="http://omgib13x8.bkt.clouddn.com/logo.png">
                 </a>
               </div>
               <div class="col-6 collapse-close">
