@@ -84,8 +84,8 @@
 									<p class="card-heading" >
 										{$shop->name}-<code>{$shop->price}</code>元
 									</p>
-                                 <a class="btn btn-sm btn-primary pull-right" {if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth},{$shop->traffic_package()})"{/if}>
-										立即购买</a>
+                                   <a class="btn btn-sm btn-primary pull-right"
+                   					{if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth},{$shop->traffic_package()})"{/if}>立即购买</a>
 										<a class="btn btn-sm btn-primary pull-right" href="/user/code">充值</a>
 									<p>
 										套餐详情<br>
@@ -118,10 +118,10 @@
 																	<li>{if $shop->traffic_package() != 0}在下次流量重置前额外增加 {$shop->bandwidth()}G 流量{else}每月流量： {$shop->bandwidth()}G{/if}</li>
 																	{/if}
 																	{if $shop->node_speedlimit() != 0}
-																	<li>最高速率：{$shop->node_speedlimit()} Mbps</li>
+																	<li>最高速率：{$shop->node_speedlimit()}Mbps</li>
 																	{/if}
 																	{if $shop->node_connector() != 0}
-																	<li>同时在线 IP 数：{$shop->node_connector()}</li>
+																	<li>同时在线 IP：{$shop->node_connector()}</li>
 																	{/if}
 																	{if $shop->user_class() != 0}
 																	<li>有效期：{$shop->class_expire()} 天</li>
@@ -189,7 +189,7 @@
 									<p id="total">总金额：</p>
 									
 								
-									<div class="checkbox switch custom-control custom-checkbox mb-3" id="autor">
+									<div class="checkbox switch custom-control custom-checkbox mb-3" id="disableo">
               							<input class="custom-control-input" checked id="disableothers" type="checkbox">
               								<label class="custom-control-label" for="disableothers">
                 									<span>关闭旧套餐自动续费</span>
