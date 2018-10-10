@@ -58,7 +58,7 @@
 						</div>
 
 							        <div class="mt-5 py-5 border-top text-center">
-			<div class="col-lg-9">
+			<div class="col-lg-12">
                 <div class="card card-lift shadow border-0">
                   <div class="card-body">
               <div class="progress-wrapper">
