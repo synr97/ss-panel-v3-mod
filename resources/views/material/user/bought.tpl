@@ -35,7 +35,7 @@
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0">
                   <a href="/user" class="btn btn-sm btn-primary">用户中心</a>
-                  <a href="/user/code" class="btn btn-sm btn-default">在线充值</a>
+                  <a href="/user/code" class="btn btn-sm btn-default float-right">在线充值</a>
                   <a href="/user/shop" class="btn btn-sm btn-default float-right">购买套餐</a>
                 </div>
               </div>
@@ -112,11 +112,11 @@
     </section>
     
 
-	<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+	<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default float-right" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title" id="modal-title-default">确认取消自动续费？</h6>
+                <h6 class="modal-title" id="modal-title-default float-right">确认取消自动续费？</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>

@@ -36,6 +36,7 @@
                 <div class="card-profile-actions py-4 mt-lg-0">
                   <a href="/user" class="btn btn-sm btn-primary">用户中心</a>
                   <a href="/user/node" class="btn btn-sm btn-default float-right">节点列表</a>
+                  <a href="/user/shop" class="btn btn-sm btn-default float-right">购买套餐</a>
                 </div>
               </div>
               <div class="col-lg-4 order-lg-1">
