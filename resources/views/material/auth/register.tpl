@@ -63,6 +63,28 @@
                   <div class="form-group">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                      </div>
+            <select class="form-control" id="imtype">
+                <option disabled selected>选择您的联络方式</option>
+                <option value="1">微信</option>
+                <option value="2">QQ</option>
+                <option value="3">Google+</option>
+                <option value="4">Telegram</option>
+            </select>
+                    </div>
+                  </div>  
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-chat-round"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="在这输入联络方式账号" id="wechat" type="text">
+                    </div>
+                  </div>      
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-key-25"></i></span>
                       </div>
                       <input class="form-control" placeholder="邀请码{if $enable_invite_code == 'false'}(可选){/if}" id="code" type="text">

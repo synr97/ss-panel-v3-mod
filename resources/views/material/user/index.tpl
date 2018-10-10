@@ -64,7 +64,7 @@
               <div class="progress-wrapper">
                 <div class="progress-info">
                   <div class="progress-label">
-                    <span>流量使用情况</span>
+                    <span>剩余流量</span>
                   </div>
                   <div class="progress-percentage">
                     <span>{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}%</span>
