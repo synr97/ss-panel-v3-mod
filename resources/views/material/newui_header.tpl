@@ -6,9 +6,9 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  <link href="https://cdn.godann.com/kitui/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-  <link href="https://cdn.godann.com/kitui/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link type="text/css" href="https://cdn.godann.com/kitui/css/argon.css?v=1.0.0" rel="stylesheet">
+  <link href="https://dlercloud.com/newjs/nucleo.css" rel="stylesheet">
+  <link href="https://dlercloud.com/newjs/font-awesome.min.css" rel="stylesheet">
+  <link type="text/css" href="https://dlercloud.com/newjs/argon.css?v=1.0.0" rel="stylesheet">
 </head>
 
 <body>
@@ -41,13 +41,12 @@
             <li class="nav-item dropdown">
               <a href="#" class="nav-link" data-toggle="dropdown" href="#" role="button">
                 <i class="ni ni-collection"></i>
-                <span class="nav-link-inner--text">介绍</span>
+                <span class="nav-link-inner--text">数据及支持</span>
               </a>
               <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">数据及支持</a>
                 <a href="client.html" class="dropdown-item">软件中心</a>
                 <a href="https://docs.lhie1.com/black-hole" class="dropdown-item">文档中心</a>
-                <a href="datacenter.html" class="dropdown-item">STAFF</a>
+                <a href="datacenter.html" class="dropdown-item">数据中心</a>
               </div>
             </li>
             <li class="nav-item dropdown">

@@ -28,7 +28,7 @@
 {$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
 {$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
 <p style="color:red">{$node->name} - {$ssr_item['port']} 端口</p>
-<p id="ssrtitle">{if URL::SSRCanConnect($user, $mu)}SSR二维码{else}SS二维码{/if}</p>
+<p id="ssrtitle">{if URL::SSRCanConnect($user, $mu)}SSR 二维码{else}SS 二维码{/if}</p>
 {if URL::SSRCanConnect($user, $mu)}
 	<div id="ssrdiv" class="text-center">
 		<a href="{URL::getItemUrl($ssr_item, 0)}"><div id="ss-qr-n"></div></a>
@@ -64,7 +64,7 @@
 {$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
 {$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
 <p style="color:red">{$node->name} - {$ssr_item['port']} 端口</p>
-<p id="detailtitle">{if URL::SSRCanConnect($user, $mu)}SSR 配置信息{else}SS 配置信息{/if}</p>
+<p id="detailtitle">{if URL::SSRCanConnect($user, $mu)}SSR配置信息{else}SS配置信息{/if}</p>
 	{if URL::SSRCanConnect($user, $mu)}
 	<div id="detailssrdiv" class="text-center">
 													{$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
@@ -85,7 +85,7 @@
 													加密方式：{$ss_item['method']}<br>
 													密码：{$ss_item['passwd']}<br>
 													混淆：{$ss_item['obfs']}<br>
-													混淆参数：{$ss_item['obfs_param']}<br></p>
+													混淆参数：wns.windows.com<br></p>
 													</div>
 													<!--<label for="detailssrswitch">
 	<input class="access-hide" id="detailssrswitch" type="checkbox" name="detailssrswitch"><span class="switch-toggle"></span><label id="detailswitch_title">切换到SS</label>
@@ -108,7 +108,7 @@
 													加密方式：{$ss_item['method']}<br>
 													密码：{$ss_item['passwd']}<br>
 													混淆：{$ss_item['obfs']}<br>
-													混淆参数：{$ss_item['obfs_param']}<br></p>
+													混淆参数：wns.windows.com<br></p>
 													</div>
 {/if}
 
@@ -208,7 +208,7 @@
 {include file='user/footer_info.tpl'}
 
 
-<script src="/assets/public/js/jquery.qrcode.min.js"></script>
+<script src="https://cdn.godann.com//kitui/js/jquery.qrcode.min.js"></script>
 <script>
 	{if URL::SSCanConnect($user, $mu)}
 	var text_qrcode = '{URL::getItemUrl($ss_item, 1)}';

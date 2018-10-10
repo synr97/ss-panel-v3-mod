@@ -58,7 +58,7 @@
 						</div>
 
 							        <div class="row row-grid justify-content-between align-items-center mt-lg">
-						<div class="col-lg-6">
+						<div class="col-lg-12">
                 <div class="card card-lift shadow border-0">
                   <div class="card-body">
               <div class="progress-wrapper">
@@ -82,26 +82,7 @@
                   </div>
                 </div>
             </div>						
-			<div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-						<h6 class="category">当前套餐套餐</h6>
-						<h2 class="card-title">{if $user->transfer_enable-($user->u+$user->d) == 0}
-									当前没有购买任何套餐或者流量用尽
-									{else}
-                            {foreach $showplans as $shop}
-                            {$shop->shop()->name}
-                            {/foreach}
-									{/if}</h2>
-									{if $shop->renew==0}
-                    <button  class="btn btn-primary mt-4" disabled="disabled">取消自动续费</button>
-					{else}
-                    <button  class="btn btn-primary mt-4"  href="javascript:void(0);" onClick="delete_modal_show('{$shop->id}')">取消自动续费</button>
-					{/if}
-                  </div>
-                </div>
-            </div>
-        </div>
+
 					<div class="mt-5 py-5 border-top text-center">
 						<div class="row justify-content-center">
 							<div class="col-lg-9">
@@ -161,7 +142,7 @@
 												<p><dt>混淆</dt>
 												<dd><code>{$user->obfs}</code></dd></p>
 											</dl>
-											<button id="reset-link" class="btn btn-primary mt-4">重置订阅/托管地址</button>
+											<button id="reset-link" class="btn btn-primary mt-4 reset-link">重置订阅/托管地址</button>
 										</div>
 										<div class="tab-pane fade" id="all_ssr" role="tabpanel" aria-labelledby="all_ssr-tab">
 											<div style="padding:18px">
