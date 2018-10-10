@@ -23,13 +23,13 @@
       </div>
     </div>
   </footer>
-  <script src="https://dlercloud.com/newjs/jquery.min.js"></script>
-  <script src="https://dlercloud.com/newjs/popper.min.js"></script>
-  <script src="https://dlercloud.com/newjs/jquery.md5.js"></script>
-  <script src="https://dlercloud.com/newjs/gt.js"></script>
-  <script src="https://dlercloud.com/newjs/bootstrap.min.js"></script>
-  <script src="https://dlercloud.com/newjs/headroom.min.js"></script>
-  <script src="https://dlercloud.com/newjs/argon.js?v=1.0.0"></script>
+  <script src="https://cdn.godann.com/kitui/vendor/jquery/jquery.min.js"></script>
+  <script src="https://cdn.godann.com/kitui/vendor/popper/popper.min.js"></script>
+  <script src="https://cdn.godann.com/theme/material/js/jquery.md5.js"></script>
+  <script src="https://cdn.godann.com/theme/material/js/gt.js"></script>
+  <script src="https://cdn.godann.com/kitui/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="https://cdn.godann.com/kitui/vendor/headroom/headroom.min.js"></script>
+  <script src="https://cdn.godann.com/kitui/js/argon.js?v=1.0.0"></script>  
   <script src="https://cdn.jsdelivr.net/npm/clipboard@1.5.16/dist/clipboard.min.js"></script>
 </body>
 </html>
