@@ -93,6 +93,7 @@
 									<p style="color:#DC143C">第一次使用？<a href="https://docs.lhie1.com/black-hole"/>观看教程</a></p>
 									<hr>
 								{/if}
+								<p>{$ann->content}</p>	
 									</div>
 								</div>
 							</div>
