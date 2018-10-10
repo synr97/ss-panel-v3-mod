@@ -82,20 +82,6 @@
                   </div>
                 </div>
             </div>
-			<div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-						<h6 class="category">到期时间</h6>
-						<h2 class="card-title">{if $user->class == 0}
-							未购买套餐或者流量用尽
-							{else}
-                            {$user->class_expire}
-                            {/foreach}
-							{/if}</h2>
-                  </div>
-                </div>
-            </div>
-        </div>
 
 					<div class="mt-5 py-5 border-top text-center">
 						<div class="row justify-content-center">
