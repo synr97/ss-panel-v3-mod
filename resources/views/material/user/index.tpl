@@ -35,9 +35,9 @@
 							</div>
 							<div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
 								<div class="card-profile-actions py-4 mt-lg-0">
-									<a href="/user/node" class="btn btn-sm btn-primary">节点列表</a>
-									<a href="/user/code" class="btn btn-sm btn-default float-right">在线充值</a>
-									<a href="/user/shop" class="btn btn-sm btn-default float-right">购买套餐</a>
+									<a href="/user/code" class="btn btn-sm btn-default">在线充值</a>
+									<a href="/user/shop" class="btn btn-sm btn-default">购买套餐</a>
+									<a href="/user/node" class="btn btn-sm btn-primary float-right">节点列表</a>
 								</div>
 							</div>
 							<div class="col-lg-4 order-lg-1">
