@@ -86,13 +86,12 @@
 						<div class="row justify-content-center">
 							<div class="col-lg-9">
 								<div class="mb-3">
-									<small class="text-uppercase font-weight-bold">{if $user->lastSsTime()=='从未使用喵'}不知道如何使用？{else}系统公告{/if}</small>
+									<small class="text-uppercase font-weight-bold">{if $user->lastSsTime()=='从未使用喵'}不知道如何使用？{else}公告 - {$ann->date}{/if}</small>
 								</div>
 								{if $user->lastSsTime()=='从未使用喵'}
 									<p style="color:#DC143C">第一次使用？<a href="https://docs.lhie1.com/black-hole"/>观看教程</a></p>
 									<hr>
 								{/if}
-									<p>{$ann->content}发布日期：<code>{$ann->date}</code></p>		 
 									</div>
 								</div>
 							</div>
