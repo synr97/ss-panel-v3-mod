@@ -50,8 +50,8 @@
 										<span class="description">等级</span>
 									</div>
 									<div>
-										<span class="heading">{$user->online_ip_count()}</span>
-										<span class="description">在线 IP 数</span>
+										<span href="/user/profile" class="heading">{$user->online_ip_count()}</span>
+										<span href="/user/profile" class="description">在线 IP 数</span>
 									</div>
 								</div>
 							</div>
