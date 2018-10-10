@@ -42,6 +42,14 @@
                       <input class="form-control" placeholder="密码" type="password" id="passwd">
                     </div>
                   </div>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Google Authenticator" id="code">
+                    </div>
+                  </div>
                   <div class="custom-control custom-control-alternative custom-checkbox">
                     <input class="custom-control-input" id="remember_me" type="checkbox" checked="checked">
                     <label class="custom-control-label" for="remember_me">
@@ -53,9 +61,6 @@
                   </div>
                 </form>
               </div>
-			  
-			  
-			  
           <div class="col-md-4">
             <div class="modal fade" id="tg_login" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
               <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">

@@ -86,6 +86,10 @@ class UserController extends BaseController
         $filterUrl = Tools::base64_url_encode('https://raw.githubusercontent.com/lhie1/Rules/master/Quantumult/Quantumult.conf');
         $rejectUrl = Tools::base64_url_encode('https://raw.githubusercontent.com/lhie1/Rules/master/Quantumult/Quantumult_URL.conf');
 
+        $pageNum = 1;
+        if (isset($request->getQueryParams()["page"])) {
+            $pageNum = $request->getQueryParams()["page"];
+        }
         $showplans = Bought::where("userid", $this->user->id)->orderBy("id", "desc")->paginate(1, ['*'], 'page', $pageNum);
         $showplans->setPath('/user');
 

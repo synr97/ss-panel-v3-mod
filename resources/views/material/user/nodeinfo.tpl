@@ -64,7 +64,7 @@
 {$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
 {$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
 <p style="color:red">{$node->name} - {if {$ssr_item['port']} == 666}单端口{else}普通端口{/if}</p>
-<p id="detailtitle">{if URL::SSRCanConnect($user, $mu)}SSR配置信息{else}SS配置信息{/if}</p>
+<p id="detailtitle">{if URL::SSRCanConnect($user, $mu)}SSR 配置信息{else}SS 配置信息{/if}</p>
 	{if URL::SSRCanConnect($user, $mu)}
 	<div id="detailssrdiv" class="text-center">
 													{$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
@@ -122,7 +122,7 @@
 {$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
 {$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
 <p style="color:red">{$node->name} - {if {$ssr_item['port']} == 666}单端口{else}普通端口{/if}</p>
-<p id="jsontitle">{if URL::SSRCanConnect($user, $mu)}SSR配置信息{else}SS配置信息{/if}</p>
+<p id="jsontitle">{if URL::SSRCanConnect($user, $mu)}SSR 配置信息{else}SS 配置信息{/if}</p>
 	{if URL::SSRCanConnect($user, $mu)}
 	<div id="jsonssrdiv" class="text-center">
 {$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
