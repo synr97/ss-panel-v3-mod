@@ -32,7 +32,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-					  <input class="form-control" id="email" type="text" placeholder="邮箱" >
+                      <input class="form-control" id="email" type="text" placeholder="邮箱" >
                     </div>
                   </div>
                   <div class="form-group">
@@ -42,7 +42,7 @@
                       </div>
                       <input class="form-control" placeholder="邮箱验证码" id="email_code" type="text">
                     </div>
-							<button id="email_verify" class="btn btn-primary mt-4">获取验证码</button>
+                    		<button id="email_verify" class="btn btn-primary mt-4">获取验证码</button>
                   </div>
                   <div class="form-group">
                     <div class="input-group input-group-alternative">
@@ -59,36 +59,38 @@
                       </div>
                       <input class="form-control" placeholder="重复密码" id="repasswd" type="password">
                     </div>
-                  </div>							                       
+                  </div>                    		                       
                   <div class="form-group">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-key-25"></i></span>
                       </div>
-                      <input class="form-control" placeholder="邀请码{if $enable_invite_code == 'false'}(可选){/if}" id="code" type="text">
+                      <input class="form-control" placeholder="邀请码（选填）" id="code" type="text">
                     </div>
-							<button id="view_code" data-toggle="modal" data-target="#reg_code" class="btn btn-primary mt-4">查看公共邀请码</button>
+                    <!--
+                    <button id="view_code" data-toggle="modal" data-target="#reg_code" class="btn btn-primary mt-4">查看公共邀请码</button>
+					-->
                   </div>
 				  
-							{if $geetest_html != null}
-											<div class="form-group form-group-label">
-												<div class="row">
-													<div class="col-md-10 col-md-push-1">
-														<div id="embed-captcha"></div>
-													</div>
-												</div>
-											</div>
-										{/if}
-						
+                  {if $geetest_html != null}
+                    <div class="form-group form-group-label">
+                      <div class="row">
+                        <div class="col-md-10 col-md-push-1">
+                          <div id="embed-captcha"></div>
+                        </div>
+                      </div>
+                    </div>
+                  {/if}
+                    	
                   <div class="row my-4">
                     <div class="col-12">
                       <div class="custom-control-alternative custom-checkbox">
-						<p>注册即代表同意<a href="/legal">服务条款</a>，以及保证所录入信息的真实性，如有不实信息会导致账号被删除。</p>
+                    	<p>注册即代表同意<a href="/legal">服务条款</a>，以及保证所录入信息的真实性，如有不实信息会导致账号被删除。</p>
                       </div>
                     </div>
                   </div>
                   <div class="text-center">
-						 <button id="tos" type="submit" class="btn btn-primary mt-4">注册</button>
+                    	 <button id="tos" type="submit" class="btn btn-primary mt-4">注册</button>
                   </div>
               </div>
             </div>
@@ -103,16 +105,16 @@
         </div>
       </div>
 	  
-						
+                    	
 				<div class="modal fade" id="tos_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
               <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                 <div class="modal-content">
                   <div class="modal-body">
-						{include file='reg_tos.tpl'}
-						</div>
+                    	{include file='reg_tos.tpl'}
+                    	</div>
                   <div class="modal-footer">
-					<button class="btn btn-white" data-dismiss="modal" type="button" id="cancel">我不服</button>
-					<button class="btn btn-white" data-dismiss="modal" id="reg" type="button">同意</button>
+                    <button class="btn btn-white" data-dismiss="modal" type="button" id="cancel">我不服</button>
+                    <button class="btn btn-white" data-dismiss="modal" id="reg" type="button">同意</button>
                   </div>
                 </div>
               </div>
@@ -121,24 +123,24 @@
               <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                 <div class="modal-content">
                   <div class="modal-body">
-											<tbody style="table-layout:fixed;" >
+                                        	<tbody style="table-layout:fixed;" >
                                           				{foreach $codes as $code}
-											<tr>
-												<td><a class="copy-text" data-clipboard-text="{$code->code}">{$code->code}</a></td>
-											</tr>
-													<button  class="copy-text btn btn-primary mt-4" data-clipboard-text="{$code->code}">复制邀请码</button>
-											{/foreach}
+                                        	<tr>
+                                        		<td><a class="copy-text" data-clipboard-text="{$code->code}">{$code->code}</a></td>
+                                        	</tr>
+                                        			<button  class="copy-text btn btn-primary mt-4" data-clipboard-text="{$code->code}">复制邀请码</button>
+                                        	{/foreach}
                     </tbody>		
-						</div>
+                    	</div>
                 </div>
               </div>
             </div>
     </section>
   </main></main>
   
-						{include file='newui_dialog.tpl'}
+                    	{include file='newui_dialog.tpl'}
   
-						{include file='auth/auth_footer.tpl'}
+                    	{include file='auth/auth_footer.tpl'}
 
 <script>
   $(function(){
@@ -164,14 +166,14 @@ $("#reg_code").modal('hide')
                     name: $("#name").val(),
                     passwd: $("#passwd").val(),
                     repasswd: $("#repasswd").val(),
-					wechat: $("#wechat").val(),
-					imtype: $("#imtype").val(),
-					code: $("#code").val(){if $enable_email_verify == 'true'},
-					emailcode: $("#email_code").val(){/if}{if $geetest_html != null},
-					geetest_challenge: validate.geetest_challenge,
+                    wechat: $("#wechat").val(),
+                    imtype: $("#imtype").val(),
+                    code: $("#code").val(){if $enable_email_verify == 'true'},
+                    emailcode: $("#email_code").val(){/if}{if $geetest_html != null},
+                    geetest_challenge: validate.geetest_challenge,
                     geetest_validate: validate.geetest_validate,
                     geetest_seccode: validate.geetest_seccode
-					{/if}
+                    {/if}
                 },
                 success:function(data){
                     if(data.ret == 1){
@@ -183,14 +185,14 @@ $("#reg_code").modal('hide')
                         $("#msg").html(data.msg);
                         setCookie('code','',0);
                         $("#code").val(getCookie('code'));
-						document.getElementById("tos").disabled = false;
-						{if $geetest_html != null}
-						captcha.refresh();
-						{/if}
+                    	document.getElementById("tos").disabled = false;
+                    	{if $geetest_html != null}
+                    	captcha.refresh();
+                    	{/if}
                     }
                 },
                 error:function(jqXHR){
-						$("#result").modal();
+                    	$("#result").modal();
                         $("#msg").html("注册成功");
                         window.setTimeout("location.href='/auth/login'", {$config['jump_delay']});
                 }
@@ -276,7 +278,7 @@ function time(o) {
                     if (data.ret) {
                         $("#result").modal();
 			$("#msg").html(data.msg);
-						
+                    	
                     } else {
                         $("#result").modal();
 			$("#msg").html(data.msg);

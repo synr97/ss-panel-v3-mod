@@ -204,8 +204,9 @@ class AuthController extends BaseController
         }
 
 
-
+		$codes = InviteCode::where('user_id', '=', '0')->take(1)->get();
         return $this->view()
+          	->assign('codes', $codes)
             ->assign('enable_invite_code', Config::get('enable_invite_code'))
             ->assign('geetest_html', $GtSdk)
             ->assign('enable_email_verify', Config::get('enable_email_verify'))

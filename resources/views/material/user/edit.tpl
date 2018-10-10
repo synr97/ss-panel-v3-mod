@@ -68,10 +68,9 @@
 						
 						
 			        <div class="row row-grid justify-content-between align-items-center mt-lg">
-
-			<div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
 									<div class="card-inner">
 										<p class="card-heading">连接密码修改</p>
 										<p>当前连接密码：<code id="ajax-user-passwd">{$user->passwd}</code>
@@ -79,76 +78,74 @@
 											<label class="floating-label" for="sspwd">连接密码</label>
 											<input class="form-control" id="sspwd" type="text">
 										</div>
-
 									</div>
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
 											<button class="btn btn-primary mt-4" id="ss-pwd-update" >&nbsp;提交</button>
 										</div>
 									</div>
-                  </div>
-                </div>
-            </div>
+								</div>
+							</div>
+						</div>
 
-            <div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-										<p class="card-heading">Telegram 绑定</p>
-										<p>Telegram 添加机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，拍下下面这张二维码发给它。</p>
-										<div class="form-group form-group-label">
-											<div class="text-center">
-												<div id="telegram-qr"></div>
-												{if $user->telegram_id != 0}当前绑定：<a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>{/if}
-											</div>
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
+									<p class="card-heading">Telegram 绑定</p>
+									<p>Telegram 添加机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，拍下下面这张二维码发给它。</p>
+									<div class="form-group form-group-label">
+										<div class="text-center">
+											<div id="telegram-qr"></div>
+											{if $user->telegram_id != 0}当前绑定：<a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>{/if}
 										</div>
+									</div>
 									<a class="btn btn-primary mt-4" href="/user/telegram_reset" >&nbsp;解绑</a>
-                  </div>
-                </div>
-            </div>
+								</div>
+							</div>
+						</div>
 
-			<div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
 									<div class="card-inner">
 										<p class="card-heading">重置个人端口</p>
 										<p>当前端口：<code id="ajax-user-port">{$user->port}</code></p>
-
 									</div>
+
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
 											<button class="btn btn-primary mt-4" id="portreset" >&nbsp;重置端口</button>
 										</div>
 									</div>
-                  </div>
-                </div>
-            </div>
+								</div>
+							</div>
+						</div>
 
-            <div class="col-lg-6 mt-4">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-										<p class="card-heading">登陆邮箱修改</p>
+						<div class="col-lg-6 mt-4">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
+									<p class="card-heading">登陆邮箱修改</p>
 									<div class="form-group form-group-label">
-											<label class="floating-label" for="email">邮箱</label>
-											<input class="form-control" id="email">
-										</div>
+										<label class="floating-label" for="email">邮箱</label>
+										<input class="form-control" id="email">
+									</div>
 
-										<div class="form-group form-group-label">
+									<div class="form-group form-group-label">
 										<button id="email_verify" class="btn btn-primary mt-4">获取验证码</button>
-										</div>
+									</div>
 
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="email_code">确认新密码</label>
-											<input class="form-control" id="email_code" >
-										</div>
-								<button class="btn btn-primary mt-4" id="email-update" >&nbsp;提交</button>
-                  </div>
-                </div>
-            </div>
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="email_code">确认新密码</label>
+										<input class="form-control" id="email_code" >
+									</div>
+									<button class="btn btn-primary mt-4" id="email-update" >&nbsp;提交</button>
+								</div>
+							</div>
+						</div>
 
-            <div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
 									<div class="card-inner">
 										<p class="card-heading">加密方式</p>
 										<p>注意：SS/SSD 和 SSR 支持的加密方式有所不同，请根据实际情况来进行选择！</p>
@@ -162,44 +159,42 @@
 												{/foreach}
 											</select>
 										</div>
-
 									</div>
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
 											<button class="btn btn-primary mt-4" id="method-update" >&nbsp;提交</button>
 										</div>
 									</div>
-                  </div>
-                </div>
-            </div>
+								</div>
+							</div>
+						</div>
 					
-			<div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-										<p class="card-heading">登录密码修改</p>
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
+									<p class="card-heading">登录密码修改</p>
 									<div class="form-group form-group-label">
-											<label class="floating-label" for="oldpwd">当前密码</label>
-											<input class="form-control" id="oldpwd" type="password">
-										</div>
+										<label class="floating-label" for="oldpwd">当前密码</label>
+										<input class="form-control" id="oldpwd" type="password">
+									</div>
 
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="pwd">新密码</label>
-											<input class="form-control" id="pwd" type="password">
-										</div>
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="pwd">新密码</label>
+										<input class="form-control" id="pwd" type="password">
+									</div>
 
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="repwd">确认新密码</label>
-											<input class="form-control" id="repwd" type="password">
-										</div>
-								<button class="btn btn-primary mt-4" id="pwd-update" >&nbsp;提交</button>
-                  </div>
-                </div>
-            </div>
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="repwd">确认新密码</label>
+										<input class="form-control" id="repwd" type="password">
+									</div>
+									<button class="btn btn-primary mt-4" id="pwd-update" >&nbsp;提交</button>
+								</div>
+							</div>
+						</div>
 
-            <div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
 									<div class="card-inner">
 										<p class="card-heading">协议&混淆</p>
 										<p>当前协议：<code id="ajax-user-protocol">{$user->protocol}</code></p>
@@ -214,7 +209,6 @@
 												{/foreach}
 											</select>
 										</div>
-
 									</div>
 
 									<div class="card-inner">
@@ -236,60 +230,59 @@
 											<button class="btn btn-primary mt-4" id="ssr-update" >&nbsp;提交</button>
 										</div>
 									</div>
-                  </div>
-                </div>
-            </div>
+								</div>
+							</div>
+						</div>
 
-			<div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-										<p class="card-heading">联络方式修改</p>
-										<p>当前联络方式：
-										<code id="ajax-im">
-										{if $user->im_type==1}
-										微信
-										{/if}
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
+									<p class="card-heading">联络方式修改</p>
+									<p>当前联络方式：
+									<code id="ajax-im">
+									{if $user->im_type==1}
+									微信
+									{/if}
 
-										{if $user->im_type==2}
-										QQ
-										{/if}
+									{if $user->im_type==2}
+									QQ
+									{/if}
 
-										{if $user->im_type==3}
-										Google+
-										{/if}
+									{if $user->im_type==3}
+									Google+
+									{/if}
 
-										{if $user->im_type==4}
-										Telegram
-										{/if}
-										{$user->im_value}
-										</code>
-										</p>
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="imtype">选择您的联络方式</label>
-											<select class="form-control" id="imtype">
-												<option></option>
-												<option value="1">微信</option>
-												<option value="2">QQ</option>
-												<option value="3">Google+</option>
-												<option value="4">Telegram</option>
-											</select>
-										</div>
+									{if $user->im_type==4}
+									Telegram
+									{/if}
+									{$user->im_value}
+									</code>
+									</p>
 
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="wechat">在这输入联络方式账号</label>
-											<input class="form-control" id="wechat" type="text">
-										</div>
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="imtype">选择您的联络方式</label>
+										<select class="form-control" id="imtype">
+											<option></option>
+											<option value="1">微信</option>
+											<option value="2">QQ</option>
+											<option value="3">Google+</option>
+											<option value="4">Telegram</option>
+										</select>
+									</div>
 
-								<button class="btn btn-primary mt-4" id="wechat-update">&nbsp;提交</button>
-                  </div>
-                </div>
-            </div>
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="wechat">在这输入联络方式账号</label>
+										<input class="form-control" id="wechat" type="text">
+									</div>
+									<button class="btn btn-primary mt-4" id="wechat-update">&nbsp;提交</button>
+								</div>
+							</div>
+						</div>
 	
-			
-			<div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-							<div class="card-inner">
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
+									<div class="card-inner">
 										<p class="card-heading">每日流量使用情况</p>
 										<p>当前状态：<code id="ajax-mail">{if $user->sendDailyMail==1}接收{else}不接收{/if}</code></p>
 										<div class="form-group form-group-label">
@@ -305,14 +298,14 @@
 											<button class="btn btn-primary mt-4" id="mail-update" >&nbsp;提交</button>
 										</div>
 									</div>
-                  </div>
-                </div>
-            </div>
-			
-			<div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-							<div class="card-inner">
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
+									<div class="card-inner">
 										<p class="card-heading">Google Authenticator</p>
 										<p>请下载 Google Authenticator，扫描下面的二维码绑定。</p>
 										<p><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">&nbsp;Android</a></p>
@@ -327,7 +320,6 @@
 												<option value="1">开启</option>
 											</select>
 										</div>
-
 
 										<div class="form-group form-group-label">
 											<div class="text-center">
@@ -349,53 +341,30 @@
 											<button class="btn btn-primary mt-4" id="ga-set" >&nbsp;设置</button>
 										</div>
 									</div>
-                  </div>
-                </div>
-            </div>
+								</div>
+							</div>
+						</div>
 
-			<div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-										<div class="card-inner">
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
+									<div class="card-inner">
 										<p class="card-heading">IP 解封</p>
 										<p>当前状态：<code id="ajax-block">{$Block}</code></p>
-
 									</div>
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
 											<button class="btn btn-primary mt-4" id="unblock" >&nbsp;解封</button>
 										</div>
 									</div>
-                  </div>
-                </div>
-            </div>
-			
-				<div class="col-lg-6">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body">
-										<p class="card-heading">主题修改</p>
-										<p>当前主题：{$user->theme}</p>
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="theme">主题</label>
-											<select id="theme" class="form-control">
-												{foreach $themes as $theme}
-													<option value="{$theme}">{$theme}</option>
-												{/foreach}
-											</select>
-										</div>
-								<button class="btn btn-primary mt-4"  id="theme-update">&nbsp;提交</button>
-                  </div>
-                </div>
-            </div>
-
-        </div>
-						
-						
-          </div>
-        </div>
-      </div>
-      
-    </section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
     
 
 	
@@ -713,34 +682,6 @@ $(".copy-text").click(function () {
                     if (data.ret) {
                         $("#result").modal();
 						$("#ajax-mail").html($("#mail").val()=="1"?"发送":"不发送");
-						$("#msg").html(data.msg);
-                    } else {
-                        $("#result").modal();
-						$("#msg").html(data.msg);
-                    }
-                },
-                error: function (jqXHR) {
-                    $("#result").modal();
-					$("#msg").html(data.msg+"     出现了一些错误。");
-                }
-            })
-        })
-    })
-</script>
-
-<script>
-    $(document).ready(function () {
-        $("#theme-update").click(function () {
-            $.ajax({
-                type: "POST",
-                url: "theme",
-                dataType: "json",
-                data: {
-                    theme: $("#theme").val()
-                },
-                success: function (data) {
-                    if (data.ret) {
-                        $("#result").modal();
 						$("#msg").html(data.msg);
                     } else {
                         $("#result").modal();

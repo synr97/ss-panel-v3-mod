@@ -74,15 +74,15 @@
 			
 				{$id=0}
 				{foreach $node_classes as $single_classes}
-			        <div class="row justify-content-between align-items-center">
+			        <div class="row justify-content-between align-items-center mt-4">
 					<div class="col-lg-12 mt-4 border-top">
-							<div class="card card-lift border-0">
-								<div class="card-body">
-									<p class="card-heading">{$single_classes['desc']}</p>
+						<div class="card card-lift border-0">
+							<div class="card-body">
+								<h3 class="card-heading">{$single_classes['desc']}</h3>
 							</div>
-						</div>		
-					</div>	
-					</div>	
+						</div>    
+					</div>  
+					</div>
 			        <div class="row row-grid border-top justify-content-between align-items-center mt-lg">
 					
 						

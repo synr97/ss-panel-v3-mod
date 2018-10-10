@@ -183,7 +183,7 @@
                 </button>
             </div>
             <div class="modal-body">
-             					<p><font color="red">如您是更换套餐,那剩余流量和有效期将会重置。</font></p>					   
+             					<p><font color="red">如更换套餐，剩余流量和有效期将会立即重置</font></p>					   
 									<p id="name">商品名称：</p>
 									<p id="credit">优惠额度：</p>
 									<p id="total">总金额：</p>
