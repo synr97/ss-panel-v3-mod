@@ -64,7 +64,6 @@
 									<h4>注意！请勿在任何地方公开节点信息！</h4><br>
 									<p>Media 系列节点已解锁部分流媒体，如：Netflix、hbo、bbc、hulu 等</p>
 									<p>Relay 系列节点一般用于流量中转或国外用户回国使用（默认中转模式，如需回国模式请到“中转规则”设置）</p>
-									<a href="javascript:void(0);" onClick="urlChange('guide',0,0,0)">如何查看节点的详细信息和二维码方法？请点我</a>
 								</div>
 							</div>
 						</div>		
