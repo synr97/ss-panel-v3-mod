@@ -112,7 +112,7 @@
 									<p style="color:#DC143C">第一次使用？<a href="https://docs.lhie1.com/black-hole"/>观看教程</a></p>
 									<hr>
 								{/if}
-									<p>{$ann->content}更新日期<code>{$ann->date}</code></p>		 
+									<p>{$ann->content}发布日期：<code>{$ann->date}</code></p>		 
 									</div>
 								</div>
 							</div>
@@ -166,14 +166,14 @@
 										<div class="tab-pane fade" id="all_ssr" role="tabpanel" aria-labelledby="all_ssr-tab">
 											<div style="padding:18px">
 												{if URL::SSRCanConnect($user)}
-													<h4 style="margin-top:12px">SSR 个人端口订阅地址</h4>
+													<p>SSR 个人端口订阅地址</p>
 													<p>
 													<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=0">{$apiUrl}/link/{$ssr_sub_token}?mu=0</a></code>
 													</p>
 													<p><a href="Shadowrocket://add/sub://{$ssr_url_0}?remarks=Dler%20Cloud" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
 													<p><a href="quantumult://configuration?server={$ssr_url_0}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
 												{else}
-													<h4 style="margin-top:12px">SSR 公共端口订阅地址</h4>
+													<p>SSR 公共端口订阅地址</p>
 													<p>
 													<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=1">{$apiUrl}/link/{$ssr_sub_token}?mu=1</a></code>
 													</p>
@@ -188,14 +188,14 @@
 										</div>
 										<div class="tab-pane fade" id="all_ss" role="tabpanel" aria-labelledby="all_ss-tab">
 											{if URL::SSCanConnect($user)}
-												<h4 style="margin-top:12px">SSD 订阅地址</h4>
+												<p>SSD 订阅地址</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=3">{$apiUrl}/link/{$ssr_sub_token}?mu=3</a></code>
 												</p>
 												<hr>
 											{/if}
 											{if URL::SSCanConnect($user)}
-												<h4 style="margin-top:12px">Surge 2&3 / Surfboard 个人端口托管地址</h4>
+												<p>Surge 2&3 / Surfboard 个人端口托管地址</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0</a></code>
 												</p>
@@ -203,7 +203,7 @@
 												<a href="surge:///install-config?url={$ss_url_0}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
 												</p>
 											{else}
-												<h4 style="margin-top:12px">Surge 2&3 / Surfboard 公共端口托管地址</h4>
+												<p>Surge 2&3 / Surfboard 公共端口托管地址</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1</a></code>
 												</p>
@@ -212,7 +212,7 @@
 												</p>
 											{/if}
 											{if URL::SSCanConnect($user)}
-												<h4 style="margin-top:12px">Surge 2&3 / Surfboard 个人端口托管地址（MitM）</h4>
+												<p>Surge 2&3 / Surfboard 个人端口托管地址（MitM）</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1</a></code>
 												</p>
@@ -220,7 +220,7 @@
 												<a href="surge:///install-config?url={$ss_url_0_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
 												</p>
 											{else}
-												<h4 style="margin-top:12px">Surge 2&3 / Surfboard 公共端口托管地址（MitM）</h4>
+												<p>Surge 2&3 / Surfboard 公共端口托管地址（MitM）</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1</a></code>
 												</p>
@@ -229,7 +229,7 @@
 												</p>
 											{/if}
 											{if URL::SSCanConnect($user)}
-												<h4 style="margin-top:12px">Surge 3 个人端口托管地址（MitM）</h4>
+												<p>Surge 3 个人端口托管地址（MitM）</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=0&mitm=1</a></code>
 												</p>
@@ -237,7 +237,7 @@
 												<a href="surge3:///install-config?url={$ss_url_0_mitm_new}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
 												</p>
 											{else}
-												<h4 style="margin-top:12px">Surge 3 公共端口托管地址（MitM）</h4>
+												<p>Surge 3 公共端口托管地址（MitM）</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_ss=1&is_mu=1&mitm=1</a></code>
 												</p>
@@ -247,7 +247,7 @@
 											{/if}
 										</div>
 											<div class="tab-pane fade" id="all_v2" role="tabpanel" aria-labelledby="all_v2-tab">
-												<h4 style="margin-top:12px">V2Ray 订阅地址</h4>
+												<p>V2Ray 订阅地址</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=2">{$apiUrl}/link/{$ssr_sub_token}?mu=2</a></code>
 												</p>

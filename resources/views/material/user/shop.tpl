@@ -118,10 +118,10 @@
 																	<li>{if $shop->traffic_package() != 0}在下次流量重置前额外增加 {$shop->bandwidth()}G 流量{else}每月流量： {$shop->bandwidth()}G{/if}</li>
 																	{/if}
 																	{if $shop->node_speedlimit() != 0}
-																	<li>最高速率：{$shop->node_speedlimit()}Mbps</li>
+																	<li>最高速率：{$shop->node_speedlimit()} Mbps</li>
 																	{/if}
 																	{if $shop->node_connector() != 0}
-																	<li>同时在线 IP：{$shop->node_connector()}</li>
+																	<li>同时在线 IP 数：{$shop->node_connector()}</li>
 																	{/if}
 																	{if $shop->user_class() != 0}
 																	<li>有效期：{$shop->class_expire()} 天</li>
@@ -217,13 +217,13 @@
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title" id="modal-title-default">退订确认</h6>
+                <h6 class="modal-title" id="modal-title-default">确认取消自动续费？</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>是否退订当前套餐</p>
+                <p>是否取消自动续费</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">取消</button>
