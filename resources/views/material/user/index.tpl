@@ -53,6 +53,7 @@
 											<p><a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
 											<p><a href="quantumult://configuration?server={$ssr_url_1}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
 											<br>
+											<br>
 											{if URL::SSCanConnect($user)}
 											<p>SSD 订阅地址</p>
 											<p><code>{$apiUrl}/link/{$ssr_sub_token}?mu=3</code></p>
@@ -66,7 +67,6 @@
 											<p><a class="copy-text" data-clipboard-text="{URL::getAllVMessUrl($user)}">复制所有 VMess 链接</a></p>
 											<p><a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud%20-%20[V2Ray]" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Shadwrocket：一键导入订阅</a></p>
 											<p><a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank"><span class="icon icon-lg">phone_iphone</span>&nbsp;Quantumult：一键导入订阅&规则</a></p>
-											<br>
 										</div>
 
 										<div class="card-action">
