@@ -198,17 +198,10 @@
                  </div>
                  </div>
 
-
-
-
-
-
-
-
 {include file='user/footer_info.tpl'}
 
 
-<script src="https://cdn.godann.com//kitui/js/jquery.qrcode.min.js"></script>
+<script src="https://dlercloud.com/newjs/jquery.qrcode.min.js"></script>
 <script>
 	{if URL::SSCanConnect($user, $mu)}
 	var text_qrcode = '{URL::getItemUrl($ss_item, 1)}';
