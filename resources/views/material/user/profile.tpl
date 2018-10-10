@@ -1,49 +1,83 @@
 
 
 
-{include file='user/main.tpl'}
 
 
 
+{include file='user/newui_header.tpl'}
 
 
 
-
-	<main class="content">
-		<div class="content-header ui-content-header">
-			<div class="container">
-				<h1 class="content-heading">账户信息</h1>
-			</div>
-		</div>
-		<div class="container">
-			<section class="content-inner margin-top-no">
-				<div class="row">
-					<div class="col-lg-12 col-md-12">
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									<div class="card-inner">
-										<p class="card-heading">账户信息</p>
-										<dl class="dl-horizontal">
-											<dt>邮箱</dt>
-											<dd>{$user->email}</dd>
-										</dl>
-									</div>
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											<a class="btn btn-flat waves-attach" href="kill"><span class="icon">check</span>&nbsp;删除我的账户</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="card-main">
-								<div class="card-inner margin-bottom-no">
-									<p class="card-heading">最近在线 IP</p>
-									<p>如有异常请及时修改连接密码</p>
-									<div class="card-table">
+  <main class="profile-page">
+    <section class="section-profile-cover section-shaped my-0">
+      <div class="shape shape-style-1 shape-default shape-skew alpha-4">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </section>
+    <section class="section section-skew">
+      <div class="container">
+        <div class="card card-profile shadow mt--300">
+          <div class="px-4">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2" >
+                <div class="card-profile-image">
+                  <a data-container="body" data-original-title="Popover on Top" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                    <img src="{$user->gravatar}" alt="user-image" class="rounded-circle" >
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+                <div class="card-profile-actions py-4 mt-lg-0">
+                  <a href="/user" class="btn btn-sm btn-primary">用户中心</a>
+                  <a href="/user/shop" class="btn btn-sm btn-default float-right">商店</a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-1">
+                <div class="card-profile-stats d-flex justify-content-center">
+                  <div>
+                    <span class="heading">{$user->money}</span>
+                    <span class="description">剩余金币</span>
+                  </div>
+                  <div>
+                    <span class="heading">L{$user->class}</span>
+                    <span class="description">等级</span>
+                  </div>
+                  <div>
+                    <span class="heading">{$user->online_ip_count()}</span>
+                    <span class="description">在线设备数</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+			
+			<div class="row row-grid justify-content-between align-items-center mt-lg">			
+			<div class="col-lg">
+                <div class="card card-lift shadow border-0">
+                  <div class="card-body">
+					<p class="card-heading">我的帐号</p>
+						<dl class="dl-horizontal">
+							<dt>用户名</dt>
+							<dd>{$user->user_name}</dd>
+							<dt>邮箱</dt>
+							<dd>{$user->email}</dd>
+						</dl>
+                    <a class="btn btn-primary mt-4" href="kill">&nbsp;删除我的账户</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+            <div class="mt-5 py-5 text-center">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+              <div class="mb-3">
+                <small class="text-uppercase font-weight-bold">最近五分钟使用IP</small>
+              </div>
 										<div class="table-responsive">
 											<table class="table">
 												<tr>
@@ -60,18 +94,16 @@
 												{/foreach}
 											</table>
 										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="card">
-							<div class="card-main">
-								<div class="card-inner margin-bottom-no">
-									<p class="card-heading">最近登录 IP</p>
-									<p>如有异常请及时修改登录密码</p>
-									<div class="card-table">
+			  
+                </div>
+              </div>
+            </div>
+			       <div class="mt-5 py-5 text-center">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+              <div class="mb-3">
+                <small class="text-uppercase font-weight-bold">最近十次登录IP</small>
+              </div>
 										<div class="table-responsive">
 											<table class="table">
 												<tr>
@@ -88,82 +120,20 @@
 												{/foreach}
 											</table>
 										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+    
+
+	
+	
+{include file='newui_dialog.tpl'}
 
 
+{include file='user/newui_footer.tpl'}
 
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									<div class="card-inner">
-										<p class="card-heading">返利列表</p>
-										<div class="card-table">
-											<div class="table-responsive">
-											{$paybacks->render()}
-												<table class="table">
-													<thead>
-													<tr>
-														<th>###</th>
-														<th>邀请用户</th>
-														<th>返利金额</th>
-													</tr>
-													</thead>
-													<tbody>
-													{foreach $paybacks as $payback}
-														<tr>
-															<td><b>{$payback->id}</b></td>
-															{if $payback->user()!=null}
-																<td>{$payback->user()->user_name}
-																</td>
-																{else}
-																<td>已注销
-																</td>
-															{/if}
-															</td>
-															<td><span class="payback-num">{$payback->ref_get}</span> <span>元</span></td>
-														</tr>
-													{/foreach}
-													</tbody>
-												</table>
-											{$paybacks->render()}
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</section>
-		</div>
-	</main>
-
-
-
-	<script>
-	function countPayBack() {
-    	var b = 0;
-    	for (var i=0;i<document.getElementsByClassName('payback-num').length;i+=1){
-        	var a = parseFloat(document.getElementsByClassName('payback-num')[i].innerHTML);
-        	if (a > 0) {
-            	var b = a + b;
-        	} else {
-            	var b = b;
-        	}
-    	}
-    	document.getElementById('payback-num-all').innerHTML = b.toFixed(2);
-	}
-	window.onload = function() {
-    	countPayBack();
-	};
-	</script>
-
-
-
-
-{include file='user/footer.tpl'}

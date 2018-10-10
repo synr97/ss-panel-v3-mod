@@ -1,4 +1,16 @@
-
+    <section class="section section-lg">
+      <div class="container">
+        <div class="row row-grid justify-content-center">
+          <div class="col-lg-8 text-center">
+            <h2 class="display-3">现在就开始</h2>
+            <p class="lead">接入 Dler Cloud，享受极致网络体验</p>
+            <div class="btn-wrapper">
+              <a href="/auth/register" class="btn btn-primary mb-3 mb-sm-0">免费注册</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   
   <footer class="footer">
@@ -29,7 +41,6 @@
 	<script src="https://cdn.godann.com/theme/material/js/gt.js"></script>
   <script src="https://cdn.godann.com/kitui/vendor/bootstrap/bootstrap.min.js"></script>
   <script src="https://cdn.godann.com/kitui/vendor/headroom/headroom.min.js"></script>
-  <script src="https://cdn.godann.com/kitui/js/argon.js?v=1.0.0"></script>  
-	<script src="https://cdn.jsdelivr.net/npm/clipboard@1.5.16/dist/clipboard.min.js"></script>
+  <script src="https://cdn.godann.com/kitui/js/argon.js?v=1.0.0"></script>	<script src="https://cdn.jsdelivr.net/npm/clipboard@1.5.16/dist/clipboard.min.js"></script>
 </body>
 </html>

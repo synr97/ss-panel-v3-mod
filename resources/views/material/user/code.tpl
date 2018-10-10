@@ -2,81 +2,110 @@
 
 
 
-{include file='user/main.tpl'}
+
+
+{include file='user/newui_header.tpl'}
 
 
 
-
-
-
-
-	<main class="content">
-		<div class="content-header ui-content-header">
-			<div class="container">
-				<h1 class="content-heading">充值</h1>
-
-
-			</div>
-		</div>
-		<div class="container">
-			<section class="content-inner margin-top-no">
-				<div class="row">
-
-				    {if $pmw!=''}
-					<div class="col-lg-12 col-md-12">
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									{$pmw}
-								</div>
-							</div>
-						</div>
-					</div>
-
+  <main class="profile-page">
+    <section class="section-profile-cover section-shaped my-0">
+      <div class="shape shape-style-1 shape-default shape-skew alpha-4">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </section>
+    <section class="section section-skew">
+      <div class="container">
+        <div class="card card-profile shadow mt--300">
+          <div class="px-4">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2" >
+                <div class="card-profile-image">
+                  <a data-container="body" data-original-title="Popover on Top" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                    <img src="{$user->gravatar}" alt="user-image" class="rounded-circle" >
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+                <div class="card-profile-actions py-4 mt-lg-0">
+                  <a href="/user/node" class="btn btn-sm btn-primary">节点列表</a>
+                  <a href="/user/shop" class="btn btn-sm btn-default float-right">商店</a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-1">
+                <div class="card-profile-stats d-flex justify-content-center">
+                  <div>
+                    <span class="heading">{$user->money}</span>
+                    <span class="description">余额</span>
+                  </div>
+                  <div>
+                    <span class="heading">L{$user->class}</span>
+                    <span class="description">等级</span>
+                  </div>
+                  <div>
+                    <span class="heading">{$user->online_ip_count()}</span>
+                    <span class="description">在线 IP 数</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+			
+			
+			
+			
+			
+		 <div class="row row-grid justify-content-between align-items-center mt-lg">
+					{if $pmw!=''}
+						<div class="col-lg-6">
+                <div class="card card-lift shadow border-0">
+                  <div class="card-body">
+										{$pmw}
+                  </div>
+                </div>
+            </div>			
 					{/if}
-
-					<div class="col-lg-12 col-md-12">
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									<div class="card-inner">
-										<p class="card-heading">充值码</p>
+			<div class="col-lg-6">
+                <div class="card card-lift shadow border-0">
+                  <div class="card-body">
+						<h6 class="category">充值码充值</h6>
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="code">充值码</label>
 											<input class="form-control" id="code" type="text">
 										</div>
-									</div>
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											<button class="btn btn-flat waves-attach" id="code-update" ><span class="icon">check</span>&nbsp;使用</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-12 col-md-12">
-						<div class="card margin-bottom-no">
-							<div class="card-main">
-								<div class="card-inner">
-									<div class="card-inner">
-										<div class="card-table">
-											<div class="table-responsive">
-												{$codes->render()}
+											<button class="btn btn-primary mt-4" id="code-update" >&nbsp;充值</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+			
+			
+						
+            <div class="mt-5 py-5 text-center">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+              <div class="mb-3">
+                <small class="text-uppercase font-weight-bold">充值记录</small>
+              </div>
+									{$codes->render()}
 												<table class="table table-hover">
 													<tr>
-													<!--<th>ID</th> -->
+														<th>ID</th>
 														<th>代码</th>
 														<th>类型</th>
-														<th>操作</th>
-														<th>使用时间</th>
-
+														<th>金额</th>
+														<th>充值时间</th>
+														
 													</tr>
 													{foreach $codes as $code}
 														{if $code->type!=-2}
 															<tr>
-															<!--	<td>#{$code->id}</td>  -->
+																<td>#{$code->id}</td>
 																<td>{$code->code}</td>
 																{if $code->type==-1}
 																<td>金额充值</td>
@@ -108,15 +137,32 @@
 													{/foreach}
 												</table>
 												{$codes->render()}
-											</div>
-										</div>
-									</div>
+			  
+                </div>
+              </div>
+            </div>
+			
+          </div>
+        </div>
+      </div>
+      
+    </section>
+    
 
+					<div aria-hidden="true" class="modal modal-va-middle fade" id="readytopay" role="dialog" tabindex="-1">
+						<div class="modal-dialog modal-xs">
+							<div class="modal-content">
+								<div class="modal-heading">
+									<a class="modal-close" data-dismiss="modal">×</a>
+									<h2 class="modal-title">正在连接支付宝</h2>
+								</div>
+								<div class="modal-inner">
+									<p id="title">正在处理...</p>
 								</div>
 							</div>
 						</div>
 					</div>
-
+					
 					<div aria-hidden="true" class="modal modal-va-middle fade" id="alipay" role="dialog" tabindex="-1">
 						<div class="modal-dialog modal-xs">
 							<div class="modal-content">
@@ -140,22 +186,20 @@
 							</div>
 						</div>
 					</div>
-					{include file='dialog.tpl'}
-				</div>
-			</section>
-		</div>
-	</main>
+	
+	
+	
+{include file='newui_dialog.tpl'}
 
 
-
-
-
-
-
-{include file='user/footer.tpl'}
-
+{include file='user/newui_footer.tpl'}
 
 <script>
+
+  $("#buy_code").click(function () {
+	$("#result").modal();
+	$("#msg").html("暂不开放充值码购买");
+});
 	$(document).ready(function () {
 		$("#code-update").click(function () {
 			$.ajax({
@@ -182,7 +226,53 @@
 				}
 			})
 		})
-
+		
+	$("#urlChange").click(function () {
+			$.ajax({
+				type: "GET",
+				url: "code/f2fpay",
+				dataType: "json",
+				data: {
+					time: timestamp
+				},
+				success: function (data) {
+					if (data.ret) {
+						$("#readytopay").modal();
+					}
+				}
+				
+			})
+		});
+		
+		$("#readytopay").on('shown.bs.modal', function () {
+			$.ajax({
+				type: "POST",
+				url: "code/f2fpay",
+				dataType: "json",
+				data: {
+							amount: $("input:text").val()
+					},
+				success: function (data) {
+					$("#readytopay").modal('hide');
+					if (data.ret) {
+						$("#qrcode").html(data.qrcode);
+						$("#info").html("您的订单金额为："+data.amount+"元。");
+						$("#alipay").modal();
+					} else {
+						$("#result").modal();
+						$("#msg").html(data.msg);
+					}
+				},
+				error: function (jqXHR) {
+					$("#readytopay").modal('hide');
+					$("#result").modal();
+					$("#msg").html(data.msg+"  发生了错误。");
+				}
+			})
+		});	
+	timestamp = {time()}; 
+		
+		
 	function f(){
 		$.ajax({
 			type: "GET",
@@ -206,3 +296,4 @@
 	setTimeout(f, 1000);
 })
 </script>
+

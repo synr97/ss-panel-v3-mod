@@ -4,55 +4,73 @@
 
 
 
-{include file='user/main.tpl'}
+{include file='user/newui_header.tpl'}
 
 
-
-
-
-
-
-	<main class="content">
-		<div class="content-header ui-content-header">
-			<div class="container">
-				<h1 class="content-heading">下载速度</h1>
-			</div>
-		</div>
-		<div class="container">
-			<section class="content-inner margin-top-no">
-				<div class="ui-card-wrap">
-					<div class="row">
-						<div class="col-lg-12 col-sm-12">
-							<div class="card">
-								<div class="card-main">
-									<div class="card-inner margin-bottom-no">
-										<p class="card-heading">注意!</p>
-										<p>最近 {$hour} 小时的记录.</p><b>测试节点来自 <a href="http://speedtest.net">Speedtest</a>，数据仅供参考~</b>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-lg-12 col-sm-12">
-							<div class="card">
-								<div class="card-main">
-									<div class="card-inner margin-bottom-no">
-										<p class="card-heading">观察窗</p>
-										<div class="card-table">
-											<div class="table-responsive">
+  <main class="profile-page">
+    <section class="section-profile-cover section-shaped my-0">
+      <div class="shape shape-style-1 shape-default shape-skew alpha-4">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </section>
+    <section class="section section-skew">
+      <div class="container">
+        <div class="card card-profile shadow mt--300">
+          <div class="px-4">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2" >
+                <div class="card-profile-image">
+                  <a data-container="body" data-original-title="Popover on Top" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                    <img src="{$user->gravatar}" alt="user-image" class="rounded-circle" >
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+                <div class="card-profile-actions py-4 mt-lg-0">
+                  <a href="/user" class="btn btn-sm btn-primary">用户中心</a>
+                  <a href="/user/shop" class="btn btn-sm btn-default float-right">商店</a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-1">
+                <div class="card-profile-stats d-flex justify-content-center">
+                  <div>
+                    <span class="heading">{$user->money}</span>
+                    <span class="description">剩余金币</span>
+                  </div>
+                  <div>
+                    <span class="heading">L{$user->class}</span>
+                    <span class="description">等级</span>
+                  </div>
+                  <div>
+                    <span class="heading">{$user->online_ip_count()}</span>
+                    <span class="description">在线设备数</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+			
+<div class="mt-5 py-5 text-center">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+															<div class="table-responsive">
 												<table class="table">
 													<tr>
 														<th>节点</th>
 														<th>电信延迟</th>
-														<th>电信上传速度</th>
 														<th>电信下载速度</th>
+														<th>电信上传速度</th>
 														<th>联通延迟</th>
-														<th>联通上传速度</th>
 														<th>联通下载速度</th>
+														<th>联通上传速度</th>
 														<th>移动延迟</th>
-														<th>移动上传速度</th>
 														<th>移动下载速度</th>
+														<th>移动上传速度</th>
 													</tr>
 													{foreach $speedtest as $single}
 														<tr>
@@ -70,24 +88,17 @@
 													{/foreach}
 												</table>
 											</div>
-										</div>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-						
-						
-					</div>
-				</div>
-			</section>
-		</div>
-	</main>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+    
+
+	
 
 
-
-
-
-
-
-{include file='user/footer.tpl'}
+{include file='user/newui_footer.tpl'}

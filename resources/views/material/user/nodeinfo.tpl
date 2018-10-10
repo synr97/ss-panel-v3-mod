@@ -5,153 +5,128 @@
 
 
 {$ssr_prefer = URL::SSRCanConnect($user, $mu)}
+	
+              <div class="nav-wrapper">
+                <ul class="nav nav-pills nav-fill  flex-md-row" id="tabs-text" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link mb-sm-3 mb-md-0 active" id="qr_card-tab" data-toggle="tab" href="#qr_card" role="tab" aria-controls="qr_card" aria-selected="true">二维码扫描</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link mb-sm-3 mb-md-0" id="detail_card-tab" data-toggle="tab" href="#detail_card" role="tab" aria-controls="detail_card" aria-selected="false">手动配置</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link mb-sm-3 mb-md-0" id="json_card-tab" data-toggle="tab" href="#json_card" role="tab" aria-controls="json_card" aria-selected="false">JSON文件</a>
+                  </li>
+                </ul>
+              </div>
+			  
+              <div class="card shadow">
+                <div class="card-body">
+                  <div class="tab-content" id="myTabContent">
+<div class="tab-pane fade show active" id="qr_card" role="tabpanel" aria-labelledby="qr_card-tab">
+<div class="text-center">
+{$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
+{$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
+<p style="color:red">{$node->name} - {if {$ssr_item['port']} == 666}单端口{else}普通端口{/if}</p>
+<p id="ssrtitle">{if URL::SSRCanConnect($user, $mu)}SSR二维码{else}SS二维码{/if}</p>
+{if URL::SSRCanConnect($user, $mu)}
+	<div id="ssrdiv" class="text-center">
+		<a href="{URL::getItemUrl($ssr_item, 0)}"><div id="ss-qr-n"></div></a>
+	</div>
+	{if URL::SSCanConnect($user, $mu)}
+	<div id="ssdiv" style="display: none;" class="text-center">
+		<a href="{URL::getItemUrl($ss_item, 1)}"><div id="ss-qr"></div></a>
+	</div>	
+<!--<label for="ssrswitch">
+	<input class="access-hide" id="ssrswitch" type="checkbox" name="ssrswitch"><span class="switch-toggle"></span><label id="switch_title">切换到SS</label>
+</label>-->
+<div class="custom-control custom-checkbox mb-3">
+  <input id="ssrswitch" type="checkbox" class="custom-control-input">
+  <label for="ssrswitch" class="custom-control-label">
+    切换到SS
+  </label>
+</div>
+  
+	{else}
+	{/if}
+{else}
+	<div class="text-center">
+		<a href="{URL::getItemUrl($ss_item, 1)}"><div id="ss-qr"></div></a>
+	</div>	
+{/if}
+<p>手机点击二维码即可跳转APP导入</p>
+</div>
+</div>
+
+
+                    <div class="tab-pane fade show " id="detail_card" role="tabpanel" aria-labelledby="detail_card-tab">
+				<div class="text-center">
+{$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
+{$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
+<p style="color:red">{$node->name} - {if {$ssr_item['port']} == 666}单端口{else}普通端口{/if}</p>
+<p id="detailtitle">{if URL::SSRCanConnect($user, $mu)}SSR配置信息{else}SS配置信息{/if}</p>
+	{if URL::SSRCanConnect($user, $mu)}
+	<div id="detailssrdiv" class="text-center">
+													{$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
+													<p>服务器地址：{$ssr_item['address']}<br>
+													服务器端口：{$ssr_item['port']}<br>
+													加密方式：{$ssr_item['method']}<br>
+													密码：{$ssr_item['passwd']}<br>
+													协议：{$ssr_item['protocol']}<br>
+													协议参数：{$ssr_item['protocol_param']}<br>
+													混淆：{$ssr_item['obfs']}<br>
+													混淆参数：{$ssr_item['obfs_param']}<br></p>
+													</div>
+{if URL::SSCanConnect($user, $mu)}
+<div id="detailssdiv" style="display: none;" class="text-center">
+													{$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
+													<p>服务器地址：{$ss_item['address']}<br>
+													服务器端口：{$ss_item['port']}<br>
+													加密方式：{$ss_item['method']}<br>
+													密码：{$ss_item['passwd']}<br>
+													混淆：{$ss_item['obfs']}<br>
+													混淆参数：{$ss_item['obfs_param']}<br></p>
+													</div>
+													<!--<label for="detailssrswitch">
+	<input class="access-hide" id="detailssrswitch" type="checkbox" name="detailssrswitch"><span class="switch-toggle"></span><label id="detailswitch_title">切换到SS</label>
+</label>-->
+
+<div class="custom-control custom-checkbox mb-3">
+  <input id="detailssrswitch" type="checkbox" class="custom-control-input">
+  <label for="detailssrswitch" class="custom-control-label">
+    切换到SS
+  </label>
+</div>     
+                  
+	{else}
+	{/if}
+{else}
+<div class="text-center">
+													{$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
+													<p>服务器地址：{$ss_item['address']}<br>
+													服务器端口：{$ss_item['port']}<br>
+													加密方式：{$ss_item['method']}<br>
+													密码：{$ss_item['passwd']}<br>
+													混淆：{$ss_item['obfs']}<br>
+													混淆参数：{$ss_item['obfs_param']}<br></p>
+													</div>
+{/if}
+
+</div>
+                 </div>
 
 
 
-
-    <main class="content">
-        <div class="content-header ui-content-header">
-            <div class="container">
-                <h1 class="content-heading">节点信息</h1>
-            </div>
-        </div>
-        <div class="container">
-            <section class="content-inner margin-top-no">
-                <div class="ui-card-wrap">
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-main">
-                                    <div class="card-inner margin-bottom-no">
-                                        <p class="card-heading">注意！</p>
-                                        <p>配置文件以及二维码请勿泄露！</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-lg-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-main">
-                                    <div class="card-inner margin-bottom-no">
-                                        <p class="card-heading">配置信息</p>
-                                        <div class="tab-content">
-
-                                            <nav class="tab-nav margin-top-no">
-                                                <ul class="nav nav-list">
-                                                    <li {if $ssr_prefer}class="active"{/if}>
-                                                        <a class="waves-attach" data-toggle="tab" href="#ssr_info"><i class="icon icon-lg">airplanemode_active</i>&nbsp;ShadowsocksR</a>
-                                                    </li>
-                                                    <li {if !$ssr_prefer}class="active"{/if}>
-                                                        <a class="waves-attach" data-toggle="tab" href="#ss_info"><i class="icon icon-lg">flight_takeoff</i>&nbsp;Shadowsocks</a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                            <div class="tab-pane fade {if $ssr_prefer}active in{/if}" id="ssr_info">
-                                                {if URL::SSRCanConnect($user, $mu)}
-                                                    {$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
-                                                    <p>服务器地址：{$ssr_item['address']}<br>
-                                                    服务器端口：{$ssr_item['port']}<br>
-                                                    加密方式：{$ssr_item['method']}<br>
-                                                    密码：{$ssr_item['passwd']}<br>
-                                                    协议：{$ssr_item['protocol']}<br>
-                                                    协议参数：{$ssr_item['protocol_param']}<br>
-                                                    混淆：{$ssr_item['obfs']}<br>
-                                                    混淆参数：{$ssr_item['obfs_param']}<br></p>
-                                                {else}
-                                                    <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                                    <p>同时, ShadowsocksR 公共端口的连接不受您设置的影响,您可以在此使用相应的客户端进行连接~</p>
-                                                {/if}
-                                            </div>
-                                            <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="ss_info">
-                                                {if URL::SSCanConnect($user, $mu)}
-                                                    {$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
-                                                    <p>服务器地址：{$ss_item['address']}<br>
-                                                    服务器端口：{$ss_item['port']}<br>
-                                                    加密方式：{$ss_item['method']}<br>
-                                                    密码：{$ss_item['passwd']}<br>
-                                                    混淆：{$ss_item['obfs']}<br>
-                                                    混淆参数：{$ss_item['obfs_param']}<br></p>
-                                                {else}
-                                                    <p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                                {/if}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-lg-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-main">
-                                    <div class="card-inner margin-bottom-no">
-                                        <p class="card-heading">客户端下载</p>
-
-
-                                        <nav class="tab-nav margin-top-no">
-                                            <ul class="nav nav-list">
-                                                <li {if $ssr_prefer}class="active"{/if}>
-                                                    <a class="waves-attach" data-toggle="tab" href="#ssr_download"><i class="icon icon-lg">airplanemode_active</i>&nbsp;ShadowsocksR</a>
-                                                </li>
-                                                <li {if !$ssr_prefer}class="active"{/if}>
-                                                    <a class="waves-attach" data-toggle="tab" href="#ss_download"><i class="icon icon-lg">flight_takeoff</i>&nbsp;Shadowsocks</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                        <div class="tab-pane fade {if $ssr_prefer}active in{/if}" id="ssr_download">
-                                            {if URL::SSRCanConnect($user, $mu)}
-                                                <p><i class="icon icon-lg">desktop_windows</i>&nbsp;<a href="/ssr-download/ssr-win.7z">Windows</a></p>
-                                                <p><i class="icon icon-lg">laptop_mac</i>&nbsp;<a href="/ssr-download/ssr-mac.dmg">Mac OS X</a></p>
-                                                <p><i class="icon icon-lg">laptop_windows</i>&nbsp;<a href="https://github.com/breakwa11/shadowsocks-rss/wiki/Python-client">Linux</a></p>
-                                                <p><i class="icon icon-lg">android</i>&nbsp;<a href="/ssr-download/ssr-android.apk">Android</a></p>
-                                                <p><i class="icon icon-lg">phone_iphone</i>&nbsp;<a href="https://itunes.apple.com/us/app/shadowrocket/id932747118">iOS</a></p>
-                                            {else}
-                                                <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                            {/if}
-                                        </div>
-                                        <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="ss_download">
-                                            {if URL::SSCanConnect($user, $mu)}
-                                                <p><i class="icon icon-lg">desktop_windows</i>&nbsp;<a href="/ssr-download/ss-win.7z">Windows</a></p>
-                                                <p><i class="icon icon-lg">laptop_mac</i>&nbsp;<a href="/ssr-download/ss-mac.zip">Mac OS X</a></p>
-                                                <p><i class="icon icon-lg">laptop_windows</i>&nbsp;<a href="https://shadowsocks.org/en/download/clients.html">Linux</a></p>
-                                                <p><i class="icon icon-lg">android</i>&nbsp;<a href="/ssr-download/ss-android.apk">Android</a></p>
-                                                <p><i class="icon icon-lg">android</i>&nbsp;<a href="/ssr-download/ss-android-obfs.apk">Android Obfs插件</a></p>
-                                                <p><i class="icon icon-lg">phone_iphone</i>&nbsp;<a href="https://itunes.apple.com/us/app/shadowrocket/id932747118">iOS</a></p>
-                                            {else}
-                                                <p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                            {/if}
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-main">
-                                    <div class="card-inner margin-bottom-no">
-                                        <p class="card-heading">配置Json</p>
-
-                                        <nav class="tab-nav margin-top-no">
-                                            <ul class="nav nav-list">
-                                                <li {if $ssr_prefer}class="active"{/if}>
-                                                    <a class="waves-attach" data-toggle="tab" href="#ssr_json"><i class="icon icon-lg">airplanemode_active</i>&nbsp;ShadowsocksR</a>
-                                                </li>
-                                                <li {if !$ssr_prefer}class="active"{/if}>
-                                                    <a class="waves-attach" data-toggle="tab" href="#ss_json"><i class="icon icon-lg">flight_takeoff</i>&nbsp;Shadowsocks</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                        <div class="tab-pane fade {if $ssr_prefer}active in{/if}" id="ssr_json">
-                                            {if URL::SSRCanConnect($user, $mu)}
-                                                <textarea class="form-control" rows="6">
+                    <div class="tab-pane fade show" id="json_card" role="tabpanel" aria-labelledby="json_card-tab">
+				<div class="text-center">
+{$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
+{$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
+<p style="color:red">{$node->name} - {if {$ssr_item['port']} == 666}单端口{else}普通端口{/if}</p>
+<p id="jsontitle">{if URL::SSRCanConnect($user, $mu)}SSR配置信息{else}SS配置信息{/if}</p>
+	{if URL::SSRCanConnect($user, $mu)}
+	<div id="jsonssrdiv" class="text-center">
+{$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
+	<textarea class="form-control" rows="6" style="height:200px">
 {
     "server": "{$ssr_item['address']}",
     "local_address": "127.0.0.1",
@@ -166,140 +141,62 @@
     "protocol": "{$ssr_item['protocol']}",
     "protocol_param": "{$ssr_item['protocol_param']}"
 }
-                                                </textarea>
-                                            {else}
-                                                <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                            {/if}
-                                        </div>
-                                        <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="ss_json">
-                                            {if URL::SSCanConnect($user, $mu)}
-                                            <textarea class="form-control" rows="6">
+</textarea>
+	</div>
+{if URL::SSCanConnect($user, $mu)}
+<div id="jsonssdiv" style="display: none;" class="text-center">
+	{$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
+	<textarea class="form-control" rows="6" style="height:200px">
 {
-        "server": "{$ss_item['address']}",
-        "local_address": "127.0.0.1",
-        "local_port": 1080,
-        "timeout": 300,
-        "workers": 1,
-        "server_port": {$ss_item['port']},
-        "password": "{$ss_item['passwd']}",
-        "method": "{$ss_item['method']}",
-        "plugin": "{URL::getJsonObfs($ss_item)}"
+	"server": "{$ss_item['address']}",
+	"local_address": "127.0.0.1",
+	"local_port": 1080,
+	"timeout": 300,
+	"workers": 1,
+	"server_port": {$ss_item['port']},
+	"password": "{$ss_item['passwd']}",
+	"method": "{$ss_item['method']}",
+	"plugin": "{URL::getJsonObfs($ss_item)}"
 }
-                                            </textarea>
-                                            {else}
-                                                <p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                            {/if}
-                                        </div>
+</textarea>
+</div>
+<!--<label for="jsonssrswitch">
+	<input class="access-hide" id="jsonssrswitch" type="checkbox" name="jsonssrswitch"><span class="switch-toggle"></span><label id="jsonswitch_title">切换到SS</label>
+</label>-->
 
-                                    </div>
+             <div class="custom-control custom-checkbox mb-3">
+  <input id="jsonssrswitch" type="checkbox" class="custom-control-input">
+  <label for="jsonssrswitch" class="custom-control-label">
+    切换到SS
+  </label>
+</div>            
+                  
+	{else}
+	{/if}
+{else}
+<div class="text-center">
+	{$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
+	<textarea class="form-control" rows="6" style="height:200px">
+{
+	"server": "{$ss_item['address']}",
+	"local_address": "127.0.0.1",
+	"local_port": 1080,
+	"timeout": 300,
+	"workers": 1,
+	"server_port": {$ss_item['port']},
+	"password": "{$ss_item['passwd']}",
+	"method": "{$ss_item['method']}",
+	"plugin": "{URL::getJsonObfs($ss_item)}"
+}
+</textarea>
+</div>
+{/if}
 
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-main">
-                                    <div class="card-inner margin-bottom-no">
-                                        <p class="card-heading">配置链接</p>
-
-                                        <nav class="tab-nav margin-top-no">
-                                            <ul class="nav nav-list">
-                                                <li {if $ssr_prefer}class="active"{/if}>
-                                                    <a class="waves-attach" data-toggle="tab" href="#ssr_url"><i class="icon icon-lg">airplanemode_active</i>&nbsp;ShadowsocksR</a>
-                                                </li>
-                                                <li {if !$ssr_prefer}class="active"{/if}>
-                                                    <a class="waves-attach" data-toggle="tab" href="#ss_url"><i class="icon icon-lg">flight_takeoff</i>&nbsp;Shadowsocks</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                        <div class="tab-pane fade {if $ssr_prefer}active in{/if}" id="ssr_url">
-                                            {if URL::SSRCanConnect($user, $mu)}
-                                                <p><a href="{URL::getItemUrl($ssr_item, 0)}"/>Android 手机上用默认浏览器打开点我就可以直接添加了(给 ShadowsocksR APP)</a></p>
-                                                <p><a href="{URL::getItemUrl($ssr_item, 0)}"/>iOS 上用 Safari 打开点我就可以直接添加了(给 Shadowrocket)</a></p>
-                                            {else}
-                                                <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                            {/if}
-                                        </div>
-                                        <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="ss_url">
-                                            {if URL::SSCanConnect($user, $mu)}
-                                                <p><a href="{URL::getItemUrl($ss_item, 1)}"/>Android 手机上用默认浏览器打开点我就可以直接添加了(给 Shadowsocks)</a></p>
-                                                <p><a href="{URL::getItemUrl($ss_item, 1)}"/>iOS 上用 Safari 打开点我就可以直接添加了(给 Shadowrocket)</a></p>
-                                            {else}
-                                                <p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                            {/if}
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-main">
-                                    <div class="card-inner margin-bottom-no">
-                                        <p class="card-heading">配置二维码</p>
-
-
-                                        <nav class="tab-nav margin-top-no">
-                                            <ul class="nav nav-list">
-                                                <li {if $ssr_prefer}class="active"{/if}>
-                                                    <a class="waves-attach" data-toggle="tab" href="#ssr_qrcode"><i class="icon icon-lg">airplanemode_active</i>&nbsp;ShadowsocksR</a>
-                                                </li>
-                                                <li {if !$ssr_prefer}class="active"{/if}>
-                                                    <a class="waves-attach" data-toggle="tab" href="#ss_qrcode"><i class="icon icon-lg">flight_takeoff</i>&nbsp;Shadowsocks</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                        <div class="tab-pane fade {if $ssr_prefer}active in{/if}" id="ssr_qrcode">
-                                            {if URL::SSRCanConnect($user, $mu)}
-                                                <div class="text-center">
-                                                    <div id="ss-qr-n"></div>
-                                                </div>
-                                            {else}
-                                                <p>您好，您目前的 加密方式，混淆，或者协议设置在 ShadowsocksR 客户端下无法连接。请您选用 Shadowsocks 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                            {/if}
-                                        </div>
-                                        <div class="tab-pane fade {if !$ssr_prefer}active in{/if}" id="ss_qrcode">
-                                            {if URL::SSCanConnect($user, $mu)}
-                                                <nav class="tab-nav margin-top-no">
-                                                    <ul class="nav nav-list">
-                                                        <li class="active">
-                                                            <a class="waves-attach" data-toggle="tab" href="#ss_qrcode_normal"><i class="icon icon-lg">android</i>&nbsp;其他平台</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="waves-attach" data-toggle="tab" href="#ss_qrcode_win"><i class="icon icon-lg">desktop_windows</i>&nbsp;Windows</a>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
-                                                <div class="tab-pane fade active in" id="ss_qrcode_normal">
-                                                    <div class="text-center">
-                                                        <div id="ss-qr"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="ss_qrcode_win">
-                                                    <div class="text-center">
-                                                        <div id="ss-qr-win"></div>
-                                                    </div>
-                                                </div>
-                                            {else}
-                                                <p>您好，您目前的 加密方式，混淆，或者协议设置在 Shadowsocks 客户端下无法连接。请您选用 ShadowsocksR 客户端来连接，或者到 资料编辑 页面修改后再来查看此处。</p>
-                                            {/if}
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
+</div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
 
 
 
@@ -307,29 +204,40 @@
 
 
 
-{include file='user/footer.tpl'}
+
+{include file='user/footer_info.tpl'}
 
 
 <script src="/assets/public/js/jquery.qrcode.min.js"></script>
 <script>
-    {if URL::SSCanConnect($user, $mu)}
-    var text_qrcode = '{URL::getItemUrl($ss_item, 1)}';
-    jQuery('#ss-qr').qrcode({
-        "text": text_qrcode
-    });
+	{if URL::SSCanConnect($user, $mu)}
+	var text_qrcode = '{URL::getItemUrl($ss_item, 1)}';
+	jQuery('#ss-qr').qrcode({
+      	correctLevel :0,
+    	width: 200,
+    	height: 200,
+		text: text_qrcode
+	});
 
-    var text_qrcode_win = '{URL::getItemUrl($ss_item, 2)}';
-    jQuery('#ss-qr-win').qrcode({
-        "text": text_qrcode_win
-    });
-    {/if}
+	var text_qrcode_win = '{URL::getItemUrl($ss_item, 2)}';
+	jQuery('#ss-qr-win').qrcode({
+      	correctLevel :0,
+    	width: 200,
+    	height: 200,
+		text: text_qrcode_win
+	});
+	{/if}
 
-    {if URL::SSRCanConnect($user, $mu)}
-    var text_qrcode2 = '{URL::getItemUrl($ssr_item, 0)}';
-    jQuery('#ss-qr-n').qrcode({
-        "text": text_qrcode2
-    });
-    {/if}
+	{if URL::SSRCanConnect($user, $mu)}
+	var text_qrcode2 = '{URL::getItemUrl($ssr_item, 0)}';
+	jQuery('#ss-qr-n').qrcode({
+      	correctLevel :0,
+    	width: 200,
+    	height: 200,
+		text: text_qrcode2
+	});
+	{/if}
 
 
 </script>
+<script src="https://cdn.godann.com/kitui/js/switch.js"></script>

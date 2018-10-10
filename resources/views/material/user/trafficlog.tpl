@@ -1,44 +1,77 @@
-{include file='user/main.tpl'}
 
 
 
 
 
-	<main class="content">
-		<div class="content-header ui-content-header">
-			<div class="container">
-				<h1 class="content-heading">流量记录</h1>
-			</div>
-		</div>
-		<div class="container">
-			<section class="content-inner margin-top-no">
-				<div class="ui-card-wrap">
-					<div class="row">
-						<div class="col-lg-12 col-sm-12">
-							<div class="card">
-								<div class="card-main">
-									<div class="card-inner margin-bottom-no">
-										<p class="card-heading">注意!</p>
+
+{include file='user/newui_header.tpl'}
+
+
+  <main class="profile-page">
+    <section class="section-profile-cover section-shaped my-0">
+      <div class="shape shape-style-1 shape-default shape-skew alpha-4">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </section>
+    <section class="section section-skew">
+      <div class="container">
+        <div class="card card-profile shadow mt--300">
+          <div class="px-4">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2" >
+                <div class="card-profile-image">
+                  <a data-container="body" data-original-title="Popover on Top" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                    <img src="{$user->gravatar}" alt="user-image" class="rounded-circle" >
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+                <div class="card-profile-actions py-4 mt-lg-0">
+                  <a href="/user" class="btn btn-sm btn-primary">用户中心</a>
+                  <a href="/user/shop" class="btn btn-sm btn-default float-right">商店</a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-1">
+                <div class="card-profile-stats d-flex justify-content-center">
+                  <div>
+                    <span class="heading">{$user->money}</span>
+                    <span class="description">余额</span>
+                  </div>
+                  <div>
+                    <span class="heading">L{$user->class}</span>
+                    <span class="description">等级</span>
+                  </div>
+                  <div>
+                    <span class="heading">{$user->online_ip_count()}</span>
+                    <span class="description">在线 IP 数</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+			
+			<!--<div class="col-lg">
 										<p>部分节点不支持流量记录.</p>
 										<p>此处只展示最近 72 小时的记录，粒度为分钟。</p>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-lg-12 col-sm-12">
-							<div class="card">
-								<div class="card-main">
+            </div>-->
+<div class="mt-5 py-5 border-top text-center">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
 									<div class="card-inner margin-bottom-no">
 										<div id="log_chart" style="height: 300px; width: 100%;"></div>
-                                      
-										<script src="/assets/js/canvasjs.min.js"> </script>
+										
+										<script src="//cdn.staticfile.org/canvasjs/1.7.0/canvasjs.js"></script>
 											
 										<script type="text/javascript">
 											window.onload = function () {
 												var log_chart = new CanvasJS.Chart("log_chart",
 												{
+                                                  animationEnabled: true,
 													zoomEnabled: true,
 													title:{
 														text: "您的最近72小时流量消耗",
@@ -49,7 +82,7 @@
 													axisX: {
 														title:"时间",
 														labelFontSize: 14,
-														titleFontSize: 18
+														titleFontSize: 18                            
 													},
 													axisY:{
 														title: "流量/KB",
@@ -89,22 +122,34 @@
 																{/literal}
 															{/if}
 														{/foreach}
-
+														
+														
+														
+														
 														]
 													}
+													
 													]
 												});
+
 											log_chart.render();
 										}
 										</script>
+										
 									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-	</main>
+					
+					
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+    
 
-{include file='user/footer.tpl'}
+	
+
+
+{include file='user/newui_footer.tpl'}

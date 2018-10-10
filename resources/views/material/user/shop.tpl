@@ -4,63 +4,92 @@
 
 
 
-{include file='user/main.tpl'}
+{include file='user/newui_header.tpl'}
 
 
 
-
-
-
-
-	<main class="content">
-		<div class="content-header ui-content-header">
-			<div class="container">
-				<h1 class="content-heading">套餐列表</h1>
-			</div>
-		</div>
-		<div class="container">
-			<div class="col-lg-12 col-sm-12">
-				<section class="content-inner margin-top-no">
+  <main class="profile-page">
+    <section class="section-profile-cover section-shaped my-0">
+      <div class="shape shape-style-1 shape-default shape-skew alpha-4">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </section>
+    <section class="section section-skew">
+      <div class="container">
+        <div class="card card-profile shadow mt--300">
+          <div class="px-4">
+			   <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2" >
+                <div class="card-profile-image">
+                  <a data-container="body" data-original-title="Popover on Top" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                    <img src="{$user->gravatar}" alt="user-image" class="rounded-circle" >
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+                <div class="card-profile-actions py-4 mt-lg-0">
+                  <a href="/user" class="btn btn-sm btn-primary">用户中心</a>
+                  <a href="/user/node" class="btn btn-sm btn-default float-right">节点列表</a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-1">
+                <div class="card-profile-stats d-flex justify-content-center">
+                  <div>
+                    <span class="heading">{$user->money}</span>
+                    <span class="description">余额</span>
+                  </div>
+                  <div>
+                    <span class="heading">L{$user->class}</span>
+                    <span class="description">等级</span>
+                  </div>
+                  <div>
+                    <span class="heading">{$user->online_ip_count()}</span>
+                    <span class="description">在线 IP 数</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+			        
+					<div class="row row-grid justify-content-between align-items-center mt-lg">
 					
-					<div class="card">
-						<div class="card-main">
-							<div class="card-inner">
+						<div class="col-lg-12">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
 								<p>注意：购买同级别套餐将叠加到期时间</p>
 								<p>注意：购买不同级别套餐将立即中断老套餐并重新计算到期时间</p>
 								<p>注意：Try-out 体验套餐、Bronze 套餐不包含 SS/SSR - Advanced 节点</p>
 								<p>当前余额：{$user->money} 元</p>
+								</div>
 							</div>
-						</div>
+						</div>	
 					</div>
+			
+			        <div class="row row-grid justify-content-between align-items-center mt-lg">
 					
-					<div class="ui-card-wrap">
-						<div class="row">
-							<div class="col-lg-12 col-sm-12">
-								<div class="card">
-									<div class="card-main">
-										<div class="card-inner margin-bottom-no">
-											<div class="tile-wrap">
-												{foreach $shops as $shop}
-
-														<div class="tile tile-collapse">
-															<div data-toggle="tile" data-target="#heading{$shop->id}">
-																<div class="tile-side pull-left" data-ignore="tile">
-																	<div class="avatar avatar-sm">
-																		<span class="icon">shop</span>
-																	</div>
-																</div>
-																<div class="tile-inner">
-																	<div class="text-overflow">{$shop->name} <span class="label label-brand">{$shop->price} 元</span></div>
-																</div>
-															</div>
-															<div class="collapsible-region collapse" id="heading{$shop->id}">
-																<div class="tile-sub" style="padding: 18px">
-
-																	<p class="card-heading">{$shop->name}</p>
-																	<hr>
-																	
-																	<h4 style="margin-top: 12px">商品内容</h4>
-																	<p><ul>
+					
+					
+					
+					 {foreach $shops as $shop}
+						<div class="col-lg-6" style=" margin-top: 3rem;">
+                <div class="card card-lift shadow border-0">
+                  <div class="card-body">
+							<div class="card-main">
+								<div class="card-inner">
+									<p class="card-heading" >
+										{$shop->name}-<code>{$shop->price}</code>元
+									</p>
+                                 <a class="btn btn-sm btn-primary pull-right" {if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth},{$shop->traffic_package()})"{/if}>
+										立即购买</a>
+										<a class="btn btn-sm btn-primary pull-right" href="/user/code">充值</a>
+									<p>
+										套餐详情<br>
+																											<p><ul>
 																	{if $shop->group_limit() != ''}
 																	<li>仅限 {$shop->group_limit()} 群组购买</li>
 																	{/if}
@@ -108,100 +137,105 @@
 																	<li>每月重置一次流量</li>
 																	{/if}
 																	</ul></p>
-																	<h4 style="margin-top: 12px">价格</h4>
-																	<p><span class="label label-brand-accent">{$shop->price} 元</span></p>
-																	
-																	<hr>
-																	<a class="btn btn-brand" style="background-color: #4cae4c; padding-right: 16px"
-																			{if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth},{$shop->traffic_package()})"{/if}>
-																		<span class="icon" style="margin-left: 8px; margin-right: 8px">local_grocery_store</span>立即购买</a>
-																	<a class="btn btn-brand" style="background-color: #337ab7; padding-right: 16px; margin-left: 8px" href="/user/code">
-																		<span class="icon" style="margin-left: 8px; margin-right: 8px">local_gas_station</span>充值</a>
-																</div>
-															</div>
-													</div>
-												{/foreach}
-											</div>
-										</div>
-
-									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-
-
-					<div aria-hidden="true" class="modal modal-va-middle fade" id="coupon_modal" role="dialog" tabindex="-1">
-						<div class="modal-dialog modal-xs">
-							<div class="modal-content">
-								<div class="modal-heading">
-									<a class="modal-close" data-dismiss="modal">×</a>
-									<h2 class="modal-title">您有优惠码吗？</h2>
-								</div>
-								<div class="modal-inner">
+                  </div>
+            </div>				
+          </div>
+		  
+					{/foreach}
+        </div>
+       </div>
+     </div>
+   </div>
+    </section>
+	
+<div class="modal fade"  id="coupon_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="modal-title-default">您有优惠码吗？</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
 									<div class="form-group form-group-label">
-										<label class="floating-label" for="coupon">有的话，请在这里输入。没有的话，请直接确定。</label>
+										<label class="floating-label" for="coupon">有的话，请在这里输入。没有的话，直接确定吧</label>
 										<input class="form-control" id="coupon" type="text">
 									</div>
-								</div>
-								<div class="modal-footer">
-									<p class="text-right"><button class="btn btn-flat btn-brand waves-attach" data-dismiss="modal" id="coupon_input" type="button">确定</button></p>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div aria-hidden="true" class="modal modal-va-middle fade" id="order_modal" role="dialog" tabindex="-1">
-						<div class="modal-dialog modal-xs">
-							<div class="modal-content">
-								<div class="modal-heading">
-									<a class="modal-close" data-dismiss="modal">×</a>
-									<h2 class="modal-title">订单确认</h2>
-								</div>
-								<div class="modal-inner">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"  data-dismiss="modal" id="coupon_input" type="button">确定</button>
+            </div>
+        </div>
+    </div>
+    </div>
+					
+					
+	<div class="modal fade"  id="order_modal"  tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="modal-title-default">订单确认</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+             					<p><font color="red">如您是更换套餐,那剩余流量和有效期将会重置。</font></p>					   
 									<p id="name">商品名称：</p>
 									<p id="credit">优惠额度：</p>
 									<p id="total">总金额：</p>
-									<p>注意：购买同级别套餐将叠加到期时间</p>
-									<p>注意：购买不同级别套餐将立即中断老套餐并重新计算到期时间</p>
 									
-									<div class="checkbox switch" id="disableo">
-										<label for="disableothers">
-											<input checked class="access-hide" id="disableothers" type="checkbox">
-											<span class="switch-toggle"></span>关闭旧套餐自动续费
-										</label>
-									</div>
-									<br/>
-									<div class="checkbox switch" id="autor">
-										<label for="autorenew">
-											<input checked class="access-hide" id="autorenew" type="checkbox">
-											<span class="switch-toggle"></span>到期时自动续费
-										</label>
-									</div>
-
-								</div>
 								
-								<div class="modal-footer">
-									<p class="text-right"><button class="btn btn-flat btn-brand waves-attach" data-dismiss="modal" id="order_input" type="button">确定</button></p>
-								</div>
-							</div>
-						</div>
-					</div>
-					{include file='dialog.tpl'}
-			</div>
-		</div>
-	</main>
+									<div class="checkbox switch custom-control custom-checkbox mb-3" id="autor">
+              							<input class="custom-control-input" checked id="disableothers" type="checkbox">
+              								<label class="custom-control-label" for="disableothers">
+                									<span>关闭旧套餐自动续费</span>
+              								</label>
+									</div>
+									<div class="checkbox switch custom-control custom-checkbox mb-3" id="autor">
+              							<input class="custom-control-input" checked id="autorenew" type="checkbox">
+              								<label class="custom-control-label" for="autorenew">
+                									<span>到期时自动续费</span>
+              								</label>
+									</div>
+
+              
+									
+									
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="order_input" type="button">确定</button>
+            </div>
+        </div>
+    </div>
+    </div>
+					
+	<div class="modal fade"  id="tx_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="modal-title-default">退订确认</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>是否退订当前套餐</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="delete_input">确定</button>
+            </div>
+        </div>
+    </div>
+    </div>
+{include file='newui_dialog.tpl'}
 
 
-
-
-
-
-
-
-
-{include file='user/footer.tpl'}
+{include file='user/newui_footer.tpl'}
 
 
 <script>
