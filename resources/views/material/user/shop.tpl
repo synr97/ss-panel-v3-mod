@@ -35,8 +35,8 @@
               <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                 <div class="card-profile-actions py-4 mt-lg-0">
                   <a href="/user" class="btn btn-sm btn-primary">用户中心</a>
-                  <a href="/user/code" class="btn btn-sm btn-default">在线充值</a>
-                  <a href="/user/node" class="btn btn-sm btn-default float-right">节点列表</a>
+                  <a href="/user/node" class="btn btn-sm btn-default">节点列表</a>
+                  <a href="/user/code" class="btn btn-sm btn-default float-right">在线充值</a>
                 </div>
               </div>
               <div class="col-lg-4 order-lg-1">
@@ -65,7 +65,6 @@
 								<p>注意：购买同级别套餐将叠加到期时间</p>
 								<p>注意：购买不同级别套餐将立即中断老套餐并重新计算到期时间</p>
 								<p>注意：Try-out 体验套餐、Bronze 套餐不包含 SS/SSR - Advanced 节点</p>
-								<p>当前余额：{$user->money} 元</p>
 								</div>
 							</div>
 						</div>	
