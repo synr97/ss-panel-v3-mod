@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dler Cloud</title>
+  <title>{$config["appName"]}</title>
   <meta name="msvalidate.01" content="4652A53480D3E379798BE86168C0A149" />
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,7 +16,7 @@
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light">
       <div class="container">
         <a class="navbar-brand mr-lg-5" href="/">
-          <img src="img/logo/light.png">
+          <img src="/img/logo/light.png">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
             <div class="row">
               <div class="col-6 collapse-brand">
                 <a href="/">
-                  <img src="img/logo/dark.png">
+                  <img src="/img/logo/dark.png">
                 </a>
               </div>
               <div class="col-6 collapse-close">
