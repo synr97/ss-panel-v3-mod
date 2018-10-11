@@ -80,6 +80,10 @@
                     {else}
                     <button disabled="disabled" class="btn btn-primary mt-4">签到</button>
                     {/if}
+					                      <p class="col mt-4">
+                     <span style="color:#B5B5B5;font-size: 18px" title="{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% 剩余">{$user->LastusedTraffic()}已用</span>
+                         <span style="font-size: 18px;">/</span><span style="color:#32CD32;font-size: 18px;" title="{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% 剩余">剩余{$user->unusedTraffic()}</span>
+                         </p>	
                   </div>
                 </div>
             </div>	
