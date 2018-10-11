@@ -75,7 +75,7 @@
         </div>
             <div class="mt-5 py-5 text-center">
               <div class="row justify-content-center">
-                <div class="col-lg-9">
+                <div class="col-lg-12">
               <div class="mb-3">
                 <small class="text-uppercase font-weight-bold">最近五分钟使用IP</small>
               </div>
@@ -101,7 +101,7 @@
             </div>
 			       <div class="mt-5 py-5 text-center">
               <div class="row justify-content-center">
-                <div class="col-lg-9">
+                <div class="col-lg-12">
               <div class="mb-3">
                 <small class="text-uppercase font-weight-bold">最近十次登录IP</small>
               </div>
@@ -124,6 +124,35 @@
                 </div>
               </div>
             </div>
+			
+            <div class="mt-5 py-5 text-center">
+              <div class="row justify-content-center">
+                <div class="col-lg-12">
+						{$paybacks->render()}
+						<table class="table ">
+							<tr>
+
+                             <!--   <th>ID</th> -->
+                                <th>ID</th>
+								<th>被邀请用户ID</th>
+								<th>获得返利</th>
+                            </tr>
+                            {foreach $paybacks as $payback}
+                            <tr>
+
+                          <!--       <td>#{$payback->id}</td> -->
+                                <td>{$payback->id}</td>
+								<td>{$payback->userid}</td>
+								<td>{$payback->ref_get} 元</td>
+
+                            </tr>
+                            {/foreach}
+                        </table>
+						{$paybacks->render()}
+                </div>
+              </div>
+            </div>
+			
           </div>
         </div>
       </div>

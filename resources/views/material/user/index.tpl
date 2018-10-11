@@ -90,7 +90,7 @@
 						<h2 class="card-title">
 						<dd>{$user->class_expire}</dd></p>
 						</h2>
-                    <a  class="btn btn-primary mt-4" href="/user/shop">立即购买</a>
+                    <a  class="btn btn-primary mt-4" href="/user/shop">续费</a>
                   </div>
                 </div>
             </div>	

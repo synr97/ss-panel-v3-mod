@@ -161,36 +161,9 @@
 						</div>
 					</div>
 					{/if}
-			
-            <div class="mt-5 py-5 text-center">
-              <div class="row justify-content-center">
-                <div class="col-lg-12">
-						<table class="table ">
-							<tr>
 
-                             <!--   <th>ID</th> -->
-                                <th>ID</th>
-								<th>被邀请用户ID</th>
-								<th>获得返利</th>
-                            </tr>
-                            {foreach $paybacks as $payback}
-                            <tr>
 
-                          <!--       <td>#{$payback->id}</td> -->
-                                <td>{$payback->id}</td>
-								<td>{$payback->userid}</td>
-								<td>{$payback->ref_get} 元</td>
 
-                            </tr>
-                            {/foreach}
-                        </table>
-                </div>
-              </div>
-            </div>
-			
-            
-			
-			
           </div>
         </div>
       </div>

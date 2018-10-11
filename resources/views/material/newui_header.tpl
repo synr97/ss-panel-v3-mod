@@ -16,7 +16,7 @@
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light">
       <div class="container">
         <a class="navbar-brand mr-lg-5" href="/">
-          <img src="https://cdn.godann.com/kitui/img/brand/white.png">
+          <img src="http://omgib13x8.bkt.clouddn.com/logo.png">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
