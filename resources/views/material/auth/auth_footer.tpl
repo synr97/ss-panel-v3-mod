@@ -4,10 +4,13 @@
     <div class="container">
       <div class="row align-items-center justify-content-md-between">
         <div class="col-md-6">
-          <div class="copyright">Copyright &copy;2015 - {date("Y")} <a href="https://dlercloud.com">Dler Cloud</a> All rights reserved.</div>
+          <div class="copyright">Copyright &copy; 2015 - {date("Y")} <a href="https://dlercloud.com" target="_blank">Dler Cloud</a>, Inc. All rights reserved.</div>
         </div>
         <div class="col-md-6">
           <ul class="nav nav-footer justify-content-end">
+            <li class="nav-item">
+              <a href="https://t.me/dlercloud_news" class="nav-link" target="_blank">最新资讯</a>
+            </li>
             <li class="nav-item">
               <a href="/client.html" class="nav-link" target="_blank">软件中心</a>
             </li>
@@ -15,9 +18,8 @@
               <a href="https://docs.lhie1.com/black-hole" class="nav-link" target="_blank">文档中心</a>
             </li>
             <li class="nav-item">
-              <a href="/user" class="nav-link" >用户中心</a>
+              <a href="/staff" class="nav-link" >致谢</a>
             </li>
-          </ul>
         </div>
       </div>
     </div>
