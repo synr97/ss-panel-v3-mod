@@ -190,16 +190,16 @@
 									<p id="total">总金额：</p>
 									
 								
-									<div class="checkbox switch custom-control custom-checkbox mb-3" id="disableo">
-              							<input class="custom-control-input" checked id="disableothers" type="checkbox">
-              								<label class="custom-control-label" for="disableothers">
-                									<span>关闭旧套餐自动续费</span>
-              								</label>
-									</div>
 									<div class="checkbox switch custom-control custom-checkbox mb-3" id="autor">
               							<input class="custom-control-input" checked id="autorenew" type="checkbox">
               								<label class="custom-control-label" for="autorenew">
                 									<span>到期时自动续费</span>
+              								</label>
+									</div>
+									<div class="checkbox switch custom-control custom-checkbox mb-3" id="disableo">
+              							<input class="custom-control-input" checked id="disableothers" type="checkbox">
+              								<label class="custom-control-label" for="disableothers">
+                									<span>关闭旧套餐自动续费</span>
               								</label>
 									</div>
 
@@ -233,9 +233,8 @@
         </div>
     </div>
     </div>
+
 {include file='newui_dialog.tpl'}
-
-
 {include file='user/newui_footer.tpl'}
 
 
