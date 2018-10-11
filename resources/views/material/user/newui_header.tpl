@@ -92,9 +92,9 @@
               </a>
               <div class="dropdown-menu">
                 <a href="/user/ticket" class="dropdown-item">工单系统</a>
-          <a href="{$config["wecenter_url"]}" target="_blank" class="dropdown-item">软件中心</a>
+                <a href="/client.html" target="_blank" class="dropdown-item">软件中心</a>
                 <a href="https://docs.lhie1.com/black-hole" target="_blank" class="dropdown-item">文档中心</a>
-          <a href="https://github.com/lhie1/Rules/blob/master/README.md" target="_blank" class="dropdown-item">规则项目</a>
+                <a href="https://github.com/lhie1/Rules/blob/master/README.md" target="_blank" class="dropdown-item">规则项目</a>
               </div>
             </li>
             <li class="nav-item dropdown">
