@@ -75,24 +75,28 @@
                   <div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: {number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}%;"></div>
                 </div>
               </div>
+                    <div class="row">
                     {if $user->isAbleToCheckin() == 1  && $user->class > 0}
-                    <button id="checkin" class="btn btn-primary mt-4">签到</button>
+                    <button id="checkin" class="btn btn-primary mt-4" style="margin-left: 1rem;">签到</button>
                     {else}
-                    <button disabled="disabled" class="btn btn-primary mt-4">签到</button>
+                    <button disabled="disabled" class="btn btn-primary mt-4" style="margin-left: 1rem;">签到</button>
                     {/if}
-					                      <p class="col mt-4">
-                     <span style="color:#B5B5B5;font-size: 18px" title="{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% 剩余">{$user->LastusedTraffic()}已用</span>
-                         <span style="font-size: 18px;">/</span><span style="color:#32CD32;font-size: 18px;" title="{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% 剩余">剩余{$user->unusedTraffic()}</span>
-                         </p>	
+					   <p class="col mt-4" style="text-align: right;">
+                     <span style="color:#B5B5B5;font-size: 18px" title="{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% 剩余">已用：{$user->LastusedTraffic()}</span>
+                         <span style="font-size: 18px;">/</span><span style="font-weight: 550;color: #8898aa;font-size: 18px;" title="{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% 剩余">可用：{$user->unusedTraffic()}</span>
+                   </p>	
+                  </div>
                   </div>
                 </div>
             </div>	
 			<div class="col-lg-6">
                 <div class="card card-lift shadow border-0">
                   <div class="card-body">
-						<h6 class="category">到期时间</h6>
+                  <div class="progress-label">
+                    <span>到期时间</span>
+                  </div>
 						<h2 class="card-title">
-						<dd>{$user->class_expire}</dd></p>
+						<h3 class="mt-3">{$user->class_expire}</h3></p>
 						</h2>
                     <a  class="btn btn-primary mt-4" href="/user/shop">续费</a>
                   </div>
