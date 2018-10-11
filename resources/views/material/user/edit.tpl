@@ -136,7 +136,7 @@
 									</div>
 
 									<div class="form-group form-group-label">
-										<label class="floating-label" for="email_code">确认新密码</label>
+										<label class="floating-label" for="email_code">确认新邮箱</label>
 										<input class="form-control" id="email_code" >
 									</div>
 									<button class="btn btn-primary mt-4" id="email-update" >&nbsp;提交</button>

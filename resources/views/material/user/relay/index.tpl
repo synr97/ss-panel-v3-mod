@@ -72,7 +72,7 @@
 			  <div class="mt-5 py-5 text-center">
               <div class="row justify-content-center">
                 <div class="col-lg-9">
-                    <a  class="btn btn-primary mt-4"  href="/user/relay/create">添加中转</a>
+                    <a  class="btn btn-primary mt-4"  href="/user/relay/create">添加中转规则</a>
                 </div>
               </div>
             </div>
