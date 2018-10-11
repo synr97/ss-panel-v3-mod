@@ -82,7 +82,7 @@
                                 <td>#{$shop->id}</td>
                                 <td>{$shop->shop()->name}</td>
 								<td>{$shop->shop()->content()}</td>
-								<td>{$shop->price} 金币</td>
+								<td>{$shop->price} 元</td>
 								{if $shop->renew==0}
                                 <td>不自动续费</td>
 								{else}
