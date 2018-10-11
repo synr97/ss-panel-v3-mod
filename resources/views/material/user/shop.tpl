@@ -84,9 +84,8 @@
 									<p class="card-heading" >
 										{$shop->name} - <code>{$shop->price}</code>元
 									</p>
-                                   <a class="btn btn-sm btn-primary pull-right"
-                   					{if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth},{$shop->traffic_package()})"{/if}>立即购买</a>
-										<a class="btn btn-sm btn-primary pull-right" href="/user/code">充值</a>
+                                   <button class="btn btn-sm btn-primary pull-right"
+                   					{if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth},{$shop->traffic_package()})"{/if}>立即购买</button>
 									<p>
 										套餐详情<br>
 																											<p><ul>
