@@ -15,7 +15,7 @@
                 <div class="btn-wrapper text-center">
                   <a  class="btn btn-neutral btn-icon">
                     <span class="btn-inner--icon">
-                      <img src="https://cdn.godann.com/kitui/img/icons/common/telegram.svg">
+                      <img src="/img/logo/telegram.svg">
                     </span>
                     <span class="btn-inner--text" data-toggle="modal" data-target="#tg_login">Telegram 登陆</span>
                   </a>
@@ -23,7 +23,7 @@
               </div>
               <div class="card-body px-lg-5 py-lg-5">
                 <div class="text-center text-muted mb-4">
-                  <small>或使用密码登陆</small>
+                  <small>使用邮箱/密码登陆</small>
                 </div>
                 <form action="javascript:void(0);" method="POST">
                   <div class="form-group mb-3">
@@ -69,12 +69,12 @@
                     <div class="card bg-secondary shadow border-0">
                       <div class="card-header bg-white">
                         <div class="text-muted text-center mb-3">
-                          <small>使用Telegram 快速登录</small>
+                          <small>使用 Telegram 快速登录</small>
                         </div>
                       </div>
                       <div class="card-body px-lg-5 py-lg-5">
                           <div class="text-center" id="telegram-login-box"></div>
-									<p>如果长时间未显示请刷新页面或检查代理，或者添加机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，发送下面的数字给它。
+							<br><p>如果长时间未显示请刷新页面或检查代理，或绑定机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，发送下面的数字给它。
                              </p>
 								<div class="text-center">
                               <h2><code id="code_number">{$login_number}</code></h2>
