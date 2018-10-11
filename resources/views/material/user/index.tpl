@@ -77,9 +77,9 @@
               </div>
                     <div class="row">
                     {if $user->isAbleToCheckin() == 1  && $user->class > 0}
-                    <button id="checkin" class="btn btn-primary mt-4" style="margin-left: 1rem;">签到</button>
+                    <button id="checkin" class="btn btn-primary mt-4" style="margin-left: 1rem;">签到<br>（-500M ～ 1000M）</button>
                     {else}
-                    <button disabled="disabled" class="btn btn-primary mt-4" style="margin-left: 1rem;">签到</button>
+                    <button disabled="disabled" class="btn btn-primary mt-4" style="margin-left: 1rem;">签到<br>（-500M ～ 1000M）</button>
                     {/if}
 					   <p class="col mt-4" style="text-align: right;">
                      <span style="color:#B5B5B5;font-size: 18px" title="{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% 剩余">已用：{$user->LastusedTraffic()}</span>
