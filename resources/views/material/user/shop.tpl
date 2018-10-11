@@ -102,19 +102,28 @@
 																			{$shop->class_limit_content()} 的用户购买</li>
 																	{/if}
 																	{if $shop->traffic_package() != 0}
+																	{if $shop->user_class() != 0}
 																	<li>当前套餐节点</li>
 																	{/if}
+																	{/if}
 																	{if $shop->traffic_package() != 0}
+																	{if $shop->user_class() != 0}
 																	<li>当前套餐速率</li>
 																	{/if}
+																	{/if}
 																	{if $shop->traffic_package() != 0}
+																	{if $shop->user_class() != 0}
 																	<li>套餐流量重置时流量包将重置</li>
 																	{/if}
+																	{/if}
 																	{if $shop->traffic_package() != 0}
+																	{if $shop->user_class() != 0}
 																	<li>套餐到期时流量包将清空</li>
 																	{/if}
+																	{/if}
 																	{if $shop->bandwidth() != 0}
-																	<li>{if $shop->traffic_package() != 0}在下次流量重置前额外增加 {$shop->bandwidth()}G 流量{else}每月流量： {$shop->bandwidth()}G{/if}</li>
+																	<li>{if $shop->traffic_package() != 0}{if $shop->user_class() != 0}在下次流量重置前额外增加 {$shop->bandwidth()}G 流量{else}每月流量： {$shop->bandwidth()}G{/if}</li>
+																	{/if}
 																	{/if}
 																	{if $shop->node_speedlimit() != 0}
 																	<li>最高速率：{$shop->node_speedlimit()}Mbps</li>
@@ -126,12 +135,10 @@
 																	<li>有效期：{$shop->class_expire()} 天</li>
 																	{/if}
 																	{if $shop->traffic_package() == 0}
-																	{if $shop->user_class() != 0}
 																	{if $shop->node_group() != 0}
 																	<li>解锁：SS/SSR/V2Ray 节点</li>
 																	{else if $shop->node_group() == 0}
 																	<li>解锁：SS/SSR 节点</li>
-																	{/if}
 																	{/if}
 																	{/if}
 																	{if $shop->reset() != 0}
