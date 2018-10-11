@@ -201,11 +201,7 @@
               								<label class="custom-control-label" for="disableothers">
                 									<span>关闭旧套餐自动续费</span>
               								</label>
-									</div>
-
-              
-									
-									
+									</div>		
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="order_input" type="button">确定</button>
