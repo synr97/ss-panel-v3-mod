@@ -124,7 +124,7 @@
           </div>
 
             <div class="row mt-3">
-              <div class="col-6 text-right">
+              <div class="col-6">
                 <a href="/auth/login" class="text-light">
                   <small>已注册？请登录</small>
                 </a>
