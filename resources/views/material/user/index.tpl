@@ -59,7 +59,7 @@
 						</div>
 
 		<div class="row row-grid justify-content-between align-items-center mt-lg">
-			<div class="col-lg-6">
+			<div class="col-lg-8">
                 <div class="card card-lift shadow border-0">
                   <div class="card-body">
                   <div class="progress-label">
@@ -89,7 +89,7 @@
                   </div>
                 </div>
             </div>	
-			<div class="col-lg-6">
+			<div class="col-lg-4">
                 <div class="card card-lift shadow border-0">
                   <div class="card-body">
                   <div class="progress-label">
