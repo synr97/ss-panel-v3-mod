@@ -62,11 +62,11 @@
 			<div class="col-lg-6">
                 <div class="card card-lift shadow border-0">
                   <div class="card-body">
-              <div class="progress-wrapper">
-                <div class="progress-info">
                   <div class="progress-label">
                     <span>剩余流量</span>
                   </div>
+              <div class="progress-wrapper">
+                <div class="progress-info">
                   <div class="progress-percentage">
                     <span>{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}%</span>
                   </div>
@@ -83,7 +83,7 @@
                     {/if}
 					   <p class="col mt-4" style="text-align: right;">
                      <span style="color:#B5B5B5;font-size: 18px" title="{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% 剩余">已用：{$user->LastusedTraffic()}</span>
-                         <span style="font-size: 18px;">/</span><span style="font-weight: 550;color: #8898aa;font-size: 18px;" title="{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% 剩余">可用：{$user->unusedTraffic()}</span>
+                         <span style="font-size: 18px;"> / </span><span style="font-weight: 550;color: #8898aa;font-size: 18px;" title="{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}% 剩余">可用：{$user->unusedTraffic()}</span>
                    </p>	
                   </div>
                   </div>
@@ -96,7 +96,7 @@
                     <span>到期时间</span>
                   </div>
 						<h2 class="card-title">
-						<h3 class="mt-3">{$user->class_expire}</h3></p>
+						<p class="mt-4" style="font-weight: 700;">{$user->class_expire}</p>
 						</h2>
                     <a  class="btn btn-primary mt-4" href="/user/shop">续费</a>
                   </div>
