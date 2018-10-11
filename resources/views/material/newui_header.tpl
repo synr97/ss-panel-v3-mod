@@ -16,7 +16,7 @@
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light">
       <div class="container">
         <a class="navbar-brand mr-lg-5" href="/">
-          <img src="http://omgib13x8.bkt.clouddn.com/logo.png">
+          <img src="img/logo/light.png">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
             <div class="row">
               <div class="col-6 collapse-brand">
                 <a href="/">
-                  <img src="http://omgib13x8.bkt.clouddn.com/logo.png">
+                  <img src="img/logo/dark.png">
                 </a>
               </div>
               <div class="col-6 collapse-close">
