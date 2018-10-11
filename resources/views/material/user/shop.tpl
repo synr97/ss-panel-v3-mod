@@ -125,8 +125,8 @@
 																	{if $shop->user_class() != 0}
 																	<li>有效期：{$shop->class_expire()} 天</li>
 																	{/if}
-																	{if $shop->class() != 0}
 																	{if $shop->traffic_package() == 0}
+																	{if $shop->class() != 0}
 																	{if $shop->node_group() != 0}
 																	<li>解锁：SS/SSR/V2Ray 节点</li>
 																	{else if $shop->node_group() == 0}
