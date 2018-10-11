@@ -431,7 +431,7 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 0, $mitm = 0, $new = 0)
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0)
     {
         $proxy_name = "";
         $domestic_name = "";
