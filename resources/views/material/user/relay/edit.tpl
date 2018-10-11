@@ -74,6 +74,7 @@
 										</select>
 									</div>
 
+
 									<div class="form-group form-group-label">
 										<label class="floating-label" for="dist_node">目标节点</label>
 										<select id="dist_node" class="form-control" name="dist_node">
@@ -94,10 +95,13 @@
 										</select>
 									</div>
 
+
+
 									<div class="form-group form-group-label">
 										<label class="floating-label" for="priority">优先级</label>
 										<input class="form-control" id="priority" name="priority" type="text" value="{$rule->priority}">
 									</div>
+
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-	
+
 
 
 
@@ -58,8 +58,8 @@
 							</div>
 						</div>
 
-							        <div class="mt-5 py-5 border-top text-center">
-			<div class="col-lg-12">
+		<div class="row row-grid justify-content-between align-items-center mt-lg">
+			<div class="col-lg-6">
                 <div class="card card-lift shadow border-0">
                   <div class="card-body">
               <div class="progress-wrapper">
@@ -82,7 +82,19 @@
                     {/if}
                   </div>
                 </div>
-            </div>						
+            </div>	
+			<div class="col-lg-6">
+                <div class="card card-lift shadow border-0">
+                  <div class="card-body">
+						<h6 class="category">到期时间</h6>
+						<h2 class="card-title">
+						<dd>{$user->class_expire}</dd></p>
+						</h2>
+                    <a  class="btn btn-primary mt-4" href="/user/shop">立即购买</a>
+                  </div>
+                </div>
+            </div>	
+            </div>					
 					<div class="mt-5 py-5 border-top text-center">
 						<div class="row justify-content-center">
 							<div class="col-lg-9">
@@ -90,10 +102,10 @@
 									<small class="text-uppercase font-weight-bold">{if $user->lastSsTime()=='从未使用喵'}不知道如何使用？{else}公告 - {$ann->date}{/if}</small>
 								</div>
 								{if $user->lastSsTime()=='从未使用喵'}
-									<p style="color:#DC143C">第一次使用？<a href="https://docs.lhie1.com/black-hole"/>观看教程</a></p>
+									<p style="color:#DC143C">第一次使用？<a href="https://docs.lhie1.com/black-hole"/>查看教程</a></p>
 									<hr>
 								{/if}
-								<p>{$ann->content}</p>	
+									<p>{$ann->content}</p>		 
 									</div>
 								</div>
 							</div>
@@ -251,11 +263,11 @@
 		</section>
 		
 	
-	<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default float-right" aria-hidden="true">
+	<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
 		<div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
 				<div class="modal-content">
 						<div class="modal-header">
-								<h6 class="modal-title" id="modal-title-default float-right">确定取消自动续费？</h6>
+								<h6 class="modal-title" id="modal-title-default">确定取消自动续费？</h6>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">×</span>
 								</button>
