@@ -102,10 +102,10 @@
 																			{$shop->class_limit_content()} 的用户购买</li>
 																	{/if}
 																	{if $shop->traffic_package() != 0}
-																	<li>当前套餐节点</li>
+																	<li>保持当前套餐节点</li>
 																	{/if}
 																	{if $shop->traffic_package() != 0}
-																	<li>当前套餐速率</li>
+																	<li>保持当前套餐速率</li>
 																	{/if}
 																	{if $shop->traffic_package() != 0}
 																	<li>套餐流量重置时流量包将重置</li>
