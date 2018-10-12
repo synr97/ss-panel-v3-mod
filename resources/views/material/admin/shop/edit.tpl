@@ -155,29 +155,6 @@
 					<div class="card">
 						<div class="card-main">
 							<div class="card-inner">
-								<div class="form-group form-group-label">
-									<label class="floating-label" for="reset_exp">多少天内</label>
-									<input class="form-control" id="reset_exp" type="number" value="{$shop->reset_exp()}">
-								</div>
-
-
-								<div class="form-group form-group-label">
-									<label class="floating-label" for="reset">每多少天</label>
-									<input class="form-control" id="reset" type="number" value="{$shop->reset()}">
-								</div>
-
-								<div class="form-group form-group-label">
-									<label class="floating-label" for="reset_value">重置流量为多少G</label>
-									<input class="form-control" id="reset_value" type="number" value="{$shop->reset_value()}">
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="card">
-						<div class="card-main">
-							<div class="card-inner">
 
 								<div class="form-group">
 									<div class="row">
@@ -255,10 +232,7 @@
                     node_connector: $("#node_connector").val(),
                     expire: $("#expire").val(),
                     class: $("#class").val(),
-										class_expire: $("#class_expire").val(),
-										reset: $("#reset").val(),
-										reset_value: $("#reset_value").val(),
-										reset_exp: $("#reset_exp").val(),
+					class_expire: $("#class_expire").val(),
                 },
                 success: function (data) {
                     if (data.ret) {
