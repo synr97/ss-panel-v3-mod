@@ -105,15 +105,6 @@ class TelegramProcess
 																	, $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
                     break;
 
-                 case 'shadowrocket':
-                    $bot->sendMessage($message->getChat()->getId(), "Apple ID：
-																	pEdmunds139@icloud.com
-																	Dd1122556677
-																	
-																	请使用此 Apple ID 登陆到 App Store 搜索「Shadowrocket」并下载。"
-                    												, $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
-                    break;
-
                 case 'checkin':
                     if (!$user->isAbleToCheckin()) {
                         $bot->sendMessage($message->getChat()->getId(), "亲爱的猪猪，您今天签到过了。", $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
@@ -160,9 +151,6 @@ class TelegramProcess
                     TelegramProcess::needbind_method($bot, $message, $command, $user);
                     break;
                 case 'traffic':
-                    TelegramProcess::needbind_method($bot, $message, $command, $user);
-                    break;
-                case 'shadowrocket':
                     TelegramProcess::needbind_method($bot, $message, $command, $user);
                     break;
                 case 'checkin':
@@ -302,9 +290,6 @@ class TelegramProcess
                 case 'traffic':
                     $bot->sendMessage($message->getChat()->getId(), "仅限私聊使用", $parseMode = null, $disablePreview = false, $replyToMessageId = $message->getMessageId());
                     break;
-                case 'shadowrocket':
-                    $bot->sendMessage($message->getChat()->getId(), "不可用", $parseMode = null, $disablePreview = false, $replyToMessageId = $message->getMessageId());
-                    break;
                 case 'checkin':
                     TelegramProcess::needbind_method($bot, $message, $command, $user, $message->getMessageId());
                     break;
@@ -342,7 +327,7 @@ class TelegramProcess
             // or initialize with botan.io tracker api key
             // $bot = new \TelegramBot\Api\Client('YOUR_BOT_API_TOKEN', 'YOUR_BOTAN_TRACKER_API_KEY');
 
-            $command_list = array("ping", "chat", "announcement", "connectinfo", "usage", "traffic", "shadowrocket", "checkin", "help");
+            $command_list = array("ping", "chat", "announcement", "connectinfo", "usage", "traffic", "checkin", "help");
             foreach ($command_list as $command) {
                 $bot->command($command, function ($message) use ($bot, $command) {
                     TelegramProcess::telegram_process($bot, $message, $command);

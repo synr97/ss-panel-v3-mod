@@ -125,18 +125,16 @@
 									{/if}
 										<p>流量限速：
 										{if $node->node_speedlimit != 0}{$node->node_speedlimit}&nbsp;Mbps{else}∞{/if}</p>
-									{if $user->isAdmin()}
 										<p>在线人数：
 									{$node_alive[$prefix]}
 										</p>
-									{/if}	
 										<p>流量情况：
 									{if isset($node_bandwidth[$prefix])==true}{$node_bandwidth[$prefix]}{else}N/A{/if}
-										</p>			
+										</p>
 								</div>
 							</div>
                   </div>
-            </div>				
+            </div>
           </div>
 		  {/if}
 						{/foreach}
