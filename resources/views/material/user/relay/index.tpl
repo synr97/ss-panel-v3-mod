@@ -112,7 +112,7 @@
 													{foreach $rules as $rule}
 														<tr>
 														<td>
-															<a  {if $rule->user_id == 0}disabled{else}href="/user/relay/{$rule->id}/edit"{/if}><button class="btn btn-primary">编辑</button></a>
+															<a  {if $rule->user_id == 0}{else}href="/user/relay/{$rule->id}/edit"{/if}><button class="btn btn-primary"{if $rule->user_id == 0}disabled{/if}>编辑</button></a>
 															<button class="btn btn-primary" id="delete" value="{$rule->id}" {if $rule->user_id == 0}disabled="disabled"{else}href="javascript:void(0);" onClick="delete_modal_show('{$rule->id}')"{/if}>删除</button>
 														</td>
 														<td>#{$rule->id}</td>
