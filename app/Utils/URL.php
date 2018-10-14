@@ -307,7 +307,7 @@ class URL
                     $ssurl .= "/?plugin=".rawurlencode($plugin);
                 }
 
-                $ssurl .= "&gourp=".rawurlencode(Config::get('appName')."#".$item['remark']);
+                $ssurl .= "&gourp=".Tools::base64_url_encode(Config::get('appName'))."#".$item['remark'];
             }
             return $ssurl;
         }
