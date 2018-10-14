@@ -73,9 +73,8 @@
                         </div>
                       </div>
                       <div class="card-body px-lg-5 py-lg-5">
-                          <div class="text-center" id="telegram-login-box"></div>
-							<br><p>如果长时间未显示请刷新页面或检查代理，或绑定机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，发送下面的数字给它。
-                             </p>
+                          <div class="text-center" id="telegram-login-box"></div><br>
+							       <p>如果长时间未显示请刷新页面或检查代理，或绑定机器人账号 <a href="https://t.me/{$telegram_bot}" target="_blank">@{$telegram_bot}</a>，发送下面的数字给它。</p>
 								<div class="text-center">
                               <h2><code id="code_number">{$login_number}</code></h2>
                           </div>
@@ -189,13 +188,6 @@
 </script>
 
 {if $config['enable_telegram'] == 'true'}
-<script src=" /assets/public/js/jquery.qrcode.min.js "></script>
-<script>
-    var telegram_qrcode = 'mod://login/{$login_token}';
-    jQuery('#telegram-qr').qrcode({
-        "text": telegram_qrcode
-    });
-</script>
 
 <script>
 $(document).ready(function () {
@@ -235,7 +227,6 @@ $(document).ready(function () {
 
                 } else {
                     if(data.ret == -1){
-                        jQuery('#telegram-qr').replaceWith('此二维码已经过期，请刷新页面后重试。');
                         jQuery('#code_number').replaceWith('<code id="code_number">此数字已经过期，请刷新页面后重试。</code>');
                     }
                 }
