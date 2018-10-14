@@ -6,40 +6,86 @@
 
 {$ssr_prefer = URL::SSRCanConnect($user, $mu)}
   
-              <div class="nav-wrapper">
-                <ul class="nav nav-pills nav-fill  flex-md-row" id="tabs-text" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link mb-sm-3 mb-md-0 active" id="1-tab" data-toggle="tab" href="#1" role="tab" aria-controls="3" aria-selected="true">个人端口</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="card shadow">
-                <div class="card-body">
-                  <div class="tab-content" id="myTabContent">
+          <div class="nav-wrapper">
+        <ul class="nav nav-pills nav-fill  flex-md-row" id="tabs-text" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0 active" id="1-tab" data-toggle="tab" href="#1" role="tab" aria-controls="3" aria-selected="true">个人端口</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0" id="2-tab" data-toggle="tab" href="#2" role="tab" aria-controls="2" aria-selected="false">公共端口 - SSR</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0" id="3-tab" data-toggle="tab" href="#3" role="tab" aria-controls="3" aria-selected="false">公共端口 - SS</a>
+          </li>
+        </ul>
+          </div>
+        
+          <div class="card shadow">
+        <div class="card-body">
+          <div class="tab-content" id="myTabContent">
           
           
           <div class="tab-pane fade show active" id="1" role="tabpanel" aria-labelledby="1-tab">
             <div class="text-center">
+          {$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
+          {$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
               <p style="color:red">{$node->name}</p>
               <p id="ssrtitle">配置信息</p>
-              {if URL::SSRCanConnect($user, $mu)}
-                                        <p>地址：{$ssr_item['address']}<br>
-                                          端口：{$ssr_item['port']}<br>
-                                          密码：{$ssr_item['passwd']}<br>
-                                          加密方式：{$ssr_item['method']}<br>
-                                          协议：{$ssr_item['protocol']}<br>
-                                          混淆：{$ssr_item['obfs']}<br></p>
-              {if URL::SSCanConnect($user, $mu)}
-                                        <p>地址：{$ss_item['address']}<br>
-                                           端口：{$ss_item['port']}<br>
-                                           密码：{$ss_item['passwd']}<br>
-                                           加密方式：{$ss_item['method']}<br>
-                                           混淆：{$ss_item['obfs']}<br></p>
-              {else}
-                                        <p>当前设置的加密方式/协议/混淆不可用</p>
-              {/if}
+          {if URL::SSRCanConnect($user)}
+                        <p>地址：{$ssr_item['address']}<br>
+                          端口：{$user->port}<br>
+                          密码：{$ssr_item['passwd']}<br>
+                            加密方式：{$ssr_item['method']}<br>
+                            协议：{$ssr_item['protocol']}<br>
+                            协议参数：{$ssr_item['protocol_param']}<br>
+                            混淆：{$ssr_item['obfs']}<br>
+                            混淆参数：{$ssr_item['obfs_param']}<br></p>
+          {elseif URL::SSCanConnect($user)}
+                             <p>地址：{$ss_item['address']}<br>
+                          端口：{$user->port}<br>
+                          密码：{$ss_item['passwd']}<br>
+                            加密方式：{$ss_item['method']}<br>
+                            混淆：{$ss_item['obfs']}<br>
+                            混淆参数：{$ss_item['obfs_param']}<br></p>
+          {/if}
             </div>
           </div>
+
+
+          <div class="tab-pane fade show " id="2" role="tabpanel" aria-labelledby="2-tab">
+            <div class="text-center">
+              {$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
+                <p style="color:red">{$node->name}</p>
+                <p id="ssrtitle">配置信息</p>
+                        <p>地址：{$ssr_item['address']}<br>
+                          端口：152<br>
+                          密码：{$ssr_item['passwd']}<br>
+                          加密方式：{$ssr_item['method']}<br>
+                          协议：{$ssr_item['protocol']}<br>
+                          协议参数：{$ssr_item['protocol_param']}<br>
+                          混淆：{$ssr_item['obfs']}<br>
+                          混淆参数：{$ssr_item['obfs_param']}<br></p>
+            </div>
+          </div>
+
+
+          <div class="tab-pane fade show " id="3" role="tabpanel" aria-labelledby="3-tab">
+            <div class="text-center">
+              {$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
+                <p style="color:red">{$node->name}</p>
+                <p id="ssrtitle">配置信息</p>
+                        <p>地址：{$ss_item['address']}<br>
+                          端口：153<br>
+                          密码：{$ss_item['passwd']}<br>
+                          加密方式：{$ss_item['method']}<br>
+                          混淆：{$ss_item['obfs']}<br>
+                          混淆参数：{$ss_item['obfs_param']}<br></p>
+            </div>
+          </div>
+          </div>
+         </div>
+
+
 
 
 
@@ -79,5 +125,21 @@
   });
   {/if}
 
+
+</script>
+$("#jsonssrswitch").click(function () {
+if($("input[type='checkbox']").is(':checked')){  
+$("#jsonssrdiv").hide();  
+$("#jsonssdiv").show();  
+$("#jsontitle").text("SS配置信息");
+$("#jsonswitch_title").text("切换到SSR");
+}else{  
+$("#jsonssdiv").hide();  
+$("#jsonssrdiv").show();  
+$("#jsonstitle").text("SSR配置信息");
+$("#jsonswitch_title").text("切换到SS");
+}  
+});
+<script>
 
 </script>
