@@ -311,18 +311,27 @@ class URL
         $item['add'] = $node_explode[0];
         $item['port'] = $node_explode[1];
         $item['id'] = $user->getUuid();
-        $item['aid'] = $node_explode[3];
-        if (count($node_explode) >= 6) {
-            $item['net'] = $node_explode[5];
+        $item['aid'] = $node_explode[2];
+        if (count($node_explode) >= 4) {
+            $item['net'] = $node_explode[3];
+            if ($item['net'] == 'ws') {
+                $item['path'] = '/';
+            } else if ($item['net'] == 'tls') {
+                $item['tls'] = 'tls';
+            }
         } else {
             $item['net'] = "tcp";
         } 
 
-        if (count($node_explode) >= 7) {
-            $item['type'] = $node_explode[6];
+        if (count($node_explode) >= 5) {
+            $item['type'] = $node_explode[4];
         } else {
             $item['type'] = "none";
         } 
+
+        if (count($node_explode) >= 6) {
+            $item = array_merge($item, URL::parse_args($node_explode[5]));
+        }
 
         return "vmess://".base64_encode((json_encode($item, JSON_UNESCAPED_UNICODE)));
     }
