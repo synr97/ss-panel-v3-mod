@@ -5,7 +5,7 @@
     <div class="container">
       <div class="row align-items-center justify-content-md-between">
         <div class="col-md-6">
-          <div class="copyright">Copyright &copy; 2015 - {date("Y")} <a href="https://dlercloud.com" target="_blank">Dler Cloud</a>, Inc.</div>
+          <div class="copyright">&copy; 2015 - {date("Y")} <a href="https://dlercloud.com" target="_blank">Dler Cloud</a>, Inc.</div>
         </div>
         <div class="col-md-6">
           <ul class="nav nav-footer justify-content-end">
