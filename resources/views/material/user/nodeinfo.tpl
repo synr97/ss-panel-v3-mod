@@ -17,9 +17,6 @@
           <li class="nav-item">
             <a class="nav-link mb-sm-3 mb-md-0" id="3-tab" data-toggle="tab" href="#3" role="tab" aria-controls="3" aria-selected="false">公共端口 - SS</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link mb-sm-3 mb-md-0" id="3-tab" data-toggle="tab" href="#3" role="tab" aria-controls="3" aria-selected="false">V2Ray</a>
-          </li>
         </ul>
           </div>
         
@@ -80,19 +77,6 @@
                           加密方式：{$ss_item['method']}<br>
                           混淆：{$ss_item['obfs']}<br>
                           混淆参数：{$ss_item['obfs_param']}<br></p>
-            </div>
-          </div>
-
-          <div class="tab-pane fade show " id="4" role="tabpanel" aria-labelledby="4-tab">
-            <div class="text-center">
-                <p style="color:red">{$node->name}</p>
-                <p id="ssrtitle">配置信息</p>
-                        <p>地址：{$server_explode[0]}<br>
-                          端口：{$server_explode[1]}<br>
-                          协议参数：{$server_explode[0]}<br>
-                          UUID：{$user->getUuid()}<br>
-                          AlterId：{$server_explode[2]}<br>
-                          混淆参数：{URL::getV2Url($user, $node)}<br></p>
             </div>
           </div>
 
