@@ -30,7 +30,6 @@
 							{$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
 							<p style="color:red">{$node->name} - {$ssr_item['port']} 端口</p>
 							<p id="ssrtitle">二维码</p>
-							{if URL::SSRCanConnect($user, $mu)}
 							<div id="ssrdiv" class="text-center">
 								<a href="{URL::getItemUrl($ssr_item, 0)}"><div id="ss-qr-n"></div></a>
 							</div>
