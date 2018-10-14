@@ -40,9 +40,9 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-key-25"></i></span>
                       </div>
+                      <button id="email_verify" class="btn btn-primary mt-4">获取邮箱验证码</button>
                       <input class="form-control" placeholder="邮箱验证码" id="email_code" type="text">
                     </div>
-              <button id="email_verify" class="btn btn-primary mt-4">获取邮箱验证码</button>
                   </div>
                   <div class="form-group">
                     <div class="input-group input-group-alternative">
@@ -106,7 +106,7 @@
                   <div class="custom-control custom-control-alternative custom-checkbox">
                     <input class="custom-control-input" id="surge_user" name="surge_user" type="checkbox"> 
                     <label class="custom-control-label" for="surge_user">
-                      <span>Surge / Surfboard 用户（SS 模式）</span>
+                      <span>SS 模式</span>
                     </label>
                   </div>
                   <div class="row my-4">
@@ -142,7 +142,7 @@
             {include file='reg_tos.tpl'}
             </div>
                   <div class="modal-footer">
-          <button class="btn btn-white" data-dismiss="modal" type="button" id="cancel">我不服</button>
+          <button class="btn btn-white" data-dismiss="modal" type="button" id="cancel">拒绝</button>
           <button class="btn btn-white" data-dismiss="modal" id="reg" type="button">同意</button>
                   </div>
                 </div>
