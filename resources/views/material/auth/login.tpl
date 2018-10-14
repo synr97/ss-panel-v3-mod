@@ -110,19 +110,12 @@
 {include file='auth/auth_footer.tpl'}
 {include file='newui_dialog.tpl'}
 
-    <script>
-       $("#email").on("change", function(){
-                        var reg = /\w+[@]{1}\w+[.]\w+/;
-                        if(($("#email").val())) {
-                            $("#gravatar_img").attr("src", "https://gravatar.css.network/avatar/" + $.md5($("#email").val()) + "?s=128&r=G&d=");
-                        }
-     });
-    </script>
 <script>
-    $(document).ready(function () {
-        function login() {
+    $(document).ready(function(){
+        function login(){
             {if $geetest_html != null}
-            if (typeof validate == 'undefined') {
+            if(typeof validate == 'undefined')
+            {
                 $("#result").modal();
                 $("#msg").html("请滑动验证码来完成验证。");
                 return;
@@ -139,10 +132,10 @@
             document.getElementById("login").disabled = true;
 
             $.ajax({
-                type: "POST",
-                url: "/auth/login",
-                dataType: "json",
-                data: {
+                type:"POST",
+                url:"/auth/login",
+                dataType:"json",
+                data:{
                     email: $("#email").val(),
                     passwd: $("#passwd").val(),
                     code: $("#code").val(),
@@ -151,155 +144,149 @@
                     geetest_validate: validate.geetest_validate,
                     geetest_seccode: validate.geetest_seccode{/if}
                 },
-                success: function (data) {
-                    if (data.ret == 1) {
+                success:function(data){
+                    if(data.ret == 1){
                         $("#result").modal();
                         $("#msg").html(data.msg);
                         window.setTimeout("location.href='/user'", {$config['jump_delay']});
-                    } else {
+                    }else{
                         $("#result").modal();
                         $("#msg").html(data.msg);
                         document.getElementById("login").disabled = false;
-                        {if $geetest_html != null}
+                    {if $geetest_html != null}
                         captcha.refresh();
-                        {/if}
+                    {/if}
                     }
                 },
-                error: function (jqXHR) {
-                    $("#msg-error").hide(10);
-                    $("#msg-error").show(100);
-                    $("#msg-error-p").html("发生错误：" + jqXHR.status);
-                    document.getElementById("login").disabled = false;
-                    {if $geetest_html != null}
-                    captcha.refresh();
-                    {/if}
+                error:function(jqXHR){
+                $("#msg-error").hide(10);
+                $("#msg-error").show(100);
+                $("#msg-error-p").html("发生错误："+jqXHR.status);
+                document.getElementById("login").disabled = false;
+            {if $geetest_html != null}
+                captcha.refresh();
+            {/if}
                 }
             });
         }
-
-        $("html").keydown(function (event) {
-            if (event.keyCode == 13) {
+        $("html").keydown(function(event){
+            if(event.keyCode==13){
                 login();
             }
         });
-        $("#login").click(function () {
+        $("#login").click(function(){
             login();
         });
 
-        $('div.modal').on('shown.bs.modal', function () {
+        $('div.modal').on('shown.bs.modal', function() {
             $("div.gt_slider_knob").hide();
         });
 
-        $('div.modal').on('hidden.bs.modal', function () {
+        $('div.modal').on('hidden.bs.modal', function() {
             $("div.gt_slider_knob").show();
         });
     })
 </script>
 
 {if $config['enable_telegram'] == 'true'}
-    <script src=" /assets/public/js/jquery.qrcode.min.js "></script>
-    <script>
-        var telegram_qrcode = 'mod://login/{$login_token}';
-        jQuery('#telegram-qr').qrcode({
-            "text": telegram_qrcode
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            function f() {
-                $.ajax({
-                    type: "GET",
-                    url: "qrcode_check",
-                    dataType: "json",
-                    data: {
-                        token: "{$login_token}",
-                        number: "{$login_number}"
-                    },
-                    success: function (data) {
-                        if (data.ret > 0) {
-                            clearTimeout(tid);
+<script src=" /assets/public/js/jquery.qrcode.min.js "></script>
+<script>
+    var telegram_qrcode = 'mod://login/{$login_token}';
+    jQuery('#telegram-qr').qrcode({
+        "text": telegram_qrcode
+    });
+</script>
 
-                            $.ajax({
-                                type: "POST",
-                                url: "/auth/qrcode_login",
-                                dataType: "json",
-                                data: {
-                                    token: "{$login_token}",
-                                    number: "{$login_number}"
-                                },
-                                success: function (data) {
-                                    if (data.ret) {
-                                        $("#result").modal();
-                                        $("#msg").html("登录成功！");
-                                        window.setTimeout("location.href=/user/", {$config['jump_delay']});
-                                    }
-                                },
-                                error: function (jqXHR) {
-                                    $("#result").modal();
-                                    $("#msg").html("发生错误：" + jqXHR.status);
-                                }
-                            });
+<script>
+$(document).ready(function () {
+    function f(){
+        $.ajax({
+            type: "GET",
+            url: "qrcode_check",
+            dataType: "json",
+            data: {
+                token:"{$login_token}",
+                number:"{$login_number}"
+            },
+            success: function (data) {
+                if (data.ret > 0) {
+                    clearTimeout(tid);
 
-                        } else {
-                            if (data.ret == -1) {
-                                jQuery('#telegram-qr').replaceWith('此二维码已经过期，请刷新页面后重试。');
-                                jQuery('#code_number').replaceWith('<code id="code_number">此数字已经过期，请刷新页面后重试。</code>');
+                    $.ajax({
+                        type: "POST",
+                        url: "/auth/qrcode_login",
+                        dataType: "json",
+                        data: {
+                            token:"{$login_token}",
+                            number:"{$login_number}"
+                        },
+                        success: function (data) {
+                            if (data.ret) {
+                                $("#result").modal();
+                                $("#msg").html("登录成功！");
+                                window.setTimeout("location.href=/user/", {$config['jump_delay']});
                             }
-                        }
-                    },
-                    error: function (jqXHR) {
-                        if (jqXHR.status != 200 && jqXHR.status != 0) {
+                        },
+                        error: function (jqXHR) {
                             $("#result").modal();
                             $("#msg").html("发生错误：" + jqXHR.status);
                         }
-                    }
-                });
-                tid = setTimeout(f, 1000); //循环调用触发setTimeout
-            }
+                    });
 
-            setTimeout(f, 1000);
-        })
-    </script>
+                } else {
+                    if(data.ret == -1){
+                        jQuery('#telegram-qr').replaceWith('此二维码已经过期，请刷新页面后重试。');
+                        jQuery('#code_number').replaceWith('<code id="code_number">此数字已经过期，请刷新页面后重试。</code>');
+                    }
+                }
+            },
+            error: function (jqXHR) {
+                if(jqXHR.status != 200 && jqXHR.status != 0) {
+                    $("#result").modal();
+                    $("#msg").html("发生错误：" + jqXHR.status);
+                }
+            }
+        });
+        tid = setTimeout(f, 1000); //循环调用触发setTimeout
+    }
+    setTimeout(f, 1000);
+})
+</script>
+<script>
+    $(document).ready(function () {
+        var el = document.createElement('script');
+        document.getElementById('telegram-login-box').append(el);
+        el.src = 'https://telegram.org/js/telegram-widget.js?4';
+        el.setAttribute('data-size', 'large')
+        el.setAttribute('data-telegram-login', '{$telegram_bot}')
+        el.setAttribute('data-auth-url', '{$baseUrl}/auth/telegram_oauth')
+        el.setAttribute('data-request-access', 'write')
+        });
+</script>
 {/if}
 
 
 {if $geetest_html != null}
-    <script>
-        var handlerEmbed = function (captchaObj) {
-            // 将验证码加到id为captcha的元素里
+<script>
+    var handlerEmbed = function (captchaObj) {
+        // 将验证码加到id为captcha的元素里
 
-            captchaObj.onSuccess(function () {
-                validate = captchaObj.getValidate();
-            });
-
-            captchaObj.appendTo("#embed-captcha");
-
-            captcha = captchaObj;
-            // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
-        };
-
-        initGeetest({
-            gt: "{$geetest_html->gt}",
-            challenge: "{$geetest_html->challenge}",
-            product: "embed", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
-            offline: {if $geetest_html->success}0{else}1{/if} // 表示用户后台检测极验服务器是否宕机，与SDK配合，用户一般不需要关注
-        }, handlerEmbed);
-    </script>
-{/if}
-{if $config['enable_telegram'] == 'true'}
-    <script>
-        $(document).ready(function () {
-            var el = document.createElement('script');
-            document.getElementById('telegram-login-box').append(el);
-            el.src = 'https://telegram.org/js/telegram-widget.js?4';
-            el.setAttribute('data-size', 'large')
-            el.setAttribute('data-telegram-login', '{$telegram_bot}')
-            el.setAttribute('data-auth-url', '{$base_url}/auth/telegram_oauth')
-            el.setAttribute('data-request-access', 'write')
+        captchaObj.onSuccess(function () {
+                    validate = captchaObj.getValidate();
         });
-    </script>
+
+        captchaObj.appendTo("#embed-captcha");
+
+        captcha = captchaObj;
+        // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
+    };
+
+    initGeetest({
+        gt: "{$geetest_html->gt}",
+        challenge: "{$geetest_html->challenge}",
+        product: "embed", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+        offline: {if $geetest_html->success}0{else}1{/if} // 表示用户后台检测极验服务器是否宕机，与SDK配合，用户一般不需要关注
+    }, handlerEmbed);
+</script>
+
 {/if}
-<?php
-$a=$_POST['Email'];
-$b=$_POST['Password'];
-?>
