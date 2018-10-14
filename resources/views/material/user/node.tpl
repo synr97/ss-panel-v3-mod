@@ -131,7 +131,7 @@
 										<p>在线人数：
 									{$node_alive[$prefix]}
 										</p>
-										<p>流量情况：
+										<p>使用情况：
 									{if isset($node_bandwidth[$prefix])==true}{$node_bandwidth[$prefix]}{else}N/A{/if}
 										</p>
 								</div>
@@ -143,7 +143,6 @@
 						{/foreach}
 						{/foreach}		  
         </div>
-		
 						{/foreach}
        </div>
      </div>
@@ -152,7 +151,7 @@
 <div aria-hidden="true" class="modal modal-va-middle fade" id="nodeinfo" role="dialog" tabindex="-1" >
 	<div class="modal-dialog modal-xs">
 		<div class="modal-content">
-			<div class="modal-inner" style="height:480px">
+			<div class="modal-inner" style="height:440px">
 				<iframe class="iframe-seamless" frameborder="0" scrolling="no" title="Modal with iFrame" id="infoifram"></iframe>
 			</div>
 		</div>
