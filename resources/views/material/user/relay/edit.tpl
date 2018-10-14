@@ -61,9 +61,13 @@
             </div>-->
 			
 
-            <div class="mt-5 py-5 text-center">
-              <div class="row justify-content-center">
-                <div class="col-lg-9">
+		<div class="container">
+			<div class="col-lg-12 col-sm-12">
+				<section class="content-inner margin-top-no">
+					<form id="main_form">
+						<div class="card" style="border: .0rem solid rgba(0, 0, 0, .05);">
+							<div class="card-main">
+								<div class="card-inner">
 									<div class="form-group form-group-label">
 										<label class="floating-label" for="source_node">起源节点</label>
 										<select id="source_node" class="form-control" name="source_node">
@@ -95,36 +99,32 @@
 										</select>
 									</div>
 
-
-
 									<div class="form-group form-group-label">
 										<label class="floating-label" for="priority">优先级</label>
 										<input class="form-control" id="priority" name="priority" type="text" value="{$rule->priority}">
 									</div>
+								</div>
+							</div>
+						</div>
 
-                </div>
-              </div>
-            </div>
-			
-			  <div class="mt-5 py-5 text-center">
-              <div class="row justify-content-center">
-                <div class="col-lg-9">
-					<button id="submit" type="submit" class="btn btn-primary mt-4">修改</button>
-                </div>
-              </div>
-            </div>
-			
-			
-			
-			
-          </div>
-        </div>
-      </div>
-      
-    </section>
-    
-
-	
+						<div class="mt-5 py-5 text-center">
+							<div class="row justify-content-center">
+								<div class="col-lg-9">
+									<div class="form-group">
+										<div class=" col-md-push-1">
+											<button id="submit" type="submit" class="btn btn-primary mt-4">修改</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</form>
+						{include file='newui_dialog.tpl'}
+					</section>
+				</div>
+			</div>
+		</div>
+	</main>
 
 {include file='user/newui_footer.tpl'}
 {include file='newui_dialog.tpl'}

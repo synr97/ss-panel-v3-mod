@@ -54,7 +54,6 @@
 							</div>
 						</div>
 
-
 		<div class="container">
 			<div class="col-lg-12 col-sm-12">
 				<section class="content-inner margin-top-no">
@@ -103,42 +102,23 @@
 							</div>
 						</div>
 
-
-			  <div class="mt-5 py-5 text-center">
-              <div class="row justify-content-center">
-                <div class="col-lg-9">
-
+						<div class="mt-5 py-5 text-center">
+							<div class="row justify-content-center">
+								<div class="col-lg-9">
 									<div class="form-group">
-											<div class=" col-md-push-1">
-												<button id="submit" type="submit" class="btn btn-block btn-primary waves-attach waves-light copy-text">添加</button>
-											</div>
+										<div class=" col-md-push-1">
+											<button id="submit" type="submit" class="btn btn-block btn-primary waves-attach waves-light copy-text">添加</button>
+										</div>
 									</div>
-									
 								</div>
 							</div>
 						</div>
-						
-						
 					</form>
 					{include file='newui_dialog.tpl'}
 				<section>
-
 			</div>
-
-
-
 		</div>
 	</main>
-
-
-
-
-
-
-
-
-
-
 
 {include file='user/newui_footer.tpl'}
 {include file='newui_dialog.tpl'}
