@@ -98,6 +98,7 @@ class UserController extends BaseController
         $Ann = Ann::orderBy('date', 'desc')->first();
 
         return $this->view()
+        ->assign("ss_url", $ss_url)
         ->assign("ss_url_0", $ss_url_0)
         ->assign("ss_url_1", $ss_url_1)
         ->assign("ss_url_0_mitm", $ss_url_0_mitm)
