@@ -302,6 +302,8 @@ class URL
 
                     if ($item['obfs_param'] != '') {
                         $plugin .= ";obfs-host=".$item['obfs_param'];
+                    } else {
+                        $plugin .= ";obfs-host=wns.windows.com";
                     }
 
                     $ssurl .= "/?plugin=".rawurlencode($plugin);
