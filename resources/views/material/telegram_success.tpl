@@ -212,6 +212,6 @@
 </footer>
 </div>
 </div>
-<script>var copyrightNow = (new Date).getFullYear(), textContent = document.querySelector("span[year]"); copyrightSince = 2017, textContent.textContent = copyrightSince === copyrightNow ? copyrightNow : copyrightSince + " - " + copyrightNow;</script>
+<script>var copyrightNow = (new Date).getFullYear(), textContent = document.querySelector("span[year]"); copyrightSince = 2015, textContent.textContent = copyrightSince === copyrightNow ? copyrightNow : copyrightSince + " - " + copyrightNow;</script>
 </body>
 </html>
