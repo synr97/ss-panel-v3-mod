@@ -204,7 +204,7 @@
 												<a href="Shadowrocket://add/sub://{$ss_url}?remarks=Dler%20Cloud%20-%20%5bSS%5d" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
 												</p>
 												<p>
-												<a href="quantumult://configuration?server={$ss_url}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
+												<a href="quantumult://configuration?server={$ss_url}&filter={$filterUrl}&rejection={$rejectUrl}&gourp=Dler%20Cloud%20-%20%5bSS%5d" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
 												</p>
 												<hr>
 											{/if}

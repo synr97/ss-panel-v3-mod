@@ -119,8 +119,12 @@
                 dataType: "json",
                 data: {
                     content: editor.getHTML(),
-					title: $("#title").val()
+          title: $("#title").val()
                 },
+                beforeSend: function () {
+              // 禁用按钮防止重复提交
+            $("#submit").attr({ disabled: "disabled" });
+          },
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
@@ -131,6 +135,9 @@
                         $("#msg").html(data.msg);
                     }
                 },
+               complete: function () {
+             $("#submit").removeAttr("disabled");
+          },
                 error: function (jqXHR) {
                     $("#msg-error").hide(10);
                     $("#msg-error").show(100);

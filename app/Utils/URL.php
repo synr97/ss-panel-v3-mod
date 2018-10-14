@@ -266,7 +266,7 @@ class URL
     public static function getAllUrl($user, $is_mu, $is_ss = 0, $enter = 0) {
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         $return_url = '';
-        if (!$is_ss) {
+        if ($is_ss != 1) {
             if ($user->transfer_enable > 0){
                 $return_url .= URL::getUserTraffic($user).($enter == 0 ? ' ' : "\n");
                 $return_url .= URL::getUserClassExpiration($user).($enter == 0 ? ' ' : "\n");
@@ -311,7 +311,7 @@ class URL
                     $ssurl .= "/?plugin=".rawurlencode($plugin);
                 }
 
-                $ssurl .= "&gourp=".Tools::base64_url_encode(Config::get('appName')." - [SS]")."#".rawurlencode($item['remark']);
+                $ssurl .= "&gourp=".Tools::base64_url_encode(Config::get('appName'))."#".rawurlencode($item['remark']);
             }
             return $ssurl;
         }
