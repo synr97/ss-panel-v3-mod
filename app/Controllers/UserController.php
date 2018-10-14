@@ -77,6 +77,8 @@ class UserController extends BaseController
         $ss_url_0_mitm_new = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=0&mitm=1&new=1');
         $ss_url_1_mitm_new = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=1&mitm=1&new=1');
 
+        $ssr_url = Tools::base64_url_encode(Config::get('apiUrl').'/link/'.$ssr_sub_token.'?mu=4');
+
         $ssr_url_0 = Tools::base64_url_encode(Config::get('apiUrl').'/link/'.$ssr_sub_token.'?mu=0');
         $ssr_url_1 = Tools::base64_url_encode(Config::get('apiUrl').'/link/'.$ssr_sub_token.'?mu=1');
 
