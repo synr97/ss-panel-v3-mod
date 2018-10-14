@@ -28,7 +28,7 @@
 					<div class="tab-pane fade show active" id="ssr_card" role="tabpanel" aria-labelledby="ssr_card-tab">
 						<div class="text-center">
 							{$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
-							<p style="color:red">{$node->name} - {$ssr_item['port']} 端口</p>
+							<p style="color:red">{$node->name}</p>
 							<p id="ssrtitle">二维码</p>
 							<div id="ssrdiv" class="text-center">
 								<a href="{URL::getItemUrl($ssr_item, 0)}"><div id="ss-qr-n"></div></a>
@@ -41,7 +41,7 @@
 					<div class="tab-pane fade show " id="ss_card" role="tabpanel" aria-labelledby="ss_card-tab">
 						<div class="text-center">
 							{$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
-								<p style="color:red">{$node->name} - {$ssr_item['port']} 端口</p>
+								<p style="color:red">{$node->name}</p>
 								<p id="ssrtitle">二维码</p>
 							<div class="text-center">
 								<a href="{URL::getItemUrl($ss_item, 1)}"><div id="ss-qr"></div></a>
@@ -56,7 +56,7 @@
 						<div class="text-center">
 						{$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
 						{$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
-							<p style="color:red">{$node->name} - {$ssr_item['port']} 端口</p>
+							<p style="color:red">{$node->name}</p>
 							<p id="ssrtitle">二维码</p>
 						<div class="text-center">
 							<a href="{URL::getItemUrl($ss_item, 1)}"><div id="ss-qr"></div></a>
