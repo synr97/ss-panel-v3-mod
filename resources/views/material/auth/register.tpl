@@ -298,11 +298,11 @@ $("#reg_code").modal('hide')
 
 {if $enable_email_verify == 'true'}
 <script>
-var wait=60;
+var wait = 60;
 function time(o) {
     if (wait == 0) {
       o.removeAttr("disabled");     
-      o.text("获取验证码");
+      o.text("获取邮箱验证码");
       wait = 60;
     } else {
       o.attr("disabled","disabled");
@@ -314,8 +314,6 @@ function time(o) {
       1000)
     }
   }
-
-
 
     $(document).ready(function () {
         $("#email_verify").click(function () {
@@ -331,16 +329,16 @@ function time(o) {
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
-      $("#msg").html(data.msg);
+                        $("#msg").html(data.msg);
             
                     } else {
                         $("#result").modal();
-      $("#msg").html(data.msg);
+                        $("#msg").html(data.msg);
                     }
                 },
                 error: function (jqXHR) {
                     $("#result").modal();
-      $("#msg").html(data.msg+"     出现了一些错误。");
+                    $("#msg").html(data.msg + "出现了一些错误。");
                 }
             })
         })

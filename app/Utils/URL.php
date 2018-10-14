@@ -311,7 +311,7 @@ class URL
                     $ssurl .= "/?plugin=".rawurlencode($plugin);
                 }
 
-                $ssurl .= "&gourp=".Tools::base64_url_encode(Config::get('appName'))."#".rawurlencode($item['remark']);
+                $ssurl .= "&gourp=".Tools::base64_url_encode(Config::get('appName')." - [SS]")."#".rawurlencode($item['remark']);
             }
             return $ssurl;
         }
@@ -380,7 +380,7 @@ class URL
             return null;
         }
         $array_all = array();
-        $array_all['airport'] = Config::get('appName')." - [SSD]";;
+        $array_all['airport'] = Config::get('appName')." - [SSD]";
         $array_all['port'] = $user->port;
         $array_all['encryption'] = $user->method;
         $array_all['password'] = $user->passwd;

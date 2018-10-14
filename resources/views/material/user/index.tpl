@@ -171,7 +171,7 @@
 													<p>
 													<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=0">{$apiUrl}/link/{$ssr_sub_token}?mu=0</a></code>
 													</p>
-													<p><a href="Shadowrocket://add/sub://{$ssr_url_0}?remarks=Dler%20Cloud" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
+													<p><a href="Shadowrocket://add/sub://{$ssr_url_0}?remarks=Dler%20Cloud%20-%20%%5bSSR%5d" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
 													<p><a href="quantumult://configuration?server={$ssr_url_0}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
 												{else}
 													<p>SSR 公共端口订阅地址</p>
@@ -179,7 +179,7 @@
 													<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=1">{$apiUrl}/link/{$ssr_sub_token}?mu=1</a></code>
 													</p>
 													<p>
-													<a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
+													<a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud%20-%20%%5bSSR%5d" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
 													</p>
 													<p>
 													<a href="quantumult://configuration?server={$ssr_url_1}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
@@ -199,6 +199,12 @@
 												<p>SS 订阅地址</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=4">{$apiUrl}/link/{$ssr_sub_token}?mu=4</a></code>
+												</p>
+												<p>
+												<a href="Shadowrocket://add/sub://{$apiUrl}/link/{$ssr_sub_token}?mu=4?remarks=Dler%20Cloud%20-%20%5bSS%5d" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
+												</p>
+												<p>
+												<a href="quantumult://configuration?server={$apiUrl}/link/{$ssr_sub_token}?mu=4&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
 												</p>
 												<hr>
 											{/if}
@@ -261,7 +267,7 @@
 												</p>
 												<a class="btn btn-brand copy-text" data-clipboard-text="{URL::getAllVMessUrl($user)}">复制所有 VMess 链接</a>
 												<p>
-												<a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
+												<a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud%20-%20%5bV2Ray%5d" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
 												</p>
 												<p>
 												<a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>

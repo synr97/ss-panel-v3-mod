@@ -86,7 +86,7 @@
 			<div class="col-lg">
                 <div class="card card-lift shadow border-0">
                   <div class="card-body">
-							<button id="submit" type="submit" class="btn btn-primary mt-4">添加</button>
+							<button id="submit" type="submit" class="btn btn-primary mt-4">提交</button>
                   </div>
                 </div>
             </div>		
