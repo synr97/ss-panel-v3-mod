@@ -32,21 +32,19 @@
               <p style="color:red">{$node->name}</p>
               <p id="ssrtitle">配置信息</p>
           {if URL::SSRCanConnect($user)}
-                        <p>地址：{$ssr_item['address']}<br>
-                          端口：{$user->port}<br>
-                          密码：{$ssr_item['passwd']}<br>
-                            加密方式：{$ssr_item['method']}<br>
-                            协议：{$ssr_item['protocol']}<br>
-                            协议参数：{$ssr_item['protocol_param']}<br>
-                            混淆：{$ssr_item['obfs']}<br>
-                            混淆参数：{$ssr_item['obfs_param']}<br></p>
+	                        <p>地址：{$ssr_item['address']}<br>
+	                          	端口：{$user->port}<br>
+	                          	密码：{$ssr_item['passwd']}<br>
+	                            加密方式：{$ssr_item['method']}<br>
+	                            协议：{$ssr_item['protocol']}<br>
+	                            混淆：{$ssr_item['obfs']}<br>
           {elseif URL::SSCanConnect($user)}
-                             <p>地址：{$ss_item['address']}<br>
-                          端口：{$user->port}<br>
-                          密码：{$ss_item['passwd']}<br>
-                            加密方式：{$ss_item['method']}<br>
-                            混淆：{$ss_item['obfs']}<br>
-                            混淆参数：{$ss_item['obfs_param']}<br></p>
+                            <p>地址：{$ss_item['address']}<br>
+                          		端口：{$user->port}<br>
+                          		密码：{$ss_item['passwd']}<br>
+                            	加密方式：{$ss_item['method']}<br>
+                            	协议：{$ss_item['protocol']}<br>
+                            	混淆：{$ss_item['obfs']}<br>
           {/if}
             </div>
           </div>
@@ -64,7 +62,6 @@
                           协议：{$ssr_item['protocol']}<br>
                           协议参数：{$ssr_item['protocol_param']}<br>
                           混淆：{$ssr_item['obfs']}<br>
-                          混淆参数：{$ssr_item['obfs_param']}<br></p>
             </div>
           </div>
 
@@ -125,21 +122,5 @@
   });
   {/if}
 
-
-</script>
-$("#jsonssrswitch").click(function () {
-if($("input[type='checkbox']").is(':checked')){  
-$("#jsonssrdiv").hide();  
-$("#jsonssdiv").show();  
-$("#jsontitle").text("SS配置信息");
-$("#jsonswitch_title").text("切换到SSR");
-}else{  
-$("#jsonssdiv").hide();  
-$("#jsonssrdiv").show();  
-$("#jsonstitle").text("SSR配置信息");
-$("#jsonswitch_title").text("切换到SS");
-}  
-});
-<script>
 
 </script>
