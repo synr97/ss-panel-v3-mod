@@ -266,7 +266,7 @@ class URL
     public static function getAllUrl($user, $is_mu, $is_ss = 0, $enter = 0) {
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         $return_url = '';
-        if ($user->transfer_enable > 0){
+        if ($is_ss != 1 || $user->transfer_enable > 0){
             $return_url .= URL::getUserTraffic($user).($enter == 0 ? ' ' : "\n");
             $return_url .= URL::getUserClassExpiration($user).($enter == 0 ? ' ' : "\n");
         }
@@ -287,7 +287,7 @@ class URL
                 $personal_info = $item['method'].':'.$item['passwd']."@".$item['address'].":".$item['port'];
                 $ssurl = "ss://".Tools::base64_url_encode($personal_info);
 
-                $ssurl .= "#".rawurlencode(Config::get('appName')." - ".$item['remark'])."\n";
+                $ssurl .= "#".rawurlencode(Config::get('appName')." - ".$item['remark']);
             } else {
                 $personal_info = $item['method'].':'.$item['passwd'];
                 $ssurl = "ss://".Tools::base64_url_encode($personal_info)."@".$item['address'].":".$item['port'];
@@ -295,19 +295,19 @@ class URL
                 $plugin = '';
                 if (in_array($item['obfs'], $ss_obfs_list)) {
                     if (strpos($item['obfs'], 'http') !== FALSE) {
-                        $plugin .= "simple-obfs;obfs=http";
+                        $plugin .= "obfs-local;obfs=http";
                     } else {
-                        $plugin .= "simple-obfs;obfs=tls";
+                        $plugin .= "obfs-local;obfs=tls";
                     }
 
                     if ($item['obfs_param'] != '') {
                         $plugin .= ";obfs-host=".$item['obfs_param'];
                     }
 
-                    $ssurl .= "?plugin=".rawurlencode($plugin);
+                    $ssurl .= "/?plugin=".rawurlencode($plugin);
                 }
 
-                $ssurl .= "#".rawurlencode(Config::get('appName')." - ".$item['remark'])."\n";
+                $ssurl .= "&gourp=".rawurlencode(Config::get('appName')."#".$item['remark']);
             }
             return $ssurl;
         }
