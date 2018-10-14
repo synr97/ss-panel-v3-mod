@@ -1565,7 +1565,7 @@ FINAL,Proxy';
             return Tools::base64_url_encode(URL::getAllSSDUrl($user));
         }
         elseif ($mu == 4) {
-            return Tools::base64_url_encode(URL::getAllUrl($user, 0, 1, 1));
+            return Tools::base64_encode(URL::getAllUrl($user, 0, 1, 1));
         }
     }
 }
