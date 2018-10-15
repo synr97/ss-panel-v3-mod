@@ -220,7 +220,7 @@ class LinkController extends BaseController
                     $clashx = $request->getQueryParams()["clashx"];
                 }
 
-        		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
+        		$userinfo = "upload=".$user->d."; download=".$user->u.";total=".$user->transfer_enable;
         		if ($clashx == 1) {
         			$filename = 'Dler Cloud.ini';
         		} elseif ($is_mu == 1) {
@@ -294,7 +294,7 @@ class LinkController extends BaseController
                     $mu = (int)$request->getQueryParams()["mu"];
                 }
 
-        		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
+        		$userinfo = "upload=".$user->d."; download=".$user->u.";total=".$user->transfer_enable;
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$token.'.txt');
                 $newResponse->getBody()->write(LinkController::GetSSRSub(User::where("id", "=", $Elink->userid)->first(), $mu, $max));
                 return $newResponse;
@@ -448,27 +448,29 @@ class LinkController extends BaseController
         $auto_name = "";
         $proxy_list = "";
 
-        if ($new == 0) {
-            if ($mitm == 0) {
-            	$general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
-        		$rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
-            } else {
-            	$general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
-        		$rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
-        		$mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
-        		$rules = $rule."\n\n".$mitm;
+        if ($clashx == 1) {
+            $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.ini");
+            $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashX.ini");
+        } else {
+            if ($new == 0) {
+                if ($mitm == 0) {
+                    $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
+                	$rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
+                } else {
+                    $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
+                	$rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
+                	$mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
+                	$rules = $rule."\n\n".$mitm;
+                }
+            } elseif ($new == 1) {
+                $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
+                $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/NewRule.conf");
+                $url_rewrite = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20Rewrite.conf");
+                $url_reject = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20REJECT.conf");
+                $header = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/Header%20Rewrite.conf");
+                $mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
+                $rules = $rule."\n\n".$url_rewrite."\n".$url_reject."\n\n".$header."\n\n".$mitm;
             }
-        } elseif ($new == 1) {
-        	$general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
-            $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/NewRule.conf");
-        	$url_rewrite = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20Rewrite.conf");
-            $url_reject = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20REJECT.conf");
-            $header = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/Header%20Rewrite.conf");
-        	$mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
-        	$rules = $rule."\n\n".$url_rewrite."\n".$url_reject."\n\n".$header."\n\n".$mitm;
-        } elseif ($clashx == 1) {
-        	$general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.ini");
-        	$rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashX.ini");
         }
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
