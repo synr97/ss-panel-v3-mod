@@ -480,19 +480,26 @@ class LinkController extends BaseController
                     $item['remark'] = "香港 - IPLC | Media";
                 }
             }
-            if (URL::getSurgeObfs($item) != "") {
-                $proxy_list .= $item['remark'].' = custom,'.$item['address'].','.$item['port'].','.$item['method'].','.$item['passwd'].',https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).',udp-relay=true,tfo=true'."\n";
+            if ($clashx == 1) {
+                if (URL::getSurgeObfs($item) != "") {
+                    $proxy_list .= $item['remark'].' = ss,'.$item['address'].','.$item['port'].','.$item['method'].','.$item['passwd'].',https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).',udp-relay=true,tfo=true'."\n";
+                } else {
+                    $proxy_list .= $item['remark'].' = ss,'.$item['address'].','.$item['port'].','.$item['method'].','.$item['passwd'].',https://dlercloud.com/SSEncrypt.module,udp-relay=true,tfo=true'."\n";
+                }
             } else {
-                $proxy_list .= $item['remark'].' = custom,'.$item['address'].','.$item['port'].','.$item['method'].','.$item['passwd'].',https://dlercloud.com/SSEncrypt.module,udp-relay=true,tfo=true'."\n";
+                if (URL::getSurgeObfs($item) != "") {
+                    $proxy_list .= $item['remark'].' = custom,'.$item['address'].','.$item['port'].','.$item['method'].','.$item['passwd'].',https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).',udp-relay=true,tfo=true'."\n";
+                } else {
+                    $proxy_list .= $item['remark'].' = custom,'.$item['address'].','.$item['port'].','.$item['method'].','.$item['passwd'].',https://dlercloud.com/SSEncrypt.module,udp-relay=true,tfo=true'."\n";
+                }
             }
-
             $proxy_name .= ",".$item['remark'];
 
             if (substr($item['remark'],-5,5) == "Relay") {
-            	$domestic_name .= ",".$item['remark'];
+                $domestic_name .= ",".$item['remark'];
             }
             if (substr($item['remark'],-5,5) == "Media") {
-            	$media_name .= ",".$item['remark'];
+                $media_name .= ",".$item['remark'];
             }
             if (substr($item['remark'],-5,5) != "Gamer") {
                 if (substr($item['remark'],-2,2) != "Relay") {
@@ -500,6 +507,25 @@ class LinkController extends BaseController
                 }
             }
         }
+
+        if ($clashx == 1) {
+
+return '
+'.$general.'
+
+[Proxy]
+'.$proxy_list.'
+
+[Proxy Group]
+AUTO = url-test'.$auto_name.',url = http://captive.apple.com,interval = 1200
+PROXY = select,AUTO'.$proxy_name.'
+Domestic = select,PROXY'.$domestic_name.'
+Apple = select,PROXY,AUTO
+Media = select,PROXY'.$media_name.'
+
+'.$rules.'';
+
+        } else {
 
         return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
 
@@ -518,6 +544,7 @@ Media = select,PROXY,DIRECT'.$media_name.'
 AUTO = url-test'.$auto_name.',url = http://captive.apple.com,interval = 1200,tolerance = 300,timeout = 5
 
 '.$rules.'';
+        }
 	}
 
     private static function GetSurge($passwd, $method, $server, $port, $defined)
