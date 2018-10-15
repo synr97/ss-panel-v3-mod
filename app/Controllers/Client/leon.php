@@ -163,11 +163,11 @@ public function apiregister($request, $response, $next)
         }
 
         function sizecount($filesize) {
-         if($filesize >= 1073741824) {
+         if ($filesize >= 1073741824) {
           $filesize = round($filesize / 1073741824 * 100) / 100 . 'G';
-         } elseif($filesize >= 1048576) {
+         } elseif ($filesize >= 1048576) {
           $filesize = round($filesize / 1048576 * 100) / 100 . 'M';
-         } elseif($filesize >= 1024) {
+         } elseif ($filesize >= 1024) {
           $filesize = round($filesize / 1024 * 100) / 100 . 'K';
          } else {
           $filesize = $filesize . 'B';

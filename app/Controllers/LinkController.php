@@ -225,14 +225,14 @@ class LinkController extends BaseController
         		$userinfo = "upload=0; download=".$already.";total=".$still;
         		$filename = '';
         		if ($clashx == 1) {
-        			$filename = 'Dler Cloud.ini';
+        			$filename = 'Dler Cloud.ini'
         		} elseif ($is_mu == 1) {
-        			$filename = 'Dler Cloud - Public.conf';
+        			$filename = 'Dler Cloud - Public.conf'
                 } elseif ($new == 1) {
-                    $filename = 'Dler Cloud - New.conf';
+                    $filename = 'Dler Cloud - New.conf'
         		} else {
-        			$filename = 'Dler Cloud.conf';
-        		}
+        			$filename = 'Dler Cloud.conf'
+        		};
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
                 $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $clashx));
                 return $newResponse;
