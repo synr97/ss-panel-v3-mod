@@ -153,29 +153,31 @@ class Job
         //auto reset
         $users = User::where('auto_reset_day', '=', 0)->get();
         foreach ($users as $user) {
-            $boughts = Bought::where('userid', $user->id)->orderBy("datetime", "desc")->get();
-            foreach ($boughts as $bought) {
-                $shop = Shop::where("id", $bought->shopid)->first();
+            $bought = Bought::where('userid', $user->id)->orderBy("datetime", "desc")->first();
+			if ($bought == null) {
+				continue;
+			}
+		  
+			$shop = Shop::where("id", $bought->shopid)->first();
+			if ($shop == null) {
+				$bought->delete();
+				continue;
+			}
 
-                if ($shop == null) {
-                    $bought->delete();
-                    continue;
-                }
+			if($shop->reset() != 0 && $shop->reset_value() != 0 && $shop->reset_exp() != 0)
+				if (time() - $shop->reset_exp() * 86400 < $bought->datetime) {
+					if(intval((time() - $bought->datetime) / 86400) % $shop->reset() == 0 && intval((time() - $bought->datetime) / 86400) != 0) {
+						echo("流量重置-用户id".$user->id."-重置流量".$shop->reset_value()."G\n");
+						$user->transfer_enable = Tools::toGB($shop->reset_value());
+						$user->u = 0;
+						$user->d = 0;
+						$user->last_day_t = 0;
+						$user->save();
+				}
+				break;
+			}
 
-                if($shop->reset() != 0 && $shop->reset_value() != 0 && $shop->reset_exp() != 0)
-                    if (time() - $shop->reset_exp() * 86400 < $bought->datetime) {
-                        if(intval((time() - $bought->datetime) / 86400) % $shop->reset() == 0 && intval((time() - $bought->datetime) / 86400) != 0) {
-                            echo("流量重置-用户id".$user->id."-重置流量".$shop->reset_value()."G\n");
-                            $user->transfer_enable = Tools::toGB($shop->reset_value());
-                            $user->u = 0;
-                            $user->d = 0;
-                            $user->last_day_t = 0;
-                            $user->save();
-                    }
-                    break;
-                }
-
-            }
+            
         }
 
         $users = User::all();
