@@ -1,12 +1,13 @@
 <div class="card-inner">
 	<p class="card-heading">余额：{$user->money}</p>
 	<img src="https://raw.githubusercontent.com/lhie1/black-hole/master/Ali.png">
-	
+	<br>
+	<br>
 	<nav class="tab-nav margin-top-no">
 		<ul class="nav nav-list">
 			{if $enabled['wepay']}
 				<li class="active">
-					<a class="waves-attach waves-effect type" data-toggle="tab" href="#" data-pay="wepay">微信支付</a>
+					<a class="waves-attach waves-effect type" data-toggle="tab" href="#" data-pay="wepay">微信</a>
 				</li>
 			{/if}
 			{if $enabled['alipay']}
@@ -22,6 +23,7 @@
 		</ul>
 		<div class="tab-nav-indicator"></div>
 	</nav>
+	<br>
 	<div class="form-group form-group-label">
 		<label class="floating-label" for="amount">金额</label>
 		<input class="form-control" id="amount" type="text">
