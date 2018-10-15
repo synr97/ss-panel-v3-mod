@@ -22,13 +22,13 @@
               <p style="color:red">{$node->name}</p>
               <p id="ssrtitle">配置信息</p>
               {assign var=server_explode value=";"|explode:$node->server}
-              <p>地址：{$server_explode[0]}</p>
-              <p>端口：{$server_explode[1]}</p>
-              <p>协议：{$server_explode[2]}</p>
-              <p>用户UUID：{$user->getUuid()}</p>
-              <p>AlterId：{$server_explode[3]}</p>
-              <p>Level：{$server_explode[4]}</p>
-			  <p>VMess链接：{URL::getV2Url($user, $node)}</p>
+              <p>地址：{$server_explode[0]}</br>
+              端口：{$server_explode[1]}</br>
+              协议：{$server_explode[2]}</br>
+              用户UUID：{$user->getUuid()}</br>
+              AlterId：{$server_explode[3]}</br>
+              Level：{$server_explode[4]}</br>
+			  VMess链接：{URL::getV2Url($user, $node)}</br></p>
 
             </div>
           </div>
