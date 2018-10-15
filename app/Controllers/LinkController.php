@@ -228,6 +228,8 @@ class LinkController extends BaseController
         			$filename = 'Dler Cloud.ini'
         		} elseif ($is_mu == 1) {
         			$filename = 'Dler Cloud - Public.conf'
+                } elseif ($new == 1) {
+                    $filename = 'Dler Cloud - New.conf'
         		} else {
         			$filename = 'Dler Cloud.conf'
         		}
