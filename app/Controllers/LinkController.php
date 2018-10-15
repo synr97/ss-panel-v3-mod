@@ -195,7 +195,7 @@ class LinkController extends BaseController
                     return null;
                 }
 
-                $is_ss = 0;
+                $is_ss = 1;
                 if (isset($request->getQueryParams()["is_ss"])) {
                     $is_ss = $request->getQueryParams()["is_ss"];
                 }
