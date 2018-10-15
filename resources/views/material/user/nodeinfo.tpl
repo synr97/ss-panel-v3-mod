@@ -24,11 +24,11 @@
               {assign var=server_explode value=";"|explode:$node->server}
               <p>地址：{$server_explode[0]}</br>
               端口：{$server_explode[1]}</br>
-              协议：{$server_explode[2]}</br>
+              协议：{$server_explode[3]}</br>
+              附加协议：{$server_explode[4]}</br>
               用户UUID：{$user->getUuid()}</br>
-              AlterId：{$server_explode[3]}</br>
-              Level：{$server_explode[4]}</br>
-			        VMess链接：</p>
+              AlterId：{$server_explode[2]}</br>
+			  VMess链接：</p>
               <code><a class="copy-text" data-clipboard-text="{URL::getV2Url($user, $node)}">{URL::getV2Url($user, $node)}</a></code>
             </div>
           </div>
