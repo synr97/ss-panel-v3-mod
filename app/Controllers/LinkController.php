@@ -195,7 +195,7 @@ class LinkController extends BaseController
                     return null;
                 }
 
-                $is_ss = 1;
+                $is_ss = 0;
                 if (isset($request->getQueryParams()["is_ss"])) {
                     $is_ss = $request->getQueryParams()["is_ss"];
                 }
@@ -223,7 +223,7 @@ class LinkController extends BaseController
                 $already = $user->u + $user->d;
         		$still = $user->transfer_enable;
         		$userinfo = "upload=0; download=".$already.";total=".$still;
-        		$filename = ''
+        		$filename = '';
         		if ($clashx == 1) {
         			$filename = 'Dler Cloud.ini'
         		} elseif ($is_mu == 1) {
