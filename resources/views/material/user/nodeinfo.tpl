@@ -28,7 +28,8 @@
               用户UUID：{$user->getUuid()}</br>
               AlterId：{$server_explode[3]}</br>
               Level：{$server_explode[4]}</br>
-			  VMess链接：</p><code><a class="copy-text" data-clipboard-text="{URL::getV2Url($user, $node)}">{URL::getV2Url($user, $node)}</a></code>
+			        VMess链接：</p>
+              <code><a class="copy-text" data-clipboard-text="{URL::getV2Url($user, $node)}">{URL::getV2Url($user, $node)}</a></code>
             </div>
           </div>
     </div>
@@ -127,12 +128,12 @@
 <script>
 
 $(function(){
-	new Clipboard('.copy-text');
+  new Clipboard('.copy-text');
 });
 
 $(".copy-text").click(function () {
-	$("#result").modal();
-	$("#msg").html("已复制到您的剪贴板，请您继续接下来的操作。");
+  $("#result").modal();
+  $("#msg").html("已复制到您的剪贴板，请您继续接下来的操作。");
 });
 
 {if URL::SSCanConnect($user, $mu) && $node->sort != 11}
