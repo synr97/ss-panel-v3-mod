@@ -215,11 +215,24 @@ class LinkController extends BaseController
                     $new = $request->getQueryParams()["new"];
                 }
 
+                $clashx = 0;
+                if (isset($request->getQueryParams()["clashx"])) {
+                    $clashx = $request->getQueryParams()["clashx"];
+                }
+
                 $already = $user->u + $user->d;
         		$still = $user->transfer_enable;
         		$userinfo = "upload=0; download=".$already.";total=".$still;
-                $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename=Dler Cloud.conf');
-                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new));
+        		$filename = ''
+        		if ($clashx == 1)
+        			$filename = 'Dler Cloud.ini'
+        		} elseif ($is_mu == 1) {
+        			$filename = 'Dler Cloud - Public.conf'
+        		} else {
+        			$filename = 'Dler Cloud.conf'
+        		}
+                $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
+                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $clashx));
                 return $newResponse;
             case 3:
                 $type = "PROXY";
@@ -431,7 +444,7 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0)
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $clashx = 0)
     {
         $proxy_name = "";
         $domestic_name = "";
@@ -440,19 +453,25 @@ class LinkController extends BaseController
 
         if ($new == 0) {
             if ($mitm == 0) {
-        	   $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
+            	$general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
+        		$rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
             } else {
-        	   $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
-        	   $mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
-        	   $rules = $rule."\n\n".$mitm;
+            	$general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
+        		$rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
+        		$mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
+        		$rules = $rule."\n\n".$mitm;
             }
-        } else {
+        } elseif ($new == 1) {
+        	$general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
             $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/NewRule.conf");
         	$url_rewrite = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20Rewrite.conf");
             $url_reject = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20REJECT.conf");
             $header = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/Header%20Rewrite.conf");
         	$mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
         	$rules = $rule."\n\n".$url_rewrite."\n".$url_reject."\n\n".$header."\n\n".$mitm;
+        } elseif ($clashx == 1) {
+        	$general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.ini");
+        	$rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashX.ini");
         }
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
@@ -485,36 +504,7 @@ class LinkController extends BaseController
 
         return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
 
-[General]
-// Auto
-loglevel = notify
-dns-server = system,1.2.4.8,223.5.5.5,223.6.6.6
-skip-proxy = 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,100.64.0.0/10,17.0.0.0/8,localhost,*.local,*.crashlytics.com
-
-// iOS
-external-controller-access = lhie1@0.0.0.0:6170
-
-allow-wifi-access = true
-
-// macOS
-interface = 0.0.0.0
-socks-interface = 0.0.0.0
-port = 8888
-socks-port = 8889
-
-enhanced-mode-by-rule = false
-show-error-page-for-reject = true
-
-// Auto
-exclude-simple-hostnames = true
-ipv6 = true
-replica = false
-
-[Replica]
-hide-apple-request = true
-hide-crashlytics-request = true
-hide-udp = false
-use-keyword-filter = false
+'.$general.'
 
 [Proxy]
 DIRECT = direct

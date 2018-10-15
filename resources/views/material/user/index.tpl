@@ -209,6 +209,13 @@
 												<hr>
 											{/if}
 											{if URL::SSCanConnect($user)}
+												<p>ClashX 配置文件</p>
+												<p>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?clashx=1">{$apiUrl}/link/{$ios_token}?is_mu=0&clashx=1</a></code>
+												</p>
+												<p>
+												<hr>
+											{if URL::SSCanConnect($user)}
 												<p>Surge 2&3 / Surfboard 个人端口托管地址</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0">{$apiUrl}/link/{$ios_token}?is_mu=0</a></code>
