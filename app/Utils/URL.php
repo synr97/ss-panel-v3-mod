@@ -319,7 +319,7 @@ class URL
             'path'=>'', 
             'tls'=>''
         ];
-        $item['ps'] = $node->name;
+        $item['ps'] = "[V2Ray] ".$node->name;
         $item['add'] = $node_explode[0];
         $item['port'] = $node_explode[1];
         $item['id'] = $user->getUuid();
@@ -390,7 +390,7 @@ class URL
             $plugin_options = 'obfs=tls';
         }
         if ($plugin_options != ''){
-            $array_all['plugin'] = 'obfs-local';//目前只支持这个
+            $array_all['plugin'] = 'simple-obfs';//目前只支持这个
             if ($user->obfs_param == ''){
                 $array_all['plugin_options'] = $plugin_options;
             } else {
