@@ -311,7 +311,7 @@ class URL
                     $ssurl .= "/?plugin=".rawurlencode($plugin);
                 }
 
-                $ssurl .= "&group=".Tools::base64_url_encode(Config::get('appName'))."#".rawurlencode("[SS] ".$item['remark']);
+                $ssurl .= "&group=".Tools::base64_url_encode(Config::get('appName'))."#".rawurlencode($item['remark']);
             }
             return $ssurl;
         }
@@ -536,7 +536,7 @@ class URL
 
         if (substr($node_name,-2,2) != "SS") {
             if ($node_name == "香港 - IPLC | SSR") {
-                $node_name = "[SSR] 香港 - IPLC | Media";
+                $node_name = "香港 - IPLC | Media";
 			}
 
         	if ($relay_rule != null && $is_mu != 0) {
@@ -552,7 +552,11 @@ class URL
 			}
             	$return_array['address'] = $node->server;
             	$return_array['passwd'] = $user->passwd;
+            if ($is_ss != 1) {
             	$return_array['remark'] = "[SSR] ".$node_name;
+            } else {
+            	$return_array['remark'] = "[SS] ".$node_name;
+            }
             	$return_array['protocol_param'] = $user->protocol_param;
             	$return_array['obfs_param'] = $user->obfs_param;
             	$return_array['group'] = Config::get('appName')." - [SSR]";
