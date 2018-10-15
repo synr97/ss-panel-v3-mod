@@ -224,7 +224,7 @@ class LinkController extends BaseController
         		$still = $user->transfer_enable;
         		$userinfo = "upload=0; download=".$already.";total=".$still;
         		$filename = ''
-        		if ($clashx == 1)
+        		if ($clashx == 1) {
         			$filename = 'Dler Cloud.ini'
         		} elseif ($is_mu == 1) {
         			$filename = 'Dler Cloud - Public.conf'
