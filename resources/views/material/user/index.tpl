@@ -203,6 +203,9 @@
 												<p>
 												<a href="Shadowrocket://add/sub://{$ss_url}?remarks=Dler%20Cloud%20-%20%5bSS%5d" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
 												</p>
+												<p>
+													<a href="quantumult://configuration?server={$ss_url}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
+													</p>
 												<hr>
 											{/if}
 											{if URL::SSCanConnect($user)}
@@ -223,7 +226,7 @@
 												</p>
 											{/if}
 											{if URL::SSCanConnect($user)}
-												<p>Surge 2&3 / Surfboard 个人端口托管地址（MitM）</p>
+												<p>Surge 2&3 个人端口托管地址（MitM）</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1">{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1</a></code>
 												</p>
@@ -231,7 +234,7 @@
 												<a href="surge:///install-config?url={$ss_url_0_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a>
 												</p>
 											{else}
-												<p>Surge 2&3 / Surfboard 公共端口托管地址（MitM）</p>
+												<p>Surge 2&3 公共端口托管地址（MitM）</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1">{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1</a></code>
 												</p>

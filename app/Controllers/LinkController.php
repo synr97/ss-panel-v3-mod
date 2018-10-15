@@ -284,7 +284,7 @@ class LinkController extends BaseController
 
                 $already = $user->u + $user->d;
         		$still = $user->transfer_enable;
-        		$userinfo = "upload=0; download=".$already.";total=".$still;
+        		$userinfo = "upload = ".$user->u.";download = ".$user->d.";total=".$still;
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$token.'.txt');
                 $newResponse->getBody()->write(LinkController::GetSSRSub(User::where("id", "=", $Elink->userid)->first(), $mu, $max));
                 return $newResponse;
