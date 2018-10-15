@@ -220,7 +220,7 @@ class LinkController extends BaseController
                     $clashx = $request->getQueryParams()["clashx"];
                 }
 
-        		$userinfo = "upload=".$user->d."; download=".$user->u.";total=".$user->transfer_enable;
+        		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
         		if ($clashx == 1) {
         			$filename = 'Dler Cloud.ini';
         		} elseif ($is_mu == 1) {
@@ -294,7 +294,7 @@ class LinkController extends BaseController
                     $mu = (int)$request->getQueryParams()["mu"];
                 }
 
-        		$userinfo = "upload=".$user->d."; download=".$user->u.";total=".$user->transfer_enable;
+        		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$token.'.txt');
                 $newResponse->getBody()->write(LinkController::GetSSRSub(User::where("id", "=", $Elink->userid)->first(), $mu, $max));
                 return $newResponse;
@@ -488,7 +488,7 @@ class LinkController extends BaseController
                 }
             } else {
                 if (URL::getSurgeObfs($item) != "") {
-                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).',udp-relay=true,tfo=true'."\n";
+                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
                 } else {
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                 }

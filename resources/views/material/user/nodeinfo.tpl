@@ -28,8 +28,7 @@
               用户UUID：{$user->getUuid()}</br>
               AlterId：{$server_explode[3]}</br>
               Level：{$server_explode[4]}</br>
-			  VMess链接：{URL::getV2Url($user, $node)}</br></p>
-
+			  VMess链接：</p><code><a class="copy-text" data-clipboard-text="{URL::getV2Url($user, $node)}">{URL::getV2Url($user, $node)}</a></code>
             </div>
           </div>
     </div>
@@ -120,17 +119,23 @@
 
 {/if}
 
-
-
-
-
-
 {include file='user/footer_info.tpl'}
 
 
 <script src="https://cdn.godann.com/kitui/js/jquery.qrcode.min.js"></script>
+
 <script>
-  {if URL::SSCanConnect($user, $mu) && $node->sort != 11}
+
+$(function(){
+	new Clipboard('.copy-text');
+});
+
+$(".copy-text").click(function () {
+	$("#result").modal();
+	$("#msg").html("已复制到您的剪贴板，请您继续接下来的操作。");
+});
+
+{if URL::SSCanConnect($user, $mu) && $node->sort != 11}
   var text_qrcode = '{URL::getItemUrl($ss_item, 1)}';
   jQuery('#ss-qr').qrcode({
         correctLevel :0,
@@ -156,7 +161,6 @@
       height: 200,
     text: text_qrcode2
   });
-  {/if}
-
+{/if}
 
 </script>
