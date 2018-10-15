@@ -4,6 +4,40 @@
 {include file='user/header_info.tpl'}
 
 
+{if $node->sort == 11}
+       <div class="nav-wrapper">
+        <ul class="nav nav-pills nav-fill  flex-md-row" id="tabs-text" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link mb-sm-3 mb-md-0 active" id="1-tab" data-toggle="tab" href="#1" role="tab" aria-controls="3" aria-selected="true">V2Ray</a>
+          </li>
+        </ul>
+          </div>
+
+ <div class="card shadow">
+        <div class="card-body">
+          <div class="tab-content" id="myTabContent">
+
+          <div class="tab-pane fade show active" id="1" role="tabpanel" aria-labelledby="1-tab">
+            <div class="text-center">
+              <p style="color:red">{$node->name}</p>
+              <p id="ssrtitle">配置信息</p>
+              {assign var=server_explode value=";"|explode:$node->server}
+              <p>地址：{$server_explode[0]}</p>
+              <p>端口：{$server_explode[1]}</p>
+              <p>协议：{$server_explode[2]}</p>
+              <p>用户UUID：{$user->getUuid()}</p>
+              <p>AlterId：{$server_explode[3]}</p>
+              <p>Level：{$server_explode[4]}</p>
+			  <p>VMess链接：{URL::getV2Url($user, $node)}</p>
+
+            </div>
+          </div>
+    </div>
+   </div>
+
+
+
+{else}
 {$ssr_prefer = URL::SSRCanConnect($user, $mu)}
   
           <div class="nav-wrapper">
@@ -30,6 +64,7 @@
           {$ssr_item = URL::getItem($user, $node, $mu, $relay_rule_id, 0)}
           {$ss_item = URL::getItem($user, $node, $mu, $relay_rule_id, 1)}
               <p style="color:red">{$node->name}</p>
+              <p id="ssrtitle">配置信息</p>
           {if URL::SSRCanConnect($user)}
 	                        <p>地址：{$ssr_item['address']}<br>
 	                          	端口：{$user->port}<br>
@@ -53,6 +88,7 @@
             <div class="text-center">
               {$ssr_item = URL::getItem($user, $node, 152, $relay_rule_id, 0)}
                 <p style="color:red">{$node->name}</p>
+                <p id="ssrtitle">配置信息</p>
                         <p>地址：{$ssr_item['address']}<br>
                           端口：{$ssr_item['port']}<br>
                           密码：{$ssr_item['passwd']}<br>
@@ -68,6 +104,7 @@
             <div class="text-center">
               {$ss_item = URL::getItem($user, $node, 153, $relay_rule_id, 1)}
                 <p style="color:red">{$node->name}</p>
+                <p id="ssrtitle">配置信息</p>
                         <p>地址：{$ss_item['address']}<br>
                           端口：{$ss_item['port']}<br>
                           密码：{$ss_item['passwd']}<br>
@@ -81,6 +118,7 @@
          </div>
 
 
+{/if}
 
 
 
@@ -92,7 +130,7 @@
 
 <script src="https://cdn.godann.com/kitui/js/jquery.qrcode.min.js"></script>
 <script>
-  {if URL::SSCanConnect($user, $mu)}
+  {if URL::SSCanConnect($user, $mu) && $node->sort != 11}
   var text_qrcode = '{URL::getItemUrl($ss_item, 1)}';
   jQuery('#ss-qr').qrcode({
         correctLevel :0,
@@ -110,7 +148,7 @@
   });
   {/if}
 
-  {if URL::SSRCanConnect($user, $mu)}
+  {if URL::SSRCanConnect($user, $mu) && $node->sort != 11}
   var text_qrcode2 = '{URL::getItemUrl($ssr_item, 0)}';
   jQuery('#ss-qr-n').qrcode({
         correctLevel :0,

@@ -86,31 +86,30 @@
 			        <div class="row row-grid border-top justify-content-between align-items-center mt-lg">
 					
 						
-													{foreach $single_classes['nodes'] as $prefix => $nodes}
-														{$id=$id+1}
-																		{foreach $nodes as $node}
+						{foreach $single_classes['nodes'] as $prefix => $nodes}
+		               		{$id=$id+1}
+							{foreach $nodes as $node}
 
-																			{$relay_rule = null}
-																			{if $node->sort == 10}
-																				{$relay_rule = $tools->pick_out_relay_rule($node->id, $user->port, $relay_rules)}
-																			{/if}
+								{$relay_rule = null}
+								{if $node->sort == 10}
+ 									{$relay_rule = $tools->pick_out_relay_rule($node->id, $user->port, $relay_rules)}
+								{/if}
 
-																	{if $node->mu_only != 1}
-						<div class="col-lg-6" style=" margin-top: 3rem;">
-                <div class="card card-lift shadow border-0">
-                  <div class="card-body {$node_order->$prefix}">
-							<div class="card-main">
-								<div class="card-inner">
-									<p class="card-heading" >
-										{$node->name}{if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if}
-									</p>
+						           <div class="col-lg-6" style=" margin-top: 3rem;">
+                                    <div class="card card-lift shadow border-0">
+                                     <div class="card-body {$node_order->$prefix}">
+							          <div class="card-main">
+								       <div class="card-inner">
+									    <p class="card-heading" >
+										 {$node->name}{if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if}
+									    </p>
 										{if $node->node_class > $user->class}
 											<a class="btn btn-flat pull-right" >等级不足</a>
 											{else}
 											
 											<a class="btn btn-sm btn-primary pull-right" href="javascript:void(0);" onClick="urlChange('{$node->id}',0,{if $relay_rule != null}{$relay_rule->id}{else}0{/if})">配置信息</a>
 										{/if}
-									<p>
+									   <p>
 										节点状态：
 										{if $node_heartbeat[$prefix]=="在线"}
 										<span class="badge badge-pill badge-success text-uppercase">正常</span>
@@ -119,30 +118,30 @@
 										{else}
 										<span class="badge badge-pill badge-danger text-uppercase">离线</span>
 										{/if}{/if}
-									</p>
-									{if $node->sort == 0||$node->sort==7||$node->sort==8||$node->sort==10}
+									  </p>
+									 {if $node->sort == 0||$node->sort==7||$node->sort==8||$node->sort==10}
 										<p>流量比例：
 										<span class="label label-red">
 										{$node->traffic_rate}
 										</span></p>
-									{/if}
+									  {/if}
 										<p>流量限速：
 										{if $node->node_speedlimit != 0}{$node->node_speedlimit}&nbsp;Mbps{else}∞{/if}</p>
 										<p>在线人数：
-									{$node_alive[$prefix]}
+									   {$node_alive[$prefix]}
 										</p>
-										<p>使用情况：
-									{if isset($node_bandwidth[$prefix])==true}{$node_bandwidth[$prefix]}{else}N/A{/if}
-										</p>
+										<p>流量情况：
+									   {if isset($node_bandwidth[$prefix])==true}{$node_bandwidth[$prefix]}{else}N/A{/if}
+									</p>
 								</div>
 							</div>
                   </div>
             </div>
           </div>
-		  {/if}
 						{/foreach}
 						{/foreach}		  
         </div>
+		
 						{/foreach}
        </div>
      </div>
@@ -151,7 +150,7 @@
 <div aria-hidden="true" class="modal modal-va-middle fade" id="nodeinfo" role="dialog" tabindex="-1" >
 	<div class="modal-dialog modal-xs">
 		<div class="modal-content">
-			<div class="modal-inner" style="height:440px">
+			<div class="modal-inner" style="height:480px">
 				<iframe class="iframe-seamless" frameborder="0" scrolling="no" title="Modal with iFrame" id="infoifram"></iframe>
 			</div>
 		</div>
