@@ -28,8 +28,9 @@
               附加协议：{$server_explode[4]}</br>
               用户UUID：{$user->getUuid()}</br>
               AlterId：{$server_explode[2]}</br>
-			  VMess链接：</p>
-              <code><a class="copy-text" data-clipboard-text="{URL::getV2Url($user, $node)}">{URL::getV2Url($user, $node)}</a></code>
+			  VMess链接：
+              <code>{URL::getV2Url($user, $node)}</code></p></br>
+              <p><a class="copy-text" data-clipboard-text="{URL::getV2Url($user, $node)} class="btn btn-primary mt-4">&nbsp;Quantumult<br>点击复制</a></p>
             </div>
           </div>
     </div>
@@ -127,15 +128,6 @@
 
 <script>
 
-$(function(){
-  new Clipboard('.copy-text');
-});
-
-$(".copy-text").click(function () {
-  $("#result").modal();
-  $("#msg").html("已复制到您的剪贴板，请您继续接下来的操作。");
-});
-
 {if URL::SSCanConnect($user, $mu) && $node->sort != 11}
   var text_qrcode = '{URL::getItemUrl($ss_item, 1)}';
   jQuery('#ss-qr').qrcode({
@@ -163,5 +155,13 @@ $(".copy-text").click(function () {
     text: text_qrcode2
   });
 {/if}
+
+$(function(){
+	new Clipboard('.copy-text');
+});
+$(".copy-text").click(function () {
+	$("#result").modal();
+	$("#msg").html("已复制到您的剪贴板，请您继续接下来的操作。");
+});
 
 </script>
