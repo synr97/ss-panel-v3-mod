@@ -311,7 +311,7 @@ class URL
                     $ssurl .= "/?plugin=".rawurlencode($plugin);
                 }
 
-                $ssurl .= "&gourp=".Tools::base64_url_encode(Config::get('appName'))."#".rawurlencode($item['remark']);
+                $ssurl .= "&group=".Tools::base64_url_encode(Config::get('appName'))."#".rawurlencode("[SS] ".$item['remark']);
             }
             return $ssurl;
         }
@@ -426,10 +426,10 @@ class URL
                 }
             )->orderBy('priority','DESC')->orderBy('id')->first();
             if ($relay_rule != null) {
-                $server['remarks'] = $node->name.' - '.$relay_rule->dist_node()->name;
+                $server['remarks'] = "[SSD] ".$node->name.' - '.$relay_rule->dist_node()->name;
                 $server['ratio'] = $node->traffic_rate + $relay_rule->dist_node()->traffic_rate;
             } else {
-                $server['remarks'] = $node->name;
+                $server['remarks'] = "[SSD] ".$node->name;
                 $server['ratio'] = $node->traffic_rate;
             }
             array_push($array_server,$server);
@@ -536,7 +536,7 @@ class URL
 
         if (substr($node_name,-2,2) != "SS") {
             if ($node_name == "香港 - IPLC | SSR") {
-                $node_name = "香港 - IPLC | Media";
+                $node_name = "[SSR] 香港 - IPLC | Media";
 			}
 
         	if ($relay_rule != null && $is_mu != 0) {
@@ -552,7 +552,7 @@ class URL
 			}
             	$return_array['address'] = $node->server;
             	$return_array['passwd'] = $user->passwd;
-            	$return_array['remark'] = $node_name;
+            	$return_array['remark'] = "[SSR] ".$node_name;
             	$return_array['protocol_param'] = $user->protocol_param;
             	$return_array['obfs_param'] = $user->obfs_param;
             	$return_array['group'] = Config::get('appName')." - [SSR]";
@@ -570,18 +570,18 @@ class URL
 
     public static function getUserTraffic($user){
         if ($user->class != 0){
-            $ssurl = "flow.dlercloud.com:443:origin:none:plain:YnJlYWt3YWxs/?obfsparam=&protoparam=&remarks=".Tools::base64_url_encode("剩余流量：".number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)."% - ".$user->unusedTraffic())."&group=".Tools::base64_url_encode(Config::get('appName'." - [SSR]"));
+            $ssurl = "flow.dlercloud.com:443:origin:none:plain:YnJlYWt3YWxs/?obfsparam=&protoparam=&remarks=".Tools::base64_url_encode("剩余流量：".number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)."% - ".$user->unusedTraffic())."&group=".Tools::base64_url_encode(Config::get('appName'." - [Information]"));
         } else {
-            $ssurl = "flow.dlercloud.com:443:origin:none:plain:YnJlYWt3YWxs/?obfsparam=&protoparam=&remarks=".Tools::base64_url_encode("已到期，请续费后使用")."&group=".Tools::base64_url_encode(Config::get('appName')." - [SSR]");
+            $ssurl = "flow.dlercloud.com:443:origin:none:plain:YnJlYWt3YWxs/?obfsparam=&protoparam=&remarks=".Tools::base64_url_encode("已到期，请续费后使用")."&group=".Tools::base64_url_encode(Config::get('appName')." - [Information]");
         }
         return "ssr://".Tools::base64_url_encode($ssurl);
     }
   
     public static function getUserClassExpiration($user){
         if ($user->class != 0){
-            $ssurl = "time.dlercloud.com:443:origin:none:plain:YnJlYWt3YWxs/?obfsparam=&protoparam=&remarks=".Tools::base64_url_encode("到期时间：".$user->class_expire)."&group=".Tools::base64_url_encode(Config::get('appName'." - [SSR]"));
+            $ssurl = "time.dlercloud.com:443:origin:none:plain:YnJlYWt3YWxs/?obfsparam=&protoparam=&remarks=".Tools::base64_url_encode("到期时间：".$user->class_expire)."&group=".Tools::base64_url_encode(Config::get('appName'." - [Information]"));
         } else {
-            $ssurl = "time.dlercloud.com:443:origin:none:plain:YnJlYWt3YWxs/?obfsparam=&protoparam=&remarks=".Tools::base64_url_encode("已到期，请续费后使用")."&group=".Tools::base64_url_encode(Config::get('appName')." - [SSR]");
+            $ssurl = "time.dlercloud.com:443:origin:none:plain:YnJlYWt3YWxs/?obfsparam=&protoparam=&remarks=".Tools::base64_url_encode("已到期，请续费后使用")."&group=".Tools::base64_url_encode(Config::get('appName')." - [Information]");
         }
     return "ssr://".Tools::base64_url_encode($ssurl);
   }
