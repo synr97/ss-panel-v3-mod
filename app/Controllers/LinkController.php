@@ -220,19 +220,16 @@ class LinkController extends BaseController
                     $clashx = $request->getQueryParams()["clashx"];
                 }
 
-                $already = $user->u + $user->d;
-        		$still = $user->transfer_enable;
-        		$userinfo = "upload=0; download=".$already.";total=".$still;
-        		$filename = '';
+        		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
         		if ($clashx == 1) {
-        			$filename = 'Dler Cloud.ini'
+        			$filename = 'Dler Cloud.ini';
         		} elseif ($is_mu == 1) {
-        			$filename = 'Dler Cloud - Public.conf'
+        			$filename = 'Dler Cloud - Public.conf';
                 } elseif ($new == 1) {
-                    $filename = 'Dler Cloud - New.conf'
+                    $filename = 'Dler Cloud - New.conf';
         		} else {
-        			$filename = 'Dler Cloud.conf'
-        		};
+        			$filename = 'Dler Cloud.conf';
+        		}
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
                 $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $clashx));
                 return $newResponse;
@@ -297,9 +294,7 @@ class LinkController extends BaseController
                     $mu = (int)$request->getQueryParams()["mu"];
                 }
 
-                $already = $user->u + $user->d;
-        		$still = $user->transfer_enable;
-        		$userinfo = "upload=0; download=".$already.";total=".$still;
+        		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$token.'.txt');
                 $newResponse->getBody()->write(LinkController::GetSSRSub(User::where("id", "=", $Elink->userid)->first(), $mu, $max));
                 return $newResponse;
