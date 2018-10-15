@@ -272,12 +272,11 @@ class ShopController extends AdminController
 
     public function bought($request, $response, $args)
     {
-        $table_config['total_column'] = array("op" => "操作", "id" => "ID", 
+        $table_config['total_column'] = array("op" => "操作", "id" => "ID",
                         "datetime" => "购买日期","content" => "内容",
                         "price" => "价格", "user_id" => "用户ID",
-                        "user_name" => "用户名", "renew" => "自动续费时间", 
-                        "auto_reset_bandwidth" => "续费时是否重置流量"), 
-                        "shop_name" => "商品名称");
+                        "user_name" => "用户名", "renew" => "自动续费时间",
+                        "auto_reset_bandwidth" => "续费时是否重置流量");
         $table_config['default_show_column'] = array();
         foreach ($table_config['total_column'] as $column => $value) {
             array_push($table_config['default_show_column'], $column);
@@ -339,7 +338,7 @@ class ShopController extends AdminController
     public function ajax_bought($request, $response, $args)
     {
         $datatables = new Datatables(new DatatablesHelper());
-        $datatables->query('Select bought.id as op,bought.id as id,shop.id as content,shop.name as shop_name,bought.price,user.id as user_id,user.user_name,renew,shop.auto_reset_bandwidth,bought.datetime from bought,user,shop where bought.shopid = shop.id and bought.userid = user.id');
+        $datatables->query('Select bought.id as op,bought.id as id,shop.id as content,bought.price,user.id as user_id,user.user_name,renew,shop.auto_reset_bandwidth,bought.datetime from bought,user,shop where bought.shopid = shop.id and bought.userid = user.id');
 
         $datatables->edit('op', function ($data) {
             return '<a class="btn btn-brand-accent" '.($data['renew'] == 0 ? "disabled" : ' id="row_delete_'.$data['id'].'" href="javascript:void(0);" onClick="delete_modal_show(\''.$data['id'].'\')"').'>中止</a>';
