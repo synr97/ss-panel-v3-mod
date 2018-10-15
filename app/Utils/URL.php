@@ -311,7 +311,7 @@ class URL
                     $ssurl .= "/?plugin=".rawurlencode($plugin);
                 }
 
-                $ssurl .= "&group=".Tools::base64_url_encode(Config::get('appName'))."#".rawurlencode($item['remark']);
+                $ssurl .= "&group=".Tools::base64_url_encode(Config::get('appName')." - [SS]")."#".rawurlencode($item['remark']);
             }
             return $ssurl;
         }
