@@ -219,9 +219,8 @@
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1</a></code>
 												</p>
 												<p>
-												<hr>
 											{/if}
-											{if URL::SSCanConnect($user)}
+											{if URL::SSRCanConnect($user)}
 												<p>Clash 公共端口配置文件</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=1clash=1</a></code>
