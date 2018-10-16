@@ -104,11 +104,12 @@
                     {/if}
                 
                   <div class="custom-control custom-control-alternative custom-checkbox">
-                    <input class="custom-control-input" id="surge_user" name="surge_user" type="checkbox"> 
-                    <label class="custom-control-label" for="surge_user">
+                    <input class="custom-control-input" id="ss_user" name="ss_user" type="checkbox" checked="checked"> 
+                    <label class="custom-control-label" for="ss_user">
                       <span>SS 模式</span>
                     </label>
                   </div>
+
                   <div class="row my-4">
                     <div class="col-12">
                       <div class="custom-control-alternative custom-checkbox">
@@ -196,13 +197,13 @@ $("#reg_code").modal('hide')
 
      document.getElementById("tos").disabled = true; 
      
-      if(document.getElementById('surge_user').checked)
+      if(document.getElementById('ss_user').checked)
       {
-        var surge_user=1;
+        var ss_user=1;
       }
       else
       {
-        var surge_user=0;
+        var ss_user=0;
       }
       
             $.ajax({
@@ -216,7 +217,7 @@ $("#reg_code").modal('hide')
                     passwd: $("#passwd").val(),
                     repasswd: $("#repasswd").val(),
           wechat: $("#wechat").val(),
-          surge_user: surge_user,
+          ss_user: ss_user,
           imtype: $("#imtype").val(){if $enable_invite_code == 'true'},
           code: $("#code").val(){/if}{if $enable_email_verify == 'true'},
           emailcode: $("#email_code").val(){/if}{if $geetest_html != null},
