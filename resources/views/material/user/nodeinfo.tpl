@@ -145,7 +145,10 @@
       height: 200,
     text: text_qrcode_s
   });
+{/if}
 
+
+{if URL::SSCanConnect($user, $mu) && $node->sort != 11}
   var text_qrcode = '{URL::getItemUrl($ss_item, 1)}';
   jQuery('#ss-qr').qrcode({
         correctLevel :0,
@@ -172,8 +175,10 @@
       height: 200,
     text: text_qrcode2_s
   });
+  {/if}
 
 
+{if URL::SSRCanConnect($user, $mu) && $node->sort != 11}
   var text_qrcode2 = '{URL::getItemUrl($ssr_item, 0)}';
   jQuery('#ss-qr-n').qrcode({
         correctLevel :0,
