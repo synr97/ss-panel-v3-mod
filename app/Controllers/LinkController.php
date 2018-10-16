@@ -514,7 +514,15 @@ class LinkController extends BaseController
 
         if ($clash == 1) {
 
-return ''.$general.'
+return '
+#---------------------------------------------------#
+## 配置文件需要放置在 $HOME/.config/clash/config.yml
+## 
+## 对于 macOS 用户，如果你不知道如何操作，请将一下命令复制到 终端 （包括最后的 . 符号）并执行：
+## mkdir -p $HOME/.config/clash/ && cd $HOME/.config/clash/ && sudo curl -o ./config.yml '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].' -k -s && sudo chmod 775 ./config.yml
+#---------------------------------------------------#
+
+'.$general.'
 
 Proxy:
 '.$proxy_list.'
