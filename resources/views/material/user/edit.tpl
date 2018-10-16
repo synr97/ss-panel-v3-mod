@@ -65,9 +65,7 @@
                 </div>
               </div>
             </div>
-			
-						
-						
+
 			        <div class="row row-grid justify-content-between align-items-center mt-lg">
 						<div class="col-lg-6">
 							<div class="card card-lift shadow border-0">
@@ -100,9 +98,11 @@
 									{if $user->telegram_id == 0}
 										<p>点击绑定，将下面面的信息发送给它</p>
 										<p><code><a class="copy-text" data-clipboard-text="/bind {$bind_token}">/bind {$bind_token}</a></code></p>
-										<a class="btn btn-primary mt-4" href="https://t.me/{$telegram_bot}" target="_blank">&nbsp;绑定</a>
 									{/if}
 									</div>
+									{if $user->telegram_id == 0}
+									<a class="btn btn-primary mt-4" href="https://t.me/{$telegram_bot}" target="_blank">&nbsp;绑定</a>
+									{/if}
 									<a class="btn btn-primary mt-4" href="/user/telegram_reset" >&nbsp;解绑</a>
 								</div>
 							</div>
