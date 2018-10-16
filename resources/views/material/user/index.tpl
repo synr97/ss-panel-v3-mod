@@ -285,7 +285,7 @@
 												<p>
 												<a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
 												</p>
-												</div>
+											</div>
 									</div>
 								</div>
 							</div>
