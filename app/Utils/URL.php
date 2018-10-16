@@ -392,7 +392,7 @@ class URL
         if ($plugin_options != ''){
             $array_all['plugin'] = 'simple-obfs';//目前只支持这个
             if ($user->obfs_param == ''){
-                $array_all['plugin_options'] = $plugin_options;
+                $array_all['plugin_options'] = $plugin_options;';obfs-host=wns.windows.com';
             } else {
             	$array_all['plugin_options'] = $plugin_options.';obfs-host='.$user->obfs_param;
             }
