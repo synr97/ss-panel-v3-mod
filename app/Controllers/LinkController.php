@@ -215,9 +215,9 @@ class LinkController extends BaseController
                     $new = $request->getQueryParams()["new"];
                 }
 
-                $clashx = 0;
-                if (isset($request->getQueryParams()["clashx"])) {
-                    $clashx = $request->getQueryParams()["clashx"];
+                $clash = 0;
+                if (isset($request->getQueryParams()["clash"])) {
+                    $clash = $request->getQueryParams()["clash"];
                 }
 
         		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
@@ -231,7 +231,7 @@ class LinkController extends BaseController
         			$filename = 'Dler Cloud.conf';
         		}
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
-                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $clashx));
+                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $clash));
                 return $newResponse;
             case 3:
                 $type = "PROXY";
@@ -441,14 +441,14 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $clashx = 0)
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $clash = 0)
     {
         $proxy_name = "";
         $domestic_name = "";
         $auto_name = "";
         $proxy_list = "";
 
-        if ($clashx == 1) {
+        if ($clash == 1) {
             $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.yml");
             $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashX.yml");
         } else {
@@ -475,9 +475,9 @@ class LinkController extends BaseController
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
-            if ($clashx == 1) {
-	            if (URL::getclashXObfs($item) != "") {
-	            	$proxy_list .= '- name: '.$item['remark']."\n".'type: ss'."\n".'server: '.$item['address']."\n".'port: '.$item['port']."\n".'cipher: '.$item['method']."\n".'password: '.$item['passwd']."\n".URL::getclashXObfs($item)."\n\n";
+            if ($clash == 1) {
+	            if (URL::getclashObfs($item) != "") {
+	            	$proxy_list .= '- name: '.$item['remark']."\n".'type: ss'."\n".'server: '.$item['address']."\n".'port: '.$item['port']."\n".'cipher: '.$item['method']."\n".'password: '.$item['passwd']."\n".URL::getclashObfs($item)."\n\n";
 		        } else {
 		            $proxy_list .= '- name: '.$item['remark']."\n".'type: ss'."\n".'server: '.$item['address']."\n".'port: '.$item['port']."\n".'cipher: '.$item['method']."\n".'password: '.$item['passwd']."\n\n";
 		        }
@@ -488,7 +488,7 @@ class LinkController extends BaseController
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                 }
             }
-            if ($clashx == 1) {
+            if ($clash == 1) {
             	$proxy_name .= '- '.$item['remark']."\n";
 
 	            if (substr($item['remark'],-5,5) != "Gamer") {
@@ -512,7 +512,7 @@ class LinkController extends BaseController
 	        }
         }
 
-        if ($clashx == 1) {
+        if ($clash == 1) {
 
 return ''.$general.'
 

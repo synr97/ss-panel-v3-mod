@@ -214,9 +214,9 @@
 												<hr>
 											{/if}
 											{if URL::SSCanConnect($user)}
-												<p>ClashX 配置文件</p>
+												<p>Clash 配置文件</p>
 												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&clashx=1">{$apiUrl}/link/{$ios_token}?clashx=1</a></code>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1">{$apiUrl}/link/{$ios_token}?clash=1</a></code>
 												</p>
 												<p>
 												<hr>
