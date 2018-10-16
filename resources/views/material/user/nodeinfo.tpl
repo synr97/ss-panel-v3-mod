@@ -81,7 +81,6 @@
                           		端口：{$user->port}<br>
                           		密码：{$ss_item['passwd']}<br>
                             	加密方式：{$ss_item['method']}<br>
-                            	协议：{$ss_item['protocol']}<br>
                             	混淆：{$ss_item['obfs']}<br></p>
           {/if}
               <div id="ss-qr"></div>
