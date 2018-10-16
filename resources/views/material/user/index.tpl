@@ -117,7 +117,6 @@
 									</div>
 								</div>
 							</div>
-
 					<div class="mt-5 py-5 border-top text-center">
 						<div class="row justify-content-center">
 							<div class="col-lg-9">
