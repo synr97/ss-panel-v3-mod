@@ -162,6 +162,12 @@
 												<dd><code>{$user->obfs}</code></dd></p>
 											</dl>
 											<button id="reset-link" class="btn btn-primary mt-4 reset-link">重置订阅/托管地址</button>
+											{if URL::SSCanConnect($user)}
+											<button id="switch-ss" class="btn btn-primary mt-4 reset-link">切换为 SS 模式</button>
+											{/if}
+											{if URL::SSRCanConnect($user)}
+											<button id="switch-ssr" class="btn btn-primary mt-4 reset-link">切换为 SSR 模式</button>
+											{/if}
 										</div>
 										<div class="tab-pane fade" id="all_ssr" role="tabpanel" aria-labelledby="all_ssr-tab">
 											<div style="padding:18px">
@@ -337,6 +343,107 @@
 
 <script src="/theme/material/js/shake.js/shake.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $("#switch-ss").click(function () {
+        	$.ajax({
+                type: "POST",
+                url: "method",
+                dataType: "json",
+                data: {
+                    method: "chacha20-ietf-poly1305",
+                },
+                success: function (data) {
+                    if (data.ret) {
+                        $("#result").modal();
+						$("#msg").html("成功了");
+                    } else {
+                        $("#result").modal();
+						$("#msg").html(data.msg);
+                    }
+                },
+                error: function (jqXHR) {
+                    $("#result").modal();
+					$("#msg").html(data.msg+"     出现了一些错误。");
+                }
+            })
+
+            $.ajax({
+                type: "POST",
+                url: "ssr",
+                dataType: "json",
+                data: {
+                    protocol: "origin",
+					obfs: "simple_obfs_http",
+                },
+                success: function (data) {
+                    if (data.ret) {
+                        $("#result").modal();
+						$("#msg").html(data.msg);
+                    } else {
+                        $("#result").modal();
+						$("#msg").html(data.msg);
+                    }
+                },
+                error: function (jqXHR) {
+                    $("#result").modal();
+					$("#msg").html(data.msg+"     出现了一些错误。");
+                }
+            })
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#switch-ssr").click(function () {
+        	$.ajax({
+                type: "POST",
+                url: "method",
+                dataType: "json",
+                data: {
+                    method: "aes-128-ctr",
+                },
+                success: function (data) {
+                    if (data.ret) {
+                        $("#result").modal();
+						$("#msg").html("成功了");
+                    } else {
+                        $("#result").modal();
+						$("#msg").html(data.msg);
+                    }
+                },
+                error: function (jqXHR) {
+                    $("#result").modal();
+					$("#msg").html(data.msg+"     出现了一些错误。");
+                }
+            })
+
+            $.ajax({
+                type: "POST",
+                url: "ssr",
+                dataType: "json",
+                data: {
+                    protocol: "auth_aes128_md5",
+					obfs: "plain",
+                },
+                success: function (data) {
+                    if (data.ret) {
+                        $("#result").modal();
+						$("#msg").html(data.msg);
+                    } else {
+                        $("#result").modal();
+						$("#msg").html(data.msg);
+                    }
+                },
+                error: function (jqXHR) {
+                    $("#result").modal();
+					$("#msg").html(data.msg+"     出现了一些错误。");
+                }
+            })
+        })
+    })
+</script>
 
 <script>
 
@@ -354,6 +461,8 @@ $(".reset-link").click(function () {
 	$("#msg").html("已重置订阅链接，请您继续接下来的操作。");
 	window.setTimeout("location.href='/user/url_reset'", {$config['jump_delay']});
 });
+
+
   
 {if $geetest_html == null}
 window.onload = function() {
