@@ -222,7 +222,7 @@ class LinkController extends BaseController
 
         		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
         		if ($clashx == 1) {
-        			$filename = 'Dler Cloud.yaml';
+        			$filename = 'Dler Cloud.yml';
         		} elseif ($is_mu == 1) {
         			$filename = 'Dler Cloud - Public.conf';
                 } elseif ($new == 1) {
@@ -481,16 +481,16 @@ class LinkController extends BaseController
                 }
             }
             if ($clashx == 1) {
-                if (URL::getSurgeObfs($item) != "") {
-                    $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].','.$item['method'].', '.$item['passwd'].', '.URL::getSurgeObfs($item)."\n";
+                if (URL::getclashXObfs($item) != "") {
+                    $proxy_list .= '- { name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].',prot: '.$item['port'].', cipher: '.$item['method'].', password'.'"'.$item['passwd'].'", '.URL::getclashXObfs($item).'}\n'
                 } else {
-                    $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', '."\n";
+                    $proxy_list .= '- { name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].',prot: '.$item['port'].', cipher: '.$item['method'].', password'.'"'.$item['passwd'].'"}\n'
                 }
             } else {
                 if (URL::getSurgeObfs($item) != "") {
-                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'.'\n';
                 } else {
-                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
+                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'.'\n';
                 }
             }
             $proxy_name .= ", ".$item['remark'];
@@ -510,8 +510,7 @@ class LinkController extends BaseController
 
         if ($clashx == 1) {
 
-return '
-'.$general.'
+return ''.$general.'
 
 [Proxy]
 '.$proxy_list.'
