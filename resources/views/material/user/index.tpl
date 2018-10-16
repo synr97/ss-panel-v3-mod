@@ -160,10 +160,10 @@
 
 												<p><dt>加密</dt>
 												<dd><code>{$user->method}</code></dd></p>
-												{if URL::SSRCanConnect($user)}
+
 												<p><dt>协议</dt>
 												<dd><code>{$user->protocol}</code></dd></p>
-												{/if}
+
 												<p><dt>混淆</dt>
 												<dd><code>{$user->obfs}</code></dd></p>
 											</dl>
