@@ -476,12 +476,14 @@ class LinkController extends BaseController
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
             if ($clashx == 1) {
-                if (URL::getclashXObfs($item) != "") {
-                    $proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'",'.URL::getSurgeObfs($item).'" }'."\n";
-                } else {
-                    $proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'" }'."\n";
-                }
+	            if (URL::getclashXObfs($item) != "") {
+	            	$proxy_list .= '- name: '.$item['remark']."\n".'type: ss'."\n".'server: '.$item['address']."\n".'port: '.$item['port']."\n".'cipher: '.$item['method']."\n".'password: '.$item['passwd']."\n".URL::getclashXObfs($item)."\n\n";
+		        } else {
+		            $proxy_list .= '- name: '.$item['remark']."\n".'type: ss'."\n".'server: '.$item['address']."\n".'port: '.$item['port']."\n".'cipher: '.$item['method']."\n".'password: '.$item['passwd']."\n\n";
+		        }
             } else {
+            	$proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'" }'."\n";
+            	
                 if (URL::getSurgeObfs($item) != "") {
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
                 } else {
@@ -489,16 +491,11 @@ class LinkController extends BaseController
                 }
             }
             if ($clashx == 1) {
-            	$proxy_name .= ", ".$item['remark'];
-	            if (substr($item['remark'],-5,5) == "Relay") {
-	                $domestic_name .= ", ".$item['remark'];
-	            }
-	            if (substr($item['remark'],-5,5) == "Media") {
-	                $media_name .= ", ".$item['remark'];
-	            }
+            	$proxy_name .= '- '.$item['remark']"\n";
+
 	            if (substr($item['remark'],-5,5) != "Gamer") {
 	                if (substr($item['remark'],-2,2) != "Relay") {
-	                    $auto_name .= ", ".$item['remark'];
+	                    $auto_name .= '"'.$item['remark'].'"';
 	                }
 	            }
             } else {
@@ -525,12 +522,11 @@ Proxy:
 '.$proxy_list.'
 
 Proxy Group:
-- { name: "AUTO", type: url-test, proxies: ["ss1", "ss2", "vmess1"], url: https://www.bing.com, interval: 1200 }
-AUTO = url-test'.$auto_name.', http://captive.apple.com,1200
-PROXY = select, AUTO'.$proxy_name.'
-Domestic = select, PROXY'.$domestic_name.'
-Apple = select, PROXY, AUTO
-Media = select, PROXY'.$media_name.'
+- name: auto'\n'type: url-test'\n'proxies:'.$auto_name.''\n'url: http://captive.apple.com'\n'  interval: 1200
+
+- name: fallback-auto'\n'type: fallback'\n'proxies:'.$auto_name.''\n'url: http://captive.apple.com'\n'  interval: 1200
+
+- name: proxy'\n'type: select'\n'proxies:'.$proxy_name.'
 
 '.$rules.'';
 

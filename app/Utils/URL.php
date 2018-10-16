@@ -483,9 +483,9 @@ class URL
                 $plugin .= "obfs: tls";
             }
             if ($item['obfs_param'] != '') {
-                $plugin .= ",obfs-host: ".$item['obfs_param'];
+                $plugin .= "\nobfs-host: ".$item['obfs_param'];
             } else {
-                $plugin .= ",obfs-host: wns.windows.com";
+                $plugin .= "\nobfs-host: wns.windows.com";
             }
 
         }
