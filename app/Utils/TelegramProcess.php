@@ -42,9 +42,11 @@ class TelegramProcess
 								SSR 公共端口订阅地址：
 								".$apiUrl."/link/".$ssr_sub_token."?mu=1
 								Surge 2&3 / Surfboard 公共端口托管地址：
-								".$apiUrl."/link/".$ios_token."?is_ss=1&is_mu=1&mitm=0
+								".$apiUrl."/link/".$ios_token."?is_mu=1
 								Surge 2&3 公共端口托管地址（MitM）：
-								".$apiUrl."/link/".$ios_token."?is_ss=1&is_mu=1&mitm=1
+								".$apiUrl."/link/".$ios_token."?is_mu=1&mitm=1
+                                Surge 3 公共端口托管地址（MitM）：
+                                ".$apiUrl."/link/".$ios_token."?is_mu=1&mitm=1&new=1
 								V2Ray 公共端口订阅地址：
 								".$apiUrl."/link/".$ssr_sub_token."?mu=2
 
@@ -59,6 +61,7 @@ class TelegramProcess
 								端口：".$ss_user->port."
 								密码：".$ss_user->passwd."
 								加密：".$ss_user->method."
+                                协议：".$ss_user->protocol."
 								混淆：".$ss_user->obfs."
 
 								SSR 公共端口订阅地址：
@@ -66,17 +69,17 @@ class TelegramProcess
 								SSD 个人端口订阅地址：
 								".$apiUrl."/link/".$ssr_sub_token."?mu=3
 								Surge 2&3 / Surfboard 个人端口托管地址：
-								".$apiUrl."/link/".$ios_token."?is_ss=1&is_mu=0&mitm=0
+								".$apiUrl."/link/".$ios_token."?is_mu=0
 								Surge 2&3 / Surfboard 公共端口托管地址：
-								".$apiUrl."/link/".$ios_token."?is_ss=1&is_mu=1&mitm=0
+								".$apiUrl."/link/".$ios_token."?is_mu=1
 								Surge 2&3 个人端口托管地址（MitM）：
-								".$apiUrl."/link/".$ios_token."?is_ss=1&is_mu=0&mitm=1
+								".$apiUrl."/link/".$ios_token."?is_mu=0&mitm=1
 								Surge 2&3 公共端口托管地址（MitM）：
-								".$apiUrl."/link/".$ios_token."?is_ss=1&is_mu=1&mitm=1
+								".$apiUrl."/link/".$ios_token."?is_mu=1&mitm=1
 								Surge 3 个人端口托管地址（MitM）：
-								".$apiUrl."/link/".$ios_token."?is_ss=1&is_mu=0&mitm=1&new=1
+								".$apiUrl."/link/".$ios_token."?is_mu=0&mitm=1&new=1
 								Surge 3 公共端口托管地址（MitM）：
-								".$apiUrl."/link/".$ios_token."?is_ss=1&is_mu=1&mitm=1&new=1
+								".$apiUrl."/link/".$ios_token."?is_mu=1&mitm=1&new=1
 								V2Ray 公共端口订阅地址：
 								".$apiUrl."/link/".$ssr_sub_token."?mu=2
 
@@ -104,6 +107,23 @@ class TelegramProcess
 																	未使用 ".$user->unusedTraffic()." ".number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100, 2)."%"
 																	, $parseMode = null, $disablePreview = false, $replyToMessageId = $reply_to);
                     break;
+
+                case 'bind':
+                   $token = substr($message->getText(), 6);
+                   $uid = TelegramSessionManager::verify_bind_session($token);
+                   if ($uid != 0) {
+                      $user = User::where('id', $uid)->first();
+                      $user->telegram_id = $message->getFrom()->getId();
+                      $user->im_type = 4;
+                      $user->im_value = $message->getFrom()->getUsername();
+                      $user->save();
+
+                      $bot->sendMessage($message->getChat()->getId(), "绑定成功。邮箱：".$user->email);
+                   } else {
+                      $bot->sendMessage($message->getChat()->getId(), "绑定失败，token无效");
+                   }
+
+                   break;
 
                 case 'checkin':
                     if (!$user->isAbleToCheckin()) {
@@ -327,7 +347,7 @@ class TelegramProcess
             // or initialize with botan.io tracker api key
             // $bot = new \TelegramBot\Api\Client('YOUR_BOT_API_TOKEN', 'YOUR_BOTAN_TRACKER_API_KEY');
 
-            $command_list = array("ping", "chat", "announcement", "connectinfo", "usage", "traffic", "checkin", "help");
+            $command_list = array("ping", "chat", "announcement", "connectinfo", "usage", "traffic", "checkin", "bind", "help");
             foreach ($command_list as $command) {
                 $bot->command($command, function ($message) use ($bot, $command) {
                     TelegramProcess::telegram_process($bot, $message, $command);

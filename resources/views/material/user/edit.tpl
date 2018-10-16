@@ -95,10 +95,8 @@
 									<p class="card-heading">Telegram 绑定</p>
 									<p>Telegram 添加机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，拍下下面这张二维码发给它。</p>
 									<div class="form-group form-group-label">
-										<div class="text-center">
-											<div id="telegram-qr"></div>
+                                          <p><code>/bind {$bind_token}</code></p>
 											{if $user->telegram_id != 0}当前绑定：<a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>{/if}
-										</div>
 									</div>
 									<a class="btn btn-primary mt-4" href="/user/telegram_reset" >&nbsp;解绑</a>
 								</div>
