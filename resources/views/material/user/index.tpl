@@ -145,7 +145,6 @@
 								<div class="card-body">
 									<div class="tab-content" id="myTabContent">
 										<div class="tab-pane fade show active" id="all_info" role="tabpanel" aria-labelledby="all_info-tab">
-																		<p>{$agent}</p>
 											<dl class="dl-horizontal">
 												<p><dt>端口</dt>
 												<dd><code>{$user->port}</code></dd></p>
