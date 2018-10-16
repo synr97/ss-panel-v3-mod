@@ -122,13 +122,14 @@
 						<div class="row justify-content-center">
 							<div class="col-lg-9">
 						<div class="mb-3">
-							<small class="text-uppercase font-weight-bold">All-in-One</small>
 							{if URL::SSRCanConnect($user)}
 								<button id="switch-ss" class="btn btn-primary mt-4 reset-link">切换为 SS 模式</button>
 							{/if}
 							{if URL::SSCanConnect($user)}
 								<button id="switch-ssr" class="btn btn-primary mt-4 reset-link">切换为 SSR 模式</button>
 							{/if}
+							<br><br>
+							<small class="text-uppercase font-weight-bold">All-in-One</small>
 						</div>
 							<div class="nav-wrapper">
 								<ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-text" role="tablist">
