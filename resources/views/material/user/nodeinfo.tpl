@@ -47,16 +47,12 @@
                 <a class="nav-link mb-sm-3 mb-md-0 active" id="1-tab" data-toggle="tab" href="#1" role="tab" aria-controls="3" aria-selected="true">个人端口</a>
               </li>
              {/if}
-             {if $node->mu_only == 152}
               <li class="nav-item">
                 <a class="nav-link mb-sm-3 mb-md-0 {if $node->mu_only == 1}active{/if}" id="2-tab" data-toggle="tab" href="#2" role="tab" aria-controls="2" aria-selected="false">公共端口 - SSR</a>
               </li>
-              {/if}
-              {if $node->mu_only == 153}
               <li class="nav-item">
                 <a class="nav-link mb-sm-3 mb-md-0" id="3-tab" data-toggle="tab" href="#3" role="tab" aria-controls="3" aria-selected="false">公共端口 - SS</a>
               </li>
-              {/if}
             </ul>
           </div>
         
