@@ -522,11 +522,21 @@ Proxy:
 '.$proxy_list.'
 
 Proxy Group:
-- name: auto'.\n.'type: url-test'.\n.'proxies:'.$auto_name.''.\n.'url: http://captive.apple.com'.\n.'interval: 1200
+- name: auto
+  type: url-test
+  proxies:'.$auto_name.'
+  url: http://captive.apple.com
+  interval: 1200
 
-- name: fallback-auto'.\n.'type: fallback'.\n.'proxies:'.$auto_name.''.\n.'url: http://captive.apple.com'.\n.'interval: 1200
+- name: fallback-auto
+  type: fallback
+  proxies:'.$auto_name.'
+  url: http://captive.apple.com
+  interval: 1200
 
-- name: proxy'.\n.'type: select'.\n.'proxies:'.$proxy_name.'
+- name: proxy
+  type: select
+  proxies:'.$proxy_name.'
 
 '.$rules.'';
 
