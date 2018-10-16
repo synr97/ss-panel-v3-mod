@@ -305,7 +305,7 @@ class URL
                     $ssurl .= "/?plugin=".rawurlencode($plugin);
                 }
 
-                $ssurl .= "&group=".Tools::base64_url_encode(Config::get('appName')." - [SS]")."#".rawurlencode($item['remark']);
+                $ssurl .= "&group=".Tools::base64_url_encode(Config::get('appName')." - SS")."#".rawurlencode($item['remark']);
             }
             return $ssurl;
         }
@@ -374,7 +374,7 @@ class URL
             return null;
         }
         $array_all = array();
-        $array_all['airport'] = Config::get('appName')." - [SSD]";
+        $array_all['airport'] = Config::get('appName')." - SSD";
         $array_all['port'] = $user->port;
         $array_all['encryption'] = $user->method;
         $array_all['password'] = $user->passwd;
@@ -568,7 +568,7 @@ class URL
             }
             	$return_array['protocol_param'] = $user->protocol_param;
             	$return_array['obfs_param'] = $user->obfs_param;
-            	$return_array['group'] = Config::get('appName')." - [SSR]";
+            	$return_array['group'] = Config::get('appName')." - SSR";
 			if ($mu_port != 0 && $is_mu != 0) {
 				$return_array['group'] .= '';
 			}
