@@ -33,8 +33,8 @@
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
             			<input class="form-control" id="email" type="text" placeholder="邮箱" >
-            			<button id="email_verify" class="btn btn-primary mt-4">获取邮箱验证码</button>
                     </div>
+                    <button id="email_verify" class="btn btn-primary mt-4">获取邮箱验证码</button>
                   </div>
                   <div class="form-group">
                     <div class="input-group input-group-alternative mb-3">
