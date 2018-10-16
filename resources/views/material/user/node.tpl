@@ -150,7 +150,7 @@
 <div aria-hidden="true" class="modal modal-va-middle fade" id="nodeinfo" role="dialog" tabindex="-1" >
 	<div class="modal-dialog modal-xs">
 		<div class="modal-content">
-			<div class="modal-inner" style="height:720px">
+			<div class="modal-inner" style="height:640px">
 				<iframe class="iframe-seamless" frameborder="0" scrolling="no" title="Modal with iFrame" id="infoifram"></iframe>
 			</div>
 		</div>

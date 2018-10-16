@@ -16,7 +16,6 @@
  <div class="card shadow">
         <div class="card-body">
           <div class="tab-content" id="myTabContent">
-
           <div class="tab-pane fade show active" id="1" role="tabpanel" aria-labelledby="1-tab">
             <div class="text-center">
               <p style="color:red">{$node->name}</p>
@@ -137,7 +136,7 @@
 
 <script>
 
-{if URL::SSCanConnect($user, $mu) && $node->sort != 11}
+{if $node->sort != 11}
 
   var text_qrcode_s = '{URL::getItemUrl($ss_item_s, 1)}';
   jQuery('#ss-qr-s').qrcode({
@@ -164,7 +163,7 @@
   });
   {/if}
 
-  {if URL::SSRCanConnect($user, $mu) && $node->sort != 11}
+  {if $node->sort != 11}
 
   var text_qrcode2_s = '{URL::getItemUrl($ssr_item_s, 0)}';
   jQuery('#ssr-qr-s').qrcode({
