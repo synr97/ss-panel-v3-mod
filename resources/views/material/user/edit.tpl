@@ -93,7 +93,7 @@
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<p class="card-heading">Telegram 绑定</p>
-									<p>Telegram 添加机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，拍下下面这张二维码发给它。</p>
+									<p>Telegram 添加机器人账号 <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>，将下面的信息发送给它。</p>
 									<div class="form-group form-group-label">
                                           <p><code>/bind {$bind_token}</code></p>
 											{if $user->telegram_id != 0}当前绑定：<a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>{/if}
