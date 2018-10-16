@@ -449,8 +449,8 @@ class LinkController extends BaseController
         $proxy_list = "";
 
         if ($clashx == 1) {
-            $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.ini");
-            $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashX.ini");
+            $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.yml");
+            $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashX.yml");
         } else {
             if ($new == 0) {
                 if ($mitm == 0) {
@@ -482,9 +482,9 @@ class LinkController extends BaseController
             }
             if ($clashx == 1) {
                 if (URL::getclashXObfs($item) != "") {
-                    $proxy_list .= '- { name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].',prot: '.$item['port'].', cipher: '.$item['method'].', password'.'"'.$item['passwd'].'", '.URL::getclashXObfs($item).'}\n';
+                    $proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'",'.URL::getSurgeObfs($item).'" }\n'
                 } else {
-                    $proxy_list .= '- { name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].',prot: '.$item['port'].', cipher: '.$item['method'].', password'.'"'.$item['passwd'].'"}\n';
+                    $proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'" }\n'
                 }
             } else {
                 if (URL::getSurgeObfs($item) != "") {
@@ -512,7 +512,7 @@ class LinkController extends BaseController
 
 return ''.$general.'
 
-[Proxy]
+Proxy:
 '.$proxy_list.'
 
 [Proxy Group]
