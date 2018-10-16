@@ -102,7 +102,7 @@
                           加密方式：{$ssr_item_s['method']}<br>
                           协议：{$ssr_item_s['protocol']}<br>
                           协议参数：{$ssr_item_s['protocol_param']}<br>
-                          混淆：{$ssr_item_s['obfs']}<br>
+                          混淆：{$ssr_item_s['obfs']}<br></p>
                  <div id="ssr-qr-s"></div>
             </div>
           </div>
@@ -117,6 +117,7 @@
                           端口：{$ss_item_s['port']}<br>
                           密码：{$ss_item_s['passwd']}<br>
                           加密方式：{$ss_item_s['method']}<br>
+                          协议：{$ss_item['protocol']}<br>
                           混淆：{$ss_item_s['obfs']}<br>
                           混淆参数：{$ss_item_s['obfs_param']}<br></p>
                  <div id="ss-qr-s"></div>
