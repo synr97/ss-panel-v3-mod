@@ -94,11 +94,13 @@
 								<div class="card-body">
 									<p class="card-heading">Telegram 绑定</p>
 									<div class="form-group form-group-label">
-										<p><code><a class="copy-text" data-clipboard-text="/bind {$bind_token}">/bind {$bind_token}</a></code></p>
-											{if $user->telegram_id != 0}当前绑定：<a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>{/if}
+										{if $user->telegram_id != 0}
+											当前绑定：<a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>
+										{elseif $user->telegram_id == 0}
+											<p>点击绑定，将下面的信息发送给它</p>
+											<p><code><a class="copy-text" data-clipboard-text="/bind {$bind_token}">/bind {$bind_token}</a></code></p>
+										{/if}
 									</div>
-									{if $user->telegram_id == 0}
-									<p>点击绑定，将上面的信息发送给它</p>
 									<a class="btn btn-primary mt-4" href="https://t.me/{$telegram_bot}" target="_blank">&nbsp;绑定</a>
 									{/if}
 									<a class="btn btn-primary mt-4" href="/user/telegram_reset" >&nbsp;解绑</a>
