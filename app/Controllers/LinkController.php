@@ -491,11 +491,11 @@ class LinkController extends BaseController
                 }
             }
             if ($clashx == 1) {
-            	$proxy_name .= '- '.$item['remark']"\n";
+            	$proxy_name .= '- '.$item['remark']."\n";
 
 	            if (substr($item['remark'],-5,5) != "Gamer") {
 	                if (substr($item['remark'],-2,2) != "Relay") {
-	                    $auto_name .= '"'.$item['remark'].'"';
+	                    $auto_name .= '- '.$item['remark']."\n";
 	                }
 	            }
             } else {
