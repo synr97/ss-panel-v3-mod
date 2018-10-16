@@ -482,9 +482,9 @@ class LinkController extends BaseController
             }
             if ($clashx == 1) {
                 if (URL::getclashXObfs($item) != "") {
-                    $proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'",'.URL::getSurgeObfs($item).'" }'"\n";
+                    $proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'",'.URL::getSurgeObfs($item).'" }'."\n";
                 } else {
-                    $proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'" }'"\n";
+                    $proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'" }'."\n";
                 }
             } else {
                 if (URL::getSurgeObfs($item) != "") {
@@ -493,19 +493,33 @@ class LinkController extends BaseController
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                 }
             }
-            $proxy_name .= ", ".$item['remark'];
-
-            if (substr($item['remark'],-5,5) == "Relay") {
-                $domestic_name .= ", ".$item['remark'];
-            }
-            if (substr($item['remark'],-5,5) == "Media") {
-                $media_name .= ", ".$item['remark'];
-            }
-            if (substr($item['remark'],-5,5) != "Gamer") {
-                if (substr($item['remark'],-2,2) != "Relay") {
-                    $auto_name .= ", ".$item['remark'];
-                }
-            }
+            if ($clashx == 1) {
+            	$proxy_name .= ", ".$item['remark'];
+	            if (substr($item['remark'],-5,5) == "Relay") {
+	                $domestic_name .= ", ".$item['remark'];
+	            }
+	            if (substr($item['remark'],-5,5) == "Media") {
+	                $media_name .= ", ".$item['remark'];
+	            }
+	            if (substr($item['remark'],-5,5) != "Gamer") {
+	                if (substr($item['remark'],-2,2) != "Relay") {
+	                    $auto_name .= ", ".$item['remark'];
+	                }
+	            }
+            } else {
+	            $proxy_name .= ", ".$item['remark'];
+	            if (substr($item['remark'],-5,5) == "Relay") {
+	                $domestic_name .= ", ".$item['remark'];
+	            }
+	            if (substr($item['remark'],-5,5) == "Media") {
+	                $media_name .= ", ".$item['remark'];
+	            }
+	            if (substr($item['remark'],-5,5) != "Gamer") {
+	                if (substr($item['remark'],-2,2) != "Relay") {
+	                    $auto_name .= ", ".$item['remark'];
+	                }
+	            }
+	        }
         }
 
         if ($clashx == 1) {
