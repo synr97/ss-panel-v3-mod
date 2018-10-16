@@ -133,7 +133,7 @@
 {include file='user/footer_info.tpl'}
 
 
-<script src="https://cdn.godann.com/kitui/js/jquery.qrcode.min.js"></script>
+<script src="/assets/public/js/jquery.qrcode.min.js"></script>
 
 <script>
 

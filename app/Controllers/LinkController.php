@@ -475,11 +475,6 @@ class LinkController extends BaseController
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
-            if (substr($item['remark'],-3,3) != "SSR") {
-                if ($item['remark'] == "香港 - IPLC | SSR") {
-                    $item['remark'] = "香港 - IPLC | Media";
-                }
-            }
             if ($clashx == 1) {
                 if (URL::getclashXObfs($item) != "") {
                     $proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'",'.URL::getSurgeObfs($item).'" }'."\n";
@@ -530,6 +525,7 @@ Proxy:
 '.$proxy_list.'
 
 Proxy Group:
+- { name: "AUTO", type: url-test, proxies: ["ss1", "ss2", "vmess1"], url: https://www.bing.com, interval: 1200 }
 AUTO = url-test'.$auto_name.', http://captive.apple.com,1200
 PROXY = select, AUTO'.$proxy_name.'
 Domestic = select, PROXY'.$domestic_name.'

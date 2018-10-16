@@ -548,11 +548,6 @@ class URL
             $user = URL::getSSRConnectInfo($user);
         }
 
-        if (substr($node_name,-2,2) != "SS") {
-            if ($node_name == "香港 - IPLC | SSR") {
-                $node_name = "香港 - IPLC | Media";
-			}
-
         	if ($relay_rule != null && $is_mu != 0) {
 				$return_array['port'] = 531;
 				$return_array['method'] = 'aes-128-ctr';
@@ -578,7 +573,6 @@ class URL
 				$return_array['group'] .= '';
 			}
 			return $return_array;
-		}
     }
 
     public static function cloneUser($user) {
