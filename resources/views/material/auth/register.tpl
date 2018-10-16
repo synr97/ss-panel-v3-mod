@@ -32,7 +32,8 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-            <input class="form-control" id="email" type="text" placeholder="邮箱" >
+            			<input class="form-control" id="email" type="text" placeholder="邮箱" >
+            			<button id="email_verify" class="btn btn-primary mt-4">获取邮箱验证码</button>
                     </div>
                   </div>
                   <div class="form-group">
@@ -40,7 +41,6 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-key-25"></i></span>
                       </div>
-                      <button id="email_verify" class="btn btn-primary mt-4">获取邮箱验证码</button>
                       <input class="form-control" placeholder="邮箱验证码" id="email_code" type="text">
                     </div>
                   </div>
