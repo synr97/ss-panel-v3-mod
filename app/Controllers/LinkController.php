@@ -221,7 +221,7 @@ class LinkController extends BaseController
                 }
 
         		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
-        		if ($clashx == 1) {
+        		if ($clash == 1) {
         			$filename = 'Dler Cloud.yml';
         		} elseif ($is_mu == 1) {
         			$filename = 'Dler Cloud - Public.conf';
