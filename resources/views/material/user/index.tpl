@@ -173,21 +173,14 @@
 											<div style="padding:18px">
 												{if URL::SSRCanConnect($user)}
 													<p>SSR 个人端口订阅地址</p>
-													<p>
-													<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=0">{$apiUrl}/link/{$ssr_sub_token}?mu=0</a></code>
-													</p>
+													<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=0">{$apiUrl}/link/{$ssr_sub_token}?mu=0</a></code></p>
 													<p><a href="Shadowrocket://add/sub://{$ssr_url_0}?remarks=Dler%20Cloud%20-%20%SSR" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
 													<p><a href="quantumult://configuration?server={$ssr_url_0}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
 												{else}
 													<p>SSR 公共端口订阅地址</p>
-													<p>
-													<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=1">{$apiUrl}/link/{$ssr_sub_token}?mu=1</a></code>
-													</p>
-													<p>
-													<a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud%20-%20SSR" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
-													</p>
-													<p>
-													<a href="quantumult://configuration?server={$ssr_url_1}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
+													<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=1">{$apiUrl}/link/{$ssr_sub_token}?mu=1</a></code></p>
+													<p><a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud%20-%20SSR" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
+													<p><a href="quantumult://configuration?server={$ssr_url_1}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
 													</p>
 												{/if}
 											</div>
@@ -195,9 +188,7 @@
 										<div class="tab-pane fade" id="all_ss" role="tabpanel" aria-labelledby="all_ss-tab">
 											{if URL::SSCanConnect($user)}
 												<p>SSD 订阅地址</p>
-												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=3">{$apiUrl}/link/{$ssr_sub_token}?mu=3</a></code>
-												</p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=3">{$apiUrl}/link/{$ssr_sub_token}?mu=3</a></code></p>
 												<hr>
 											{/if}
 											{if URL::SSCanConnect($user)}
@@ -205,96 +196,57 @@
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=4">{$apiUrl}/link/{$ssr_sub_token}?mu=4</a></code>
 												</p>
-												<p>
-												<a href="Shadowrocket://add/sub://{$ss_url}?remarks=Dler%20Cloud%20-%20SS" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
-												</p>
-												<p>
-													<a href="quantumult://configuration?server={$ss_url}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
-													</p>
+												<p><a href="Shadowrocket://add/sub://{$ss_url}?remarks=Dler%20Cloud%20-%20SS" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
+												<p><a href="quantumult://configuration?server={$ss_url}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
 												<hr>
 											{/if}
 											{if URL::SSCanConnect($user)}
 												<p>Clash 个人端口配置文件</p>
-												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1</a></code>
-												</p>
-												<p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1</a></code></p>
+												<hr>
 											{/if}
 											{if URL::SSRCanConnect($user)}
 												<p>Clash 公共端口配置文件</p>
-												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=1clash=1</a></code>
-												</p>
-												<p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=1clash=1</a></code></p>
 												<hr>
 											{/if}
 											{if URL::SSCanConnect($user)}
 												<p>Surge 2&3 / Surfboard 个人端口托管地址</p>
-												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0">{$apiUrl}/link/{$ios_token}?is_mu=0</a></code>
-												</p>
-												<p>
-												<a href="surge:///install-config?url={$ss_url_0}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
-												</p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0">{$apiUrl}/link/{$ios_token}?is_mu=0</a></code></p>
+												<p><a href="surge:///install-config?url={$ss_url_0}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a></p>
 											{/if}
 											{if URL::SSRCanConnect($user)}
 												<p>Surge 2&3 / Surfboard 公共端口托管地址</p>
-												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1">{$apiUrl}/link/{$ios_token}?is_mu=1</a></code>
-												</p>
-												<p>
-												<a href="surge:///install-config?url={$ss_url_1}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
-												</p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1">{$apiUrl}/link/{$ios_token}?is_mu=1</a></code></p>
+												<p><a href="surge:///install-config?url={$ss_url_1}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a></p>
 											{/if}
 											{if URL::SSCanConnect($user)}
 												<p>Surge 2&3 个人端口托管地址（MitM）</p>
-												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1">{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1</a></code>
-												</p>
-												<p>
-												<a href="surge:///install-config?url={$ss_url_0_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a>
-												</p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1">{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1</a></code></p>
+												<p><a href="surge:///install-config?url={$ss_url_0_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a></p>
 											{/if}
 											{if URL::SSRCanConnect($user)}
 												<p>Surge 2&3 公共端口托管地址（MitM）</p>
-												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1">{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1</a></code>
-												</p>
-												<p>
-												<a href="surge:///install-config?url={$ss_url_1_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a>
-												</p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1">{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1</a></code></p>
+												<p><a href="surge:///install-config?url={$ss_url_1_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a></p>
 											{/if}
 											{if URL::SSCanConnect($user)}
 												<p>Surge 3 Pro 个人端口托管地址（MitM）</p>
-												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1&new=1</a></code>
-												</p>
-												<p>
-												<a href="surge3:///install-config?url={$ss_url_0_mitm_new}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a>
-												</p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1&new=1</a></code></p>
+												<p><a href="surge3:///install-config?url={$ss_url_0_mitm_new}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a></p>
 											{/if}
 											{if URL::SSRCanConnect($user)}
 												<p>Surge 3 Pro 公共端口托管地址（MitM）</p>
-												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1&new=1</a></code>
-												</p>
-												<p>
-												<a href="surge3:///install-config?url={$ss_url_1_mitm_new}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a>
-												</p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1&new=1</a></code></p>
+												<p><a href="surge3:///install-config?url={$ss_url_1_mitm_new}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a></p>
 											{/if}
 										</div>
 											<div class="tab-pane fade" id="all_v2" role="tabpanel" aria-labelledby="all_v2-tab">
 												<p>V2Ray 订阅地址</p>
-												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=2">{$apiUrl}/link/{$ssr_sub_token}?mu=2</a></code>
-												</p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=2">{$apiUrl}/link/{$ssr_sub_token}?mu=2</a></code></p>
 												<a class="btn btn-brand copy-text" data-clipboard-text="{URL::getAllVMessUrl($user)}">复制所有 VMess 链接</a>
-												<p>
-												<a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud%20-%20V2Ray" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a>
-												</p>
-												<p>
-												<a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
-												</p>
+												<p><a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud%20-%20V2Ray" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
+												<p><a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
 											</div>
 									</div>
 								</div>
