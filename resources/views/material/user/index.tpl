@@ -214,9 +214,17 @@
 												<hr>
 											{/if}
 											{if URL::SSCanConnect($user)}
-												<p>Clash 配置文件</p>
+												<p>Clash 个人端口配置文件</p>
 												<p>
-												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1">{$apiUrl}/link/{$ios_token}?clash=1</a></code>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1</a></code>
+												</p>
+												<p>
+												<hr>
+											{/if}
+											{if URL::SSCanConnect($user)}
+												<p>Clash 公共端口配置文件</p>
+												<p>
+												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=1clash=1</a></code>
 												</p>
 												<p>
 												<hr>
@@ -229,7 +237,8 @@
 												<p>
 												<a href="surge:///install-config?url={$ss_url_0}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge / Surfboard<br>一键托管&规则</a>
 												</p>
-											{else}
+											{/if}
+											{if URL::SSRCanConnect($user)}
 												<p>Surge 2&3 / Surfboard 公共端口托管地址</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1">{$apiUrl}/link/{$ios_token}?is_mu=1</a></code>
@@ -246,7 +255,8 @@
 												<p>
 												<a href="surge:///install-config?url={$ss_url_0_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a>
 												</p>
-											{else}
+											{/if}
+											{if URL::SSRCanConnect($user)}
 												<p>Surge 2&3 公共端口托管地址（MitM）</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1">{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1</a></code>
@@ -263,7 +273,8 @@
 												<p>
 												<a href="surge3:///install-config?url={$ss_url_0_mitm_new}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge<br>一键托管&规则</a>
 												</p>
-											{else}
+											{/if}
+											{if URL::SSRCanConnect($user)}
 												<p>Surge 3 Pro 公共端口托管地址（MitM）</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1&new=1</a></code>
