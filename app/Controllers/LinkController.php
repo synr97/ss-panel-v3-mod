@@ -482,8 +482,6 @@ class LinkController extends BaseController
 		            $proxy_list .= '- name: '.$item['remark']."\n".'type: ss'."\n".'server: '.$item['address']."\n".'port: '.$item['port']."\n".'cipher: '.$item['method']."\n".'password: '.$item['passwd']."\n\n";
 		        }
             } else {
-            	$proxy_list .= '- {name: '.'"'.$item['remark'].'", type: ss, server: '.$item['address'].', port: '.$item['port'].', cipher: '.$item['method'].', password: '.'"'.$item['passwd'].'" }'."\n";
-            	
                 if (URL::getSurgeObfs($item) != "") {
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
                 } else {
