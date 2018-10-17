@@ -210,7 +210,7 @@
 												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1">{$apiUrl}/link/{$ios_token}?is_mu=1</a></code></p>
 												<p><a href="surge:///install-config?url={$ss_url_1}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge 2 / Surfboard<br>一键托管&规则</a></p>
 											{/if}
-												<br>
+											<hr>
 											{if URL::SSCanConnect($user)}
 												<p>Surge 2 个人端口托管地址（MitM）</p>
 												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1">{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1</a></code></p>
@@ -232,8 +232,9 @@
 												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1&new=1</a></code></p>
 												<p><a href="surge3:///install-config?url={$ss_url_1_mitm_new}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge 3 Pro<br>一键托管&规则</a></p>
 											{/if}
+											<hr>
 											{if URL::SSCanConnect($user)}
-												<p>Surge 3 Pro 个人端口节点列表（list）</p>
+												<p>Surge 3 Pro 个人端口节点（List）</p>
 												<p>All：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_all=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_all=1</a></code></p>
  												<p>Auto：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_auto=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_auto=1</a></code></p>
  												<p>Media：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_media=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_media=1</a></code></p>
@@ -246,7 +247,7 @@
  												<p>美国：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&us_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&us_list=1</a></code></p>
 											{/if}
 											{if URL::SSRCanConnect($user)}
-												<p>Surge 3 Pro 公共端口节点列表（list）</p>
+												<p>Surge 3 Pro 公共端口节点（List）</p>
 												<p>All：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_all=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_all=1</a></code></p>
  												<p>Auto：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_auto=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_auto=1</a></code></p>
  												<p>Media：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_media=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_media=1</a></code></p>
