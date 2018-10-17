@@ -200,17 +200,6 @@
 												<p><a href="quantumult://configuration?server={$ss_url}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
 												<hr>
 											{/if}
-											<!-->
-											{if URL::SSCanConnect($user)}
-												<p>Clash 个人端口配置文件</p>
-												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1</a></code></p>
-											{/if}
-											{if URL::SSRCanConnect($user)}
-												<p>Clash 公共端口配置文件</p>
-												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=1clash=1</a></code></p>
-											{/if}
-												<hr>
-											<-->
 											{if URL::SSCanConnect($user)}
 												<p>Surge 2 / Surfboard 个人端口托管地址</p>
 												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0">{$apiUrl}/link/{$ios_token}?is_mu=0</a></code></p>
@@ -245,7 +234,7 @@
 											{/if}
 											{if URL::SSCanConnect($user)}
 												<p>Surge 3 Pro 个人端口节点列表（list）</p>
-												p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1</a></code></p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1</a></code></p>
 											{/if}
 											{if URL::SSRCanConnect($user)}
 												<p>Surge 3 Pro 公共端口节点列表（list）</p>
