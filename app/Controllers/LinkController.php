@@ -661,8 +661,13 @@ class LinkController extends BaseController
         }
 
         if ($list == 1) {
+            if ($list_all == 1) {
+                return 'DIRECT = direct
+'.$proxy_list.'';
+            } else {
                 return ''.$proxy_list.'';
-        } elseif ($list == 0) {
+            }
+        } else {
 
         return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
 
