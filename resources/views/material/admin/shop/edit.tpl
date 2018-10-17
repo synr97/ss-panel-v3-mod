@@ -153,6 +153,22 @@
 					</div>
 
 					<div class="card">
+                        <div class="card-main">
+                            <div class="card-inner">
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="reset">每多少天</label>
+                                    <input class="form-control" id="reset" type="number" value="30">
+                                </div>
+
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label" for="reset_value">重置流量为多少G</label>
+                                    <input class="form-control" id="reset_value" type="number" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="card">
 						<div class="card-main">
 							<div class="card-inner">
 
@@ -233,6 +249,8 @@
                     expire: $("#expire").val(),
                     class: $("#class").val(),
 					class_expire: $("#class_expire").val(),
+					reset: $("#reset").val(),
+					reset_value: $("#reset_value").val(),
                 },
                 success: function (data) {
                     if (data.ret) {

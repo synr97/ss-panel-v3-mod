@@ -148,7 +148,6 @@ class Job
         DetectLog::where("datetime", "<", time() - 86400)->delete();
         Speedtest::where("datetime", "<", time() - 86400)->delete();
         EmailVerify::where("expire_in", "<", time() - 86400)->delete();
-        system("rm ".BASE_PATH."/storage/*.png", $ret);
 
         //auto reset
         $users = User::where('auto_reset_day', '=', 0)->get();
@@ -162,15 +161,13 @@ class Job
                     continue;
                 }
 
-                if (time() - $shop->reset_exp() * 86400 < $bought->datetime) {
-                    if (intval((time() - $bought->datetime) / 86400) % $shop->reset() == 0 && intval((time() - $bought->datetime) / 86400) != 0) {
-                        echo("流量重置 - ".$user->id."\n");
-                        $user->transfer_enable = Tools::toGB($shop->reset_value());
-                        $user->u = 0;
-                        $user->d = 0;
-                        $user->last_day_t = 0;
-                        $user->save();
-                    }
+                if (intval((time() - $bought->datetime) / 86400) % $shop->reset() == 0 && intval((time() - $bought->datetime) / 86400) != 0) {
+                    echo("流量重置 - ".$user->id."\n");
+                    $user->u = 0;
+                    $user->d = 0;
+                    $user->last_day_t = 0;
+                    $user->transfer_enable = Tools::toGB($shop->reset_value());
+                    $user->save();
                 }
         	}
         }
