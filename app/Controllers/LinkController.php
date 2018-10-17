@@ -441,7 +441,7 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $clash = 0)
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $list = 0)
     {
         $proxy_name = "";
         $domestic_name = "";
@@ -470,19 +470,12 @@ class LinkController extends BaseController
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
-            if ($clash == 1) {
-	            if (URL::getclashObfs($item) != "") {
-	            	$proxy_list .= '- name: '.$item['remark']."\n".'type: ss'."\n".'server: '.$item['address']."\n".'port: '.$item['port']."\n".'cipher: '.$item['method']."\n".'password: '.$item['passwd']."\n".URL::getclashObfs($item)."\n\n";
-		        } else {
-		            $proxy_list .= '- name: '.$item['remark']."\n".'type: ss'."\n".'server: '.$item['address']."\n".'port: '.$item['port']."\n".'cipher: '.$item['method']."\n".'password: '.$item['passwd']."\n\n";
-		        }
+            if (URL::getSurgeObfs($item) != "") {
+                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
             } else {
-                if (URL::getSurgeObfs($item) != "") {
-                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-                } else {
-                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-                }
+                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
             }
+        }
 	            $proxy_name .= ", ".$item['remark'];
 	            if (substr($item['remark'],-5,5) == "Relay") {
 	                $domestic_name .= ", ".$item['remark'];
