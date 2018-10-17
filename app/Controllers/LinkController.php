@@ -215,14 +215,14 @@ class LinkController extends BaseController
                     $new = $request->getQueryParams()["new"];
                 }
 
-                $clash = 0;
-                if (isset($request->getQueryParams()["clash"])) {
-                    $clash = $request->getQueryParams()["clash"];
+                $list = 0;
+                if (isset($request->getQueryParams()["list"])) {
+                    $list = $request->getQueryParams()["list"];
                 }
 
         		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
-        		if ($clash == 1) {
-        			$filename = 'Dler Cloud.yml';
+        		if ($list == 1) {
+        			$filename = 'dlercloud_proxy.list';
         		} elseif ($is_mu == 1) {
         			$filename = 'Dler Cloud - Public.conf';
                 } elseif ($new == 1) {
@@ -231,7 +231,7 @@ class LinkController extends BaseController
         			$filename = 'Dler Cloud.conf';
         		}
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
-                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $clash));
+                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $list));
                 return $newResponse;
             case 3:
                 $type = "PROXY";
@@ -448,10 +448,6 @@ class LinkController extends BaseController
         $auto_name = "";
         $proxy_list = "";
 
-        if ($clash == 1) {
-            $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.yml");
-            $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashX.yml");
-        } else {
             if ($new == 0) {
                 if ($mitm == 0) {
                     $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
@@ -471,7 +467,6 @@ class LinkController extends BaseController
                 $mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
                 $rules = $rule."\n\n".$url_rewrite."\n".$url_reject."\n\n".$header."\n\n".$mitm;
             }
-        }
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
@@ -488,15 +483,6 @@ class LinkController extends BaseController
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                 }
             }
-            if ($clash == 1) {
-            	$proxy_name .= "\n- ".$item['remark'];
-
-	            if (substr($item['remark'],-5,5) != "Gamer") {
-	                if (substr($item['remark'],-2,2) != "Relay") {
-	                    $auto_name .= "\n- ".$item['remark'];
-	                }
-	            }
-            } else {
 	            $proxy_name .= ", ".$item['remark'];
 	            if (substr($item['remark'],-5,5) == "Relay") {
 	                $domestic_name .= ", ".$item['remark'];
@@ -509,43 +495,11 @@ class LinkController extends BaseController
 	                    $auto_name .= ", ".$item['remark'];
 	                }
 	            }
-	        }
         }
 
-        if ($clash == 1) {
+        if ($list == 1) {
 
-return '
-#---------------------------------------------------#
-## 配置文件需要放置在 $HOME/.config/clash/config.yml
-## 
-## 对于 macOS 用户，如果你不知道如何操作，请将一下命令复制到 终端 （包括最后的 . 符号）并执行：
-## mkdir -p $HOME/.config/clash/ && cd $HOME/.config/clash/ && sudo curl -o ./config.yml '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].' -k -s && sudo chmod 775 ./config.yml && open .
-## 在 Finder 弹出窗口中，打开并编辑 config.yml 即可。
-#---------------------------------------------------#
-
-'.$general.'
-
-Proxy:
-'.$proxy_list.'
-
-Proxy Group:
-- name: auto
-  type: url-test
-  proxies:'.$auto_name.'
-  url: http://captive.apple.com
-  interval: 1200
-
-- name: fallback-auto
-  type: fallback
-  proxies:'.$auto_name.'
-  url: http://captive.apple.com
-  interval: 1200
-
-- name: proxy
-  type: select
-  proxies:'.$proxy_name.'
-
-'.$rules.'';
+return '$proxy_name';
 
         } else {
 
