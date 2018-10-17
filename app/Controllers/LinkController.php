@@ -458,7 +458,7 @@ class LinkController extends BaseController
                 	$mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
                 	$rules = $rule."\n\n".$mitm;
                 }
-            } elseif ($new == 1) {
+            } else {
                 $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
                 $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/NewRule.conf");
                 $url_rewrite = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20Rewrite.conf");
@@ -476,19 +476,20 @@ class LinkController extends BaseController
                 $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
             }
         }
-	            $proxy_name .= ", ".$item['remark'];
-	            if (substr($item['remark'],-5,5) == "Relay") {
-	                $domestic_name .= ", ".$item['remark'];
-	            }
-	            if (substr($item['remark'],-5,5) == "Media") {
-	                $media_name .= ", ".$item['remark'];
-	            }
-	            if (substr($item['remark'],-5,5) != "Gamer") {
-	                if (substr($item['remark'],-2,2) != "Relay") {
-	                    $auto_name .= ", ".$item['remark'];
-	                }
-	            }
-        }
+            $proxy_name .= ", ".$item['remark'];
+            if (substr($item['remark'],-5,5) == "Relay") {
+            $domestic_name .= ", ".$item['remark'];
+            }
+
+            if (substr($item['remark'],-5,5) == "Media") {
+            $media_name .= ", ".$item['remark'];
+            }
+
+            if (substr($item['remark'],-5,5) != "Gamer") {
+                if (substr($item['remark'],-2,2) != "Relay") {
+                    $auto_name .= ", ".$item['remark'];
+                }
+            }
 
         if ($list == 1) {
 
