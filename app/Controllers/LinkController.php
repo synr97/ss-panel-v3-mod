@@ -489,11 +489,11 @@ class LinkController extends BaseController
                 }
             }
             if ($clash == 1) {
-            	$proxy_name .= '- '.$item['remark']."\n";
+            	$proxy_name .= "\n- ".$item['remark'];
 
 	            if (substr($item['remark'],-5,5) != "Gamer") {
 	                if (substr($item['remark'],-2,2) != "Relay") {
-	                    $auto_name .= '- '.$item['remark']."\n";
+	                    $auto_name .= "\n- ".$item['remark'];
 	                }
 	            }
             } else {
@@ -519,7 +519,8 @@ return '
 ## 配置文件需要放置在 $HOME/.config/clash/config.yml
 ## 
 ## 对于 macOS 用户，如果你不知道如何操作，请将一下命令复制到 终端 （包括最后的 . 符号）并执行：
-## mkdir -p $HOME/.config/clash/ && cd $HOME/.config/clash/ && sudo curl -o ./config.yml '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].' -k -s && sudo chmod 775 ./config.yml
+## mkdir -p $HOME/.config/clash/ && cd $HOME/.config/clash/ && sudo curl -o ./config.yml '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].' -k -s && sudo chmod 775 ./config.yml && open .
+## 在 Finder 弹出窗口中，打开并编辑 config.yml 即可。
 #---------------------------------------------------#
 
 '.$general.'
