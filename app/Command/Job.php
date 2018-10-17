@@ -171,9 +171,10 @@ class Job
                           $user->d = 0;
                           $user->last_day_t = 0;
                           $user->save();
-                    }
-                }
-            }
+                    	}
+                	}
+            	}
+        	}
         }
 
         $users = User::where('auto_reset_day', '=', 1)->get();
