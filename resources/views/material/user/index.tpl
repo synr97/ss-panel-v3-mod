@@ -234,11 +234,17 @@
 											{/if}
 											{if URL::SSCanConnect($user)}
 												<p>Surge 3 Pro 个人端口节点列表（list）</p>
-												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1</a></code></p>
+												<p>All：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_all=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_all=1</a></code></p>
+ 												<p>Auto：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_auto=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_auto=1</a></code></p>
+ 												<p>Media：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_media=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_media=1</a></code></p>
+ 												<p>Relay：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_cn=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_cn=1</a></code></p>
 											{/if}
 											{if URL::SSRCanConnect($user)}
 												<p>Surge 3 Pro 公共端口节点列表（list）</p>
-												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1</a></code></p>
+												<p>All：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_all=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_all=1</a></code></p>
+ 												<p>Auto：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_auto=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_auto=1</a></code></p>
+ 												<p>Media：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_media=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_media=1</a></code></p>
+ 												<p>Relay：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_cn=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_cn=1</a></code></p>
 											{/if}
 										</div>
 											<div class="tab-pane fade" id="all_v2" role="tabpanel" aria-labelledby="all_v2-tab">

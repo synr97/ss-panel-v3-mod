@@ -558,7 +558,7 @@ class LinkController extends BaseController
         if ($list == 1) {
             if ($list_all == 1) {
                 return 'DIRECT = direct
-        '.$proxy_list.'';
+'.$proxy_list.'';
             } else {
                 return ''.$proxy_list.'';
             }
