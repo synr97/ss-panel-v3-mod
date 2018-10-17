@@ -553,6 +553,7 @@ class LinkController extends BaseController
                     }
                 }
             }
+        }
 
         if ($list == 1) {
             if ($list_all == 1) {
@@ -562,7 +563,6 @@ class LinkController extends BaseController
                 return ''.$proxy_list.'';
             }
         } else {
-
 
         return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
 
