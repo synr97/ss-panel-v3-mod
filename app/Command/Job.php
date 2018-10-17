@@ -221,7 +221,6 @@ class Job
             unlink(BASE_PATH."/storage/qqwry.dat");
             rename(BASE_PATH."/storage/qqwry.dat.bak", BASE_PATH."/storage/qqwry.dat");
         }
-    }
 
     public static function CheckJob()
     {
