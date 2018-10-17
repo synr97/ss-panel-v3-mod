@@ -475,7 +475,7 @@ class LinkController extends BaseController
             } else {
                 $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
             }
-        }
+
             $proxy_name .= ", ".$item['remark'];
             if (substr($item['remark'],-5,5) == "Relay") {
             $domestic_name .= ", ".$item['remark'];
@@ -490,6 +490,7 @@ class LinkController extends BaseController
                     $auto_name .= ", ".$item['remark'];
                 }
             }
+        }
 
         if ($list == 1) {
 
