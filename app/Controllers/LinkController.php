@@ -553,17 +553,15 @@ class LinkController extends BaseController
                     }
                 }
             }
-        }
-    }
 
-    if ($list == 1) {
-        if ($list_all == 1) {
-            return 'DIRECT = direct
-    '.$proxy_list.'';
+        if ($list == 1) {
+            if ($list_all == 1) {
+                return 'DIRECT = direct
+        '.$proxy_list.'';
+            } else {
+                return ''.$proxy_list.'';
+            }
         } else {
-            return ''.$proxy_list.'';
-        }
-    } else {
 
 
         return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
@@ -583,8 +581,8 @@ Media = select, PROXY, DIRECT'.$media_name.'
 AUTO = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
 
 '.$rules.'';
+        }
     }
-}
 
     private static function GetSurge($passwd, $method, $server, $port, $defined)
     {
