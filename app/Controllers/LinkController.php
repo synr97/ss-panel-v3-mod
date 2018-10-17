@@ -215,14 +215,36 @@ class LinkController extends BaseController
                     $new = $request->getQueryParams()["new"];
                 }
 
-                $list = 0;
-                if (isset($request->getQueryParams()["list"])) {
-                    $list = $request->getQueryParams()["list"];
+                $list_all = 0;
+                if (isset($request->getQueryParams()["list_all"])) {
+                    $list_all = $request->getQueryParams()["list_all"];
+                }
+
+                $list_auto = 0;
+                if (isset($request->getQueryParams()["list_auto"])) {
+                    $list_auto = $request->getQueryParams()["list_auto"];
+                }
+
+                $list_media = 0;
+                if (isset($request->getQueryParams()["list_media"])) {
+                    $list_media = $request->getQueryParams()["list_media"];
+                }
+
+                $list_cn = 0;
+                if (isset($request->getQueryParams()["list_cn"])) {
+                    $list_cn = $request->getQueryParams()["list_cn"];
                 }
 
         		$userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
-        		if ($list == 1) {
-        			$filename = 'dlercloud_proxy.list';
+
+        		if ($list_all == 1) {
+        			$filename = 'dlerCloud_all.list';
+        		} elseif ($list_auto == 1) {
+        			$filename = 'dlerCloud_auto.list';
+        		} elseif ($list_media == 1) {
+        			$filename = 'dlerCloud_media.list';
+        		} elseif ($list_cn == 1) {
+        			$filename = 'dlerCloud_cn.list';
         		} elseif ($is_mu == 1) {
         			$filename = 'Dler Cloud - Public.conf';
                 } elseif ($new == 1) {
@@ -231,7 +253,7 @@ class LinkController extends BaseController
         			$filename = 'Dler Cloud.conf';
         		}
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
-                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $list));
+                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $list_all, $list_auto, $list_media, $list_cn));
                 return $newResponse;
             case 3:
                 $type = "PROXY";
@@ -441,7 +463,7 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $list = 0)
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $list_all = 0, $list_auto = 0, $list_media = 0, $list_cn = 0)
     {
         $proxy_name = "";
         $domestic_name = "";
@@ -470,29 +492,65 @@ class LinkController extends BaseController
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
-            if (URL::getSurgeObfs($item) != "") {
-                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-            } else {
-                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-            }
+        	if ($list_all == 0) {
+	            if (URL::getSurgeObfs($item) != "") {
+	                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+	            } else {
+	                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
+	            }
 
-            $proxy_name .= ", ".$item['remark'];
-            if (substr($item['remark'],-5,5) == "Relay") {
-            $domestic_name .= ", ".$item['remark'];
-            }
+	            $proxy_name .= ", ".$item['remark'];
 
-            if (substr($item['remark'],-5,5) == "Media") {
-            $media_name .= ", ".$item['remark'];
-            }
+	            if (substr($item['remark'],-5,5) == "Relay") {
+	            	$domestic_name .= ", ".$item['remark'];
+	            }
 
-            if (substr($item['remark'],-5,5) != "Gamer") {
-                if (substr($item['remark'],-2,2) != "Relay") {
-                    $auto_name .= ", ".$item['remark'];
-                }
-            }
-        }
+	            if (substr($item['remark'],-5,5) == "Media") {
+	            	$media_name .= ", ".$item['remark'];
+	            }
 
-        if ($list == 1) {
+	            if (substr($item['remark'],-5,5) != "Gamer") {
+	                if (substr($item['remark'],-2,2) != "Relay") {
+	                    $auto_name .= ", ".$item['remark'];
+	                }
+	            }
+	        } elseif ($list_all == 1) {
+	        	if (URL::getSurgeObfs($item) != "") {
+	                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+	            } else {
+	                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
+	            }
+	        } elseif ($list_auto == 1) {
+	        	if (substr($item['remark'],-5,5) != "Gamer") {
+	                if (substr($item['remark'],-2,2) != "Relay") {
+	                    if (URL::getSurgeObfs($item) != "") {
+	                		$proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+	            		} else {
+	                		$proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
+	            		}
+	                }
+	            }
+	        } elseif ($list_media == 1) {
+	        	if (substr($item['remark'],-5,5) == "Media") {
+	            	if (URL::getSurgeObfs($item) != "") {
+	                	$proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+	            	} else {
+	                	$proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
+	            	}
+	            }
+	        } elseif ($list_cn == 1) {
+	        	if (substr($item['remark'],-5,5) == "Relay") {
+	            	if (URL::getSurgeObfs($item) != "") {
+	                	$proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+	            	} else {
+	                	$proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
+	            	}
+	            }
+	        }	
+	    }
+	}
+
+        if ($list_all == 1) {
 
 return ''.$proxy_list.'';
 
