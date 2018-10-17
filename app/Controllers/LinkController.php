@@ -493,7 +493,7 @@ class LinkController extends BaseController
 
         if ($list == 1) {
 
-return ''.$proxy_name.'';
+return ''.$proxy_list.'';
 
         } else {
 
