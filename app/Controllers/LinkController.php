@@ -272,9 +272,7 @@ class LinkController extends BaseController
 
                 $userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
 
-                if ($list == 1) {
-                    $filename = 'all.list';
-                } elseif ($list_auto == 1) {
+                if ($list_auto == 1) {
                     $filename = 'auto.list';
                 } elseif ($list_media == 1) {
                     $filename = 'media.list';
@@ -294,6 +292,8 @@ class LinkController extends BaseController
                     $filename = 'ru_proxy.list';
                 } elseif ($us_list == 1) {
                     $filename = 'us_proxy.list';
+                } elseif ($list == 1) {
+                    $filename = 'all.list';
                 } elseif ($is_mu == 1) {
                     $filename = 'Dler Cloud - Public.conf';
                 } elseif ($new == 1) {
@@ -302,7 +302,7 @@ class LinkController extends BaseController
                     $filename = 'Dler Cloud.conf';
                 }
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
-                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $list, $list_auto, $list_media, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list));
+                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $list_auto, $list_media, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list, $list));
                 return $newResponse;
             case 3:
                 $type = "PROXY";
@@ -512,7 +512,7 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $list = 0, $list_auto = 0, $list_media = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $list_auto = 0, $list_media = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0, $list = 0) {
         $proxy_name = "";
         $domestic_name = "";
         $auto_name = "";
@@ -581,8 +581,6 @@ class LinkController extends BaseController
                             $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                         }
                     }
-                } elseif ($cn_list == 1) {
-                    $area = "中国";
                 } elseif ($hk_list == 1) {
                     $area = "香港";
                 } elseif ($jp_list == 1) {
@@ -598,7 +596,7 @@ class LinkController extends BaseController
                 } elseif ($us_list == 1) {
                     $area = "美国";
                 }
-                if ($area == "中国") {
+                if ($cn_list == 1) {
                     if (substr($item['remark'],-5,5) != "Gamer") {
                         if (substr($item['remark'],-5,5) != "Relay") {
                             if (strpos(urlencode('"'.$item['remark'].'"'),urlencode($area)) != "") {
@@ -610,7 +608,7 @@ class LinkController extends BaseController
                             }
                         }
                     }
-                } elseif ($area != "") {
+                } elseif ($area != "" || $area != "中国") {
                     if (substr($item['remark'],-5,5) != "Gamer") {
                         if (substr($item['remark'],-5,5) != "Relay") {
                             if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
