@@ -235,12 +235,14 @@
 											<hr>
 											{if URL::SSCanConnect($user)}
 												<p>Surge 3 Pro 个人端口节点列表（功能）</p>
-												<p>All：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_all=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_all=1</a></code></p>
+												<p>All：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1</a></code></p>
  												<p>Auto：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_auto=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_auto=1</a></code></p>
  												<p>Media：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_media=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_media=1</a></code></p>
  												<hr>
  												<p>Surge 3 Pro 个人端口节点列表（地区）</p>
+ 												{if $user->class > 1}
  												<p>中国：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&cn_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&cn_list=1</a></code></p>
+ 												{/if}
  												<p>香港：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&hk_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&hk_list=1</a></code></p>
  												<p>日本：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&jp_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&jp_list=1</a></code></p>
  												<p>台湾：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&tw_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&tw_list=1</a></code></p>
@@ -251,12 +253,14 @@
 											{/if}
 											{if URL::SSRCanConnect($user)}
 												<p>Surge 3 Pro 公共端口节点列表（功能）</p>
-												<p>All：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_all=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_all=1</a></code></p>
+												<p>All：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1</a></code></p>
  												<p>Auto：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_auto=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_auto=1</a></code></p>
  												<p>Media：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_media=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_media=1</a></code></p>
  												<hr>
  												<p>Surge 3 Pro 公共端口节点列表（地区）</p>
+ 												{if $user->class > 1}
  												<p>中国：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&cn_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&cn_list=1</a></code></p>
+ 												{/if}
  												<p>香港：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&hk_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&hk_list=1</a></code></p>
  												<p>日本：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&jp_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&jp_list=1</a></code></p>
  												<p>台湾：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&tw_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&tw_list=1</a></code></p>
