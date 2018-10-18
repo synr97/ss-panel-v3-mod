@@ -220,11 +220,6 @@ class LinkController extends BaseController
                     $list = $request->getQueryParams()["list"];
                 }
 
-                $list_all = 0;
-                if (isset($request->getQueryParams()["list_all"])) {
-                    $list_all = $request->getQueryParams()["list_all"];
-                }
-
                 $list_auto = 0;
                 if (isset($request->getQueryParams()["list_auto"])) {
                     $list_auto = $request->getQueryParams()["list_auto"];
@@ -277,7 +272,7 @@ class LinkController extends BaseController
 
                 $userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
 
-                if ($list_all == 1) {
+                if ($list == 1) {
                     $filename = 'all.list';
                 } elseif ($list_auto == 1) {
                     $filename = 'auto.list';
@@ -307,7 +302,7 @@ class LinkController extends BaseController
                     $filename = 'Dler Cloud.conf';
                 }
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
-                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $list, $list_all, $list_auto, $list_media, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list));
+                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $list, $list_auto, $list_media, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list));
                 return $newResponse;
             case 3:
                 $type = "PROXY";
@@ -517,7 +512,7 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $list = 0, $list_all = 0, $list_auto = 0, $list_media = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $list = 0, $list_auto = 0, $list_media = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
         $proxy_name = "";
         $domestic_name = "";
         $auto_name = "";
@@ -568,13 +563,7 @@ class LinkController extends BaseController
                     }
                 }
             } elseif ($list == 1) {
-                if ($list_all == 1) {
-                    if (URL::getSurgeObfs($item) != "") {
-                        $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-                    } else {
-                        $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-                    }
-                } elseif ($list_auto == 1) {
+                if ($list_auto == 1) {
                     if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "") {
                         if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
                             if (URL::getSurgeObfs($item) != "") {
@@ -593,123 +582,64 @@ class LinkController extends BaseController
                         }
                     }
                 } elseif ($cn_list == 1) {
-                	if (substr($item['remark'],-5,5) != "Gamer") {
-                        if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) != "") {
-                            if (URL::getSurgeObfs($item) != "") {
-                                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-                            } else {
-                                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
+                	$area = "中国"
+                } elseif ($hk_list == 1) {
+                	$area = "香港"
+                } elseif ($jp_list == 1) {
+                	$area = "日本"
+                } elseif ($tw_list == 1) {
+                	$area = "台湾"
+	            } elseif ($kr_list == 1) {
+                	$area = "韩国"
+                } elseif ($sg_list == 1) {
+                	$area = "新加坡"
+                } elseif ($ru_list == 1) {
+                	$area = "俄罗斯"
+                } elseif ($us_list == 1) {
+                    $area = "美国"
+                }
+                if ($area != "") {
+                    if (substr($item['remark'],-5,5) != "Gamer") {
+                        if (substr($item['remark'],-5,5) != "Relay") {
+                            if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
+                                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode($area)) != "") {
+                                    if (URL::getSurgeObfs($item) != "") {
+                                        $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+                                    } else {
+                                        $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
+                                    }
+                                }
                             }
                         }
                     }
-                } elseif ($hk_list == 1) {
-                	if (substr($item['remark'],-5,5) != "Gamer") {
+                } elseif ($area == "中国") {
+                    if (substr($item['remark'],-5,5) != "Gamer") {
                         if (substr($item['remark'],-5,5) != "Relay") {
-                            if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "") {
-                                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-        	                		if (URL::getSurgeObfs($item) != "") {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-        	                        } else {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-        	                        }
+                            if (strpos(urlencode('"'.$item['remark'].'"'),urlencode($area)) != "") {
+                                if (URL::getSurgeObfs($item) != "") {
+                                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+                                } else {
+                                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                                 }
-    	                    }
+                            }
                         }
-	                }
-                } elseif ($jp_list == 1) {
-                	if (substr($item['remark'],-5,5) != "Gamer") {
-                        if (substr($item['remark'],-5,5) != "Relay") {
-    	                	if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("日本")) != "") {
-                                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-        	                		if (URL::getSurgeObfs($item) != "") {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-        	                        } else {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-        	                        }
-                                }
-    	                    }
-                        }
-	                }
-                } elseif ($tw_list == 1) {
-                	if (substr($item['remark'],-5,5) != "Gamer") {
-                        if (substr($item['remark'],-5,5) != "Relay") {
-    	                	if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("台湾")) != "") {
-                                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-        	                		if (URL::getSurgeObfs($item) != "") {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-        	                        } else {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-        	                        }
-                                }
-    	                    }
-                        }
-	                }
-	            } elseif ($kr_list == 1) {
-                	if (substr($item['remark'],-5,5) != "Gamer") {
-                        if (substr($item['remark'],-5,5) != "Relay") {
-    	                	if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("韩国")) != "") {
-                                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-        	                		if (URL::getSurgeObfs($item) != "") {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-        	                        } else {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-        	                        }
-                                }
-    	                    }
-                        }
-	                }
-                } elseif ($sg_list == 1) {
-                	if (substr($item['remark'],-5,5) != "Gamer") {
-                        if (substr($item['remark'],-5,5) != "Relay") {
-    	                	if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("新加坡")) != "") {
-                                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-        	                		if (URL::getSurgeObfs($item) != "") {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-        	                        } else {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-        	                        }
-                                }
-    	                    }
-                        }
-	                }
-                } elseif ($ru_list == 1) {
-                	if (substr($item['remark'],-5,5) != "Gamer") {
-                        if (substr($item['remark'],-5,5) != "Relay") {
-    	                	if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("俄罗斯")) != "") {
-                                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-        	                		if (URL::getSurgeObfs($item) != "") {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-        	                        } else {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-        	                        }
-                                }
-    	                    }
-                        }
-	                }
-                } elseif ($us_list == 1) {
-                	if (substr($item['remark'],-5,5) != "Gamer") {
-                        if (substr($item['remark'],-5,5) != "Relay") {
-    	                	if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("美国")) != "") {
-                                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-        	                		if (URL::getSurgeObfs($item) != "") {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-        	                        } else {
-        	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-        	                        }
-                                }
-    	                    }
-                        }
-	                }
+                    }
+                } else {
+                    if (URL::getSurgeObfs($item) != "") {
+                        $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+                    } else {
+                        $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
+                    }
                 }
             }
         }
 
         if ($list == 1) {
-            if ($list_all == 1) {
+            if ($area != "") {
+                return ''.$proxy_list.'';
+            } else {
                 return 'DIRECT = direct
 '.$proxy_list.'';
-            } else {
-                return ''.$proxy_list.'';
             }
         } else {
 
