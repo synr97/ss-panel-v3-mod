@@ -284,7 +284,7 @@ class LinkController extends BaseController
                 } elseif ($list_media == 1) {
                     $filename = 'media.list';
                 } elseif ($cn_list == 1) {
-                    $filename = 'relay.list';
+                    $filename = 'cn_proxy.list';
                 } elseif ($hk_list == 1) {
                     $filename = 'hk_proxy.list';
                 } elseif ($jp_list == 1) {
@@ -292,7 +292,11 @@ class LinkController extends BaseController
                 } elseif ($tw_list == 1) {
                     $filename = 'tw_proxy.list';
                 } elseif ($kr_list == 1) {
+                    $filename = 'kr_proxy.list';
+                } elseif ($sg_list == 1) {
                     $filename = 'sg_proxy.list';
+                } elseif ($ru_list == 1) {
+                    $filename = 'ru_proxy.list';
                 } elseif ($us_list == 1) {
                     $filename = 'us_proxy.list';
                 } elseif ($is_mu == 1) {
