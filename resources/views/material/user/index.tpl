@@ -244,7 +244,9 @@
  												<p>香港：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&hk_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&hk_list=1</a></code></p>
  												<p>日本：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&jp_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&jp_list=1</a></code></p>
  												<p>台湾：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&tw_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&tw_list=1</a></code></p>
- 												<p>韩国：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&kr_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&sg_list=1</a></code></p>
+ 												<p>韩国：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&kr_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&kr_list=1</a></code></p>
+ 												<p>新加坡：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&sg_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&sg_list=1</a></code></p>
+ 												<p>俄罗斯：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&ru_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&ru_list=1</a></code></p>
  												<p>美国：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&us_list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&us_list=1</a></code></p>
 											{/if}
 											{if URL::SSRCanConnect($user)}
@@ -258,7 +260,9 @@
  												<p>香港：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&hk_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&hk_list=1</a></code></p>
  												<p>日本：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&jp_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&jp_list=1</a></code></p>
  												<p>台湾：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&tw_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&tw_list=1</a></code></p>
- 												<p>韩国：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&kr_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&sg_list=1</a></code></p>
+ 												<p>韩国：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&kr_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&kr_list=1</a></code></p>
+ 												<p>新加坡：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&sg_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&sg_list=1</a></code></p>
+ 												<p>俄罗斯：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&ru_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&ru_list=1</a></code></p>
  												<p>美国：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&us_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&us_list=1</a></code></p>
 											{/if}
 										</div>
