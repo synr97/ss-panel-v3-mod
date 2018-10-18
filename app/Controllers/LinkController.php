@@ -596,7 +596,7 @@ class LinkController extends BaseController
                 	if (substr($item['remark'],-5,5) != "Gamer") {
                         $area = iconv("gbk","utf-8","中国");
                         $areahost = iconv("gbk","utf-8",'"'.$item['remark'].'"');
-                        if (preg_match("/$area/i",$areahost)) {
+                        if (strpos($areahost,$area) != -1) {
                             if (URL::getSurgeObfs($item) != "") {
                                 $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
                             } else {
@@ -609,7 +609,7 @@ class LinkController extends BaseController
                         if (substr($item['remark'],-5,5) != "Relay") {
     	                	$area = iconv("gbk","utf-8","香港");
     	                	$areahost = iconv("gbk","utf-8",'"'.$item['remark'].'"');
-    	                	if (preg_match("/$area/i",$areahost)) {
+                            if (strpos($areahost,$area) != -1) {
     	                		if (URL::getSurgeObfs($item) != "") {
     	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
     	                        } else {
@@ -623,7 +623,7 @@ class LinkController extends BaseController
                         if (substr($item['remark'],-5,5) != "Relay") {
     	                	$area = iconv("gbk","utf-8","日本");
     	                	$areahost = iconv("gbk","utf-8",'"'.$item['remark'].'"');
-    	                	if (preg_match("/$area/i",$areahost)) {
+    	                	if (strpos($areahost,$area) != -1) {
     	                		if (URL::getSurgeObfs($item) != "") {
     	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
     	                        } else {
@@ -637,7 +637,7 @@ class LinkController extends BaseController
                         if (substr($item['remark'],-5,5) != "Relay") {
     	                	$area = iconv("gbk","utf-8","台湾");
     	                	$areahost = iconv("gbk","utf-8",'"'.$item['remark'].'"');
-    	                	if (preg_match("/$area/i",$areahost)) {
+    	                	if (strpos($areahost,$area) != -1) {
     	                		if (URL::getSurgeObfs($item) != "") {
     	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
     	                        } else {
@@ -651,7 +651,7 @@ class LinkController extends BaseController
                         if (substr($item['remark'],-5,5) != "Relay") {
     	                	$area = iconv("gbk","utf-8","韩国");
     	                	$areahost = iconv("gbk","utf-8",'"'.$item['remark'].'"');
-    	                	if (preg_match("/$area/i",$areahost)) {
+    	                	if (strpos($areahost,$area) != -1) {
     	                		if (URL::getSurgeObfs($item) != "") {
     	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
     	                        } else {
@@ -665,7 +665,7 @@ class LinkController extends BaseController
                         if (substr($item['remark'],-5,5) != "Relay") {
     	                	$area = iconv("gbk","utf-8","新加坡");
     	                	$areahost = iconv("gbk","utf-8",'"'.$item['remark'].'"');
-    	                	if (preg_match("/$area/i",$areahost)) {
+    	                	if (strpos($areahost,$area) != -1) {
     	                		if (URL::getSurgeObfs($item) != "") {
     	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
     	                        } else {
@@ -679,7 +679,7 @@ class LinkController extends BaseController
                         if (substr($item['remark'],-5,5) != "Relay") {
     	                	$area = iconv("gbk","utf-8","俄罗斯");
     	                	$areahost = iconv("gbk","utf-8",'"'.$item['remark'].'"');
-    	                	if (preg_match("/$area/i",$areahost)) {
+    	                	if (strpos($areahost,$area) != -1) {
     	                		if (URL::getSurgeObfs($item) != "") {
     	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
     	                        } else {
@@ -693,7 +693,7 @@ class LinkController extends BaseController
                         if (substr($item['remark'],-5,5) != "Relay") {
     	                	$area = iconv("gbk","utf-8","美国");
     	                	$areahost = iconv("gbk","utf-8",'"'.$item['remark'].'"');
-    	                	if (preg_match("/$area/i",$areahost)) {
+    	                	if (strpos($areahost,$area) != -1) {
     	                		if (URL::getSurgeObfs($item) != "") {
     	                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
     	                        } else {
