@@ -608,7 +608,7 @@ class LinkController extends BaseController
                             }
                         }
                     }
-                } elseif ($area != "" || $area != "中国") {
+                } elseif ($area != "" || $cn_list != 1) {
                     if (substr($item['remark'],-5,5) != "Gamer") {
                         if (substr($item['remark'],-5,5) != "Relay") {
                             if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
@@ -633,7 +633,7 @@ class LinkController extends BaseController
         }
 
         if ($list == 1) {
-            if ($area != "" || $area != "中国") {
+            if ($area != "" || $cn_list != 1) {
                 return ''.$proxy_list.'';
             } else {
                 return 'DIRECT = direct
