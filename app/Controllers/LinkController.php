@@ -641,7 +641,11 @@ class LinkController extends BaseController
         }
 
         if ($list == 1) {
-            if ($area != "" || $list_auto != 1 || $list_media != 1) {
+            if ($area != "") {
+                return ''.$proxy_list.'';
+            } elseif ($list_auto == 1) {
+                return ''.$proxy_list.'';
+            } elseif ($list_media == 1) {
                 return ''.$proxy_list.'';
             } else {
                 return 'DIRECT = direct
