@@ -581,6 +581,7 @@ class LinkController extends BaseController
                             $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                         }
                     }
+                    $area = "";
                 } elseif ($cn_list == 1) {
                     $area = "中国";
                 } elseif ($hk_list == 1) {
@@ -626,7 +627,7 @@ class LinkController extends BaseController
                             }
                         }
                     }
-                } else {
+                } elseif ($area == "") {
                     if (URL::getSurgeObfs($item) != "") {
                         $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
                     } else {
