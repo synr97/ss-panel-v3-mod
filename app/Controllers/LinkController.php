@@ -627,7 +627,7 @@ class LinkController extends BaseController
                             }
                         }
                     }
-                } elseif ($area == "") {
+                } elseif ($area == "" || $list_auto != 1 || $list_media != 1) {
                     if (URL::getSurgeObfs($item) != "") {
                         $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
                     } else {
@@ -637,7 +637,7 @@ class LinkController extends BaseController
             }
         }
 
-        if ($list == 1) {
+        if ($list == 1 || $list_auto == 1 || $list_media == 1) {
             if ($area != "") {
                 return ''.$proxy_list.'';
             } else {
