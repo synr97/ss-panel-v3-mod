@@ -611,7 +611,7 @@ class LinkController extends BaseController
                 } elseif ($area != "") {
                     if ($area == "中国") {
                         if (substr($item['remark'],-5,5) != "Gamer") {
-                            if (substr($item['remark'],-5,5) != "Relay") {
+                            if (substr($item['remark'],-5,5) == "Relay") {
                                 if (strpos(urlencode('"'.$item['remark'].'"'),urlencode($area)) != "") {
                                     if (URL::getSurgeObfs($item) != "") {
                                         $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
