@@ -230,6 +230,11 @@ class LinkController extends BaseController
                     $list_media = $request->getQueryParams()["list_media"];
                 }
 
+                $list_relay = 0;
+                if (isset($request->getQueryParams()["list_relay"])) {
+                    $list_relay = $request->getQueryParams()["list_relay"];
+                }
+
                 $cn_list = 0;
                 if (isset($request->getQueryParams()["cn_list"])) {
                     $cn_list = $request->getQueryParams()["cn_list"];

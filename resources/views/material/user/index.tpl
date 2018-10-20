@@ -238,6 +238,7 @@
 												<p>All：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1</a></code></p>
  												<p>Auto：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_auto=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_auto=1</a></code></p>
  												<p>Media：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_media=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_media=1</a></code></p>
+ 												<p>Relay：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_relay=1">{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_relay=1</a></code></p>
  												<hr>
  												<p>Surge 3 Pro 个人端口节点列表（地区）</p>
  												{if $user->class > 1}
@@ -256,6 +257,7 @@
 												<p>All：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1</a></code></p>
  												<p>Auto：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_auto=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_auto=1</a></code></p>
  												<p>Media：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_media=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_media=1</a></code></p>
+ 												<p>Relay：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&list=1&list_relay=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&list_relay=1</a></code></p>
  												<hr>
  												<p>Surge 3 Pro 公共端口节点列表（地区）</p>
  												{if $user->class > 1}
