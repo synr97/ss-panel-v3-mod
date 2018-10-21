@@ -229,7 +229,6 @@ class Job
     public static function CheckJob()
     {
         // Detect connect quantity begin
-
         $users = User::where('node_connector', '>', 0)->get();
 
         $full_alive_ips = Ip::where("datetime", ">=", time() - 60)->orderBy("ip")->get();
@@ -249,6 +248,8 @@ class Job
 
             $alive_ipset[$full_alive_ip->userid]->append($full_alive_ip);
         }
+
+
 
         foreach ($users as $user) {
             $alive_ips = (isset($alive_ipset[$user->id])?$alive_ipset[$user->id]:new \ArrayObject());
@@ -281,8 +282,8 @@ class Job
                     }
                 }
             }
-        // Detect online quantity end
         }
+        // Detect online quantity end
 
         // Unblock IP begin
         $disconnecteds = Disconnect::where("datetime", "<", time() - 300)->get();
