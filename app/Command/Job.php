@@ -133,10 +133,10 @@ class Job
         $nodes = Node::all();
         $total_traffic = 0;
         foreach ($nodes as $node) {
-            $total_traffic += $node->node_bandwidth/1024/1024/1024;
+            $total_traffic += $node->node_bandwidth / 1024 / 1024 / 1024;
             if ($node->sort == 0 || $node->sort == 10) {
                 if (date("d")==$node->bandwidthlimit_resetday) {
-                    $node->node_bandwidth=0;
+                    $node->node_bandwidth = 0;
                     $node->save();
                 }
             }
@@ -153,9 +153,10 @@ class Job
         $users = User::where('auto_reset_day', '=', 0)->get();
         foreach ($users as $user) {
             $boughts = Bought::where('userid', $user->id)->orderBy("datetime", "desc")->get();
-            foreach ($boughts as $bought) {
+            if ($bought == null) {
+				continue;
+			}
                 $shop = Shop::where("id", $bought->shopid)->first();
-
                 if ($shop == null) {
                     $bought->delete();
                     continue;
@@ -228,6 +229,7 @@ class Job
     public static function CheckJob()
     {
         // Detect connect quantity begin
+
         $users = User::where('node_connector', '>', 0)->get();
 
         $full_alive_ips = Ip::where("datetime", ">=", time() - 60)->orderBy("ip")->get();
@@ -247,8 +249,6 @@ class Job
 
             $alive_ipset[$full_alive_ip->userid]->append($full_alive_ip);
         }
-
-
 
         foreach ($users as $user) {
             $alive_ips = (isset($alive_ipset[$user->id])?$alive_ipset[$user->id]:new \ArrayObject());
