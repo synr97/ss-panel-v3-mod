@@ -166,19 +166,18 @@ class Job
                 continue;
             }
 
-                if (intval((time() - $bought->datetime) / 86400) % $shop->reset() == 0 && intval((time() - $bought->datetime) / 86400) != 0) {
-                    echo("流量重置 - ".$user->id."\n");
-                    $user->transfer_enable = Tools::toGB($shop->reset_value());
-                    $user->u = 0;
-                    $user->d = 0;
-                    $user->last_day_t = 0;
-                    $user->save();
-                }
-        	}
+            if (intval((time() - $bought->datetime) / 86400) % $shop->reset() == 0 && intval((time() - $bought->datetime) / 86400) != 0) {
+                echo("流量重置 - ".$user->id."\n");
+                $user->transfer_enable = Tools::toGB($shop->reset_value());
+                $user->u = 0;
+                $user->d = 0;
+                $user->last_day_t = 0;
+                $user->save();
+            }
         }
 
-        $userall = User::all();
-        foreach ($userall as $user) {
+        $users = User::all();
+        foreach ($users as $user) {
             $user->last_day_t = ($user->u + $user->d);
             $user->save();
         }
