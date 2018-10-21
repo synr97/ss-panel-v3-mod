@@ -547,31 +547,42 @@ class URL
             }
             $user = URL::getSSRConnectInfo($user);
         }
-
-        	if ($relay_rule != null && $is_mu != 0 && $is_ss != 1) {
-				$return_array['port'] = 531;
-				$return_array['method'] = 'aes-128-ctr';
-				$return_array['protocol'] = 'auth_aes128_md5';
-				$return_array['obfs'] = 'http_simple';
-			} else {
-				$return_array['port'] = $user->port;
-				$return_array['method'] = $user->method;
-				$return_array['protocol'] = $user->protocol;
-				$return_array['obfs'] = $user->obfs;
+        	if (strpos($node->info,"NAT") != "") {
+        		if ($relay_rule != null && $is_mu != 0 && $is_ss != 1) {
+        			$return_array['port'] = 30001;
+					$return_array['method'] = 'aes-128-ctr';
+					$return_array['protocol'] = 'auth_aes128_md5';
+					$return_array['obfs'] = 'http_simple';
+				} else {
+					$return_array['port'] = 30000;
+					$return_array['method'] = 'aes-128-ctr';
+					$return_array['protocol'] = 'auth_aes128_md5';
+					$return_array['obfs'] = 'plain';
+				}
+        	} else {
+	        	if ($relay_rule != null && $is_mu != 0 && $is_ss != 1) {
+					$return_array['port'] = 531;
+					$return_array['method'] = 'aes-128-ctr';
+					$return_array['protocol'] = 'auth_aes128_md5';
+					$return_array['obfs'] = 'http_simple';
+				} else {
+					$return_array['port'] = $user->port;
+					$return_array['method'] = $user->method;
+					$return_array['protocol'] = $user->protocol;
+					$return_array['obfs'] = $user->obfs;
+				}
 			}
-            	$return_array['address'] = $node->server;
-            	$return_array['passwd'] = $user->passwd;
-            if ($is_ss != 1) {
-            	$return_array['remark'] = "[SSR] ".$node_name;
-            } else {
-            	$return_array['remark'] = "[SS] ".$node_name;
-            }
-            	$return_array['protocol_param'] = $user->protocol_param;
-            	$return_array['obfs_param'] = $user->obfs_param;
-            	$return_array['group'] = Config::get('appName')." - SSR";
-			if ($mu_port != 0 && $is_mu != 0) {
-				$return_array['group'] .= '';
-			}
+	            	$return_array['address'] = $node->server;
+	            	$return_array['passwd'] = $user->passwd;
+	            if ($is_ss != 1) {
+	            	$return_array['remark'] = "[SSR] ".$node_name;
+	            	$return_array['group'] = Config::get('appName')." - SSR";
+	            } else {
+	            	$return_array['remark'] = "[SS] ".$node_name;
+	            	$return_array['group'] = Config::get('appName')." - SS";
+	            }
+	            	$return_array['protocol_param'] = $user->protocol_param;
+	            	$return_array['obfs_param'] = $user->obfs_param;
 			return $return_array;
     }
 

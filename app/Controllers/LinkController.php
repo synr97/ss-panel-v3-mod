@@ -609,7 +609,11 @@ class LinkController extends BaseController
                             }
                         }
                     } elseif ($list_relay == 1) {
-                    	$relay_rule = Tools::pick_out_relay_rule($node->id, $user->port, $relay_rules);
+                    	$relay_rules = Relay::where('user_id', $user->id)->orwhere('user_id', 0)->orderBy('id', 'asc')->get();
+                        if (!Tools::is_protocol_relay($user)) {
+                            $relay_rules = array();
+                        }
+                        $relay_rule = Tools::pick_out_relay_rule($node->id, $user->port, $relay_rules);
                         if ($relay_rule != null) {
                             if (URL::getSurgeObfs($item) != "") {
                                 $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
