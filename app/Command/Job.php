@@ -152,7 +152,7 @@ class Job
         //auto reset
         $boughts = User::where('auto_reset_day', '=', 0)->get();
         foreach ($boughts as $bought) {
-            $user = Bought::where('userid', $user->id)->orderBy("datetime", "desc")->get();
+            $user = User::where("id", $bought->userid)->first();
 
             if ($user == null) {
                 $bought->delete();
