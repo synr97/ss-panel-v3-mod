@@ -230,11 +230,6 @@ class LinkController extends BaseController
                     $list_media = $request->getQueryParams()["list_media"];
                 }
 
-                $list_relay = 0;
-                if (isset($request->getQueryParams()["list_relay"])) {
-                    $list_relay = $request->getQueryParams()["list_relay"];
-                }
-
                 $cn_list = 0;
                 if (isset($request->getQueryParams()["cn_list"])) {
                     $cn_list = $request->getQueryParams()["cn_list"];
@@ -281,8 +276,6 @@ class LinkController extends BaseController
                     $filename = 'auto.list';
                 } elseif ($list_media == 1) {
                     $filename = 'media.list';
-                } elseif ($list_relay == 1) {
-                    $filename = 'relay.list';
                 } elseif ($cn_list == 1) {
                     $filename = 'cn_proxy.list';
                 } elseif ($hk_list == 1) {
@@ -309,7 +302,7 @@ class LinkController extends BaseController
                     $filename = 'Dler Cloud.conf';
                 }
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
-                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $list, $list_auto, $list_media, $list_relay, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list));
+                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $list, $list_auto, $list_media, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list));
                 return $newResponse;
             case 3:
                 $type = "PROXY";
@@ -519,7 +512,7 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_relay = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $list = 0, $list_auto = 0, $list_media = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
         $proxy_name = "";
         $domestic_name = "";
         $auto_name = "";
@@ -608,19 +601,6 @@ class LinkController extends BaseController
                                 $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                             }
                         }
-                    } elseif ($list_relay == 1) {
-                    	$relay_rules = Relay::where('user_id', $user->id)->orwhere('user_id', 0)->orderBy('id', 'asc')->get();
-                        if (!Tools::is_protocol_relay($user)) {
-                            $relay_rules = array();
-                        }
-                        $relay_rule = Tools::pick_out_relay_rule($node->id, $user->port, $relay_rules);
-                        if ($relay_rule != null) {
-                            if (URL::getSurgeObfs($item) != "") {
-                                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-                            } else {
-                                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-                            }
-                        }
                     } else {
                         if (URL::getSurgeObfs($item) != "") {
                             $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
@@ -661,7 +641,7 @@ class LinkController extends BaseController
         }
 
         if ($list == 1) {
-            if ($area != "" || $list_auto == 1 || $list_media == 1 || $list_relay == 1) {
+            if ($area != "" || $list_auto == 1 || $list_media == 1) {
                 return ''.$proxy_list.'';
             } else {
                 return 'DIRECT = direct

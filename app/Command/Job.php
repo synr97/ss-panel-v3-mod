@@ -150,31 +150,35 @@ class Job
         EmailVerify::where("expire_in", "<", time() - 86400)->delete();
 
         //auto reset
-        $users = User::where('auto_reset_day', '=', 0)->get();
-        foreach ($users as $user) {
-            $boughts = Bought::where('userid', $user->id)->orderBy("datetime", "desc")->get();
-            if ($bought == null) {
-				continue;
-			}
-                $shop = Shop::where("id", $bought->shopid)->first();
-                if ($shop == null) {
-                    $bought->delete();
-                    continue;
-                }
+        $boughts = User::where('auto_reset_day', '=', 0)->get();
+        foreach ($boughts as $bought) {
+            $user = Bought::where('userid', $user->id)->orderBy("datetime", "desc")->get();
+
+            if ($user == null) {
+                $bought->delete();
+                continue;
+            }
+
+            $shop = Shop::where("id", $bought->shopid)->first();
+
+            if ($shop == null) {
+                $bought->delete();
+                continue;
+            }
 
                 if (intval((time() - $bought->datetime) / 86400) % $shop->reset() == 0 && intval((time() - $bought->datetime) / 86400) != 0) {
                     echo("流量重置 - ".$user->id."\n");
+                    $user->transfer_enable = Tools::toGB($shop->reset_value());
                     $user->u = 0;
                     $user->d = 0;
                     $user->last_day_t = 0;
-                    $user->transfer_enable = Tools::toGB($shop->reset_value());
                     $user->save();
                 }
         	}
         }
 
-        $users = User::all();
-        foreach ($users as $user) {
+        $userall = User::all();
+        foreach ($userall as $user) {
             $user->last_day_t = ($user->u + $user->d);
             $user->save();
         }
