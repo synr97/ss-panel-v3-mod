@@ -172,6 +172,12 @@ class Job
         	}
         }
 
+        $users = User::all();
+        foreach ($users as $user) {
+            $user->last_day_t = ($user->u + $user->d);
+            $user->save();
+        }
+
         $users = User::where('auto_reset_day', '=', 1)->get();
         foreach ($users as $user) {
             if (date("d") == $user->auto_reset_day) {
