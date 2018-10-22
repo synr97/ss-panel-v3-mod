@@ -150,32 +150,6 @@ class Job
         EmailVerify::where("expire_in", "<", time() - 86400)->delete();
 
         //auto reset
-        $boughts = User::where('auto_reset_day', '=', 0)->get();
-        foreach ($boughts as $bought) {
-            $user = User::where("id", $bought->userid)->first();
-
-            if ($user == null) {
-                $bought->delete();
-                continue;
-            }
-
-            $shop = Shop::where("id", $bought->shopid)->first();
-
-            if ($shop == null) {
-                $bought->delete();
-                continue;
-            }
-
-            if (intval((time() - $bought->datetime) / 86400) % $shop->reset() == 0 && intval((time() - $bought->datetime) / 86400) != 0) {
-                echo("流量重置 - ".$user->id."\n");
-                $user->transfer_enable = Tools::toGB($shop->reset_value());
-                $user->u = 0;
-                $user->d = 0;
-                $user->last_day_t = 0;
-                $user->save();
-            }
-        }
-
         $users = User::all();
         foreach ($users as $user) {
             $user->last_day_t = ($user->u + $user->d);
