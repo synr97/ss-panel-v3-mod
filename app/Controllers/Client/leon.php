@@ -76,21 +76,21 @@ public function apiregister($request, $response, $next)
         $user->auto_reset_day = Config::get('reg_auto_reset_day');
         $user->auto_reset_bandwidth = Config::get('reg_auto_reset_bandwidth');
         $user->money = 0;
-        $user->class_expire=date("Y-m-d H:i:s", time()+Config::get('user_class_expire_default')*3600);
+        $user->class_expire=date("Y-m-d H:i:s", time()+Config::get('user_class_expire_default') * 3600);
         $user->class = Config::get('user_class_default');
         $user->node_connector = Config::get('user_conn');
         $user->node_speedlimit = Config::get('user_speedlimit');
   		$user->ref_by = -1;
-        $user->expire_in=date("Y-m-d H:i:s", time()+Config::get('user_expire_in_default')*86400);
+        $user->expire_in=date("Y-m-d H:i:s", time()+Config::get('user_expire_in_default') * 86400);
         $user->reg_date = date("Y-m-d H:i:s");
         $user->reg_ip = $_SERVER["REMOTE_ADDR"];
-        $user->class_expire = date("Y-m-d H:i:s", time()+Config::get('user_class_expire_default')*3600);
+        $user->class_expire = date("Y-m-d H:i:s", time()+Config::get('user_class_expire_default') * 3600);
         $user->class = Config::get('user_class_default');
         $user->plan = 'A';
         $user->theme = Config::get('theme');
 
-        $group=Config::get('ramdom_group');
-        $Garray=explode(",", $group);
+        $group = Config::get('ramdom_group');
+        $Garray  =explode(",", $group);
 
         $user->node_group = $Garray[rand(0, count($group)-1)];
 

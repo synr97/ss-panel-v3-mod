@@ -14,7 +14,7 @@ class Cookie extends Base
     {
         $user = User::find($uid);
         $key = Hash::cookieHash($user->pass);
-        $expire_in = $time+time();
+        $expire_in = $time + time();
         Utils\Cookie::set([
             "uid" => $uid,
             "email" => $user->email,
@@ -39,13 +39,13 @@ class Cookie extends Base
         }
         
         $nodes=Node::where("node_ip", "=", $_SERVER["REMOTE_ADDR"])->first();
-        if ($ip != md5($_SERVER["REMOTE_ADDR"].Config::get('key').$uid.$expire_in) && $nodes==null && Config::get('enable_login_bind_ip')=='true') {
+        if ($ip != md5($_SERVER["REMOTE_ADDR"].Config::get('key').$uid.$expire_in) && $nodes == null && Config::get('enable_login_bind_ip') == 'true') {
             $user = new User();
             $user->isLogin = false;
             return $user;
         }
         
-        if ($expire_in<time()) {
+        if ($expire_in < time()) {
             $user = new User();
             $user->isLogin = false;
             return $user;

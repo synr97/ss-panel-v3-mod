@@ -182,18 +182,10 @@
                                     <input class="form-control" id="class" type="number" value="{$edit_user->class}">
                                 </div>
 
-
-
                                 <div class="form-group form-group-label">
                                     <label class="floating-label" for="class_expire">用户等级过期时间(不过期就请不要动)</label>
                                     <input class="form-control" id="class_expire" type="text" value="{$edit_user->class_expire}">
                                 </div>
-
-                                <div class="form-group form-group-label">
-                                    <label class="floating-label" for="expire_in">用户账户过期时间(不过期就请不要动)</label>
-                                    <input class="form-control" id="expire_in" type="text" value="{$edit_user->expire_in}">
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -275,20 +267,20 @@
         function submit() {
             if(document.getElementById('is_admin').checked)
             {
-                var is_admin=1;
+                var is_admin = 1;
             }
             else
             {
-                var is_admin=0;
+                var is_admin = 0;
             }
 
             if(document.getElementById('enable').checked)
             {
-                var enable=1;
+                var enable = 1;
             }
             else
             {
-                var enable=0;
+                var enable = 0;
             }
 
             $.ajax({
@@ -318,7 +310,6 @@
                     forbidden_port: $("#forbidden_port").val(),
                     class: $("#class").val(),
                     class_expire: $("#class_expire").val(),
-                    expire_in: $("#expire_in").val(),
                     node_connector: $("#node_connector").val(),
                     protocol: $("#protocol").val(),
                     protocol_param: $("#protocol_param").val(),

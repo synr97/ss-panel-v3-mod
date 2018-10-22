@@ -317,7 +317,7 @@ class UserController extends AdminController
                 $tempdata['im_value'] = '<a href="https://telegram.me/'.$user->im_value.'">'.$user->im_value.'</a>';
             }
             $tempdata['node_group']=$user->node_group;
-            $tempdata['account_expire_in']=$user->expire_in;
+            $tempdata['expire_in']=$user->expire_in;
             $tempdata['class']=$user->class;
             $tempdata['class_expire']=$user->class_expire;
             $tempdata['passwd']=$user->passwd;
