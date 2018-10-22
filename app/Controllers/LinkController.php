@@ -306,7 +306,7 @@ class LinkController extends BaseController
                     $filename = 'us_proxy.list';
                 } elseif ($list == 1) {
                     $filename = 'all.list';
-                } elseif ($list == 1) {
+                } elseif ($clash == 1) {
                     $filename = 'Dler Cloud.yml';
                 } elseif ($is_mu == 1) {
                     $filename = 'Dler Cloud - Public.conf';
@@ -562,7 +562,25 @@ class LinkController extends BaseController
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
-            if ($list == 0) {
+        	if ($clash == 1) {
+                  $em["name"] = $item['remark'];
+                  $em["type"] = "ss";
+                  $em["server"] = $item['address'];
+                  $em["port"]  = $item['port'];
+                  $em["ciper"] = $item['method'];
+                  $em["method"] = $item['method'];
+                  $em["password"] = $item['passwd'];
+
+                  if (array_key_exists('obfs', $item) && $item['obfs'] != '') {
+                    $em["obfs"] = $item['obfs'];
+                  }
+
+                  if (array_key_exists('obfs_param', $item) && $item['obfs_param'] != '') {
+                    $em["obfs-host"] = $item['obfs_param'];
+                  }
+
+                  arraypush($clash_array["Proxy"], $em);
+            } elseif ($list == 0) {
                 if (URL::getSurgeObfs($item) != "") {
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
                 } else {
@@ -584,23 +602,6 @@ class LinkController extends BaseController
                         $auto_name .= ", ".$item['remark'];
                     }
                 }
-            } elseif ($clash == 1) {
-                $em["name"] = $item['remark'];
-                  $em["type"] = "ss";
-                  $em["server"] = $item['address'];
-                  $em["port"]  = $item['port'];
-                  $em["ciper"] = $item['method'];
-                  $em["method"] = $item['method'];
-                  $em["password"] = $item['passwd'];
-
-                  if (array_key_exists('obfs', $item) && $item['obfs'] != '') {
-                    $em["obfs"] = $item['obfs'];
-                  }
-
-                  if (array_key_exists('obfs_param', $item) && $item['obfs_param'] != '') {
-                    $em["obfs-host"] = $item['obfs_param'];
-                  }
-                  arraypush($clash_array["Proxy"], $em);
             } elseif ($list == 1) {
                 if ($cn_list == 1) {
                     $area = "中国";
