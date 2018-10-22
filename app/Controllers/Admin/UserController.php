@@ -333,7 +333,7 @@ class UserController extends AdminController
             $tempdata['today_traffic']=$tempdata['used_traffic']-$user->last_day_t;
             $tempdata['enable']=$user->enable == 1 ? "可用" : "禁用";
             $tempdata['reg_date']=$user->reg_date;
-            $tempdata['reg_location']=$user->reg_ip;
+            $tempdata['reg_ip']=$user->reg_ip;
             $tempdata['auto_reset_day']=$user->auto_reset_day;
             $tempdata['auto_reset_bandwidth']=$user->auto_reset_bandwidth;          
             $tempdata['ref_by']= $user->ref_by;
