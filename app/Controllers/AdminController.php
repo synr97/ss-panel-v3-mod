@@ -51,57 +51,6 @@ class AdminController extends UserController
         return $this->view()->assign('table_config', $table_config)->display('admin/invite.tpl');
     }
 
-    public function find($request, $response, $args)
-    {
-        $id =  $request->getParam('id');
-        $view=0;
-        if ($id) {
-        $view=1;
-        $userf=User::where("id", "=", $id)->first();
-        }
-            else {
-        $view=0;
-        $userf=User::where("id", "=", 0)->first();
-        }
-        
-        return $this->view()->assign('view', $view)->assign('userf', $userf)->display('admin/find.tpl');
-    }
-
-    public function finduser($request, $response, $args)
-    {
-        $username = $request->getParam('username');
-        $email = $request->getParam('email');
-        $port = $request->getParam('port');
-        if (!$username && !$email && !$port)
-        {
-             $res['ret'] = 0;
-             $res['msg'] = "请正确输入";
-             return $response->getBody()->write(json_encode($res));
-        }
-        if($username) {
-                $user=User::where("user_name", "=", $username)->first();
-        $id=$user->id;
-        }
-        if($email) {
-                $user=User::where("email", "=", $email)->first();
-        $id=$user->id;
-        }
-        if($port) {
-                $user=User::where("port", "=", $port)->first();
-        $id=$user->id;
-        }
-        if (!$id) {
-             $res['ret'] = 0;
-             $res['msg'] = "无数据";
-             return $response->getBody()->write(json_encode($res));
-        
-        }
-        $res['id']=$id;
-        $res['ret'] = 1;
-        $res['msg'] = "正在查询";
-        return $response->getBody()->write(json_encode($res));
-    }
-
     public function addInvite($request, $response, $args)
     {
         $n = $request->getParam('num');
