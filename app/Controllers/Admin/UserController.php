@@ -20,7 +20,7 @@ class UserController extends AdminController
         $table_config['total_column'] = array("op" => "操作", "id" => "ID", "user_name" => "用户名",
                             "remark" => "备注", "email" => "邮箱", "money" => "金钱",
                             "im_type" => "联络方式类型", "im_value" => "联络方式详情",
-                            "node_group" => "群组",
+                            "node_group" => "群组", "expire_in" => "账户过期时间",
                             "class" => "等级", "class_expire" => "等级过期时间",
                             "passwd" => "连接密码","port" => "连接端口", "method" => "加密方式",
                             "protocol" => "连接协议", "obfs" => "连接混淆方式",
@@ -191,6 +191,7 @@ class UserController extends AdminController
         $user->money = $request->getParam('money');
         $user->class = $request->getParam('class');
         $user->class_expire = $request->getParam('class_expire');
+        $user->expire_in = $request->getParam('expire_in');
 
         $user->forbidden_ip = str_replace(PHP_EOL, ",", $request->getParam('forbidden_ip'));
         $user->forbidden_port = str_replace(PHP_EOL, ",", $request->getParam('forbidden_port'));
@@ -316,6 +317,7 @@ class UserController extends AdminController
                 $tempdata['im_value'] = '<a href="https://telegram.me/'.$user->im_value.'">'.$user->im_value.'</a>';
             }
             $tempdata['node_group']=$user->node_group;
+            $tempdata['expire_in']=$user->expire_in;
             $tempdata['class']=$user->class;
             $tempdata['class_expire']=$user->class_expire;
             $tempdata['passwd']=$user->passwd;
@@ -329,7 +331,7 @@ class UserController extends AdminController
             $tempdata['enable_traffic']=Tools::flowToGB($user->transfer_enable);
             $tempdata['last_checkin_time']=$user->lastCheckInTime();
             $tempdata['today_traffic']=$tempdata['used_traffic']-$user->last_day_t;
-            $tempdata['enable']=$user->enable == 1 ? "可用" : "禁用";
+            $tempdata['is_enable']=$user->enable == 1 ? "可用" : "禁用";
             $tempdata['reg_date']=$user->reg_date;
             $tempdata['reg_location']=$user->reg_ip;
             $tempdata['auto_reset_day']=$user->auto_reset_day;
