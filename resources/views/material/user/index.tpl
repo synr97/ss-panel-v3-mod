@@ -187,12 +187,12 @@
 										</div>
 										<div class="tab-pane fade" id="all_ss" role="tabpanel" aria-labelledby="all_ss-tab">
 											{if URL::SSCanConnect($user)}
-												<p>SSD 订阅地址</p>
+												<p>SSD 个人端口订阅地址</p>
 												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=3">{$apiUrl}/link/{$ssr_sub_token}?mu=3</a></code></p>
 												<hr>
 											{/if}
 											{if URL::SSCanConnect($user)}
-												<p>SS 订阅地址</p>
+												<p>SS 个人端口订阅地址</p>
 												<p>
 												<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=4">{$apiUrl}/link/{$ssr_sub_token}?mu=4</a></code>
 												</p>
@@ -200,6 +200,15 @@
 												<p><a href="quantumult://configuration?server={$ss_url}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
 												<hr>
 											{/if}
+											{if URL::SSCanConnect($user)}
+												<p>Clash 个人端口配置</p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=0&clash=1</a></code></p>
+											{/if}
+											{if URL::SSRCanConnect($user)}
+												<p>Clash 公共端口配置</p>
+												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&clash=1">{$apiUrl}/link/{$ios_token}?is_mu=1&clash=1</a></code></p>
+											{/if}
+											<hr>
 											{if URL::SSCanConnect($user)}
 												<p>Surge 2 / Surfboard 个人端口托管地址</p>
 												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0">{$apiUrl}/link/{$ios_token}?is_mu=0</a></code></p>

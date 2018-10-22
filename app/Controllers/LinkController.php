@@ -215,6 +215,11 @@ class LinkController extends BaseController
                     $new = $request->getQueryParams()["new"];
                 }
 
+                $clash = 0;
+                if (isset($request->getQueryParams()["clash"])) {
+                    $clash = $request->getQueryParams()["clash"];
+                }
+
                 $list = 0;
                 if (isset($request->getQueryParams()["list"])) {
                     $list = $request->getQueryParams()["list"];
@@ -301,6 +306,8 @@ class LinkController extends BaseController
                     $filename = 'us_proxy.list';
                 } elseif ($list == 1) {
                     $filename = 'all.list';
+                } elseif ($list == 1) {
+                    $filename = 'Dler Cloud.yml';
                 } elseif ($is_mu == 1) {
                     $filename = 'Dler Cloud - Public.conf';
                 } elseif ($new == 1) {
@@ -309,7 +316,7 @@ class LinkController extends BaseController
                     $filename = 'Dler Cloud.conf';
                 }
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
-                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $list, $list_auto, $list_media, $list_back, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list));
+                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $clash, $list, $list_auto, $list_media, $list_back, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list));
                 return $newResponse;
             case 3:
                 $type = "PROXY";
@@ -519,11 +526,19 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_back = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $clash = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_back = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
         $proxy_name = "";
         $domestic_name = "";
         $auto_name = "";
         $proxy_list = "";
+        $clash_array = array();
+
+        if ($clash == 1) {
+            $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.yml");
+            $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashX.yml");
+
+            array_push($clash_array, yaml_parse($general));
+        }
 
         if ($new == 0) {
             if ($mitm == 0) {
@@ -569,6 +584,23 @@ class LinkController extends BaseController
                         $auto_name .= ", ".$item['remark'];
                     }
                 }
+            } elseif ($clash == 1) {
+                $em["name"] = $item['remark'];
+                  $em["type"] = "ss";
+                  $em["server"] = $item['address'];
+                  $em["port"]  = $item['port'];
+                  $em["ciper"] = $item['method'];
+                  $em["method"] = $item['method'];
+                  $em["password"] = $item['passwd'];
+
+                  if (array_key_exists('obfs', $item) && $item['obfs'] != '') {
+                    $em["obfs"] = $item['obfs'];
+                  }
+
+                  if (array_key_exists('obfs_param', $item) && $item['obfs_param'] != '') {
+                    $em["obfs-host"] = $item['obfs_param'];
+                  }
+                  arraypush($clash_array["Proxy"], $em);
             } elseif ($list == 1) {
                 if ($cn_list == 1) {
                     $area = "中国";
@@ -651,6 +683,11 @@ class LinkController extends BaseController
                     }
                 }
             }
+        }
+
+        if ($clash == 1) {
+          array_push($clash_array, yaml_parse($rules));
+          return yaml_emit($clash_array);
         }
 
         if ($list == 1) {
