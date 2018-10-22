@@ -92,7 +92,6 @@ $(document).ready(function(){
                 { "data": "im_type" },
                 { "data": "im_value" },
                 { "data": "node_group" },
-                { "data": "expire_in" },
                 { "data": "class" },
                 { "data": "class_expire" },
                 { "data": "passwd" },
