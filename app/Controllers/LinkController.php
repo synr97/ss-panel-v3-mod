@@ -281,6 +281,8 @@ class LinkController extends BaseController
                     $filename = 'auto.list';
                 } elseif ($list_media == 1) {
                     $filename = 'media.list';
+                } elseif ($list_back == 1) {
+                    $filename = 'back.list';
                 } elseif ($cn_list == 1) {
                     $filename = 'cn_proxy.list';
                 } elseif ($hk_list == 1) {
