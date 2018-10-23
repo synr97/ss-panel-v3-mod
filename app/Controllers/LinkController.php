@@ -694,7 +694,7 @@ class LinkController extends BaseController
         }
 
         if ($clash == 1) {
-          $clash_array = $clash_array + yaml_parse($general);
+          $clash_array = $clash_array + yaml_parse($rules);
           return yaml_emit($clash_array);
         }
 
