@@ -539,6 +539,10 @@ class LinkController extends BaseController
 
             $clash_array = $clash_array + yaml_parse($general);
             $clash_array["Proxy"] = array();
+            $clash_array["Proxy Group"] = array();
+            $auto_clash = array('name' => "auto", 'type' => "url-test", 'proxies' => array(), 'url' => "http://captive.apple.com", 'interval' => 1200);
+            $fallback_auto_clash = array('name' => "fallback-auto", 'type' => "fallback", 'proxies' => array(), 'url' => "http://captive.apple.com", 'interval' => 1200);
+            $proxy_clash = array('name' => "Proxy", 'type' => "select", 'proxies' => array());
         } else {
           if ($new == 0) {
               if ($mitm == 0) {
@@ -587,6 +591,9 @@ class LinkController extends BaseController
                 }
 
                   array_push($clash_array["Proxy"], $em);
+                  array_push($auto_clash["proxies"], $em["name"]);
+                  array_push($fallback_auto_clash["proxies"], $em["name"]);
+                  array_push($proxy_clash["proxies"], $em["name"]);
             } elseif ($list == 0) {
                 if (URL::getSurgeObfs($item) != "") {
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
