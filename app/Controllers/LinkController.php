@@ -540,8 +540,18 @@ class LinkController extends BaseController
             $clash_array = $clash_array + yaml_parse($general);
             $clash_array["Proxy"] = array();
             $clash_array["Proxy Group"] = array();
-            $auto_clash = array('name' => "auto", 'type' => "url-test", 'proxies' => array(), 'url' => "http://captive.apple.com", 'interval' => 1200);
-            $fallback_auto_clash = array('name' => "fallback-auto", 'type' => "fallback", 'proxies' => array(), 'url' => "http://captive.apple.com", 'interval' => 1200);
+            if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "") {
+                    if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
+                        $auto_clash = array('name' => "auto", 'type' => "url-test", 'proxies' => array(), 'url' => "http://captive.apple.com", 'interval' => 1200);
+                        if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "") {
+                        	if (strpos('"'.$item['remark'].'"',"AZURE") == "") {
+                        		if (strpos('"'.$item['remark'].'"',"CN2") == "") {
+                        			$fallback_auto_clash = array('name' => "fallback-auto", 'type' => "fallback", 'proxies' => array(), 'url' => "http://captive.apple.com", 'interval' => 1200);
+                        		}
+                        	}
+                        }
+                    }
+                }
             $proxy_clash = array('name' => "Proxy", 'type' => "select", 'proxies' => array());
         } else {
           if ($new == 0) {
