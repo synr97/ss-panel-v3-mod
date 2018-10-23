@@ -538,7 +538,6 @@ class LinkController extends BaseController
             $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashX.yml");
 
             array_push($clash_array, yaml_parse($general));
-            clash_array["Proxy"] = array();
         }
 
         if ($new == 0) {
