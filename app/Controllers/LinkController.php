@@ -746,7 +746,7 @@ DIRECT = direct
 '.$proxy_list.'
 
 [Proxy Group]
-Proxy = select, Auto, fallback, DIRECT'.$proxy_name.'
+PROXY = select, Auto, fallback, DIRECT'.$proxy_name.'
 Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
 Apple = select, DIRECT, PROXY, Auto
