@@ -723,7 +723,7 @@ Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
 Apple = select, DIRECT, PROXY, Auto
 Media = select, PROXY, DIRECT'.$media_name.'
-Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
+Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
 
 '.$rules.'';
         } elseif ($new == 1) {
@@ -741,8 +741,8 @@ Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
 Apple = select, DIRECT, PROXY, Auto
 Media = select, PROXY, DIRECT'.$media_name.'
-Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
-fallback = url-test'.$fallback_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
+Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
+fallback = fallback'.$fallback_name.', url = http://captive.apple.com, interval = 1200
 
 
 '.$rules.'';
