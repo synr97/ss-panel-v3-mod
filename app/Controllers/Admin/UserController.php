@@ -316,27 +316,27 @@ class UserController extends AdminController
                 $tempdata['im_type'] = 'Telegram';
                 $tempdata['im_value'] = '<a href="https://telegram.me/'.$user->im_value.'">'.$user->im_value.'</a>';
             }
-            $tempdata['node_group']=$user->node_group;
-            $tempdata['expire_in']=$user->expire_in;
-            $tempdata['class']=$user->class;
-            $tempdata['class_expire']=$user->class_expire;
-            $tempdata['passwd']=$user->passwd;
-            $tempdata['port']=$user->port;
-            $tempdata['method']=$user->method;
-            $tempdata['protocol']=$user->protocol;
-            $tempdata['obfs']=$user->obfs;
-            $tempdata['online_ip_count']=$user->online_ip_count();
-            $tempdata['last_ss_time']=$user->lastSsTime();
-            $tempdata['used_traffic']=Tools::flowToGB($user->u + $user->d);
-            $tempdata['enable_traffic']=Tools::flowToGB($user->transfer_enable);
-            $tempdata['last_checkin_time']=$user->lastCheckInTime();
-            $tempdata['today_traffic']=$tempdata['used_traffic']-$user->last_day_t;
-            $tempdata['enable']=$user->enable == 1 ? "可用" : "禁用";
-            $tempdata['reg_date']=$user->reg_date;
-            $tempdata['reg_ip']=$user->reg_ip;
-            $tempdata['auto_reset_day']=$user->auto_reset_day;
-            $tempdata['auto_reset_bandwidth']=$user->auto_reset_bandwidth;          
-            $tempdata['ref_by']= $user->ref_by;
+            $tempdata['node_group'] = $user->node_group;
+            $tempdata['expire_in'] = $user->expire_in;
+            $tempdata['class'] = $user->class;
+            $tempdata['class_expire'] = $user->class_expire;
+            $tempdata['passwd'] = $user->passwd;
+            $tempdata['port'] = $user->port;
+            $tempdata['method'] = $user->method;
+            $tempdata['protocol'] = $user->protocol;
+            $tempdata['obfs'] = $user->obfs;
+            $tempdata['online_ip_count'] = $user->online_ip_count();
+            $tempdata['last_ss_time'] = $user->lastSsTime();
+            $tempdata['used_traffic'] = Tools::flowToGB($user->u + $user->d);
+            $tempdata['enable_traffic'] = Tools::flowToGB($user->transfer_enable);
+            $tempdata['last_checkin_time'] = $user->lastCheckInTime();
+            $tempdata['today_traffic'] = Tools::flowToMB($user->u + $user->d - $user->last_day_t);
+            $tempdata['enable'] = $user->enable  =  =  1 ? "可用" : "禁用";
+            $tempdata['reg_date'] = $user->reg_date;
+            $tempdata['reg_ip'] = $user->reg_ip;
+            $tempdata['auto_reset_day'] = $user->auto_reset_day;
+            $tempdata['auto_reset_bandwidth'] = $user->auto_reset_bandwidth;
+            $tempdata['ref_by'] = $user->ref_by;
             if ($user->ref_by == 0) {
                 $tempdata['ref_by_user_name'] = "系统邀请";
             }
