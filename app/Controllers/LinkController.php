@@ -736,16 +736,17 @@ DIRECT = direct
 '.$proxy_list.'
 
 [Proxy Group]
-Proxy = select, Auto, DIRECT'.$proxy_name.'
+Proxy = select, Auto, fallback, DIRECT'.$proxy_name.'
 Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
 Apple = select, DIRECT, PROXY, Auto
 Media = select, PROXY, DIRECT'.$media_name.'
 Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
-Fallback = url-test'.$fallback_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
+fallback = url-test'.$fallback_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
 
 
 '.$rules.'';
+        }
     }
 
     private static function GetSurge($passwd, $method, $server, $port, $defined)
