@@ -118,7 +118,7 @@
 								</div>
 
 								<div class="form-group form-group-label">
-									<label class="floating-label" for="obfs_param">自混淆参数</label>
+									<label class="floating-label" for="obfs_param">混淆参数</label>
 									<input class="form-control" id="obfs_param" type="text" value="{$edit_user->obfs_param}">
 								</div>
 							</div>
@@ -196,7 +196,7 @@
 									<input class="form-control" id="class_expire" type="text" value="{$edit_user->class_expire}">
 								</div>
 
-								<div class="form-group form-group-label">
+								<div class="form-group form-group-label" hidden="hidden">
 									<label class="floating-label" for="expire_in">用户账户过期时间(不过期就请不要动)</label>
 									<input class="form-control" id="expire_in" type="text" value="{$edit_user->expire_in}">
 								</div>
@@ -209,7 +209,7 @@
 						<div class="card-main">
 							<div class="card-inner">
 
-								<div class="form-group form-group-label">
+								<div class="form-group form-group-label" hidden="hidden">
 									<label class="floating-label" for="node_speedlimit">用户限速，用户在每个节点所享受到的速度(0 为不限制)(Mbps)</label>
 									<input class="form-control" id="node_speedlimit" type="text" value="{$edit_user->node_speedlimit}">
 								</div>
@@ -226,12 +226,12 @@
 						<div class="card-main">
 							<div class="card-inner">
 
-								<div class="form-group form-group-label">
+								<div class="form-group form-group-label" hidden="hidden">
 									<label class="floating-label" for="node_speedlimit">禁止用户访问的IP，一行一个</label>
 									<textarea class="form-control" id="forbidden_ip" rows="8">{$edit_user->get_forbidden_ip()}</textarea>
 								</div>
 
-								<div class="form-group form-group-label">
+								<div class="form-group form-group-label" hidden="hidden">
 									<label class="floating-label" for="node_speedlimit">禁止用户访问的端口，一行一个</label>
 									<textarea class="form-control" id="forbidden_port" rows="8">{$edit_user->get_forbidden_port()}</textarea>
 								</div>

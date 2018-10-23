@@ -86,8 +86,8 @@
                                             <label class="floating-label" for="sort">端口启用</label>
                                             <select id="mu_only" class="form-control" name="is_multi_user">
                                                 <option value="0" {if $node->mu_only==0}selected{/if}>个人端口与公共端口并存</option>
-                                                <option value="-1" {if $node->mu_only==-1}selected{/if}>个人端口</option>
-                                                <option value="1" {if $node->mu_only==1}selected{/if}>公共端口</option>
+                                                <option value="-1" {if $node->mu_only==-1}selected{/if}>只启用个人端口</option>
+                                                <option value="1" {if $node->mu_only==1}selected{/if}>只启用公共端口</option>
                                             </select>
                                         </label>
                                     </div>
@@ -229,20 +229,20 @@
         submitHandler: function() {
             if(document.getElementById('custom_method').checked)
             {
-                var custom_method=1;
+                var custom_method = 1;
             }
             else
             {
-                var custom_method=0;
+                var custom_method = 0;
             }
 
             if(document.getElementById('type').checked)
             {
-                var type=1;
+                var type = 1;
             }
             else
             {
-                var type=0;
+                var type = 0;
             }
             {/literal}
             if(document.getElementById('custom_rss').checked)

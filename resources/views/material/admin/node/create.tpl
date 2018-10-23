@@ -81,11 +81,11 @@
 
                                     <div class="form-group form-group-label">
                                         <label for="mu_only">
-                                            <label class="floating-label" for="sort">端口启用</label>
+                                            <label class="floating-label" for="sort">公共端口启用</label>
                                             <select id="mu_only" class="form-control" name="is_multi_user">
-                                                    <option value="0">个人端口与公共端口并存</option>
-                                                    <option value="-1">个人端口</option>
-                                                    <option value="1">公共端口</option>
+                                                <option value="0">个人端口与公共端口并存</option>
+                                                <option value="-1">只启用个人端口</option>
+                                                <option value="1">只启用公共端口</option>
                                             </select>
                                         </label>
                                     </div>
@@ -215,37 +215,37 @@
 
     $('#main_form').validate({
         rules: {
-          name: {required: true},
-          server: {required: true},
-          method: {required: true},
-          rate: {required: true},
-          info: {required: true},
-          group: {required: true},
-          status: {required: true},
-          node_speedlimit: {required: true},
-          sort: {required: true},
-          dns_type: {required: true},
-          node_bandwidth_limit: {required: true},
-          bandwidthlimit_resetday: {required: true}
+            name: {required: true},
+            server: {required: true},
+            method: {required: true},
+            rate: {required: true},
+            info: {required: true},
+            group: {required: true},
+            status: {required: true},
+            node_speedlimit: {required: true},
+            sort: {required: true},
+            dns_type: {required: true},
+            node_bandwidth_limit: {required: true},
+            bandwidthlimit_resetday: {required: true}
         },
 
         submitHandler: function() {
             if(document.getElementById('custom_method').checked)
             {
-                var custom_method=1;
+                var custom_method = 1;
             }
             else
             {
-                var custom_method=0;
+                var custom_method = 0;
             }
 
             if(document.getElementById('type').checked)
             {
-                var type=1;
+                var type = 1;
             }
             else
             {
-                var type=0;
+                var type = 0;
             }
             {/literal}
             if(document.getElementById('custom_rss').checked)
