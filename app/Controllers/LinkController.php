@@ -607,6 +607,9 @@ class LinkController extends BaseController
                 if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "") {
                     if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
                         $auto_name .= ", ".$item['remark'];
+                        if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "") {
+                        	$fallback .= ", ".$item['remark'];
+                        }
                     }
                 }
             } elseif ($list == 1) {
@@ -705,9 +708,8 @@ class LinkController extends BaseController
                 return 'DIRECT = direct
 '.$proxy_list.'';
             }
-        } else {
-
-        return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
+        } elseif ($new == 0) {
+			return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
 
 '.$general.'
 
@@ -716,15 +718,34 @@ DIRECT = direct
 '.$proxy_list.'
 
 [Proxy Group]
-PROXY = select, AUTO, DIRECT'.$proxy_name.'
+PROXY = select, Auto, DIRECT'.$proxy_name.'
 Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
-Apple = select, DIRECT, PROXY, AUTO
+Apple = select, DIRECT, PROXY, Auto
 Media = select, PROXY, DIRECT'.$media_name.'
-AUTO = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
+Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
 
 '.$rules.'';
-        }
+        } elseif ($new == 1) {
+        	        return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
+
+'.$general.'
+
+[Proxy]
+DIRECT = direct
+'.$proxy_list.'
+
+[Proxy Group]
+Proxy = select, Auto, DIRECT'.$proxy_name.'
+Domestic = select, DIRECT, PROXY'.$domestic_name.'
+Others = select, PROXY, DIRECT
+Apple = select, DIRECT, PROXY, Auto
+Media = select, PROXY, DIRECT'.$media_name.'
+Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
+Fallback = url-test'.$fallback_name.', url = http://captive.apple.com, interval = 1200, tolerance = 300, timeout = 5
+
+
+'.$rules.'';
     }
 
     private static function GetSurge($passwd, $method, $server, $port, $defined)
