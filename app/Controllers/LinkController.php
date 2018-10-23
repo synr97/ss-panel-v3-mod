@@ -569,7 +569,6 @@ class LinkController extends BaseController
                   $em["server"] = $item['address'];
                   $em["port"]  = $item['port'];
                   $em["ciper"] = $item['method'];
-                  $em["method"] = $item['method'];
                   $em["password"] = $item['passwd'];
 
                   if (array_key_exists('obfs', $item) && $item['obfs'] != '') {
