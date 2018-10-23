@@ -473,25 +473,6 @@ class URL
         return $plugin;
     }
 
-    public static function getclashObfs($item) {
-        $ss_obfs_list = Config::getSupportParam('ss_obfs');
-        $plugin = "";
-        if (in_array($item['obfs'], $ss_obfs_list)) {
-            if (strpos($item['obfs'], 'http') !== FALSE) {
-                $plugin .= "obfs: http";
-            } else {
-                $plugin .= "obfs: tls";
-            }
-            if ($item['obfs_param'] != '') {
-                $plugin .= "\nobfs-host: ".$item['obfs_param'];
-            } else {
-                $plugin .= "\nobfs-host: wns.windows.com";
-            }
-
-        }
-        return $plugin;
-    }
-
     /*
     * Conn info
     * address
