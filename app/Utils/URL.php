@@ -460,7 +460,7 @@ class URL
         if (in_array($item['obfs'], $ss_obfs_list)) {
             if (strpos($item['obfs'], 'http') !== FALSE) {
                 $plugin .= "obfs=http";
-            } else {
+            } elseif  (strpos($item['obfs'], 'tls') !== FALSE) {
                 $plugin .= "obfs=tls";
             }
             if ($item['obfs_param'] != '') {
@@ -469,19 +469,6 @@ class URL
 				$plugin .= ",obfs-host=wns.windows.com";
 			}
 
-        }
-        return $plugin;
-    }
-
-    public static function getclashObfs($item) {
-        $ss_obfs_list = Config::getSupportParam('ss_obfs');
-        $plugin = "";
-        if (in_array($item['obfs'], $ss_obfs_list)) {
-            if (strpos($item['obfs'], 'http') !== FALSE) {
-                $plugin .= "http";
-            } else {
-                $plugin .= "tls";
-            }
         }
         return $plugin;
     }

@@ -537,7 +537,7 @@ class LinkController extends BaseController
             $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashGeneral.yml");
             $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashRule.yml");
 
-            array_push($clash_array, yaml_parse($general));
+            array_merge($clash_array, yaml_parse($general));
             $clash_array["Proxy"] = array();
         } else {
           if ($new == 0) {
@@ -563,19 +563,28 @@ class LinkController extends BaseController
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
-        	if ($clash == 1) {
+            if ($clash == 1) {
                 $em["name"] = $item['remark'];
                 $em["type"] = "ss";
                 $em["server"] = $item['address'];
                 $em["port"]  = $item['port'];
                 $em["cipher"] = $item['method'];
                 $em["password"] = $item['passwd'];
-                $em["obfs"] = URL::getclashObfs($item);
-            }
+
+                if (array_key_exists('obfs', $item) && $item['obfs'] != '') {
+                    if (strpos($item['obfs'], 'http') != false) {
+                       $em["obfs"] = 'http';
+                    }
+                    else if (strpos($item['obfs'], 'tls') != false) {
+                       $em["obfs"] = 'tls';
+                    }
+                }
+
                 if (array_key_exists('obfs_param', $item) && $item['obfs_param'] != '') {
                     $em["obfs-host"] = $item['obfs_param'];
                 } else {
                     $em["obfs-host"] = "wns.windows.com";
+                }
 
                   array_push($clash_array["Proxy"], $em);
             } elseif ($list == 0) {
@@ -618,7 +627,7 @@ class LinkController extends BaseController
                 } elseif ($us_list == 1) {
                     $area = "美国";
                 } else {
-                	$area = "";
+                    $area = "";
                 }
                 if ($area == "") {
                     if ($list_auto == 1) {
@@ -685,7 +694,7 @@ class LinkController extends BaseController
         }
 
         if ($clash == 1) {
-          array_push($clash_array, yaml_parse($rules));
+          array_merge($clash_array, yaml_parse($rules));
           return yaml_emit($clash_array);
         }
 
