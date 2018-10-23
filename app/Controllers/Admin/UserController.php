@@ -258,8 +258,8 @@ class UserController extends AdminController
         $limit_length = $request->getParam('length');
         $search = $request->getParam('search')['value'];
         
-        $users=array();
-        $count_filtered=0;
+        $users = array();
+        $count_filtered = 0;
 
         if ($search) {
             $users = User::orderBy($order_field,$order)
@@ -291,9 +291,9 @@ class UserController extends AdminController
             $count_filtered = User::count();
         }
                 
-        $data=array();
+        $data = array();
         foreach ($users as $user) {
-            $tempdata=array();
+            $tempdata = array();
             $tempdata['op']='<a class="btn btn-brand" href="/admin/user/'.$user->id.'/edit">编辑</a>
                     <a class="btn btn-brand-accent" id="delete" href="javascript:void(0);" onClick="delete_modal_show(\''.$user->id.'\')">删除</a>';
             $tempdata['id'] = $user->id;
@@ -331,7 +331,7 @@ class UserController extends AdminController
             $tempdata['enable_traffic'] = Tools::flowToGB($user->transfer_enable);
             $tempdata['last_checkin_time'] = $user->lastCheckInTime();
             $tempdata['today_traffic'] = Tools::flowToMB($user->u + $user->d - $user->last_day_t);
-            $tempdata['enable'] = $user->enable  =  =  1 ? "可用" : "禁用";
+            $tempdata['enable'] = $user->enable == 1 ? "可用" : "禁用";
             $tempdata['reg_date'] = $user->reg_date;
             $tempdata['reg_ip'] = $user->reg_ip;
             $tempdata['auto_reset_day'] = $user->auto_reset_day;
