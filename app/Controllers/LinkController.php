@@ -580,7 +580,7 @@ class LinkController extends BaseController
                     $em["obfs-host"] = $item['obfs_param'];
                   }
 
-                  arraypush($clash_array["Proxy"], $em);
+                  array_push($clash_array["Proxy"], $em);
             } elseif ($list == 0) {
                 if (URL::getSurgeObfs($item) != "") {
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
