@@ -615,7 +615,11 @@ class LinkController extends BaseController
                     if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
                         $auto_name .= ", ".$item['remark'];
                         if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "") {
-                        	$fallback_name .= ", ".$item['remark'];
+                        	if (strpos('"'.$item['remark'].'"',"AZURE") == "") {
+                        		if (strpos('"'.$item['remark'].'"',"CN2") == "") {
+                        			$fallback_name .= ", ".$item['remark'];
+                        		}
+                        	}
                         }
                     }
                 }
