@@ -591,9 +591,6 @@ class LinkController extends BaseController
                 }
 
                   array_push($clash_array["Proxy"], $em);
-
-                  array_push($proxy_clash["proxies"], $em["name"]);
-
                   if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "") {
                     if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
                         array_push($auto_clash["proxies"], $em["name"]);
@@ -606,6 +603,7 @@ class LinkController extends BaseController
                         }
                     }
                 }
+                  array_push($proxy_clash["proxies"], $em["name"]);
             } elseif ($list == 0) {
                 if (URL::getSurgeObfs($item) != "") {
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
@@ -720,11 +718,11 @@ class LinkController extends BaseController
         }
 
         if ($clash == 1) {
-            array_push($clash_array["Proxy Group"], $auto_clash);
-            array_push($clash_array["Proxy Group"], $fallback_auto_clash);
-            array_push($clash_array["Proxy Group"], "Auto\nfallback\n".$proxy_clash);
-            $clash_array = $clash_array + yaml_parse($rules);
-            return yaml_emit($clash_array);
+          array_push($clash_array["Proxy Group"], $auto_clash);
+          array_push($clash_array["Proxy Group"], $fallback_auto_clash);
+          array_push($clash_array["Proxy Group"], "Auto", "fallback", $proxy_clash);
+          $clash_array = $clash_array + yaml_parse($rules);
+          return yaml_emit($clash_array);
         }
 
         if ($list == 1) {
