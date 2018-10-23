@@ -704,6 +704,9 @@ class LinkController extends BaseController
         }
 
         if ($clash == 1) {
+          array_push($clash_array["Proxy Group"], $auto_clash);
+          array_push($clash_array["Proxy Group"], $fallback_auto_clash);
+          array_push($clash_array["Proxy Group"], $proxy_clash);
           $clash_array = $clash_array + yaml_parse($rules);
           return yaml_emit($clash_array);
         }
