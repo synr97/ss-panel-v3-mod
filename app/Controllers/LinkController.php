@@ -591,8 +591,18 @@ class LinkController extends BaseController
                 }
 
                   array_push($clash_array["Proxy"], $em);
-                  array_push($auto_clash["proxies"], $em["name"]);
-                  array_push($fallback_auto_clash["proxies"], $em["name"]);
+                  if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "") {
+                    if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
+                        array_push($auto_clash["proxies"], $em["name"]);
+                        if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "") {
+                        	if (strpos('"'.$item['remark'].'"',"AZURE") == "") {
+                        		if (strpos('"'.$item['remark'].'"',"CN2") == "") {
+                        			array_push($fallback_auto_clash["proxies"], $em["name"]);
+                        		}
+                        	}
+                        }
+                    }
+                }
                   array_push($proxy_clash["proxies"], $em["name"]);
             } elseif ($list == 0) {
                 if (URL::getSurgeObfs($item) != "") {
