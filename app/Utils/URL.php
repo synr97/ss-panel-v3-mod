@@ -473,6 +473,19 @@ class URL
         return $plugin;
     }
 
+    public static function getclashObfs($item) {
+        $ss_obfs_list = Config::getSupportParam('ss_obfs');
+        $plugin = "";
+        if (in_array($item['obfs'], $ss_obfs_list)) {
+            if (strpos($item['obfs'], 'http') !== FALSE) {
+                $plugin .= "http";
+            } else {
+                $plugin .= "tls";
+            }
+        }
+        return $plugin;
+    }
+
     /*
     * Conn info
     * address

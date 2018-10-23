@@ -564,20 +564,18 @@ class LinkController extends BaseController
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
         	if ($clash == 1) {
-                  $em["name"] = $item['remark'];
-                  $em["type"] = "ss";
-                  $em["server"] = $item['address'];
-                  $em["port"]  = $item['port'];
-                  $em["cipher"] = $item['method'];
-                  $em["password"] = $item['passwd'];
-
-                  if (array_key_exists('obfs', $item) && $item['obfs'] != '') {
-                    $em["obfs"] = $item['obfs'];
-                  }
-
-                  if (array_key_exists('obfs_param', $item) && $item['obfs_param'] != '') {
+                $em["name"] = $item['remark'];
+                $em["type"] = "ss";
+                $em["server"] = $item['address'];
+                $em["port"]  = $item['port'];
+                $em["cipher"] = $item['method'];
+                $em["password"] = $item['passwd'];
+                $em["obfs"] = URL::getclashObfs($item);
+            }
+                if (array_key_exists('obfs_param', $item) && $item['obfs_param'] != '') {
                     $em["obfs-host"] = $item['obfs_param'];
-                  }
+                } else {
+                    $em["obfs-host"] = "wns.windows.com";
 
                   array_push($clash_array["Proxy"], $em);
             } elseif ($list == 0) {
