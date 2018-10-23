@@ -271,14 +271,6 @@
 									<i class="icon icon-lg">loyalty</i>&nbsp;推介计划
 								</a>
 							</li>
-							
-							{if $config['enable_donate']=='true'}
-							<li>
-								<a href="/user/donate">
-									<i class="icon icon-lg">attach_money</i>&nbsp;捐赠公示
-								</a>
-							</li>
-							{/if}
 						</ul>
 						
 						
@@ -314,16 +306,8 @@
 
 							<li><a href="/user/bought"><i class="icon icon-lg">shop</i>&nbsp;购买记录</a></li>
 						</ul>
-<!--
-						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">监控</a>
-						<ul class="menu-collapse collapse in" id="ui_menu_use">
-							<li>
-								<a href="/user/lookingglass">
-									<i class="icon icon-lg">youtube_searched_for</i>&nbsp;三网监控
-								</a>
-							</li>
-						</ul>
--->
+
+
 						<a class="waves-attach" data-toggle="collapse" href="#ui_menu_detect">审计</a>
 						<ul class="menu-collapse collapse in" id="ui_menu_detect">
 							<li><a href="/user/detect"><i class="icon icon-lg">assignment_late</i>&nbsp;审计规则</a></li>

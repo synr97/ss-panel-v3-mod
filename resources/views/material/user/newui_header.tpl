@@ -67,7 +67,7 @@
             <li class="nav-item dropdown">
               <a href="/user/ticket" class="nav-link"  data-toggle="dropdown" href="#" role="button" >
                 <i class="ni ni-cart"></i>
-                <span class="nav-bag-17">交易</span>
+                <span class="nav-link-inner--text">交易</span>
               </a>
               <div class="dropdown-menu">
                 <a href="/user/code" class="dropdown-item">在线充值</a>
@@ -78,7 +78,7 @@
             <li class="nav-item dropdown">
               <a href="/user/ticket" class="nav-link"  data-toggle="dropdown" href="#" role="button" >
                 <i class="ni ni-zoom-split-in"></i>
-                <span class="nav-zoom-split-in">审计</span>
+                <span class="nav-link-inner--text">审计</span>
               </a>
               <div class="dropdown-menu">
                 <a href="/user/detect" class="dropdown-item">审计规则</a>
