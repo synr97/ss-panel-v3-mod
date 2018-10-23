@@ -350,7 +350,7 @@ class LinkController extends BaseController
                 $newResponse->getBody()->write(LinkController::GetAcl(User::where("id", "=", $Elink->userid)->first()));
                 return $newResponse;
             case 10:
-                $user=User::where("id", $Elink->userid)->first();
+                $user = User::where("id", $Elink->userid)->first();
                 if ($user == null) {
                     return null;
                 }
@@ -364,7 +364,7 @@ class LinkController extends BaseController
                 $newResponse->getBody()->write(LinkController::GetRouter(User::where("id", "=", $Elink->userid)->first(), $Elink->geo, $is_ss));
                 return $newResponse;
             case 11:
-                $user=User::where("id", $Elink->userid)->first();
+                $user = User::where("id", $Elink->userid)->first();
                 if ($user == null) {
                     return null;
                 }
@@ -538,6 +538,7 @@ class LinkController extends BaseController
             $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/ClashX.yml");
 
             array_push($clash_array, yaml_parse($general));
+            $clash_array["Proxy"] = array();
         }
 
         if ($new == 0) {
