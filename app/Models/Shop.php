@@ -298,8 +298,7 @@ class Shop extends Model
         foreach ($content as $key => $value) {
             switch ($key) {
                 case "bandwidth":
-                    if (Config::get('enable_bought_reset') == 'true'
-                            && !isset($content["traffic_package"]) && $content['class'] != $user->class) {
+                    if (Config::get('enable_bought_reset') == 'true' && $this->attributes['auto_reset_bandwidth'] == 1 && !isset($content["traffic_package"]) && $content['class'] != $user->class) {
                         $user->transfer_enable = $value * 1024 * 1024 * 1024;
                         $user->u = 0;
                         $user->d = 0;
