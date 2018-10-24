@@ -529,16 +529,11 @@ class URL
             $user = URL::getSSRConnectInfo($user);
         }
         	if (strpos($node->info,"NAT") != "") {
-        		if ($relay_rule != null && $is_mu != 0 && $is_ss != 1) {
-        			$return_array['port'] = 35002;
-					$return_array['method'] = 'aes-128-ctr';
-					$return_array['protocol'] = 'auth_aes128_md5';
-					$return_array['obfs'] = 'http_simple';
-				} else {
+        		if ($is_mu != 0 && $is_ss != 1) {
 					$return_array['port'] = 35001;
 					$return_array['method'] = 'aes-128-ctr';
 					$return_array['protocol'] = 'auth_aes128_md5';
-					$return_array['obfs'] = 'plain';
+					$return_array['obfs'] = 'http_simple';
 				}
         	} else {
 	        	if ($relay_rule != null && $is_mu != 0 && $is_ss != 1) {
