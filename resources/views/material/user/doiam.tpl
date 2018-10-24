@@ -31,7 +31,7 @@
 </div>
 <div class="card-action">
 	<div class="card-action-btn pull-left">
-		<button class="btn btn-primary mt-4" id="submit">&nbsp;充值（按下后请等待自动跳转）</button>
+		<button class="btn btn-primary mt-4" id="submit">&nbsp;充值（按下后请耐心等待跳转）</button>
 	</div>
 </div>
 <script>
@@ -44,7 +44,7 @@ window.onload = function(){
 	});
 	$("#submit").click(function(){
 		var price = parseFloat($("#amount").val());
-		console.log("将要使用"+type+"方法充值"+price+"元")
+		console.log("将要使用" + type + "充值" + price + "元")
 		if(isNaN(price)){
 			$("#result").modal();
 			$("#msg").html("非法的金额!");
@@ -59,22 +59,22 @@ window.onload = function(){
 			'type':"POST",
 			success:function(data){
 				console.log(data);
-				if(data.errcode==-1){
+				if (data.errcode == -1){
 					$("#result").modal();
 					$("#msg").html(data.errmsg);
 				}
-				if(data.errcode==0){
+				if (data.errcode == 0){
 					pid = data.pid;
-					if(type=="wepay"){
+					if (type == "wepay"){
 						$("#result").modal();
 						$("#msg").html('<div class="text-center">使用微信扫描二维码支付<div id="dmy" style="padding-top:  10px;"></div></div>');
 						$("#dmy").qrcode({
 							"text": data.code
 						});
-					}else if(type=="alipay"){
+					}else if (type == "alipay"){
 						$("#result").modal();
-						$("#msg").html("正在跳转到支付宝..."+data.code);
-					}else if(type=="qqpay"){
+						$("#msg").html("正在跳转到支付宝..."+  data.code);
+					}else if (type == "qqpay"){
 						$("#result").modal();
 						$("#msg").html('<div class="text-center">使用QQ扫描二维码支付<div id="dmy"></div></div>');
 						$("#dmy").qrcode({
