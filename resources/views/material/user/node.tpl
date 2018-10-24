@@ -104,7 +104,7 @@
 										 {$node->name}{if $relay_rule != null} - {$relay_rule->dist_node()->name}{/if}
 									    </p>
 										{if $node->node_class > $user->class}
-											<a class="btn btn-flat pull-right" >等级不足</a>
+											<a class="btn btn-flat pull-right" >请购买或升级套餐</a>
 											{else}
 											
 											<a class="btn btn-sm btn-primary pull-right" href="javascript:void(0);" onClick="urlChange('{$node->id}',0,{if $relay_rule != null}{$relay_rule->id}{else}0{/if})">配置信息</a>
