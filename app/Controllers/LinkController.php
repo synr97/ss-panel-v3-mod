@@ -379,7 +379,7 @@ class LinkController extends BaseController
                     $mu = (int)$request->getQueryParams()["mu"];
                 }
 
-                $userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->class_expire." - ".$user->u + $user->d."/".$user->transfer_enable;
+                $userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$token.'.txt');
                 $newResponse->getBody()->write(LinkController::GetSSRSub(User::where("id", "=", $Elink->userid)->first(), $mu, $max));
                 return $newResponse;
