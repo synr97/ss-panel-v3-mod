@@ -768,7 +768,8 @@ PROXY = select, Auto, fallback, DIRECT'.$proxy_name.'
 Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
 Apple = select, DIRECT, PROXY, Auto
-Media = select, PROXY, DIRECT'.$media_name.'
+China_Media = select, DIRECT, PROXY'.$domestic_name.'
+Other_Media = select, PROXY, DIRECT'.$media_name.'
 Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
 fallback = fallback'.$fallback_name.', url = http://captive.apple.com, interval = 1200
 
