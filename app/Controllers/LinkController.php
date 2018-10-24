@@ -543,6 +543,8 @@ class LinkController extends BaseController
             $auto_clash = array('name' => "Auto", 'type' => "url-test", 'proxies' => array(), 'url' => "http://captive.apple.com", 'interval' => '1200');
             $fallback_auto_clash = array('name' => "fallback", 'type' => "fallback", 'proxies' => array(), 'url' => "http://captive.apple.com", 'interval' => '1200');
             $proxy_clash = array('name' => "Proxy", 'type' => "select", 'proxies' => array());
+            array_push($proxy_clash["proxies"], "Auto");
+            array_push($proxy_clash["proxies"], "fallback");
         } else {
           if ($new == 0) {
               if ($mitm == 0) {
