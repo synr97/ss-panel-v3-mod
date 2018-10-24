@@ -298,17 +298,13 @@ class Shop extends Model
 		foreach ($content as $key => $value) {
 			switch ($key) {
 				case "bandwidth":
-					if (!isset($content["traffic_package"]) && $shop->auto_reset_bandwidth == 1) {
+					if (!isset($content["traffic_package"] && $content['class'] != $user->class && $shop->auto_reset_bandwidth == 1) {
 						$user->transfer_enable = $value * 1024 * 1024 * 1024;
 						$user->u = 0;
 						$user->d = 0;
 						$user->last_day_t = 0;
 						$user->auto_reset_day = 1;
 						$user->auto_reset_bandwidth = $value;
-					} elseif (!isset($content["traffic_package"]) && $shop->auto_reset_bandwidth != 1) {
-						$user->u = 0;
-						$user->d = 0;
-						$user->last_day_t = 0;
 					} else {
 						$user->transfer_enable = $user->transfer_enable + $value * 1024 * 1024 * 1024;
 					}
