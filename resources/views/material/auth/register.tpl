@@ -173,51 +173,58 @@
             {include file='auth/auth_footer.tpl'}
 
 {if $config['enable_register']!='false'}
-
 <script>
-$(".copy-text").click(function () {
+  $(function(){
+  new Clipboard('.copy-text');
+});
+  $(".copy-text").click(function () {
 $("#code").val($(this).parent().parent().find("td:eq(0)").text());
 $("#reg_code").modal('hide')
+      $("#result").modal();
+  $("#msg").html("已复制到您的剪贴板，请您继续接下来的操作。");
 });
-
     $(document).ready(function(){
-        var affid = {$aff};
-        function register(){
+         var affid = {$aff};
 
-          if (!(typeof affid === 'number' && affid % 1 === 0)) {
+          function register(){
+            
+          if(!(typeof affid === 'number' && affid%1 === 0)) {
               $("#result").modal();
-              $("#msg").html("affid 不合法");
+              $("#msg").html("aff不合法");
 
             return false;
           }
 
      document.getElementById("tos").disabled = true; 
      
-    if (document.getElementById('ss_user').checked)
-    {
-    	var ss_user = 1;
-    } else {
-    	var ss_user = 0;
-    }
-
-    		$.ajax({
+      if(document.getElementById('ss_user').checked)
+      {
+        var ss_user=1;
+      }
+      else
+      {
+        var ss_user=0;
+      }
+      
+            $.ajax({
                 type:"POST",
                 url:"/auth/register",
                 dataType:"json",
                 data:{
-                	aff: affid,
+                    aff: affid,
                     email: $("#email").val(),
                     name: $("#name").val(),
                     passwd: $("#passwd").val(),
                     repasswd: $("#repasswd").val(),
-					wechat: $("#wechat").val(),
-					imtype: $("#imtype").val(),{if $enable_invite_code == 'true'},
-					code: $("#code").val(){/if}{if $enable_email_verify == 'true'},
-					emailcode: $("#email_code").val(){/if}{if $geetest_html != null},
-					geetest_challenge: validate.geetest_challenge,
+          wechat: $("#wechat").val(),
+          ss_user: ss_user,
+          imtype: $("#imtype").val(){if $enable_invite_code == 'true'},
+          code: $("#code").val(){/if}{if $enable_email_verify == 'true'},
+          emailcode: $("#email_code").val(){/if}{if $geetest_html != null},
+          geetest_challenge: validate.geetest_challenge,
                     geetest_validate: validate.geetest_validate,
                     geetest_seccode: validate.geetest_seccode
-					{/if}
+          {/if}
                 },
                 success:function(data){
                     if(data.ret == 1){
@@ -227,19 +234,21 @@ $("#reg_code").modal('hide')
                     }else{
                         $("#result").modal();
                         $("#msg").html(data.msg);
-                        setCookie('code','',0);
-                        $("#code").val(getCookie('code'));
-						document.getElementById("tos").disabled = false;
+      document.getElementById("tos").disabled = false; 
 
-			{if $geetest_html != null}
-      			captcha.refresh();
-      		{/if}
+      {if $geetest_html != null}
+      captcha.refresh();
+      {/if}
                     }
                 },
                 error:function(jqXHR){
-						$("#result").modal();
-                        $("#msg").html("注册成功");
-                        window.setTimeout("location.href='/auth/login'", {$config['jump_delay']});
+      $("#msg-error").hide(10);
+      $("#msg-error").show(100);
+      $("#msg-error-p").html("发生错误："+jqXHR.status);
+      document.getElementById("tos").disabled = false; 
+      {if $geetest_html != null}
+      captcha.refresh();
+      {/if}
                 }
             });
         }
@@ -248,67 +257,69 @@ $("#reg_code").modal('hide')
                 $("#tos_modal").modal();
             }
         });
-		
-		{if $geetest_html != null}
-		$('div.modal').on('shown.bs.modal', function() {
-			$("div.gt_slider_knob").hide();
-		});
-		
-		$('div.modal').on('hidden.bs.modal', function() {
-			$("div.gt_slider_knob").show();
-		});
-		
+    
+    {if $geetest_html != null}
+    $('div.modal').on('shown.bs.modal', function() {
+      $("div.gt_slider_knob").hide();
+    });
+    
+    
+    $('div.modal').on('hidden.bs.modal', function() {
+      $("div.gt_slider_knob").show();
+    });
+    
         
-		{/if}
-		
-		$("#reg").click(function(){
+    {/if}
+    
+    $("#reg").click(function(){
             register();
         });
-		
-		$("#tos").click(function(){
-			{if $geetest_html != null}
-			if(typeof validate == 'undefined')
-			{
-				$("#result").modal();
-                $("#msg").html("请滑动验证码来完成验证。(少数情况验证码会被广告屏蔽插件拦截，请添加到白名单或禁用插件。)");
-				return;
-			}
-			
-			if (!validate) {
-				$("#result").modal();
-                $("#msg").html("请滑动验证码来完成验证。(少数情况验证码会被广告屏蔽插件拦截，请添加到白名单或禁用插件。)");
-				return;
-			}
-			
-			{/if}
+    
+    $("#tos").click(function(){
+      {if $geetest_html != null}
+      if(typeof validate == 'undefined')
+      {
+        $("#result").modal();
+                $("#msg").html("请滑动验证码来完成验证。");
+        return;
+      }
+      
+      if (!validate) {
+        $("#result").modal();
+                $("#msg").html("请滑动验证码来完成验证。");
+        return;
+      }
+      
+      {/if}
             $("#tos_modal").modal();
         });
     })
 </script>
-
+{/if}
 
 {if $enable_email_verify == 'true'}
 <script>
-var wait=60;
+var wait = 60;
 function time(o) {
-		if (wait == 0) {
-			o.removeAttr("disabled");
-			o.text("获取验证码");
-			wait = 60;
-		} else {
-			o.attr("disabled","disabled");
-			o.text("重新发送(" + wait + ")");
-			wait--;
-			setTimeout(function() {
-				time(o)
-			},
-			1000)
-		}
-	}
+    if (wait == 0) {
+      o.removeAttr("disabled");     
+      o.text("获取邮箱验证码");
+      wait = 60;
+    } else {
+      o.attr("disabled","disabled");
+      o.text("重新发送(" + wait + ")");
+      wait--;
+      setTimeout(function() {
+        time(o)
+      },
+      1000)
+    }
+  }
 
     $(document).ready(function () {
         $("#email_verify").click(function () {
-			time($("#email_verify"));
+      time($("#email_verify"));
+      
             $.ajax({
                 type: "POST",
                 url: "send",
@@ -319,16 +330,16 @@ function time(o) {
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
-			$("#msg").html(data.msg);
-						
+                        $("#msg").html(data.msg);
+            
                     } else {
                         $("#result").modal();
-			$("#msg").html(data.msg);
+                        $("#msg").html(data.msg);
                     }
                 },
                 error: function (jqXHR) {
                     $("#result").modal();
-			$("#msg").html(data.msg+"     出现了一些错误。");
+                    $("#msg").html(data.msg + "出现了一些错误。");
                 }
             })
         })
@@ -338,25 +349,25 @@ function time(o) {
 
 {if $geetest_html != null}
 <script>
-	var handlerEmbed = function (captchaObj) {
+  var handlerEmbed = function (captchaObj) {
         // 将验证码加到id为captcha的元素里
-		
-		captchaObj.onSuccess(function () {
-		    validate = captchaObj.getValidate();
-		});
-		
-		captchaObj.appendTo("#embed-captcha");
+    
+    captchaObj.onSuccess(function () {
+        validate = captchaObj.getValidate();
+    });
+    
+    captchaObj.appendTo("#embed-captcha");
 
-		captcha = captchaObj;
-		// 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
+    captcha = captchaObj;
+    // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
     };
-
-	initGeetest({
-		gt: "{$geetest_html->gt}",
-		challenge: "{$geetest_html->challenge}",
-		product: "embed", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
-		offline: {if $geetest_html->success}0{else}1{/if} // 表示用户后台检测极验服务器是否宕机，与SDK配合，用户一般不需要关注
-	}, handlerEmbed);
+  
+  initGeetest({
+    gt: "{$geetest_html->gt}",
+    challenge: "{$geetest_html->challenge}",
+    product: "embed", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+    offline: {if $geetest_html->success}0{else}1{/if} // 表示用户后台检测极验服务器是否宕机，与SDK配合，用户一般不需要关注
+  }, handlerEmbed);
 </script>
 
 {/if}
