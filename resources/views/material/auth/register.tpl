@@ -93,6 +93,7 @@
                     <button id="view_code" data-toggle="modal" data-target="#reg_code" class="btn btn-primary mt-4">查看公共邀请码</button>
                     -->
                   </div>
+
                     {if $geetest_html != null}
                       <div class="form-group form-group-label">
                         <div class="row">
@@ -118,19 +119,18 @@
                     </div>
                   </div>
                   <div class="text-center">
-             <button id="tos" type="submit" class="btn btn-primary mt-4">注册</button>
+					<button id="tos" type="submit" class="btn btn-primary mt-4">注册</button>
                   </div>
               </div>
             </div>
-          </div>
-
             <div class="row mt-3">
               <div class="col-6">
                 <a href="/auth/login" class="text-light">
-                  <small>已注册？请登录</small>
+                  <small>已经注册？请登录</small>
                 </a>
               </div>
             </div>
+          </div>
         </div>
       </div>
     
