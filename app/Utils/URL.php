@@ -528,30 +528,17 @@ class URL
             }
             $user = URL::getSSRConnectInfo($user);
         }
-        	if (strpos($node->info,"NAT") != "") {
-        		if ($is_mu != 0 && $is_ss != 1) {
-					$return_array['port'] = 35001;
-					$return_array['method'] = 'aes-128-ctr';
-					$return_array['protocol'] = 'auth_aes128_md5';
-					$return_array['obfs'] = 'http_simple';
-                } elseif ($is_ss == 1) {
-                    $return_array['port'] = 35002;
-                    $return_array['method'] = 'chacha20-ietf-poly1305';
-                    $return_array['protocol'] = 'origin';
-                    $return_array['obfs'] = 'simple_obfs_http';
-				}
-        	} else {
-	        	if ($relay_rule != null && $is_mu != 0 && $is_ss != 1) {
-					$return_array['port'] = 531;
-					$return_array['method'] = 'aes-128-ctr';
-					$return_array['protocol'] = 'auth_aes128_md5';
-					$return_array['obfs'] = 'http_simple';
-				} else {
-					$return_array['port'] = $user->port;
-					$return_array['method'] = $user->method;
-					$return_array['protocol'] = $user->protocol;
-					$return_array['obfs'] = $user->obfs;
-				}
+
+	        if ($relay_rule != null && $is_mu != 0 && $is_ss != 1) {
+				$return_array['port'] = 531;
+				$return_array['method'] = 'aes-128-ctr';
+				$return_array['protocol'] = 'auth_aes128_md5';
+				$return_array['obfs'] = 'http_simple';
+			} else {
+				$return_array['port'] = $user->port;
+				$return_array['method'] = $user->method;
+				$return_array['protocol'] = $user->protocol;
+				$return_array['obfs'] = $user->obfs;
 			}
 	            	$return_array['address'] = $node->server;
 	            	$return_array['passwd'] = $user->passwd;
