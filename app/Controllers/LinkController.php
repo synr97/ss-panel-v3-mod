@@ -529,6 +529,8 @@ class LinkController extends BaseController
     public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $clash = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_back = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
         $proxy_name = "";
         $domestic_name = "";
+        $cn_media_name = "";
+        $media_name = "";
         $auto_name = "";
         $proxy_list = "";
         $clash_array = array();
@@ -619,6 +621,10 @@ class LinkController extends BaseController
 
                 if (substr($item['remark'],-4,4) == "Back") {
                     $domestic_name .= ", ".$item['remark'];
+                }
+
+                if (substr($item['remark'],-4,4) == "Back" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("台湾")) != "") {
+                    $cn_media_name .= ", ".$item['remark'];
                 }
 
                 if (substr($item['remark'],-5,5) == "Media") {
@@ -768,7 +774,7 @@ PROXY = select, Auto, fallback, DIRECT'.$proxy_name.'
 Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
 Apple = select, DIRECT, PROXY, Auto
-China_Media = select, DIRECT, PROXY'.$domestic_name.'
+China_Media = select, DIRECT, PROXY'.$cn_media_name.'
 Other_Media = select, PROXY, DIRECT'.$media_name.'
 Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
 fallback = fallback'.$fallback_name.', url = http://captive.apple.com, interval = 1200
