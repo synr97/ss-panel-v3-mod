@@ -32,7 +32,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-            			<input class="form-control" id="email" type="text" placeholder="邮箱" >
+                  <input class="form-control" id="email" type="text" placeholder="邮箱" >
                     </div>
                     <button id="email_verify" class="btn btn-primary mt-4">获取邮箱验证码</button>
                   </div>
@@ -65,13 +65,13 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                       </div>
-		            <select class="form-control" id="imtype">
-		                <option disabled selected>选择您的联络方式</option>
-		                <option value="1">微信</option>
-		                <option value="2">QQ</option>
-		                <option value="3">Google+</option>
-		                <option value="4">Telegram</option>
-		            </select>
+                <select class="form-control" id="imtype">
+                    <option disabled selected>选择您的联络方式</option>
+                    <option value="1">微信</option>
+                    <option value="2">QQ</option>
+                    <option value="3">Google+</option>
+                    <option value="4">Telegram</option>
+                </select>
                     </div>
                   </div>  
                   <div class="form-group">
@@ -91,8 +91,8 @@
                     </div>
                     <!--
                     <button id="view_code" data-toggle="modal" data-target="#reg_code" class="btn btn-primary mt-4">查看公共邀请码</button>
+                    -->
                   </div>
-                  -->
                     {if $geetest_html != null}
                       <div class="form-group form-group-label">
                         <div class="row">
@@ -242,14 +242,11 @@ $("#reg_code").modal('hide')
                     }
                 },
                 error:function(jqXHR){
-      $("#msg-error").hide(10);
-      $("#msg-error").show(100);
-      $("#msg-error-p").html("发生错误："+jqXHR.status);
-      document.getElementById("tos").disabled = false; 
-      {if $geetest_html != null}
-      captcha.refresh();
-      {/if}
-                }
+            $("#result").modal();
+                        $("#msg").html("注册成功");
+                        window.setTimeout("location.href='/auth/login'", {$config['jump_delay']});
+            }
+            
             });
         }
         $("html").keydown(function(event){
