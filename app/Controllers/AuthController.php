@@ -182,7 +182,7 @@ class AuthController extends BaseController
 
         $affid = "0";
         if (!empty($_COOKIE['affid'])) {
-            $affid=$_COOKIE['affid'];
+            $affid = $_COOKIE['affid'];
         }
 
         if (isset($ary['affid'])) {
@@ -191,7 +191,7 @@ class AuthController extends BaseController
             if (is_numeric($affid)) {
                 setCookie("affid", $affid);
             } else {
-                $affid ="0";
+                $affid = "0";
             }
         }
 

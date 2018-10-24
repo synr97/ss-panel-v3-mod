@@ -227,53 +227,7 @@
 				}
 			})
 		})
-		
-	$("#urlChange").click(function () {
-			$.ajax({
-				type: "GET",
-				url: "code/f2fpay",
-				dataType: "json",
-				data: {
-					time: timestamp
-				},
-				success: function (data) {
-					if (data.ret) {
-						$("#readytopay").modal();
-					}
-				}
-				
-			})
-		});
-		
-		$("#readytopay").on('shown.bs.modal', function () {
-			$.ajax({
-				type: "POST",
-				url: "code/f2fpay",
-				dataType: "json",
-				data: {
-							amount: $("input:text").val()
-					},
-				success: function (data) {
-					$("#readytopay").modal('hide');
-					if (data.ret) {
-						$("#qrcode").html(data.qrcode);
-						$("#info").html("您的订单金额为："+data.amount+"元。");
-						$("#alipay").modal();
-					} else {
-						$("#result").modal();
-						$("#msg").html(data.msg);
-					}
-				},
-				error: function (jqXHR) {
-					$("#readytopay").modal('hide');
-					$("#result").modal();
-					$("#msg").html(data.msg+"  发生了错误。");
-				}
-			})
-		});	
-	timestamp = {time()}; 
-		
-		
+
 	function f(){
 		$.ajax({
 			type: "GET",
