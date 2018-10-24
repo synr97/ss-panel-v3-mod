@@ -534,7 +534,7 @@ class URL
 					$return_array['method'] = 'aes-128-ctr';
 					$return_array['protocol'] = 'auth_aes128_md5';
 					$return_array['obfs'] = 'http_simple';
-                } else ($is_ss == 1) {
+                } elseif ($is_ss == 1) {
                     $return_array['port'] = 35002;
                     $return_array['method'] = 'chacha20-ietf-poly1305';
                     $return_array['protocol'] = 'origin';
@@ -558,7 +558,7 @@ class URL
 	            if ($is_ss != 1) {
 	            	$return_array['remark'] = "[SSR] ".$node_name;
 	            	$return_array['group'] = Config::get('appName')." - SSR";
-	            } else ($is_ss == 1) {
+	            } elseif ($is_ss == 1) {
 	            	$return_array['remark'] = "[SS] ".$node_name;
 	            	$return_array['group'] = Config::get('appName')." - SS";
 	            }
