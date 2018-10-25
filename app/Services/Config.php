@@ -79,7 +79,7 @@ class Config
     {
         switch ($type) {
             case 'obfs':
-                $list = array('plain', 'http_simple', 'http_post', 'simple_obfs_http');
+                $list = array('plain', 'http_simple', 'http_post', 'tls1.2_ticket_auth', 'tls1.2_ticket_fastauth', 'simple_obfs_http', 'simple_obfs_tls');
 /*
                 $list = array('plain', 'http_simple', 'http_simple_compatible', 'http_post', 'http_post_compatible', 'tls1.2_ticket_auth', 'tls1.2_ticket_auth_compatible', 'tls1.2_ticket_fastauth', 'tls1.2_ticket_fastauth_compatible', 'simple_obfs_http', 'simple_obfs_tls');
 */
@@ -88,10 +88,10 @@ class Config
                 $list = array('origin', 'auth_aes128_sha1', 'auth_aes128_md5');
                 return $list;
             case 'allow_none_protocol':
-                $list = array('auth_chain_a', 'auth_chain_b');
+                $list = array('auth_chain_a', 'auth_chain_b','auth_chain_c','auth_chain_d','auth_chain_e','auth_chain_f');
                 return $list;
             case 'relay_able_protocol':
-                $list = array('auth_aes128_md5', 'auth_aes128_sha1', 'auth_chain_a', 'auth_chain_b');
+                $list = array('auth_aes128_md5', 'auth_aes128_sha1', 'auth_chain_a', 'auth_chain_b','auth_chain_c','auth_chain_d','auth_chain_e','auth_chain_f');
                 return $list;
             case 'ss_aead_method':
                 $list = array('aes-128-gcm', 'aes-192-gcm', 'aes-256-gcm', 'chacha20-ietf-poly1305', 'xchacha20-ietf-poly1305');
