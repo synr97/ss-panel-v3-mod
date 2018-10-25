@@ -280,8 +280,6 @@ class LinkController extends BaseController
                     $us_list = $request->getQueryParams()["us_list"];
                 }
 
-                $userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
-
                 if ($list_auto == 1) {
                     $filename = 'auto.list';
                 } elseif ($list_media == 1) {
@@ -315,6 +313,8 @@ class LinkController extends BaseController
                 } else {
                     $filename = 'Dler Cloud.conf';
                 }
+
+                $userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
                 $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $clash, $list, $list_auto, $list_media, $list_back, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list));
                 return $newResponse;
@@ -379,7 +379,7 @@ class LinkController extends BaseController
                     $mu = (int)$request->getQueryParams()["mu"];
                 }
 
-                $userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
+                $userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->class_expire." - ".($user->u+$user->d)."/".$user->transfer_enable;
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$token.'.txt');
                 $newResponse->getBody()->write(LinkController::GetSSRSub(User::where("id", "=", $Elink->userid)->first(), $mu, $max));
                 return $newResponse;
