@@ -726,7 +726,7 @@ class Job
             }
 
             if ($user->class != 0 && (((Config::get('enable_account_expire_reset') == 'true' && strtotime($user->expire_in) < time()) ? $user->transfer_enable != Tools::toGB(Config::get('enable_account_expire_reset_traffic')) : true) && ((Config::get('enable_class_expire_reset') == 'true' && ($user->class != 0 && strtotime($user->class_expire) < time() && strtotime($user->class_expire) > 1420041600))? $user->transfer_enable != Tools::toGB(Config::get('enable_class_expire_reset_traffic')) : true)) && strtotime($user->class_expire)<time() && strtotime($user->class_expire) > 1420041600) {
-                if (Config::get('enable_class_expire_reset')=='true') {
+                if (Config::get('enable_class_expire_reset') == 'true') {
                     $user->transfer_enable = Tools::toGB(Config::get('enable_class_expire_reset_traffic'));
                     $user->u = 0;
                     $user->d = 0;
@@ -744,7 +744,6 @@ class Job
                         echo $e->getMessage();
                     }
                 }
-
                 $user->class = 0;
                 $user->node_group = 0;
                 $user->auto_reset_day = 0;
