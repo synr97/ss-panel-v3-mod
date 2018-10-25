@@ -60,7 +60,7 @@ class Shop extends Model
 					$content_text .= "账号有效期添加 ".$value." 天";
 					break;
 				case "class":
-					$content_text .= "套餐有效期 ".$content["class_expire"]." 天";
+					$content_text .= "账号升级为等级 ".$value." ,套餐有效期 ".$content["class_expire"]." 天";
 					break;
 				case "reset":
 					$content_text .= "每 ".$value." 天重置一次流量";
@@ -298,7 +298,7 @@ class Shop extends Model
 		foreach ($content as $key => $value) {
 			switch ($key) {
 				case "bandwidth":
-					if (!isset($content["traffic_package"]) && $content['class'] != $user->class) {
+					if (!isset($content["traffic_package"]) {
 						$user->transfer_enable = $value * 1024 * 1024 * 1024;
 						$user->u = 0;
 						$user->d = 0;
