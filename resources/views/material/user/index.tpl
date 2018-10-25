@@ -68,7 +68,9 @@
               <div class="progress-wrapper">
                 <div class="progress-info">
                   <div class="progress-percentage">
+                  	{if $user->transfer_enable-($user->u+$user->d) > 0}
                     <span>{number_format(($user->transfer_enable-($user->u+$user->d))/$user->transfer_enable*100,2)}%</span>
+                    {/if}
                   </div>
                 </div>
                 <div class="progress">
