@@ -307,7 +307,7 @@ class LinkController extends BaseController
                 } elseif ($list == 1) {
                     $filename = 'all.list';
                 } elseif ($clash == 1) {
-                    $filename = 'Dler Cloud.yml';
+                    $filename = 'config.yml';
                 } elseif ($is_mu == 1) {
                     $filename = 'Dler Cloud - Public.conf';
                 } elseif ($new == 1) {
