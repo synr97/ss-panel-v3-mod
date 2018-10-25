@@ -298,7 +298,7 @@ class Shop extends Model
 		foreach ($content as $key => $value) {
 			switch ($key) {
 				case "bandwidth":
-					if (!isset($content["traffic_package"]) {
+					if (!isset($content["traffic_package"])) {
 						$user->transfer_enable = $value * 1024 * 1024 * 1024;
 						$user->u = 0;
 						$user->d = 0;
