@@ -360,7 +360,7 @@
                 dataType: "json",
                 data: {
                     method: "chacha20-ietf-poly1305",
-                },
+                }
             })
             $.ajax({
                 type: "POST",
@@ -369,9 +369,10 @@
                 data: {
                     protocol: "origin",
 					obfs: "simple_obfs_http",
-                },
+                }
             })
         })
+        $("#result").modal();
         $("#msg").html("已切换为 SS 模式，请您继续接下来的操作。");
 		window.setTimeout("location.href='/user'", {$config['jump_delay']});
     })
@@ -386,7 +387,7 @@
                 dataType: "json",
                 data: {
                     method: "chacha20-ietf-poly1305",
-                },
+                }
             })
             $.ajax({
                 type: "POST",
@@ -395,9 +396,10 @@
                 data: {
                     protocol: "auth_aes128_md5",
 					obfs: "plain",
-                },
+                }
             })
         })
+        $("#result").modal();
         $("#msg").html("已切换为 SSR 模式，请您继续接下来的操作。");
 		window.setTimeout("location.href='/user'", {$config['jump_delay']});
     })
