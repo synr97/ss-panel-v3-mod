@@ -124,10 +124,10 @@
 							<div class="col-lg-9">
 						<div class="mb-3">
 							{if URL::SSRCanConnect($user)}
-								<button id="switch-ss" class="btn btn-primary mt-4 reset-link">切换为 SS 模式</button>
+								<button id="switch-ss" class="btn btn-primary mt-4 switch-ss">切换为 SS 模式</button>
 							{/if}
 							{if URL::SSCanConnect($user)}
-								<button id="switch-ssr" class="btn btn-primary mt-4 reset-link">切换为 SSR 模式</button>
+								<button id="switch-ssr" class="btn btn-primary mt-4 switch-ssr">切换为 SSR 模式</button>
 							{/if}
 							<br><br>
 							<small class="text-uppercase font-weight-bold">All-in-One</small>
@@ -468,6 +468,18 @@ $(".reset-link").click(function () {
 	$("#result").modal();
 	$("#msg").html("已重置订阅链接，请您继续接下来的操作。");
 	window.setTimeout("location.href='/user/url_reset'", {$config['jump_delay']});
+});
+
+$(".switch-ss").click(function () {
+	$("#result").modal();
+	$("#msg").html("已切换为 SS 模式。");
+	window.setTimeout("location.href='/user'", {$config['jump_delay']});
+});
+
+$(".switch-ssr").click(function () {
+	$("#result").modal();
+	$("#msg").html("已切换为 SSR 模式。");
+	window.setTimeout("location.href='/user'", {$config['jump_delay']});
 });
 
 
