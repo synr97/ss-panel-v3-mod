@@ -1457,62 +1457,6 @@ class UserController extends BaseController
         return $this->echoJson($response, $res);
     }
 
-    public function switchSSR($request, $response, $args)
-    {
-        $user = Auth::getUser();
-        $method = $request->getParam('method');
-        $method = strtolower($method);
-
-        if ($method == "") {
-            $res['ret'] = 0;
-            $res['msg'] = "悟空别闹";
-            return $response->getBody()->write(json_encode($res));
-        }
-
-        if (!Tools::is_param_validate('method', $method)) {
-            $res['ret'] = 0;
-            $res['msg'] = "悟空别闹";
-            return $response->getBody()->write(json_encode($res));
-        }
-
-        $user->method = $method;
-        $user->updateMethod($method);
-
-        $protocol = $request->getParam('protocol');
-        $obfs = $request->getParam('obfs');
-
-        $user = $this->user;
-
-        if ($obfs == ""||$protocol == "") {
-            $res['ret'] = 0;
-            $res['msg'] = "请填好";
-            return $response->getBody()->write(json_encode($res));
-        }
-
-        if (!Tools::is_param_validate('obfs', $obfs)) {
-            $res['ret'] = 0;
-            $res['msg'] = "悟空别闹";
-            return $response->getBody()->write(json_encode($res));
-        }
-
-        if (!Tools::is_param_validate('protocol', $protocol)) {
-            $res['ret'] = 0;
-            $res['msg'] = "悟空别闹";
-            return $response->getBody()->write(json_encode($res));
-        }
-
-        $antiXss = new AntiXSS();
-
-        $user->protocol = $antiXss->xss_clean($protocol);
-        $user->obfs = $antiXss->xss_clean($obfs);
-
-        $user->save();
-
-        $res['ret'] = 1;
-        $res['msg'] = "设置成功";
-        return $this->echoJson($response, $res);
-    }
-
     public function updateTheme($request, $response, $args)
     {
         $theme = $request->getParam('theme');

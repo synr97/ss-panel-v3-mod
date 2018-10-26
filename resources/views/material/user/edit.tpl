@@ -90,20 +90,22 @@
 						<div class="col-lg-6">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
-									<p class="card-heading">Telegram 绑定</p>
-									<div class="form-group form-group-label">
-									{if $user->telegram_id != 0}
-										当前绑定：<a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>
-									{/if}
-									{if $user->telegram_id == 0}
-										<p>点击绑定，将下面面的信息发送给它</p>
-										<p><code><a class="copy-text" data-clipboard-text="/bind {$bind_token}">/bind {$bind_token}</a></code></p>
-									{/if}
+									<div class="card-inner">
+										<p class="card-heading">每日流量使用情况</p>
+										<p>当前状态：<code id="ajax-mail">{if $user->sendDailyMail==1}接收{else}不接收{/if}</code></p>
+										<div class="form-group form-group-label">
+											<label class="floating-label" for="mail">发送设置</label>
+											<select id="mail" class="form-control">
+												<option value="1">接收</option>
+												<option value="0">不接收</option>
+											</select>
+										</div>
 									</div>
-									{if $user->telegram_id == 0}
-									<a class="btn btn-primary mt-4" href="https://t.me/{$telegram_bot}" target="_blank">&nbsp;绑定</a>
-									{/if}
-									<a class="btn btn-primary mt-4" href="/user/telegram_reset" >&nbsp;解绑</a>
+									<div class="card-action">
+										<div class="card-action-btn pull-left">
+											<button class="btn btn-primary mt-4" id="mail-update" >&nbsp;提交</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -125,24 +127,23 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6 mt-4">
+						<div class="col-lg-6">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
-									<p class="card-heading">登陆邮箱修改</p>
+									<p class="card-heading">Telegram 绑定</p>
 									<div class="form-group form-group-label">
-										<label class="floating-label" for="email">邮箱</label>
-										<input class="form-control" id="email">
+									{if $user->telegram_id != 0}
+										当前绑定：<a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>
+									{/if}
+									{if $user->telegram_id == 0}
+										<p>点击绑定，将下面面的信息发送给它</p>
+										<p><code><a class="copy-text" data-clipboard-text="/bind {$bind_token}">/bind {$bind_token}</a></code></p>
+									{/if}
 									</div>
-
-									<div class="form-group form-group-label">
-										<button id="email_verify" class="btn btn-primary mt-4">获取验证码</button>
-									</div>
-
-									<div class="form-group form-group-label">
-										<label class="floating-label" for="email_code">确认新邮箱</label>
-										<input class="form-control" id="email_code" >
-									</div>
-									<button class="btn btn-primary mt-4" id="email-update" >&nbsp;提交</button>
+									{if $user->telegram_id == 0}
+									<a class="btn btn-primary mt-4" href="https://t.me/{$telegram_bot}" target="_blank">&nbsp;绑定</a>
+									{/if}
+									<a class="btn btn-primary mt-4" href="/user/telegram_reset" >&nbsp;解绑</a>
 								</div>
 							</div>
 						</div>
@@ -167,71 +168,6 @@
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
 											<button class="btn btn-primary mt-4" id="method-update" >&nbsp;提交</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					
-						<div class="col-lg-6">
-							<div class="card card-lift shadow border-0">
-								<div class="card-body">
-									<p class="card-heading">登录密码修改</p>
-									<div class="form-group form-group-label">
-										<label class="floating-label" for="oldpwd">当前密码</label>
-										<input class="form-control" id="oldpwd" type="password">
-									</div>
-
-									<div class="form-group form-group-label">
-										<label class="floating-label" for="pwd">新密码</label>
-										<input class="form-control" id="pwd" type="password">
-									</div>
-
-									<div class="form-group form-group-label">
-										<label class="floating-label" for="repwd">确认新密码</label>
-										<input class="form-control" id="repwd" type="password">
-									</div>
-									<button class="btn btn-primary mt-4" id="pwd-update" >&nbsp;提交</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6">
-							<div class="card card-lift shadow border-0">
-								<div class="card-body">
-									<div class="card-inner">
-										<p class="card-heading">协议&混淆</p>
-										<p>当前协议：<code id="ajax-user-protocol">{$user->protocol}</code></p>
-										<p>注意：如果您使用 SS/SSD 客户端此处请直接设置为：origin</p>
-										<p>注意：如果需要兼容 SS/SSD 请选择带 _compatible 的兼容选项</p>
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="protocol">协议</label>
-											<select id="protocol" class="form-control">
-												{$protocol_list = $config_service->getSupportParam('protocol')}
-												{foreach $protocol_list as $protocol}
-													<option value="{$protocol}" {if $user->protocol == $protocol}selected="selected"{/if}>[{if URL::CanProtocolConnect($protocol) == 3}SS/SSD/SSR{else}SSR{/if}] {$protocol}</option>
-												{/foreach}
-											</select>
-										</div>
-									</div>
-
-									<div class="card-inner">
-										<p>当前混淆方式：<code id="ajax-user-obfs">{$user->obfs}</code></p>
-										<p>注意：SS/SSD 和 SSR 支持的混淆有所不同，请根据实际情况来进行选择！</p>
-										<div class="form-group form-group-label">
-											<label class="floating-label" for="obfs">混淆方式</label>
-											<select id="obfs" class="form-control">
-												{$obfs_list = $config_service->getSupportParam('obfs')}
-												{foreach $obfs_list as $obfs}
-													<option value="{$obfs}" {if $user->obfs == $obfs}selected="selected"{/if}>[{if URL::CanObfsConnect($obfs) >= 3}SS/SSD/SSR{else}{if URL::CanObfsConnect($obfs) == 1}SSR{else}SS/SSD{/if}{/if}] {$obfs}</option>
-												{/foreach}
-											</select>
-										</div>
-									</div>
-
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											<button class="btn btn-primary mt-4" id="ssr-update" >&nbsp;提交</button>
 										</div>
 									</div>
 								</div>
@@ -282,24 +218,43 @@
 								</div>
 							</div>
 						</div>
-	
+
 						<div class="col-lg-6">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<div class="card-inner">
-										<p class="card-heading">每日流量使用情况</p>
-										<p>当前状态：<code id="ajax-mail">{if $user->sendDailyMail==1}接收{else}不接收{/if}</code></p>
+										<p class="card-heading">协议&混淆</p>
+										<p>当前协议：<code id="ajax-user-protocol">{$user->protocol}</code></p>
+										<p>注意：如果您使用 SS/SSD 客户端此处请直接设置为：origin</p>
+										<p>注意：如果需要兼容 SS/SSD 请选择带 _compatible 的兼容选项</p>
 										<div class="form-group form-group-label">
-											<label class="floating-label" for="mail">发送设置</label>
-											<select id="mail" class="form-control">
-												<option value="1">接收</option>
-												<option value="0">不接收</option>
+											<label class="floating-label" for="protocol">协议</label>
+											<select id="protocol" class="form-control">
+												{$protocol_list = $config_service->getSupportParam('protocol')}
+												{foreach $protocol_list as $protocol}
+													<option value="{$protocol}" {if $user->protocol == $protocol}selected="selected"{/if}>[{if URL::CanProtocolConnect($protocol) == 3}SS/SSD/SSR{else}SSR{/if}] {$protocol}</option>
+												{/foreach}
 											</select>
 										</div>
 									</div>
+
+									<div class="card-inner">
+										<p>当前混淆方式：<code id="ajax-user-obfs">{$user->obfs}</code></p>
+										<p>注意：SS/SSD 和 SSR 支持的混淆有所不同，请根据实际情况来进行选择！</p>
+										<div class="form-group form-group-label">
+											<label class="floating-label" for="obfs">混淆方式</label>
+											<select id="obfs" class="form-control">
+												{$obfs_list = $config_service->getSupportParam('obfs')}
+												{foreach $obfs_list as $obfs}
+													<option value="{$obfs}" {if $user->obfs == $obfs}selected="selected"{/if}>[{if URL::CanObfsConnect($obfs) >= 3}SS/SSD/SSR{else}{if URL::CanObfsConnect($obfs) == 1}SSR{else}SS/SSD{/if}{/if}] {$obfs}</option>
+												{/foreach}
+											</select>
+										</div>
+									</div>
+
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
-											<button class="btn btn-primary mt-4" id="mail-update" >&nbsp;提交</button>
+											<button class="btn btn-primary mt-4" id="ssr-update" >&nbsp;提交</button>
 										</div>
 									</div>
 								</div>
@@ -315,7 +270,7 @@
 										<p><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">&nbsp;Android</a></p>
 										<p><a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605?mt=8">&nbsp;iOS</a></p>
 										<p>在没有测试完成之前请不要轻易开启。</p>
-										<p>当前设置：{if $user->ga_enable==1} 登录时要求验证 {else} 不要求 {/if}</p>
+										<p>当前设置：{if $user->ga_enable==1} 要求验证 {else} 不需验证 {/if}</p>
 										<p>当前服务器时间：{date("Y-m-d H:i:s")}</p>
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="ga-enable">验证设置</label>
@@ -342,9 +297,54 @@
 										<div class="card-action-btn pull-left">
 											<a class="btn btn-primary mt-4" href="/user/gareset" >&nbsp;重置</a>
 											<button class="btn btn-primary mt-4" id="ga-test" >&nbsp;测试</button>
-											<button class="btn btn-primary mt-4" id="ga-set" >&nbsp;设置</button>
+											<button class="btn btn-primary mt-4" id="ga-set" >&nbsp;绑定</button>
 										</div>
 									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-6 mt-4">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
+									<p class="card-heading">登陆邮箱修改</p>
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="email">邮箱</label>
+										<input class="form-control" id="email">
+									</div>
+
+									<div class="form-group form-group-label">
+										<button id="email_verify" class="btn btn-primary mt-4">获取验证码</button>
+									</div>
+
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="email_code">确认新邮箱</label>
+										<input class="form-control" id="email_code" >
+									</div>
+									<button class="btn btn-primary mt-4" id="email-update" >&nbsp;提交</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
+									<p class="card-heading">登录密码修改</p>
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="oldpwd">当前密码</label>
+										<input class="form-control" id="oldpwd" type="password">
+									</div>
+
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="pwd">新密码</label>
+										<input class="form-control" id="pwd" type="password">
+									</div>
+
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="repwd">确认新密码</label>
+										<input class="form-control" id="repwd" type="password">
+									</div>
+									<button class="btn btn-primary mt-4" id="pwd-update" >&nbsp;提交</button>
 								</div>
 							</div>
 						</div>
