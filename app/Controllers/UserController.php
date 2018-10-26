@@ -1368,6 +1368,44 @@ class UserController extends BaseController
         return $this->echoJson($response, $res);
     }
 
+    public function updateMethod($request, $response, $args)
+    {
+        $user = Auth::getUser();
+        $method = $request->getParam('method');
+        $method = strtolower($method);
+
+        if ($method == "") {
+            $res['ret'] = 0;
+            $res['msg'] = "悟空别闹";
+            return $response->getBody()->write(json_encode($res));
+        }
+
+        if (!Tools::is_param_validate('method', $method)) {
+            $res['ret'] = 0;
+            $res['msg'] = "悟空别闹";
+            return $response->getBody()->write(json_encode($res));
+        }
+
+        $user->method = $method;
+/*
+        if (!Tools::checkNoneProtocol($user)) {
+            $res['ret'] = 0;
+            $res['msg'] = "您的协议并不在以下协议<br>".implode(',', Config::getSupportParam('allow_none_protocol')).'<br>之内，请您先修改您的协议，再来修改此处设置。';
+            return $this->echoJson($response, $res);
+        }
+
+        if(!URL::SSCanConnect($user) && !URL::SSRCanConnect($user)) {
+            $res['ret'] = 0;
+            $res['msg'] = "您这样设置之后，就没有客户端能连接上了，所以系统拒绝了您的设置，请您检查您的设置之后再进行操作。";
+            return $this->echoJson($response, $res);
+        }
+*/
+        $user->updateMethod($method);
+
+        $res['ret'] = 1;
+        $res['msg'] = "设置成功";
+        return $this->echoJson($response, $res);
+    }
 
     public function updateSSR($request, $response, $args)
     {
@@ -1414,20 +1452,64 @@ class UserController extends BaseController
 */
         $user->save();
 
-        if (!URL::SSCanConnect($user)) {
-            $res['ret'] = 1;
-            $res['msg'] = "已修改为 SSR 模式，请您自行更换客户端。";
-            return $this->echoJson($response, $res);
+        $res['ret'] = 1;
+        $res['msg'] = "设置成功";
+        return $this->echoJson($response, $res);
+    }
+
+    public function switchSSR($request, $response, $args)
+    {
+        $user = Auth::getUser();
+        $method = $request->getParam('method');
+        $method = strtolower($method);
+
+        if ($method == "") {
+            $res['ret'] = 0;
+            $res['msg'] = "悟空别闹";
+            return $response->getBody()->write(json_encode($res));
         }
 
-        if (!URL::SSRCanConnect($user)) {
-            $res['ret'] = 1;
-            $res['msg'] = "已修改为 SS 模式，请您自行更换客户端。";
-            return $this->echoJson($response, $res);
+        if (!Tools::is_param_validate('method', $method)) {
+            $res['ret'] = 0;
+            $res['msg'] = "悟空别闹";
+            return $response->getBody()->write(json_encode($res));
         }
+
+        $user->method = $method;
+        $user->updateMethod($method);
+
+        $protocol = $request->getParam('protocol');
+        $obfs = $request->getParam('obfs');
+
+        $user = $this->user;
+
+        if ($obfs == ""||$protocol == "") {
+            $res['ret'] = 0;
+            $res['msg'] = "请填好";
+            return $response->getBody()->write(json_encode($res));
+        }
+
+        if (!Tools::is_param_validate('obfs', $obfs)) {
+            $res['ret'] = 0;
+            $res['msg'] = "悟空别闹";
+            return $response->getBody()->write(json_encode($res));
+        }
+
+        if (!Tools::is_param_validate('protocol', $protocol)) {
+            $res['ret'] = 0;
+            $res['msg'] = "悟空别闹";
+            return $response->getBody()->write(json_encode($res));
+        }
+
+        $antiXss = new AntiXSS();
+
+        $user->protocol = $antiXss->xss_clean($protocol);
+        $user->obfs = $antiXss->xss_clean($obfs);
+
+        $user->save();
 
         $res['ret'] = 1;
-        $res['msg'] = "设置成功，您可自由选用客户端来连接。";
+        $res['msg'] = "设置成功";
         return $this->echoJson($response, $res);
     }
 
@@ -1611,63 +1693,8 @@ class UserController extends BaseController
         $user->updateSsPwd($pwd);
         $res['ret'] = 1;
 
-
         Radius::Add($user, $pwd);
 
-
-
-
-        return $this->echoJson($response, $res);
-    }
-
-    public function updateMethod($request, $response, $args)
-    {
-        $user = Auth::getUser();
-        $method = $request->getParam('method');
-        $method = strtolower($method);
-
-        if ($method == "") {
-            $res['ret'] = 0;
-            $res['msg'] = "悟空别闹";
-            return $response->getBody()->write(json_encode($res));
-        }
-
-        if (!Tools::is_param_validate('method', $method)) {
-            $res['ret'] = 0;
-            $res['msg'] = "悟空别闹";
-            return $response->getBody()->write(json_encode($res));
-        }
-
-        $user->method = $method;
-/*
-        if (!Tools::checkNoneProtocol($user)) {
-            $res['ret'] = 0;
-            $res['msg'] = "您的协议并不在以下协议<br>".implode(',', Config::getSupportParam('allow_none_protocol')).'<br>之内，请您先修改您的协议，再来修改此处设置。';
-            return $this->echoJson($response, $res);
-        }
-
-        if(!URL::SSCanConnect($user) && !URL::SSRCanConnect($user)) {
-            $res['ret'] = 0;
-            $res['msg'] = "您这样设置之后，就没有客户端能连接上了，所以系统拒绝了您的设置，请您检查您的设置之后再进行操作。";
-            return $this->echoJson($response, $res);
-        }
-*/
-        $user->updateMethod($method);
-
-        if(!URL::SSCanConnect($user)) {
-            $res['ret'] = 0;
-            $res['msg'] = "已修改为 SSR 模式，请您自行更换客户端。";
-            return $this->echoJson($response, $res);
-        }
-
-        if(!URL::SSRCanConnect($user)) {
-            $res['ret'] = 0;
-            $res['msg'] = "已修改为 SS 模式，请您自行更换客户端。";
-            return $this->echoJson($response, $res);
-        }
-
-        $res['ret'] = 0;
-        $res['msg'] = "设置成功，您可自由选用两种客户端来进行连接。";
         return $this->echoJson($response, $res);
     }
 

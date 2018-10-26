@@ -356,38 +356,18 @@
         $("#switch-ss").click(function () {
         	$.ajax({
                 type: "POST",
-                url: "method",
+                url: "switchssr",
                 dataType: "json",
                 data: {
                     method: "chacha20-ietf-poly1305",
-                },
-                success: function (data) {
-                    if (data.ret) {
-                        $("#result").modal();
-						$("#msg").html("成功了");
-                    } else {
-                        $("#result").modal();
-						$("#msg").html(data.msg);
-                    }
-                },
-                error: function (jqXHR) {
-                    $("#result").modal();
-					$("#msg").html(data.msg+"     出现了一些错误。");
-                }
-            })
-
-            $.ajax({
-                type: "POST",
-                url: "ssr",
-                dataType: "json",
-                data: {
                     protocol: "origin",
 					obfs: "simple_obfs_http",
                 },
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
-						$("#msg").html(data.msg);
+						$("#msg").html("已切换为 SS 模式。");
+						window.setTimeout("location.href='/user'", {$config['jump_delay']});
                     } else {
                         $("#result").modal();
 						$("#msg").html(data.msg);
@@ -407,38 +387,18 @@
         $("#switch-ssr").click(function () {
         	$.ajax({
                 type: "POST",
-                url: "method",
+                url: "switchssr",
                 dataType: "json",
                 data: {
                     method: "aes-128-ctr",
-                },
-                success: function (data) {
-                    if (data.ret) {
-                        $("#result").modal();
-						$("#msg").html("成功了");
-                    } else {
-                        $("#result").modal();
-						$("#msg").html(data.msg);
-                    }
-                },
-                error: function (jqXHR) {
-                    $("#result").modal();
-					$("#msg").html(data.msg+"     出现了一些错误。");
-                }
-            })
-
-            $.ajax({
-                type: "POST",
-                url: "ssr",
-                dataType: "json",
-                data: {
                     protocol: "auth_aes128_md5",
 					obfs: "plain",
                 },
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
-						$("#msg").html(data.msg);
+                        $("#msg").html("已切换为 SSR 模式。");
+						window.setTimeout("location.href='/user'", {$config['jump_delay']});
                     } else {
                         $("#result").modal();
 						$("#msg").html(data.msg);
@@ -470,20 +430,6 @@ $(".reset-link").click(function () {
 	window.setTimeout("location.href='/user/url_reset'", {$config['jump_delay']});
 });
 
-$(".switch-ss").click(function () {
-	$("#result").modal();
-	$("#msg").html("已切换为 SS 模式。");
-	window.setTimeout("location.href='/user'", {$config['jump_delay']});
-});
-
-$(".switch-ssr").click(function () {
-	$("#result").modal();
-	$("#msg").html("已切换为 SSR 模式。");
-	window.setTimeout("location.href='/user'", {$config['jump_delay']});
-});
-
-
-  
 {if $geetest_html == null}
 window.onload = function() {
     var myShakeEvent = new Shake({
