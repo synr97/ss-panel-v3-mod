@@ -101,6 +101,9 @@
 																			{elseif $shop->class_limit_operator() == 'not'}非{/if}
 																			{$shop->class_limit_content()} 的用户购买</li>
 																	{/if}
+																	{if $shop->upgrade_package() != 0}
+																	<li>升级当前套餐</li>
+																	{/if}
 																	{if $shop->traffic_package() != 0}
 																	<li>保持当前套餐节点</li>
 																	{/if}
@@ -119,8 +122,10 @@
 																	{if $shop->node_connector() != 0}
 																	<li>同时在线 IP：{$shop->node_connector()}</li>
 																	{/if}
+																	{if $shop->upgrade_package() == 0}
 																	{if $shop->user_class() != 0}
 																	<li>有效期：{$shop->class_expire()} 天</li>
+																	{/if}
 																	{/if}
 																	{if $shop->traffic_package() == 0}
 																	{if $shop->node_group() != 0}
@@ -131,9 +136,6 @@
 																	{/if}
 																	{if $shop->reset() != 0}
 																	<li>每月重置一次流量</li>
-																	{/if}
-																	{if $shop->upgrade_package() != 0}
-																	<li>升级当前套餐</li>
 																	{/if}
 																	</ul></p>
 								</div>
