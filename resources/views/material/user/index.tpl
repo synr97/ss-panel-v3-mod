@@ -356,7 +356,7 @@
         $("#switch-ss").click(function () {
             $.ajax({
                 type: "POST",
-                url: "switchssr",
+                url: "/user/switchssr",
                 dataType: "json",
                 data: {
                     method: "chacha20-ietf-poly1305",
@@ -387,7 +387,7 @@
         $("#switch-ssr").click(function () {
             $.ajax({
                 type: "POST",
-                url: "switchssr",
+                url: "/user/switchssr",
                 dataType: "json",
                 data: {
                     method: "aes-128-ctr",

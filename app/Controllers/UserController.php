@@ -1080,7 +1080,7 @@ class UserController extends BaseController
             else if ($class_left_time > (365 * 2 * 86400) && $class_left_time <= (365 * 3 * 86400)) {
                 $multi = 3;
             }
-            else {
+            else if ($class_left_time > (365 * 3 * 86400) || $class_left_time < 0){
                 $res['ret'] = 0;
                 $res['msg'] = "不满足升级条件";
                 return $response->getBody()->write(json_encode($res));
