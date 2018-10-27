@@ -101,17 +101,17 @@
 																			{elseif $shop->class_limit_operator() == 'not'}非{/if}
 																			{$shop->class_limit_content()} 的用户购买</li>
 																	{/if}
-																	{if $shop->traffic_package() != 0 || $shop->upgrade_package() != 0}
+																	{if $shop->traffic_package() != 0}
 																	<li>保持当前套餐节点</li>
 																	{/if}
-																	{if $shop->traffic_package() != 0 || $shop->upgrade_package() != 0}
+																	{if $shop->traffic_package() != 0}
 																	<li>套餐流量重置时流量包将失效</li>
 																	{/if}
-																	{if $shop->traffic_package() != 0 || $shop->upgrade_package() != 0}
+																	{if $shop->traffic_package() != 0}
 																	<li>套餐到期时流量包将失效</li>
 																	{/if}
 																	{if $shop->bandwidth() != 0}
-																	<li>{if $shop->traffic_package() != 0 || $shop->upgrade_package() != 0}在下次流量重置前额外增加 {$shop->bandwidth()}G 流量{else}每月流量： {$shop->bandwidth()}G{/if}</li>
+																	<li>{if $shop->traffic_package() != 0}在下次流量重置前额外增加 {$shop->bandwidth()}G 流量{else}每月流量： {$shop->bandwidth()}G{/if}</li>
 																	{/if}
 																	{if $shop->node_speedlimit() != 0}
 																	<li>最高速率：{$shop->node_speedlimit()}Mbps</li>
@@ -131,6 +131,9 @@
 																	{/if}
 																	{if $shop->reset() != 0}
 																	<li>每月重置一次流量</li>
+																	{/if}
+																	{if $shop->upgrade_package() != 0}
+																	<li>升级当前套餐</li>
 																	{/if}
 																	</ul></p>
 								</div>

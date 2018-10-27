@@ -33,7 +33,7 @@
 								</div>
 
 								<div class="form-group form-group-label">
-									<label class="floating-label" for="auto_renew">多少天后自动续费</label>
+									<label class="floating-label" for="auto_renew">自动续费</label>
 									<input class="form-control" id="auto_renew" type="number" value="{$shop->auto_renew}">
 								</div>
 
@@ -98,10 +98,10 @@
 									</div>
 								</div>
 
-                <div class="form-group form-group-label">
+                				<div class="form-group form-group-label">
 									<div class="checkbox switch">
 										<label for="upgrade_package">
-											<input {if $shop->upgrade_package()==1}checked{/if} class="access-hide" id="upgrade_package" type="checkbox"><span class="switch-toggle"></span>等级包（不足一年价格x1，不足两年按x2，最多三年x3）
+											<input {if $shop->upgrade_package()==1}checked{/if} class="access-hide" id="upgrade_package" type="checkbox"><span class="switch-toggle"></span>升级包
 										</label>
 									</div>
 								</div>
@@ -130,7 +130,7 @@
 						<div class="card-main">
 							<div class="card-inner">
 
-								<div class="form-group form-group-label">
+								<div class="form-group form-group-label" hidden="hidden">
 									<label class="floating-label" for="expire">账户有效期天数</label>
 									<input class="form-control" id="expire" type="number" value="{$shop->expire()}">
 								</div>
@@ -163,12 +163,12 @@
 					<div class="card">
                         <div class="card-main">
                             <div class="card-inner">
-                                <div class="form-group form-group-label">
+                                <div class="form-group form-group-label" hidden="hidden">
                                     <label class="floating-label" for="reset">每多少天</label>
-                                    <input class="form-control" id="reset" type="number" value="30">
+                                    <input class="form-control" id="reset" type="number" value="0">
                                 </div>
 
-                                <div class="form-group form-group-label">
+                                <div class="form-group form-group-label" hidden="hidden">
                                     <label class="floating-label" for="reset_value">重置流量为多少G</label>
                                     <input class="form-control" id="reset_value" type="number" value="0">
                                 </div>
