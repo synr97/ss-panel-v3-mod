@@ -1070,24 +1070,21 @@ class UserController extends BaseController
             }
         }
 
-
         if ($shop->upgrade_package() == 1) {
             $multi = 1;
             $class_left_time = strtotime($user->class_expire) - time();
-            if ($class_left_time >= (365 * 86400) && $class_left_time <= (730 * 86400)) {
+            if ($class_left_time > (365 * 86400) && $class_left_time <= (365 * 2 * 86400)) {
                 $multi = 2;
             }
-            else if ($class_left_time > (365 * 2 * 86400) && $class_left_time <= (365 * 3 * 86400)) {
+            elseif ($class_left_time > (365 * 2 * 86400) && $class_left_time < (365 * 3 * 86400)) {
                 $multi = 3;
             }
-            else if ($class_left_time > (365 * 3 * 86400) || $class_left_time < 0){
+            elseif ($class_left_time > (365 * 3 * 86400) || $class_left_time < 0){
                 $res['ret'] = 0;
                 $res['msg'] = "不满足升级条件";
                 return $response->getBody()->write(json_encode($res));
             }
-
              $price = $shop->price * $multi * ((100 - $credit) / 100);
-
         }
         else {
              $price = $shop->price * ((100 - $credit) / 100);
