@@ -154,7 +154,7 @@
 									<div class="card-inner">
 										<p class="card-heading">加密方式</p>
 										<p>注意：SS/SSD 和 SSR 支持的加密方式有所不同，请根据实际情况来进行选择！</p>
-										<p>当前加密方式：{$user->method}</p>
+										<p>当前加密方式：<code>{$user->method}</code></p>
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="method">加密方式</label>
 											<select id="method" class="form-control">
@@ -164,65 +164,6 @@
 												{/foreach}
 											</select>
 										</div>
-									</div>
-									<div class="card-action">
-										<div class="card-action-btn pull-left">
-											<button class="btn btn-primary mt-4" id="method-update" >&nbsp;提交</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6">
-							<div class="card card-lift shadow border-0">
-								<div class="card-body">
-									<p class="card-heading">联络方式修改</p>
-									<p>当前联络方式：
-									<code id="ajax-im">
-									{if $user->im_type==1}
-									微信
-									{/if}
-
-									{if $user->im_type==2}
-									QQ
-									{/if}
-
-									{if $user->im_type==3}
-									Google+
-									{/if}
-
-									{if $user->im_type==4}
-									Telegram
-									{/if}
-									{$user->im_value}
-									</code>
-									</p>
-
-									<div class="form-group form-group-label">
-										<label class="floating-label" for="imtype">选择您的联络方式</label>
-										<select class="form-control" id="imtype">
-											<option></option>
-											<option value="1">微信</option>
-											<option value="2">QQ</option>
-											<option value="3">Google+</option>
-											<option value="4">Telegram</option>
-										</select>
-									</div>
-
-									<div class="form-group form-group-label">
-										<label class="floating-label" for="wechat">在这输入联络方式账号</label>
-										<input class="form-control" id="wechat" type="text">
-									</div>
-									<button class="btn btn-primary mt-4" id="wechat-update">&nbsp;提交</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6">
-							<div class="card card-lift shadow border-0">
-								<div class="card-body">
-									<div class="card-inner">
 										<p class="card-heading">协议&混淆</p>
 										<p>当前协议：<code id="ajax-user-protocol">{$user->protocol}</code></p>
 										<p>注意：如果您使用 SS/SSD 客户端此处请直接设置为：origin</p>
@@ -239,10 +180,10 @@
 									</div>
 
 									<div class="card-inner">
-										<p>当前混淆方式：<code id="ajax-user-obfs">{$user->obfs}</code></p>
+										<p>当前混淆：<code id="ajax-user-obfs">{$user->obfs}</code></p>
 										<p>注意：SS/SSD 和 SSR 支持的混淆有所不同，请根据实际情况来进行选择！</p>
 										<div class="form-group form-group-label">
-											<label class="floating-label" for="obfs">混淆方式</label>
+											<label class="floating-label" for="obfs">混淆</label>
 											<select id="obfs" class="form-control">
 												{$obfs_list = $config_service->getSupportParam('obfs')}
 												{foreach $obfs_list as $obfs}
@@ -251,10 +192,10 @@
 											</select>
 										</div>
 									</div>
-
+									</div>
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
-											<button class="btn btn-primary mt-4" id="ssr-update" >&nbsp;提交</button>
+											<button class="btn btn-primary mt-4" id="models-update" >&nbsp;提交</button>
 										</div>
 									</div>
 								</div>
@@ -361,6 +302,51 @@
 											<button class="btn btn-primary mt-4" id="unblock" >&nbsp;解封</button>
 										</div>
 									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-6">
+							<div class="card card-lift shadow border-0">
+								<div class="card-body">
+									<p class="card-heading">联络方式修改</p>
+									<p>当前联络方式：
+									<code id="ajax-im">
+									{if $user->im_type==1}
+									微信
+									{/if}
+
+									{if $user->im_type==2}
+									QQ
+									{/if}
+
+									{if $user->im_type==3}
+									Google+
+									{/if}
+
+									{if $user->im_type==4}
+									Telegram
+									{/if}
+									{$user->im_value}
+									</code>
+									</p>
+
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="imtype">选择您的联络方式</label>
+										<select class="form-control" id="imtype">
+											<option></option>
+											<option value="1">微信</option>
+											<option value="2">QQ</option>
+											<option value="3">Google+</option>
+											<option value="4">Telegram</option>
+										</select>
+									</div>
+
+									<div class="form-group form-group-label">
+										<label class="floating-label" for="wechat">在这输入联络方式账号</label>
+										<input class="form-control" id="wechat" type="text">
+									</div>
+									<button class="btn btn-primary mt-4" id="wechat-update">&nbsp;提交</button>
 								</div>
 							</div>
 						</div>
@@ -498,12 +484,13 @@ $(".copy-text").click(function () {
 
 <script>
     $(document).ready(function () {
-        $("#ssr-update").click(function () {
+        $("#models-update").click(function () {
             $.ajax({
                 type: "POST",
-                url: "ssr",
+                url: "switchssr",
                 dataType: "json",
                 data: {
+                	method: $("#method").val()
                     protocol: $("#protocol").val(),
 					obfs: $("#obfs").val(),
                 },
@@ -526,7 +513,6 @@ $(".copy-text").click(function () {
         })
     })
 </script>
-
 
 <script>
     $(document).ready(function () {
@@ -688,34 +674,6 @@ $(".copy-text").click(function () {
                         $("#result").modal();
 						$("#ajax-mail").html($("#mail").val()=="1"?"发送":"不发送");
 						$("#msg").html(data.msg);
-                    } else {
-                        $("#result").modal();
-						$("#msg").html(data.msg);
-                    }
-                },
-                error: function (jqXHR) {
-                    $("#result").modal();
-					$("#msg").html(data.msg+"     出现了一些错误。");
-                }
-            })
-        })
-    })
-</script>
-
-<script>
-    $(document).ready(function () {
-        $("#method-update").click(function () {
-            $.ajax({
-                type: "POST",
-                url: "method",
-                dataType: "json",
-                data: {
-                    method: $("#method").val()
-                },
-                success: function (data) {
-                    if (data.ret) {
-                        $("#result").modal();
-						$("#msg").html("成功了");
                     } else {
                         $("#result").modal();
 						$("#msg").html(data.msg);
