@@ -60,7 +60,13 @@ class Shop extends Model
 					$content_text .= "账号有效期添加 ".$value." 天";
 					break;
 				case "class":
-					$content_text .= "账号升级为等级 ".$value." ,套餐有效期 ".$content["class_expire"]." 天";
+                    if (isset($content["upgrade_package"])) {
+						$content_text .= "升级包: 账号升级为等级".$value;
+					}
+                    else {
+					    $content_text .= "账号升级为等级 ".$value." ,套餐有效期 ".$content["class_expire"]." 天";
+                    }
+
 					break;
 				case "reset":
 					$content_text .= "每 ".$value." 天重置一次流量";
@@ -132,6 +138,16 @@ class Shop extends Model
 		$content = json_decode($this->attributes['content']);
 		if (isset($content->traffic_package)) {
 			return $content->traffic_package;
+		} else {
+			return 0;
+		}
+	}
+
+    public function upgrade_package()
+	{
+		$content = json_decode($this->attributes['content']);
+		if (isset($content->upgrade_package)) {
+			return $content->upgrade_package;
 		} else {
 			return 0;
 		}
@@ -230,14 +246,14 @@ class Shop extends Model
 	public function canBuy($user)
 	{
 		$content = json_decode($this->attributes['content'], true);
-		
+
 		if (isset($content["group_limit"])) {
 			$group_array=explode(",", $content["group_limit"]);
 			if (!in_array($user->node_group, $group_array)) {
 				return false;
 			}
 		}
-		
+
 		if (isset($content["class_limit_operator"])) {
 			switch ($content["class_limit_operator"]) {
 				case "equal":
@@ -275,18 +291,18 @@ class Shop extends Model
 				default:
 			}
 		}
-		
+
 		if (isset($content["traffic_package"])) {
 			if (strtotime($user->expire_in) < time()) {
 				return false;
 			}
-			
+
 			$bought = Bought::where("userid", "=", $user->id)->first();
 			if ($bought == null) {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
 
@@ -317,11 +333,16 @@ class Shop extends Model
 					}
 					break;
 				case "class":
-					if ($user->class == 0 || $user->class != $value) {
-						$user->class_expire = date("Y-m-d H:i:s", time());
-					}
-					$user->class_expire = date("Y-m-d H:i:s", strtotime($user->class_expire) + $content["class_expire"] * 86400);
-					$user->class = $value;
+                    if (!isset($content["upgrade_package"]) || $content["upgrade_package"] == 0) {
+                      if ($user->class == 0 || $user->class != $value) {
+                          $user->class_expire = date("Y-m-d H:i:s", time());
+                      }
+                      $user->class_expire = date("Y-m-d H:i:s", strtotime($user->class_expire) + $content["class_expire"] * 86400);
+                      $user->class = $value;
+                    }
+                    else {
+                      $user->class = $value;
+                    }
 					break;
 				case "node_speedlimit":
 					$user->node_speedlimit = $value;

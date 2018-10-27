@@ -43,7 +43,7 @@ class ShopController extends AdminController
         if ($request->getParam('group_limit') != '') {
             $content["group_limit"] = $request->getParam('group_limit');
         }
-        
+
         if ($request->getParam('class_limit_operator') != 'none'
                 && $request->getParam('class_limit_content') != '') {
             if ($request->getParam('class_limit_operator') != 'equal'
@@ -53,18 +53,23 @@ class ShopController extends AdminController
                 $rs['msg'] = "该等级限制运算符只能设置一个等级";
                 return $response->getBody()->write(json_encode($rs));
             }
-            
+
             $content["class_limit_operator"] = $request->getParam('class_limit_operator');
             $content["class_limit_content"] = $request->getParam('class_limit_content');
         }
-        
+
         if ($request->getParam('bandwidth') != 0) {
             $content["bandwidth"] = $request->getParam('bandwidth');
         }
-        
+
         if ($request->getParam('traffic_package') != 0) {
             $content["traffic_package"] = $request->getParam('traffic_package');
         }
+
+        if ($request->getParam('upgrade_package') != 0) {
+            $content["upgrade_package"] = $request->getParam('upgrade_package');
+        }
+
 
         if ($request->getParam('node_speedlimit') != 0) {
             $content["node_speedlimit"] = $request->getParam('node_speedlimit');
@@ -85,7 +90,7 @@ class ShopController extends AdminController
         if ($request->getParam('class_expire') != 0) {
             $content["class_expire"] = $request->getParam('class_expire');
         }
-		
+
 		 if ($request->getParam('node_group') != 0) {
             $content["node_group"] = $request->getParam('node_group');
         }
@@ -141,7 +146,7 @@ class ShopController extends AdminController
                 $bought->renew = 0;
                 $bought->save();
             }
-            
+
             $deleted = true;
         }
 
@@ -152,7 +157,7 @@ class ShopController extends AdminController
         if ($request->getParam('group_limit') != '') {
             $content["group_limit"] = $request->getParam('group_limit');
         }
-        
+
         if ($request->getParam('class_limit_operator') != 'none'
                 && $request->getParam('class_limit_content') != '') {
             if ($request->getParam('class_limit_operator') != 'equal'
@@ -162,27 +167,31 @@ class ShopController extends AdminController
                 $rs['msg'] = "该等级限制运算符只能设置一个等级";
                 return $response->getBody()->write(json_encode($rs));
             }
-            
+
             $content["class_limit_operator"] = $request->getParam('class_limit_operator');
             $content["class_limit_content"] = $request->getParam('class_limit_content');
         }
-        
+
         $needCheck = !$deleted && ($shop->group_limit() != $request->getParam('group_limit')
                 || $shop->class_limit_operator() != $request->getParam('class_limit_operator')
                 || $shop->class_limit_content() != $request->getParam('class_limit_content'));
-        
+
         if ($request->getParam('bandwidth') != 0) {
             $content["bandwidth"] = $request->getParam('bandwidth');
         }
-        
+
         if ($request->getParam('traffic_package') != 0) {
             $content["traffic_package"] = $request->getParam('traffic_package');
         }
-        
+
+        if ($request->getParam('upgrade_package') != 0) {
+            $content["upgrade_package"] = $request->getParam('upgrade_package');
+        }
+
         if ($request->getParam('node_speedlimit') != 0) {
             $content["node_speedlimit"] = $request->getParam('node_speedlimit');
         }
-        
+
         if ($request->getParam('node_connector') != 0) {
             $content["node_connector"] = $request->getParam('node_connector');
         }
@@ -198,7 +207,7 @@ class ShopController extends AdminController
         if ($request->getParam('class_expire') != 0) {
             $content["class_expire"] = $request->getParam('class_expire');
         }
-		
+
 		 if ($request->getParam('node_group') != 0) {
             $content["node_group"] = $request->getParam('node_group');
         }
@@ -216,18 +225,18 @@ class ShopController extends AdminController
         }
 
         $shop->content = json_encode($content);
-        
+
         if ($needCheck) {
             $boughts = Bought::where("shopid", $id)->get();
-            
+
             foreach ($boughts as $bought) {
                 $user=User::where("id", $bought->userid)->first();
-                
+
                 if ($user == null) {
                     $bought->delete();
                     continue;
                 }
-                
+
                 if (!$shop->canBuy($user)) {
                     $bought->renew=0;
                     $bought->save();
@@ -272,8 +281,8 @@ class ShopController extends AdminController
 
     public function bought($request, $response, $args)
     {
-        $table_config['total_column'] = array("op" => "操作", "id" => "ID", 
-                        "datetime" => "购买日期", 
+        $table_config['total_column'] = array("op" => "操作", "id" => "ID",
+                        "datetime" => "购买日期",
                         "shop_name" => "商品名称",
                         "price" => "价格", "user_id" => "用户ID",
                         "user_name" => "用户名", "renew" => "自动续费时间");

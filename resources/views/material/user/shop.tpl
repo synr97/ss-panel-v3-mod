@@ -56,9 +56,9 @@
                 </div>
               </div>
             </div>
-			        
+
 					<div class="row row-grid justify-content-between align-items-center mt-lg">
-					
+
 						<div class="col-lg-12">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
@@ -67,14 +67,14 @@
 								<p>注意：Try-out 体验套餐、Bronze 套餐不包含 SS/SSR - Advanced 节点</p>
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
-			
+
 			        <div class="row row-grid justify-content-between align-items-center mt-lg">
-					
-					
-					
-					
+
+
+
+
 					 {foreach $shops as $shop}
 						<div class="col-lg-6" style=" margin-top: 3rem;">
                 <div class="card card-lift shadow border-0">
@@ -85,7 +85,7 @@
 										{$shop->name} - <code>{$shop->price}</code>元
 									</p>
                                    <button class="btn btn-sm btn-primary pull-right"
-                   					{if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth},{$shop->traffic_package()})"{/if}>立即购买</button>
+                   					{if !$shop->canBuy($user)}disabled{else} href="javascript:void(0);" onClick="buy('{$shop->id}',{$shop->auto_renew},{$shop->auto_reset_bandwidth},{$shop->traffic_package()},{$shop->upgrade_package()})"{/if}>立即购买</button>
 									<p>
 										套餐详情<br>
 																											<p><ul>
@@ -101,20 +101,17 @@
 																			{elseif $shop->class_limit_operator() == 'not'}非{/if}
 																			{$shop->class_limit_content()} 的用户购买</li>
 																	{/if}
-																	{if $shop->traffic_package() != 0}
+																	{if $shop->traffic_package() != 0 || $shop->upgrade_package() != 0}
 																	<li>保持当前套餐节点</li>
 																	{/if}
-																	{if $shop->traffic_package() != 0}
-																	<li>保持当前套餐速率</li>
+																	{if $shop->traffic_package() != 0 || $shop->upgrade_package() != 0}
+																	<li>套餐流量重置时流量包将失效</li>
 																	{/if}
-																	{if $shop->traffic_package() != 0}
-																	<li>套餐流量重置时流量包将重置</li>
-																	{/if}
-																	{if $shop->traffic_package() != 0}
-																	<li>套餐到期时流量包将清空</li>
+																	{if $shop->traffic_package() != 0 || $shop->upgrade_package() != 0}
+																	<li>套餐到期时流量包将失效</li>
 																	{/if}
 																	{if $shop->bandwidth() != 0}
-																	<li>{if $shop->traffic_package() != 0}在下次流量重置前额外增加 {$shop->bandwidth()}G 流量{else}每月流量： {$shop->bandwidth()}G{/if}</li>
+																	<li>{if $shop->traffic_package() != 0 || $shop->upgrade_package() != 0}在下次流量重置前额外增加 {$shop->bandwidth()}G 流量{else}每月流量： {$shop->bandwidth()}G{/if}</li>
 																	{/if}
 																	{if $shop->node_speedlimit() != 0}
 																	<li>最高速率：{$shop->node_speedlimit()}Mbps</li>
@@ -139,16 +136,16 @@
 								</div>
 							</div>
                   </div>
-            </div>				
+            </div>
           </div>
-		  
+
 					{/foreach}
         </div>
        </div>
      </div>
    </div>
     </section>
-	
+
 <div class="modal fade"  id="coupon_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default float-right" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content">
@@ -170,8 +167,8 @@
         </div>
     </div>
     </div>
-					
-					
+
+
 	<div class="modal fade"  id="order_modal"  tabindex="-1" role="dialog" aria-labelledby="modal-default float-right" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content">
@@ -182,12 +179,12 @@
                 </button>
             </div>
             <div class="modal-body">
-             					<p><font color="red">如更换套餐，剩余流量和有效期将会立即重置</font></p>					   
+             					<p><font color="red">如更换套餐，剩余流量和有效期将会立即重置</font></p>
 									<p id="name">商品名称：</p>
 									<p id="credit">优惠额度：</p>
 									<p id="total">总金额：</p>
-									
-								
+
+
 									<div class="checkbox switch custom-control custom-checkbox mb-3" id="autor">
               							<input class="custom-control-input" checked id="autorenew" type="checkbox">
               								<label class="custom-control-label" for="autorenew">
@@ -199,7 +196,7 @@
               								<label class="custom-control-label" for="disableothers">
                 									<span>关闭旧套餐自动续费</span>
               								</label>
-									</div>		
+									</div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="order_input" type="button">确定</button>
@@ -207,7 +204,7 @@
         </div>
     </div>
     </div>
-					
+
 	<div class="modal fade"  id="tx_modal" tabindex="-1" role="dialog" aria-labelledby="modal-default float-right" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
         <div class="modal-content">
@@ -233,9 +230,9 @@
 
 
 <script>
-function buy(id,auto,auto_reset,package) {
+function buy(id,auto,auto_reset,package,upgrade) {
 	auto_renew = auto;
-    if (package == 1)
+    if (package == 1 || upgrade == 1)
     {
       document.getElementById('autor').style.display = "none";
       document.getElementById('disableo').style.display = "none";
@@ -284,7 +281,7 @@ $("#coupon_input").click(function () {
 			}
 		})
 	});
-	
+
 $("#order_input").click(function () {
 
 		if(document.getElementById('autorenew').checked)
@@ -299,7 +296,7 @@ $("#order_input").click(function () {
 		} else {
 			var disableothers = 0;
 		}
-			
+
 		$.ajax({
 			type: "POST",
 			url: "buy",

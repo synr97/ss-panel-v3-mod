@@ -124,6 +124,7 @@ $app->group('/user', function () {
     $this->post('/password', 'App\Controllers\UserController:updatePassword');
     $this->post('/wechat', 'App\Controllers\UserController:updateWechat');
     $this->post('/ssr', 'App\Controllers\UserController:updateSSR');
+    $this->post('/switchssr', 'App\Controllers\UserController:switchSSR');
     $this->post('/theme', 'App\Controllers\UserController:updateTheme');
     $this->post('/mail', 'App\Controllers\UserController:updateMail');
     $this->post('/email','App\Controllers\UserController:updateEmail');

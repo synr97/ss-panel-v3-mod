@@ -428,13 +428,13 @@ class UserController extends BaseController
           $node_prefix = array();
           foreach ($nodes as $node) {
               if (($node->node_class == $single_classes['level']) && ((($user->node_group == $node->node_group || $node->node_group == 0)) || $user->is_admin) && (!$node->isNodeTrafficOut())) {
-				  
+
 				  if ($node->sort == 11 && $single_classes['isV2Ray'] == 0)
 					  continue;
-				  
+
 				  if ($node->sort != 11 && $single_classes['isV2Ray'] == 1)
 					  continue;
-				  
+
                   if ($node->sort == 9 && $single_classes['isV2Ray'] == 0) {
                       $mu_user = User::where('port', '=', $node->server)->first();
                       $mu_user->obfs_param = $this->user->getMuMd5();
@@ -1070,7 +1070,28 @@ class UserController extends BaseController
             }
         }
 
-        $price = $shop->price * ((100 - $credit) / 100);
+
+        if ($shop->upgrade_package() == 1) {
+            $multi = 1;
+            $class_left_time = strtotime($user->class_expire) - time();
+            if ($class_left_time >= (365 * 86400) && $class_left_time <= (730 * 86400)) {
+                $multi = 2;
+            }
+            else if ($class_left_time > (365 * 2 * 86400) && $class_left_time <= (365 * 3 * 86400)) {
+                $multi = 3;
+            }
+            else {
+                $res['ret'] = 0;
+                $res['msg'] = "不满足升级条件";
+                return $response->getBody()->write(json_encode($res));
+            }
+
+             $price = $shop->price * $multi * ((100 - $credit) / 100);
+
+        }
+        else {
+             $price = $shop->price * ((100 - $credit) / 100);
+        }
         $user = $this->user;
 
         if ((float)$user->money < (float)$price) {
@@ -1366,6 +1387,62 @@ class UserController extends BaseController
         $res['ret'] = 1;
         $res['msg'] = "修改成功";
         return $this->echoJson($response, $res);
+    }
+
+    public function switchSSR($request, $response, $args)
+    {
+        $user = Auth::getUser();
+        $method = $request->getParam('method');
+        $method = strtolower($method);
+        $protocol = $request->getParam('protocol');
+        $obfs = $request->getParam('obfs');
+
+        if ($method == "") {
+            $res['ret'] = 0;
+            $res['msg'] = "悟空别闹";
+            return $response->getBody()->write(json_encode($res));
+        }
+
+        if (!Tools::is_param_validate('method', $method)) {
+            $res['ret'] = 0;
+            $res['msg'] = "悟空别闹";
+            return $response->getBody()->write(json_encode($res));
+        }
+
+        if ($obfs == ""||$protocol == "") {
+            $res['ret'] = 0;
+            $res['msg'] = "请填好";
+            return $response->getBody()->write(json_encode($res));
+        }
+
+        if (!Tools::is_param_validate('obfs', $obfs)) {
+            $res['ret'] = 0;
+            $res['msg'] = "悟空别闹";
+            return $response->getBody()->write(json_encode($res));
+        }
+
+        if (!Tools::is_param_validate('protocol', $protocol)) {
+            $res['ret'] = 0;
+            $res['msg'] = "悟空别闹";
+            return $response->getBody()->write(json_encode($res));
+        }
+
+
+        $user->method = $method;
+        $user->updateMethod($method);
+
+        $antiXss = new AntiXSS();
+
+        $user->protocol = $antiXss->xss_clean($protocol);
+        $user->obfs = $antiXss->xss_clean($obfs);
+
+        $user->save();
+
+        $res['ret'] = 1;
+        $res['msg'] = "设置成功";
+        return $this->echoJson($response, $res);
+
+
     }
 
     public function updateMethod($request, $response, $args)

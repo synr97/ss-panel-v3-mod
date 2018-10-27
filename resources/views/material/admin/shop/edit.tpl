@@ -98,6 +98,14 @@
 									</div>
 								</div>
 
+                <div class="form-group form-group-label">
+									<div class="checkbox switch">
+										<label for="upgrade_package">
+											<input {if $shop->upgrade_package()==1}checked{/if} class="access-hide" id="upgrade_package" type="checkbox"><span class="switch-toggle"></span>等级包（不足一年价格x1，不足两年按x2，最多三年x3）
+										</label>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -229,6 +237,16 @@
 				var traffic_package=0;
 			}
 
+      if(document.getElementById('upgrade_package').checked)
+			{
+				var upgrade_package = 1;
+			}
+			else
+			{
+				var upgrade_package = 0;
+			}
+
+
             $.ajax({
                 type: "PUT",
                 url: "/admin/shop/{$shop->id}",
@@ -244,6 +262,7 @@
                     class_limit_content: $("#class_limit_content").val(),
                     bandwidth: $("#bandwidth").val(),
 					traffic_package: traffic_package,
+					upgrade_package: upgrade_package,
                     node_speedlimit: $("#node_speedlimit").val(),
                     node_connector: $("#node_connector").val(),
                     expire: $("#expire").val(),
