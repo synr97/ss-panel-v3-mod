@@ -192,7 +192,7 @@
 											</select>
 										</div>
 									</div>
-									</div>
+
 									<div class="card-action">
 										<div class="card-action-btn pull-left">
 											<button class="btn btn-primary mt-4" id="models-update" >&nbsp;提交</button>
