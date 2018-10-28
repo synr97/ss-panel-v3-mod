@@ -67,7 +67,7 @@
             </div>
 
 			        <div class="row row-grid justify-content-between align-items-center mt-lg">
-						<div class="col-lg-6">
+						<div class="col-lg-6 mt-4">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<div class="card-inner">
@@ -87,7 +87,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 mt-4">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<div class="card-inner">
@@ -110,7 +110,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 mt-4">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<div class="card-inner">
@@ -127,7 +127,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 mt-4">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<p class="card-heading">Telegram 绑定</p>
@@ -148,7 +148,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 mt-4">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<div class="card-inner">
@@ -202,7 +202,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 mt-4">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<div class="card-inner">
@@ -267,7 +267,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 mt-4">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<p class="card-heading">登录密码修改</p>
@@ -290,7 +290,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 mt-4">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<div class="card-inner">
@@ -306,7 +306,7 @@
 							</div>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 mt-4">
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<p class="card-heading">联络方式修改</p>
