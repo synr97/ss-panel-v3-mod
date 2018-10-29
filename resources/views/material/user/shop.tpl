@@ -135,7 +135,7 @@
 																	{/if}
 																	{/if}
 																	{if $shop->reset() != 0}
-																	<li>每月重置一次流量</li>
+																	<li>每月重置流量</li>
 																	{/if}
 																	</ul></p>
 								</div>
