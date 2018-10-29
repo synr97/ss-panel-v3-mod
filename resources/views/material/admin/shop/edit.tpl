@@ -225,19 +225,19 @@
         function submit() {
 			if(document.getElementById('auto_reset_bandwidth').checked)
 			{
-				var auto_reset_bandwidth=1;
+				var auto_reset_bandwidth = 1;
 			}
 			else
 			{
-				var auto_reset_bandwidth=0;
+				var auto_reset_bandwidth = 0;
 			}
 			if(document.getElementById('traffic_package').checked)
 			{
-				var traffic_package=1;
+				var traffic_package = 1;
 			}
 			else
 			{
-				var traffic_package=0;
+				var traffic_package = 0;
 			}
 
       		if(document.getElementById('upgrade_package').checked)
@@ -279,7 +279,7 @@
                     expire: $("#expire").val(),
                     class: $("#class").val(),
 					class_expire: $("#class_expire").val(),
-					reset: $("#reset").val(),
+					reset: reset,
 					reset_value: $("#reset_value").val(),
                 },
                 success: function (data) {
