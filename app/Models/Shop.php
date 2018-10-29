@@ -314,11 +314,15 @@ class Shop extends Model
 		foreach ($content as $key => $value) {
 			switch ($key) {
 				case "bandwidth":
-					if (!isset($content["traffic_package"])) {
+					if (!isset($content["traffic_package"]) && !isset($content["upgrade_package"])) {
 						$user->transfer_enable = $value * 1024 * 1024 * 1024;
 						$user->u = 0;
 						$user->d = 0;
 						$user->last_day_t = 0;
+						$user->auto_reset_day = 1;
+						$user->auto_reset_bandwidth = $value;
+					} elseif (!isset($content["traffic_package"]) && isset($content["upgrade_package"])) {
+						$user->transfer_enable = $value * 1024 * 1024 * 1024;
 						$user->auto_reset_day = 1;
 						$user->auto_reset_bandwidth = $value;
 					} elseif (isset($content["traffic_package"])) {
@@ -348,7 +352,7 @@ class Shop extends Model
 					$user->node_speedlimit = $value;
 					break;
 				case "node_group":
-				  $user->node_group = $value;
+					$user->node_group = $value;
 				  break;
 				case "node_connector":
 					$user->node_connector = $value;

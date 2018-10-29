@@ -80,7 +80,7 @@
 									<input class="form-control" id="bandwidth" type="number" value="0">
 								</div>
 
-								<div class="form-group form-group-label">
+								<div class="form-group form-group-label" hidden="hidden">
 									<div class="checkbox switch">
 										<label for="auto_reset_bandwidth">
 											<input class="access-hide" id="auto_reset_bandwidth" type="checkbox"><span class="switch-toggle"></span>购买时自动重置用户流量为上面这个流量值
