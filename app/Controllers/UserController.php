@@ -750,14 +750,14 @@ class UserController extends BaseController
 
         $totallogin = LoginIp::where('userid', '=', $this->user->id)->where("type", "=", 0)->orderBy("datetime", "desc")->take(10)->get();
 
-        $userloginip=array();
+        $userloginip = array();
 
         foreach ($totallogin as $single) {
             //if(isset($useripcount[$single->userid]))
             {
                 if (!isset($userloginip[$single->ip])) {
                     //$useripcount[$single->userid]=$useripcount[$single->userid]+1;
-                    $location=$iplocation->getlocation($single->ip);
+                    $location = $iplocation->getlocation($single->ip);
                     $userloginip[$single->ip] = iconv('gbk', 'utf-8//IGNORE', $location['country'].$location['area']);
                 }
             }
@@ -777,8 +777,8 @@ class UserController extends BaseController
                 if(!isset($userip[$single->ip]))
                 {
                     //$useripcount[$single->userid]=$useripcount[$single->userid]+1;
-                    $location=$iplocation->getlocation($single->ip);
-                    $userip[$single->ip]=iconv('gbk', 'utf-8//IGNORE', $location['country'].$location['area']);
+                    $location = $iplocation->getlocation($single->ip);
+                    $userip[$single->ip] = iconv('gbk', 'utf-8//IGNORE', $location['country'].$location['area']);
                 }
             }
         }
@@ -1444,6 +1444,12 @@ class UserController extends BaseController
             $res['ret'] = 0;
             $res['msg'] = "悟空别闹";
             return $response->getBody()->write(json_encode($res));
+        }
+
+        if (!URL::SSCanConnect($user) && !URL::SSRCanConnect($user)) {
+            $res['ret'] = 0;
+            $res['msg'] = "您这样设置之后，就没有客户端能连接上了，所以系统拒绝了您的设置，请您检查您的设置之后再进行操作。";
+            return $this->echoJson($response, $res);
         }
 
 
