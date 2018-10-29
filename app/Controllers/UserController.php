@@ -993,10 +993,31 @@ class UserController extends BaseController
             return $response->getBody()->write(json_encode($res));
         }
 
+        $user = $this->user;
+        if ($shop->upgrade_package() == 1) {
+            $multi = 1;
+            $class_left_time = strtotime($user->class_expire) - time();
+            if ($class_left_time > (365 * 86400) && $class_left_time <= (365 * 2 * 86400)) {
+                $multi = 2;
+            }
+            elseif ($class_left_time > (365 * 2 * 86400) && $class_left_time < (365 * 3 * 86400)) {
+                $multi = 3;
+            }
+            elseif ($class_left_time > (365 * 3 * 86400) || $class_left_time < 0){
+                $res['ret'] = 0;
+                $res['msg'] = "不满足升级条件";
+                return $response->getBody()->write(json_encode($res));
+            }
+             $price = $shop->price * $multi * ((100 - $credit) / 100);
+        }
+        else {
+             $price = $shop->price * ((100 - $credit) / 100);
+        }
+
         $res['ret'] = 1;
         $res['name'] = $shop->name;
         $res['credit'] = $coupon->credit." %";
-        $res['total'] = $shop->price * ((100 - $coupon->credit) / 100)."元";
+        $res['total'] = $price."元";
 
         return $response->getBody()->write(json_encode($res));
     }
