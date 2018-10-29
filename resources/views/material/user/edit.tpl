@@ -156,7 +156,7 @@
 									<div class="card-inner">
 										<p class="card-heading">加密方式</p>
 										<p>注意：SS/SSD 和 SSR 支持的加密方式有所不同，请根据实际情况来进行选择！</p>
-										<p>当前加密方式：<code>{$user->method}</code></p>
+										<p>当前加密方式：<code id="ajax-user-method">{$user->method}</code></p>
 										<div class="form-group form-group-label">
 											<label class="floating-label" for="method">加密方式</label>
 											<select id="method" class="form-control">
@@ -491,13 +491,14 @@ $(".copy-text").click(function () {
                 url: "switchssr",
                 dataType: "json",
                 data: {
-                	method: $("#method").val()
+                	method: $("#method").val(),
                     protocol: $("#protocol").val(),
 					obfs: $("#obfs").val()
                 },
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
+                        $("#ajax-user-method").html($("#method").val());
 						$("#ajax-user-protocol").html($("#protocol").val());
 						$("#ajax-user-obfs").html($("#obfs").val());
 						$("#msg").html(data.msg);
