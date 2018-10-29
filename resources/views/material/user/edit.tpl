@@ -143,7 +143,9 @@
 									{if $user->telegram_id == 0}
 									<a class="btn btn-primary mt-4" href="https://t.me/{$telegram_bot}" target="_blank">&nbsp;绑定</a>
 									{/if}
+									{if $user->telegram_id != 0}
 									<a class="btn btn-primary mt-4" href="/user/telegram_reset" >&nbsp;解绑</a>
+									{/if}
 								</div>
 							</div>
 						</div>
@@ -367,7 +369,7 @@
 
 
 <script>
-$(function(){
+$(function () {
 	new Clipboard('.copy-text');
 });
 
@@ -390,7 +392,7 @@ $(".copy-text").click(function () {
                 success: function (data) {
                     if (data.ret) {
                         $("#result").modal();
-						$("#ajax-user-port").html(date.msg);
+						$("#ajax-user-port").html(data.msg);
 						$("#msg").html("设置成功，新端口是"+data.msg);
                     } else {
                         $("#result").modal();
@@ -451,7 +453,6 @@ $(".copy-text").click(function () {
 	{/if}
 </script>
 
-
 <script>
     $(document).ready(function () {
         $("#wechat-update").click(function () {
@@ -492,7 +493,7 @@ $(".copy-text").click(function () {
                 data: {
                 	method: $("#method").val()
                     protocol: $("#protocol").val(),
-					obfs: $("#obfs").val(),
+					obfs: $("#obfs").val()
                 },
                 success: function (data) {
                     if (data.ret) {
