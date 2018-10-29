@@ -154,7 +154,7 @@
 							<div class="card card-lift shadow border-0">
 								<div class="card-body">
 									<div class="card-inner">
-										<p class="card-heading">加密方式</p>
+										<p class="card-heading">连接信息</p>
 										<p>注意：SS/SSD 和 SSR 支持的加密方式有所不同，请根据实际情况来进行选择！</p>
 										<p>当前加密方式：<code id="ajax-user-method">{$user->method}</code></p>
 										<div class="form-group form-group-label">
@@ -166,7 +166,6 @@
 												{/foreach}
 											</select>
 										</div>
-										<p class="card-heading">协议&混淆</p>
 										<p>当前协议：<code id="ajax-user-protocol">{$user->protocol}</code></p>
 										<p>注意：如果您使用 SS/SSD 客户端此处请直接设置为：origin</p>
 										<p>注意：如果需要兼容 SS/SSD 请选择带 _compatible 的兼容选项</p>
