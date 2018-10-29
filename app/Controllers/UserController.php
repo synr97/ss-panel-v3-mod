@@ -1070,6 +1070,8 @@ class UserController extends BaseController
             }
         }
 
+
+        $user = $this->user;
         if ($shop->upgrade_package() == 1) {
             $multi = 1;
             $class_left_time = strtotime($user->class_expire) - time();
@@ -1089,7 +1091,6 @@ class UserController extends BaseController
         else {
              $price = $shop->price * ((100 - $credit) / 100);
         }
-        $user = $this->user;
 
         if ((float)$user->money < (float)$price) {
             $res['ret'] = 0;
