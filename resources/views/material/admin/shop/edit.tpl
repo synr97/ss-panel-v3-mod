@@ -166,6 +166,14 @@
                             	<div class="form-group form-group-label">
 									<div class="checkbox switch">
 										<label for="reset">
+											<input {if $shop->reset()==1}checked{/if} class="access-hide" id="reset" type="checkbox"><span class="switch-toggle"></span>每月重置流量
+										</label>
+									</div>
+								</div>
+
+                            	<div class="form-group form-group-label">
+									<div class="checkbox switch">
+										<label for="reset">
 											<input class="access-hide" id="reset" type="checkbox"><span class="switch-toggle"></span>每月重置流量
 										</label>
 									</div>
