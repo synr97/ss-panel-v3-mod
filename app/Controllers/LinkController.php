@@ -616,7 +616,7 @@ class LinkController extends BaseController
                     $domestic_name .= ", ".$item['remark'];
                 }
 
-                if (substr($item['remark'],-4,4) == "Back" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("台湾")) != "" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("澳门")) != "") {
+                if (substr($item['remark'],-4,4) == "Back" || substr($item['remark'],-5,5) != "Gamer" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("台湾")) != "" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("澳门")) != "") {
                     $china_media_name .= ", ".$item['remark'];
                 }
 
