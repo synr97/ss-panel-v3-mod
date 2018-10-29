@@ -1446,21 +1446,20 @@ class UserController extends BaseController
             return $response->getBody()->write(json_encode($res));
         }
 
-        if (!URL::SSCanConnect($user) && !URL::SSRCanConnect($user)) {
-            $res['ret'] = 0;
-            $res['msg'] = "您这样设置之后，就没有客户端能连接上了，所以系统拒绝了您的设置，请您检查您的设置之后再进行操作。";
-            return $this->echoJson($response, $res);
-        }
-
-
         $user->method = $method;
-        $user->updateMethod($method);
 
         $antiXss = new AntiXSS();
 
         $user->protocol = $antiXss->xss_clean($protocol);
         $user->obfs = $antiXss->xss_clean($obfs);
 
+        if (!URL::SSCanConnect($user) && !URL::SSRCanConnect($user)) {
+            $res['ret'] = 0;
+            $res['msg'] = "您这样设置之后，就没有客户端能连接上了，所以系统拒绝了您的设置，请您检查您的设置之后再进行操作。";
+            return $this->echoJson($response, $res);
+        }
+
+        $user->updateMethod($method);
         $user->save();
 
         $res['ret'] = 1;
