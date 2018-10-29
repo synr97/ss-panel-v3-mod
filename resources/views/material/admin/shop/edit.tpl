@@ -163,10 +163,13 @@
 					<div class="card">
                         <div class="card-main">
                             <div class="card-inner">
-                                <div class="form-group form-group-label" hidden="hidden">
-                                    <label class="floating-label" for="reset">每多少天</label>
-                                    <input class="form-control" id="reset" type="number" value="0">
-                                </div>
+                            	<div class="form-group form-group-label">
+									<div class="checkbox switch">
+										<label for="reset">
+											<input class="access-hide" id="reset" type="checkbox"><span class="switch-toggle"></span>每月重置流量
+										</label>
+									</div>
+								</div>
 
                                 <div class="form-group form-group-label" hidden="hidden">
                                     <label class="floating-label" for="reset_value">重置流量为多少G</label>
@@ -237,7 +240,7 @@
 				var traffic_package=0;
 			}
 
-      if(document.getElementById('upgrade_package').checked)
+      		if(document.getElementById('upgrade_package').checked)
 			{
 				var upgrade_package = 1;
 			}
@@ -246,6 +249,14 @@
 				var upgrade_package = 0;
 			}
 
+			if(document.getElementById('reset').checked)
+			{
+				var reset = 1;
+			}
+			else
+			{
+				var reset = 0;
+			}
 
             $.ajax({
                 type: "PUT",

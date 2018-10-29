@@ -161,10 +161,13 @@
 					<div class="card">
                         <div class="card-main">
                             <div class="card-inner">
-                                <div class="form-group form-group-label" hidden="hidden">
-                                    <label class="floating-label" for="reset">每多少天</label>
-                                    <input class="form-control" id="reset" type="number" value="30">
-                                </div>
+                            	<div class="form-group form-group-label">
+									<div class="checkbox switch">
+										<label for="reset">
+											<input class="access-hide" id="reset" type="checkbox"><span class="switch-toggle"></span>每月重置流量
+										</label>
+									</div>
+								</div>
 
                                 <div class="form-group form-group-label" hidden="hidden">
                                     <label class="floating-label" for="reset_value">重置流量为多少G</label>
@@ -235,7 +238,7 @@
 				var traffic_package = 0;
 			}
 
-      if(document.getElementById('upgrade_package').checked)
+      		if(document.getElementById('upgrade_package').checked)
 			{
 				var upgrade_package = 1;
 			}
@@ -244,6 +247,14 @@
 				var upgrade_package = 0;
 			}
 
+			if(document.getElementById('reset').checked)
+			{
+				var reset = 1;
+			}
+			else
+			{
+				var reset = 0;
+			}
 
             $.ajax({
                 type: "POST",
@@ -260,13 +271,13 @@
                     class_limit_content: $("#class_limit_content").val(),
                     bandwidth: $("#bandwidth").val(),
 					traffic_package: traffic_package,
-          upgrade_package: upgrade_package,
+          			upgrade_package: upgrade_package,
                     node_speedlimit: $("#node_speedlimit").val(),
                     node_connector: $("#node_connector").val(),
                     expire: $("#expire").val(),
                     class: $("#class").val(),
 					class_expire: $("#class_expire").val(),
-					reset: $("#reset").val(),
+					reset: reset,
 					reset_value: $("#reset_value").val(),
                 },
                 success: function (data) {
