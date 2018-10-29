@@ -1008,10 +1008,10 @@ class UserController extends BaseController
                 $res['msg'] = "不满足升级条件";
                 return $response->getBody()->write(json_encode($res));
             }
-             $price = $shop->price * $multi * ((100 - $credit) / 100);
+             $price = $shop->price * $multi * ((100 - $coupon->credit) / 100);
         }
         else {
-             $price = $shop->price * ((100 - $credit) / 100);
+             $price = $shop->price * ((100 - $coupon->credit) / 100);
         }
 
         $res['ret'] = 1;

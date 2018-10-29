@@ -171,14 +171,6 @@
 									</div>
 								</div>
 
-                            	<div class="form-group form-group-label">
-									<div class="checkbox switch">
-										<label for="reset">
-											<input class="access-hide" id="reset" type="checkbox"><span class="switch-toggle"></span>每月重置流量
-										</label>
-									</div>
-								</div>
-
                                 <div class="form-group form-group-label" hidden="hidden">
                                     <label class="floating-label" for="reset_value">重置流量为多少G</label>
                                     <input class="form-control" id="reset_value" type="number" value="0">
