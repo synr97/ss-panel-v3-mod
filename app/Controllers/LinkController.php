@@ -528,7 +528,7 @@ class LinkController extends BaseController
     public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $clash = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_back = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
         $proxy_name = "";
         $domestic_name = "";
-        $asia_media_name = "";
+        $china_media_name = "";
         $global_media_name = "";
         $auto_name = "";
         $proxy_list = "";
@@ -597,16 +597,10 @@ class LinkController extends BaseController
 
                   array_push($proxy_clash["proxies"], $em["name"]);
 
-                  if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "") {
-                    if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-                        array_push($auto_clash["proxies"], $em["name"]);
-                        if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "") {
-                        	if (strpos('"'.$item['remark'].'"',"AZURE") == "") {
-                        		if (strpos('"'.$item['remark'].'"',"CN2") == "") {
-                        			array_push($fallback_auto_clash["proxies"], $em["name"]);
-                        		}
-                        	}
-                        }
+                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "" && strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
+                    array_push($auto_clash["proxies"], $em["name"]);
+                    if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "" && strpos('"'.$item['remark'].'"',"AZURE") == "" && strpos('"'.$item['remark'].'"',"CN2") == "") {
+                        array_push($fallback_auto_clash["proxies"], $em["name"]);
                     }
                 }
             } elseif ($list == 0) {
@@ -622,24 +616,18 @@ class LinkController extends BaseController
                     $domestic_name .= ", ".$item['remark'];
                 }
 
-                if (substr($item['remark'],-4,4) == "Back" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("台湾")) != "") {
-                    $asia_media_name .= ", ".$item['remark'];
+                if (substr($item['remark'],-4,4) == "Back" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("台湾")) != "" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "" || strpos(urlencode('"'.$item['remark'].'"'),urlencode("澳门")) != "") {
+                    $china_media_name .= ", ".$item['remark'];
                 }
 
                 if (substr($item['remark'],-5,5) == "Media") {
                     $global_media_name .= ", ".$item['remark'];
                 }
 
-                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "") {
-                    if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-                        $auto_name .= ", ".$item['remark'];
-                        if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "") {
-                        	if (strpos('"'.$item['remark'].'"',"AZURE") == "") {
-                        		if (strpos('"'.$item['remark'].'"',"CN2") == "") {
-                        			$fallback_name .= ", ".$item['remark'];
-                        		}
-                        	}
-                        }
+                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "" && strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
+                    $auto_name .= ", ".$item['remark'];
+                    if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("香港")) != "" && strpos('"'.$item['remark'].'"',"AZURE") == "" && strpos('"'.$item['remark'].'"',"CN2") == "") {
+                        $fallback_name .= ", ".$item['remark'];
                     }
                 }
             } elseif ($list == 1) {
@@ -664,13 +652,11 @@ class LinkController extends BaseController
                 }
                 if ($area == "") {
                     if ($list_auto == 1) {
-                        if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "") {
-                            if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-                                if (URL::getSurgeObfs($item) != "") {
-                                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-                                } else {
-                                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-                                }
+                        if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "" && strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
+                            if (URL::getSurgeObfs($item) != "") {
+                                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+                            } else {
+                                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                             }
                         }
                     } elseif ($list_media == 1) {
@@ -698,27 +684,19 @@ class LinkController extends BaseController
                     }
                 } elseif ($area != "") {
                     if ($area == "中国") {
-                        if (substr($item['remark'],-5,5) != "Gamer") {
-                            if (strpos(urlencode('"'.$item['remark'].'"'),urlencode($area)) != "") {
-                                if (URL::getSurgeObfs($item) != "") {
-                                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-                                } else {
-                                    $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-                                }
+                        if (substr($item['remark'],-5,5) != "Gamer" && strpos(urlencode('"'.$item['remark'].'"'),urlencode($area)) != "") {
+                            if (URL::getSurgeObfs($item) != "") {
+                                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+                            } else {
+                                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                             }
                         }
                     } elseif ($area != "中国") {
-                        if (substr($item['remark'],-5,5) != "Gamer") {
-                            if (substr($item['remark'],-4,4) != "Back") {
-                                if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-                                    if (strpos(urlencode('"'.$item['remark'].'"'),urlencode($area)) != "") {
-                                        if (URL::getSurgeObfs($item) != "") {
-                                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
-                                        } else {
-                                            $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
-                                        }
-                                    }
-                                }
+                        if (substr($item['remark'],-5,5) != "Gamer" && substr($item['remark'],-4,4) != "Back" && strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "" && strpos(urlencode('"'.$item['remark'].'"'),urlencode($area)) != "") {
+                            if (URL::getSurgeObfs($item) != "") {
+                                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module,'.URL::getSurgeObfs($item).', udp-relay=true, tfo=true'."\n";
+                            } else {
+                                $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module, udp-relay=true, tfo=true'."\n";
                             }
                         }
                     }
@@ -773,7 +751,7 @@ PROXY = select, Auto, fallback, DIRECT'.$proxy_name.'
 Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
 Apple = select, DIRECT, PROXY, Auto, fallback
-Asia_media = select, DIRECT, PROXY'.$asia_media_name.'
+China_media = select, DIRECT, PROXY'.$china_media_name.'
 Global_media = select, PROXY, DIRECT'.$global_media_name.'
 Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
 fallback = fallback'.$fallback_name.', url = http://captive.apple.com, interval = 1200
