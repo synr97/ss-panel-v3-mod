@@ -591,7 +591,7 @@ class LinkController extends BaseController
                 if ($new == 0) {
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module'.URL::getSurgeObfs($item)."\n";
                 } elseif ($new == 1) {
-                    $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd'].', https://dlercloud.com/SSEncrypt.module'.URL::getSurgeObfs($item)."\n";
+                    $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd']URL::getSurgeObfs($item)."\n";
                 }
 
                 $proxy_name .= ", ".$item['remark'];
@@ -639,27 +639,27 @@ class LinkController extends BaseController
                 if ($area == "") {
                     if ($list_auto == 1) {
                         if (strpos(urlencode('"'.$item['remark'].'"'),urlencode("游戏")) == "" && strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "") {
-                            $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd'].', https://dlercloud.com/SSEncrypt.module'.URL::getSurgeObfs($item)."\n";
+                            $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd']URL::getSurgeObfs($item)."\n";
                         }
                     } elseif ($list_media == 1) {
                         if (substr($item['remark'],-5,5) == "Media") {
-                            $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd'].', https://dlercloud.com/SSEncrypt.module'.URL::getSurgeObfs($item)."\n";
+                            $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd']URL::getSurgeObfs($item)."\n";
                         }
                     } elseif ($list_back == 1) {
                         if (substr($item['remark'],-4,4) == "Back") {
-                            $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd'].', https://dlercloud.com/SSEncrypt.module'.URL::getSurgeObfs($item)."\n";
+                            $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd']URL::getSurgeObfs($item)."\n";
                         }
                     } else {
-                        $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd'].', https://dlercloud.com/SSEncrypt.module'.URL::getSurgeObfs($item)."\n";
+                        $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd']URL::getSurgeObfs($item)."\n";
                     }
                 } elseif ($area != "") {
                     if ($area == "中国") {
                         if (substr($item['remark'],-5,5) != "Gamer" && strpos(urlencode('"'.$item['remark'].'"'),urlencode($area)) != "") {
-                            $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd'].', https://dlercloud.com/SSEncrypt.module'.URL::getSurgeObfs($item)."\n";
+                            $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd']URL::getSurgeObfs($item)."\n";
                         }
                     } elseif ($area != "中国") {
                         if (substr($item['remark'],-5,5) != "Gamer" && substr($item['remark'],-4,4) != "Back" && strpos(urlencode('"'.$item['remark'].'"'),urlencode("中国")) == "" && strpos(urlencode('"'.$item['remark'].'"'),urlencode($area)) != "") {
-                            $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd'].', https://dlercloud.com/SSEncrypt.module'.URL::getSurgeObfs($item)."\n";
+                            $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd']URL::getSurgeObfs($item)."\n";
                         }
                     }
                 }
