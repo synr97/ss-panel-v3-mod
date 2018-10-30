@@ -115,7 +115,7 @@
 										{else}{if $node_heartbeat[$prefix]=='暂无数据'}
 										<span class="badge badge-pill badge-info text-uppercase">暂无数据</span>
 										{else}
-										<span class="badge badge-pill badge-danger text-uppercase">离线</span>
+										<span class="badge badge-pill badge-danger text-uppercase">维护</span>
 										{/if}{/if}
 									  </p>
 									 {if $node->sort == 0||$node->sort==7||$node->sort==8||$node->sort==10}

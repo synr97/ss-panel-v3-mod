@@ -423,7 +423,7 @@ class UserController extends BaseController
 
           $node_prefix = array();
           foreach ($nodes as $node) {
-              if (($node->node_class == $single_classes['level']) && ((($user->node_group == $node->node_group || $node->node_group == 0)) || $user->is_admin) && (!$node->isNodeTrafficOut())) {
+              if (($node->node_class == $single_classes['level']) && ((($user->node_group == $node->node_group || $node->node_group == 0)) || $user->is_admin)) {
 
 				  if ($node->sort == 11 && $single_classes['isV2Ray'] == 0)
 					  continue;
@@ -458,8 +458,8 @@ class UserController extends BaseController
                       $node_tempalive = $node->getOnlineUserCount();
                       $node_prealive[$node->id] = $node_tempalive;
                       if ($node->isNodeOnline() !== null) {
-                          if ($node->isNodeOnline() === false) {
-                              $node_heartbeat[$temp[0]] = "离线";
+                          if ($node->isNodeOnline() === false || $node->isNodeTrafficOut() === true) {
+                              $node_heartbeat[$temp[0]] = "维护";
                           } else {
                               $node_heartbeat[$temp[0]] = "在线";
                           }
