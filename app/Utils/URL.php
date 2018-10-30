@@ -459,16 +459,12 @@ class URL
         $plugin = "";
         if (in_array($item['obfs'], $ss_obfs_list)) {
             if (strpos($item['obfs'], 'http') !== FALSE) {
-                $plugin .= "obfs=http";
+                $plugin .= ", obfs=http, obfs-host=wns.windows.com, udp-relay=true, tfo=true";
             } elseif  (strpos($item['obfs'], 'tls') !== FALSE) {
-                $plugin .= "obfs=tls";
-            }
-            if ($item['obfs_param'] != '') {
-                $plugin .= ",obfs-host=".$item['obfs_param'];
+                $plugin .= ", obfs=tls, obfs-host=wns.windows.com, udp-relay=true, tfo=true";
             } else {
-				$plugin .= ",obfs-host=wns.windows.com";
-			}
-
+            	$plugin .= ", udp-relay=true, tfo=true";
+            }
         }
         return $plugin;
     }
