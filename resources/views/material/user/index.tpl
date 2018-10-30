@@ -205,17 +205,6 @@
 											{/if}
 											<hr>
 											{if URL::SSCanConnect($user)}
-												<p>Surge 2 个人端口托管地址（MitM）</p>
-												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1">{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1</a></code></p>
-												<p><a href="surge:///install-config?url={$ss_url_0_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge 2<br>一键托管&规则</a></p>
-											{/if}
-											{if URL::SSRCanConnect($user)}
-												<p>Surge 2 公共端口托管地址（MitM）</p>
-												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1">{$apiUrl}/link/{$ios_token}?is_mu=1&mitm=1</a></code></p>
-												<p><a href="surge:///install-config?url={$ss_url_1_mitm}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge 2<br>一键托管&规则</a></p>
-											{/if}
-											<hr>
-											{if URL::SSCanConnect($user)}
 												<p>Surge 3 Pro 个人端口托管地址（MitM）</p>
 												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1&new=1">{$apiUrl}/link/{$ios_token}?is_mu=0&mitm=1&new=1</a></code></p>
 												<p><a href="surge3:///install-config?url={$ss_url_0_mitm_new}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surge 3 Pro<br>一键托管&规则</a></p>
