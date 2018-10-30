@@ -507,6 +507,7 @@ class LinkController extends BaseController
                                         "protocolparam"=>$item['protocol_param'],
                                         "obfs_udp"=>false,
                                         "enable"=>true));
+        }
 
         $json["configs"] = $temparray;
         return json_encode($json, JSON_PRETTY_PRINT);
