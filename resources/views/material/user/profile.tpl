@@ -133,15 +133,13 @@
 							<tr>
 
                              <!--   <th>ID</th> -->
-                                <th>ID</th>
-								<th>被邀请用户ID</th>
+								<th>邀请用户ID</th>
 								<th>获得返利</th>
                             </tr>
                             {foreach $paybacks as $payback}
                             <tr>
 
                           <!--       <td>#{$payback->id}</td> -->
-                                <td>{$payback->id}</td>
 								<td>{$payback->userid}</td>
 								<td>{$payback->ref_get} 元</td>
 
