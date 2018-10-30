@@ -13,13 +13,13 @@
               <a href="https://t.me/dlercloud_news" class="nav-link" target="_blank">最新资讯</a>
             </li>
             <li class="nav-item">
-              <a href="/tos.html" class="nav-link" target="_blank">服务条款</a>
-            </li>
-            <li class="nav-item">
               <a href="/client.html" class="nav-link" target="_blank">软件中心</a>
             </li>
             <li class="nav-item">
               <a href="https://docs.lhie1.com/black-hole" class="nav-link" target="_blank">文档中心</a>
+            </li>
+            <li class="nav-item">
+              <a href="/tos.html" class="nav-link" target="_blank">服务条款</a>
             </li>
             <li class="nav-item">
               <a href="/staff" class="nav-link" target="_blank">致谢</a>

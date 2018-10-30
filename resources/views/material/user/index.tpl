@@ -123,13 +123,6 @@
 						<div class="row justify-content-center">
 							<div class="col-lg-9">
 						<div class="mb-3">
-							{if URL::SSRCanConnect($user)}
-								<button id="switch-ss" class="btn btn-primary mt-4 switch-ss">切换为 SS 模式</button>
-							{/if}
-							{if URL::SSCanConnect($user)}
-								<button id="switch-ssr" class="btn btn-primary mt-4 switch-ssr">切换为 SSR 模式</button>
-							{/if}
-							<br><br>
 							<small class="text-uppercase font-weight-bold">All-in-One</small>
 						</div>
 							<div class="nav-wrapper">
@@ -169,6 +162,12 @@
 												<p><dt>混淆</dt>
 												<dd><code>{$user->obfs}</code></dd></p>
 											</dl>
+											{if URL::SSRCanConnect($user)}
+											<button id="switch-ss" class="btn btn-primary mt-4 switch-ss">切换为 SS 模式</button>
+											{/if}
+											{if URL::SSCanConnect($user)}
+											<button id="switch-ssr" class="btn btn-primary mt-4 switch-ssr">切换为 SSR 模式</button>
+											{/if}
 											<button id="reset-link" class="btn btn-primary mt-4 reset-link">重置订阅/托管地址</button>
 										</div>
 										<div class="tab-pane fade" id="all_ssr" role="tabpanel" aria-labelledby="all_ssr-tab">
