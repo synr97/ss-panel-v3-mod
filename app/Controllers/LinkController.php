@@ -549,7 +549,9 @@ class LinkController extends BaseController
         } else {
             if ($new == 0) {
                 $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/OldGeneral.conf");
-                $rules = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
+                $media = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Media.conf");
+                $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
+                $rules = $media."\n\n".$rule;
             } elseif ($new == 1) {
               $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
               $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/NewRule.conf");
@@ -728,6 +730,7 @@ PROXY = select, Auto, DIRECT'.$proxy_name.'
 Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
 Apple = select, DIRECT, PROXY, Auto
+Media = select, PROXY, DIRECT'.$global_media_name.'
 Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
 
 '.$rules.'';
