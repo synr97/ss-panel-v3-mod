@@ -167,24 +167,7 @@
 											{if URL::SSCanConnect($user)}
 												<button id="switch-ssr" class="btn btn-primary mt-4 switch-ssr">切换为 SSR 模式</button>
 											{/if}
-											<br>
 											<button id="reset-link" class="btn btn-primary mt-4 reset-link">重置订阅/托管地址</button>
-										</div>
-										<div class="tab-pane fade" id="all_ssr" role="tabpanel" aria-labelledby="all_ssr-tab">
-											<div style="padding:18px">
-												{if URL::SSRCanConnect($user)}
-													<p>SSR 个人端口订阅地址</p>
-													<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=0">{$apiUrl}/link/{$ssr_sub_token}?mu=0</a></code></p>
-													<p><a href="Shadowrocket://add/sub://{$ssr_url_0}?remarks=Dler%20Cloud%20-%20SSR" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
-													<p><a href="quantumult://configuration?server={$ssr_url_0}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
-												{else}
-													<p>SSR 公共端口订阅地址</p>
-													<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=1">{$apiUrl}/link/{$ssr_sub_token}?mu=1</a></code></p>
-													<p><a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud%20-%20SSR" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
-													<p><a href="quantumult://configuration?server={$ssr_url_1}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
-													</p>
-												{/if}
-											</div>
 										</div>
 										<div class="tab-pane fade" id="all_ss" role="tabpanel" aria-labelledby="all_ss-tab">
 											{if URL::SSCanConnect($user)}
@@ -286,13 +269,29 @@
  												<p>美国：<code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&us_list=1">{$apiUrl}/link/{$ios_token}?is_mu=1&list=1&us_list=1</a></code></p>
 											{/if}
 										</div>
-											<div class="tab-pane fade" id="all_v2" role="tabpanel" aria-labelledby="all_v2-tab">
-												<p>V2Ray 订阅地址</p>
-												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=2">{$apiUrl}/link/{$ssr_sub_token}?mu=2</a></code></p>
-												<a class="btn btn-brand copy-text" data-clipboard-text="{URL::getAllVMessUrl($user)}">复制所有 VMess 链接</a>
-												<p><a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud%20-%20V2Ray" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
-												<p><a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
+										<div class="tab-pane fade" id="all_ssr" role="tabpanel" aria-labelledby="all_ssr-tab">
+											<div style="padding:18px">
+												{if URL::SSRCanConnect($user)}
+													<p>SSR 个人端口订阅地址</p>
+													<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=0">{$apiUrl}/link/{$ssr_sub_token}?mu=0</a></code></p>
+													<p><a href="Shadowrocket://add/sub://{$ssr_url_0}?remarks=Dler%20Cloud%20-%20SSR" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
+													<p><a href="quantumult://configuration?server={$ssr_url_0}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
+												{else}
+													<p>SSR 公共端口订阅地址</p>
+													<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=1">{$apiUrl}/link/{$ssr_sub_token}?mu=1</a></code></p>
+													<p><a href="Shadowrocket://add/sub://{$ssr_url_1}?remarks=Dler%20Cloud%20-%20SSR" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
+													<p><a href="quantumult://configuration?server={$ssr_url_1}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a>
+													</p>
+												{/if}
 											</div>
+										</div>
+										<div class="tab-pane fade" id="all_v2" role="tabpanel" aria-labelledby="all_v2-tab">
+											<p>V2Ray 订阅地址</p>
+											<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ssr_sub_token}?mu=2">{$apiUrl}/link/{$ssr_sub_token}?mu=2</a></code></p>
+											<a class="btn btn-brand copy-text" data-clipboard-text="{URL::getAllVMessUrl($user)}">复制所有 VMess 链接</a>
+											<p><a href="Shadowrocket://add/sub://{$v2_url}?remarks=Dler%20Cloud%20-%20V2Ray" target="_blank" class="btn btn-primary mt-4">&nbsp;Shadwrocket<br>一键导入订阅</a></p>
+											<p><a href="quantumult://configuration?server={$v2_url_x}&filter={$filterUrl}&rejection={$rejectUrl}" target="_blank" class="btn btn-primary mt-4">&nbsp;Quantumult<br>一键导入订阅&规则</a></p>
+										</div>
 									</div>
 								</div>
 							</div>
