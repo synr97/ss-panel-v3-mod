@@ -72,8 +72,6 @@ class UserController extends BaseController
 
         $ss_url_0 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=0');
         $ss_url_1 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=1');
-        $ss_url_0_mitm = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=0&mitm=1');
-        $ss_url_1_mitm = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=1&mitm=1');
         $ss_url_0_mitm_new = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=0&mitm=1&new=1');
         $ss_url_1_mitm_new = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=1&mitm=1&new=1');
 
@@ -101,8 +99,6 @@ class UserController extends BaseController
         ->assign("ss_url", $ss_url)
         ->assign("ss_url_0", $ss_url_0)
         ->assign("ss_url_1", $ss_url_1)
-        ->assign("ss_url_0_mitm", $ss_url_0_mitm)
-        ->assign("ss_url_1_mitm", $ss_url_1_mitm)
         ->assign("ss_url_0_mitm_new", $ss_url_0_mitm_new)
         ->assign("ss_url_1_mitm_new", $ss_url_1_mitm_new)
         ->assign("ssr_url_0", $ssr_url_0)
