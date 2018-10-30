@@ -212,10 +212,13 @@ class Job
 
         $alive_ipset = array();
 
+        $arrayip = array('10.*.*.*');//ip段
+        $ipregexp = implode('|', str_replace( array('*','.'), array('\d+','\.') ,$arrayip) );
+
         foreach ($full_alive_ips as $full_alive_ip) {
             $full_alive_ip->ip = Tools::getRealIp($full_alive_ip->ip);
             $is_node = Node::where("node_ip", $full_alive_ip->ip)->first();
-            if ($is_node) {
+            if ($is_node || preg_match("/^(".$ipregexp.")$/", $full_alive_ip->ip) == 1) {
                 continue;
             }
 

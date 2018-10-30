@@ -229,6 +229,8 @@ class User extends Model
         $uid = $this->attributes['id'];
         $total = Ip::where("datetime", ">=", time()-90)->where('userid', $uid)->orderBy('userid', 'desc')->get();
         $unique_ip_list = array();
+        $arrayip = array('10.*.*.*');//ip段
+        $ipregexp = implode('|', str_replace( array('*','.'), array('\d+','\.') ,$arrayip) );
         foreach ($total as $single_record) {
             $single_record->ip = Tools::getRealIp($single_record->ip);
             $is_node = Node::where("node_ip", $single_record->ip)->first();
@@ -236,7 +238,7 @@ class User extends Model
                 continue;
             }
 
-            if (!in_array($single_record->ip, $unique_ip_list)) {
+            if (!in_array($single_record->ip, $unique_ip_list) && preg_match("/^(".$ipregexp.")$/", $single_record->ip) == 0) {
                 array_push($unique_ip_list, $single_record->ip);
             }
         }

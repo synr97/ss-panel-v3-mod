@@ -753,13 +753,13 @@ class UserController extends BaseController
 
         $userloginip = array();
 
-        $arrayip = array('10.25.*.*','10.18.*.*'); // ip段
+        $arrayip = array('10.*.*.*');
         $ipregexp = implode('|', str_replace( array('*','.'), array('\d+','\.') ,$arrayip) );
 
         foreach ($totallogin as $single) {
             //if(isset($useripcount[$single->userid]))
             {
-                if (!isset($userloginip[$single->ip]) &&  preg_match("/^(".$ipregexp.")$/", $single->ip) == 0) {
+                if (!isset($userloginip[$single->ip]) && preg_match("/^(".$ipregexp.")$/", $single->ip) == 0) {
                     //$useripcount[$single->userid]=$useripcount[$single->userid]+1;
                     $location = $iplocation->getlocation($single->ip);
                     $userloginip[$single->ip] = iconv('gbk', 'utf-8//IGNORE', $location['country'].$location['area']);
