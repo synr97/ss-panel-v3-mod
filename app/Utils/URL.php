@@ -460,19 +460,18 @@ class URL
         if (in_array($item['obfs'], $ss_obfs_list)) {
             if (strpos($item['obfs'], 'http') !== FALSE) {
             	if($item['obfs_param'] != '') {
-            		$plugin .= ", obfs=http, obfs-host=".$item['obfs_param'].", udp-relay=true, tfo=true";
+            		$plugin .= ", obfs=http, obfs-host=".$item['obfs_param'];
             	} else {
-                	$plugin .= ", obfs=http, obfs-host=wns.windows.com, udp-relay=true, tfo=true";
+                	$plugin .= ", obfs=http, obfs-host=wns.windows.com";
                 }
             } elseif  (strpos($item['obfs'], 'tls') !== FALSE) {
             	if($item['obfs_param'] != '') {
-            		$plugin .= ", obfs=tls, obfs-host=".$item['obfs_param'].", udp-relay=true, tfo=true";
+            		$plugin .= ", obfs=tls, obfs-host=".$item['obfs_param'];
             	} else {
-                	$plugin .= ", obfs=tls, obfs-host=wns.windows.com, udp-relay=true, tfo=true";
+                	$plugin .= ", obfs=tls, obfs-host=wns.windows.com";
                 }
-            } else {
-            	$plugin .= ", udp-relay=true, tfo=true";
             }
+            $plugin .= ", udp-relay=true, tfo=true";
         }
         return $plugin;
     }
