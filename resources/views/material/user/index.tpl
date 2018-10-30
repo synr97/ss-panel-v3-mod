@@ -141,7 +141,6 @@
 									</li>
 								</ul>
 							</div>
-
 							<div class="card shadow">
 								<div class="card-body">
 									<div class="tab-content" id="myTabContent">
@@ -163,11 +162,12 @@
 												<dd><code>{$user->obfs}</code></dd></p>
 											</dl>
 											{if URL::SSRCanConnect($user)}
-											<button id="switch-ss" class="btn btn-primary mt-4 switch-ss">切换为 SS 模式</button>
+												<button id="switch-ss" class="btn btn-primary mt-4 switch-ss">切换为 SS 模式</button>
 											{/if}
 											{if URL::SSCanConnect($user)}
-											<button id="switch-ssr" class="btn btn-primary mt-4 switch-ssr">切换为 SSR 模式</button>
+												<button id="switch-ssr" class="btn btn-primary mt-4 switch-ssr">切换为 SSR 模式</button>
 											{/if}
+											<br>
 											<button id="reset-link" class="btn btn-primary mt-4 reset-link">重置订阅/托管地址</button>
 										</div>
 										<div class="tab-pane fade" id="all_ssr" role="tabpanel" aria-labelledby="all_ssr-tab">
