@@ -735,6 +735,7 @@ class UserController extends BaseController
 
     public function profile($request, $response, $args)
     {
+
         $pageNum = 1;
         if (isset($request->getQueryParams()["page"])) {
             $pageNum = $request->getQueryParams()["page"];
@@ -752,10 +753,13 @@ class UserController extends BaseController
 
         $userloginip = array();
 
+        $arrayip = array('10.25.*.*','10.18.*.*'); // ip段
+        $ipregexp = implode('|', str_replace( array('*','.'), array('\d+','\.') ,$arrayip) );
+
         foreach ($totallogin as $single) {
             //if(isset($useripcount[$single->userid]))
             {
-                if (!isset($userloginip[$single->ip])) {
+                if (!isset($userloginip[$single->ip]) &&  preg_match("/^(".$ipregexp.")$/", $single->ip) == 0) {
                     //$useripcount[$single->userid]=$useripcount[$single->userid]+1;
                     $location = $iplocation->getlocation($single->ip);
                     $userloginip[$single->ip] = iconv('gbk', 'utf-8//IGNORE', $location['country'].$location['area']);
@@ -774,7 +778,7 @@ class UserController extends BaseController
                 }
 
 
-                if(!isset($userip[$single->ip]))
+                if(!isset($userip[$single->ip]) && preg_match("/^(".$ipregexp.")$/", $single->ip) == 0)
                 {
                     //$useripcount[$single->userid]=$useripcount[$single->userid]+1;
                     $location = $iplocation->getlocation($single->ip);
