@@ -420,7 +420,7 @@ class URL
 				}
 			)->orderBy('priority','DESC')->orderBy('id')->first();
 			if ($relay_rule != null) {
-				$server['remarks'] = "[SSD] ".$node->name.' - '.$relay_rule->dist_node()->name;
+				$server['remarks'] = "[SSD] ".$node->name.' -> '.$relay_rule->dist_node()->name;
 				$server['ratio'] = $node->traffic_rate + $relay_rule->dist_node()->traffic_rate;
 			} else {
 				$server['remarks'] = "[SSD] ".$node->name;
@@ -501,7 +501,7 @@ class URL
 		$node_name = $node->name;
 
 		if ($relay_rule != null) {
-			$node_name .= " - ".$relay_rule->dist_node()->name;
+			$node_name .= " -> ".$relay_rule->dist_node()->name;
 		}
 
 		if ($mu_port != 0) {

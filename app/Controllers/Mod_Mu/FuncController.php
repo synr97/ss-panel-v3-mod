@@ -38,7 +38,7 @@ class FuncController extends BaseController
     {
         $params = $request->getQueryParams();
         $node_id = $params['node_id'];
-		if($node_id=='0'){
+		if($node_id == '0'){
 			$node = Node::where("node_ip",$_SERVER["REMOTE_ADDR"])->first();
 			$node_id=$node->id;
 		}
