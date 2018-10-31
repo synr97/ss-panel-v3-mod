@@ -532,12 +532,12 @@ class URL
 			$user = URL::getSSRConnectInfo($user);
 		}
 			if (strpos($node->info,"NAT") != "") {
-				if ($is_mu != 0 && $is_ss != 1) {
+				if ($is_mu != 0 && !URL::SSCanConnect($user)) {
 					$return_array['port'] = 35001;
 					$return_array['method'] = 'aes-128-ctr';
 					$return_array['protocol'] = 'auth_aes128_md5';
 					$return_array['obfs'] = 'http_simple';
-				} elseif ($is_ss == 1) {
+				} elseif (!URL::SSRCanConnect($user)) {
 					$return_array['port'] = 35002;
 					$return_array['method'] = 'chacha20-ietf-poly1305';
 					$return_array['protocol'] = 'origin';
@@ -558,16 +558,10 @@ class URL
 			}
 					$return_array['address'] = $node->server;
 					$return_array['passwd'] = $user->passwd;
-				if ($clash == 1)
-					$return_array['remark'] = $node_name;
-					$return_array['group'] = Config::get('appName');
-				} elseif ($new == 1) {
-					$return_array['remark'] = $node_name;
-					$return_array['group'] = Config::get('appName');
-				} elseif ($is_ss != 1) {
+				if (!URL::SSCanConnect($user)) {
 					$return_array['remark'] = "[SSR] ".$node_name;
 					$return_array['group'] = Config::get('appName')." - SSR";
-				} elseif ($is_ss == 1) {
+				} elseif (!URL::SSRCanConnect($user)) {
 					$return_array['remark'] = "[SS] ".$node_name;
 					$return_array['group'] = Config::get('appName')." - SS";
 				}
