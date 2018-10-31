@@ -10,7 +10,7 @@
         <div class="col-md-6">
           <ul class="nav nav-footer justify-content-end">
             <li class="nav-item">
-              <a href="https://t.me/dlercloud_news" class="nav-link" target="_blank">最新资讯</a>
+              <a href="https://t.me/dlercloud_news" class="nav-link" target="_blank">公告中心</a>
             </li>
             <li class="nav-item">
               <a href="/client.html" class="nav-link" target="_blank">软件中心</a>

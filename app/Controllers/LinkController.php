@@ -554,6 +554,13 @@ class LinkController extends BaseController
 
         $items = URL::getAllItems($user, $is_mu, $is_ss);
         foreach($items as $item) {
+            if (strpos($item['remark'], "[SS]") !== false) {
+               $item['remark'] = substr($item['remark'], 5);
+            }
+            else if (strpos($item['remark'], "[SSR]") !== false) {
+               $item['remark'] = substr($item['remark'], 6);
+            }
+
             if ($clash == 1) {
                 $em["name"] = $item['remark'];
                 $em["type"] = "ss";
