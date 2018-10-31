@@ -558,7 +558,7 @@ class URL
 			}
 					$return_array['address'] = $node->server;
 					$return_array['passwd'] = $user->passwd;
-				if ($is_ss != 1) {
+				if (!URL::SSCanConnect($user)) {
 					$return_array['remark'] = "[SSR] ".$node_name;
 					$return_array['group'] = Config::get('appName')." - SSR";
 				} else {
