@@ -695,12 +695,15 @@ class LinkController extends BaseController
 
 [Proxy]
 DIRECT = direct
+Ad-Block = reject
+Ad-Pass = direct
 '.$proxy_list.'
 
 [Proxy Group]
 PROXY = select, Auto, DIRECT'.$proxy_name.'
 Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
+AdBlock = select, Ad-Block, Ad-Pass
 Apple = select, DIRECT, PROXY, Auto
 Media = select, PROXY, DIRECT'.$global_media_name.'
 Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
@@ -713,12 +716,16 @@ Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, 
 
 [Proxy]
 DIRECT = direct
+Ad-Pass = direct
+Ad-Block = reject
+Ad-GIF = reject-tinygif
 '.$proxy_list.'
 
 [Proxy Group]
 PROXY = select, Auto, fallback, DIRECT'.$proxy_name.'
 Domestic = select, DIRECT, PROXY'.$domestic_name.'
 Others = select, PROXY, DIRECT
+AdBlock = select, Ad-GIF, Ad-Block, Ad-Pass
 Apple = select, DIRECT, PROXY, Auto, fallback
 China_media = select, DIRECT, PROXY'.$china_media_name.'
 Global_media = select, PROXY, DIRECT'.$global_media_name.'
