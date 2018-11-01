@@ -475,6 +475,7 @@ class URL
 				$plugin .= ", tfo=true";
 			} else {
 				$plugin .= ", udp-relay=true, tfo=true";
+			}
 		}
 		return $plugin;
 	}
