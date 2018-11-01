@@ -313,7 +313,7 @@ class LinkController extends BaseController
                     $filename = 'config.yml';
                 } elseif ($is_mu == 1) {
                     $filename = 'Dler Cloud - Public.conf';
-                } elseif ($new == 1) {
+                } elseif ($new == 1 || $surge == 3) {
                     $filename = 'Dler Cloud - New.conf';
                 } else {
                     $filename = 'Dler Cloud.conf';
@@ -718,14 +718,13 @@ Media = select, Proxy, Direct'.$global_media_name.'
 [Proxy]
 Direct = direct
 Ad-Block = reject
-Ad-Pass = direct
 '.$proxy_list.'
 
 [Proxy Group]
 Proxy = select, Auto, Direct'.$proxy_name.'
 Domestic = select, Direct, Proxy'.$domestic_name.'
 Others = select, Proxy, Direct
-AdBlock = select, Ad-Block, Ad-Pass
+AdBlock = select, Ad-Block, Direct, Proxy
 Apple = select, Direct, Proxy, Auto
 Media = select, Proxy, Direct'.$global_media_name.'
 Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
@@ -738,7 +737,6 @@ Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, 
 
 [Proxy]
 Direct = direct
-Ad-Pass = direct
 Ad-Block = reject
 Ad-GIF = reject-tinygif
 '.$proxy_list.'
@@ -747,7 +745,7 @@ Ad-GIF = reject-tinygif
 Proxy = select, Auto, fallback, Direct'.$proxy_name.'
 Domestic = select, Direct, Proxy'.$domestic_name.'
 Others = select, Proxy, Direct
-AdBlock = select, Ad-GIF, Ad-Block, Ad-Pass
+AdBlock = select, Ad-GIF, Ad-Block, Direct, Proxy
 Apple = select, Direct, Proxy, Auto, fallback
 China_media = select, Direct, Proxy'.$china_media_name.'
 Global_media = select, Proxy, Direct'.$global_media_name.'

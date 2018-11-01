@@ -70,10 +70,13 @@ class UserController extends BaseController
 
         $ssr_sub_token = LinkController::GenerateSSRSubCode($this->user->id, 0);
 
-        $surge2_0 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=0');
-        $surge2_1 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=1');
-        $surge3_0 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=0&new=1');
-        $surge3_1 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=1&new=1');
+        $surge2_0 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=0&surge=2');
+        $surge2_1 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=1&surge=2');
+        $surge3_0 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=0&surge=3');
+        $surge3_1 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=1&surge=3');
+
+        $surfboard_0 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=1&surfboard=0');
+        $surfboard_1 = urlencode(Config::get('apiUrl').'/link/'.$ios_token.'?is_mu=1&surfboard=1');
 
         $ss_url = Tools::base64_url_encode(Config::get('apiUrl').'/link/'.$ssr_sub_token.'?mu=4');
 
@@ -101,6 +104,8 @@ class UserController extends BaseController
         ->assign("surge2_1", $surge2_1)
         ->assign("surge3_0", $surge3_0)
         ->assign("surge3_1", $surge3_1)
+        ->assign("surfboard_0", $surfboard_0)
+        ->assign("surfboard_1", $surfboard_1)
         ->assign("ssr_url_0", $ssr_url_0)
         ->assign("ssr_url_1", $ssr_url_1)
         ->assign("v2_url", $v2_url)
