@@ -529,11 +529,11 @@ class LinkController extends BaseController
         $clash_array = array();
 
         if ($new == 0 || $surge == 2)
-            $new = 0
-            $surge = 2
+            $new = 0;
+            $surge = 2;
         } else ($new == 1 || $surge == 3) {
-            $new = 1
-            $surge = 3
+            $new = 1;
+            $surge = 3;
         }
 
         if ($clash == 1) {
