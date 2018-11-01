@@ -519,7 +519,7 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $surge = 0, $new = 0, $clash = 0, $surfboard = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_back = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $surge = 0, $clash = 0, $surfboard = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_back = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
         $proxy_name = "";
         $domestic_name = "";
         $china_media_name = "";
