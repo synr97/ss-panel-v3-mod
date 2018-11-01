@@ -519,7 +519,7 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $surge = 0, $clash = 0, $surfboard = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_back = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $new = 0, $surge = 0, $clash = 0, $surfboard = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_back = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
         $proxy_name = "";
         $domestic_name = "";
         $china_media_name = "";
@@ -527,6 +527,14 @@ class LinkController extends BaseController
         $auto_name = "";
         $proxy_list = "";
         $clash_array = array();
+
+        if ($new == 0 || $surge == 2)
+            $new = 0
+            $surge = 2
+        } else ($new == 1 || $surge == 3) {
+            $new = 1
+            $surge = 3
+        }
 
         if ($clash == 1) {
             $general = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Clash/General.yml");
