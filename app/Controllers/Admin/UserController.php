@@ -225,29 +225,6 @@ class UserController extends AdminController
 
     public function ajax($request, $response, $args)
     {
-        $pageNum = 1;
-        if (isset($request->getQueryParams()["page"])) {
-            $pageNum = $request->getQueryParams()["page"];
-        }
-
-        $users = User::skip(($pageNum - 1) * 100)->limit(100)->get();
-        $total_conut = User::count();
-        if($total_conut < $pageNum * 100) {
-            $res['next'] = 0;
-        } else {
-            $res['next'] = 1;
-        }
-
-        $res['data'] = array();
-        foreach ($users as $user) {
-            array_push($res['data'], $user->get_table_json_array());
-        }
-
-        return $this->echoJson($response, $res);
-    }
-
-    public function ajax_post($request, $response, $args)
-    {       
         //得到排序的方式
         $order = $request->getParam('order')[0]['dir'];
         //得到排序字段的下标
