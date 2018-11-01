@@ -206,8 +206,8 @@ class LinkController extends BaseController
                 }
 
                 $surge = 0;
-                if (isset($request->getQueryParams()["surge2"])) {
-                    $surge2 = $request->getQueryParams()["surge2"];
+                if (isset($request->getQueryParams()["surge"])) {
+                    $surge = $request->getQueryParams()["surge"];
                 }
 
                 $new = 0;
