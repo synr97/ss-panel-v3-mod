@@ -89,7 +89,7 @@
                     <a class="nav-link mb-sm-3 mb-md-0 active" id="rule_table-tab" data-toggle="tab" href="#rule_table" role="tab" aria-controls="rule_table" aria-selected="true">规则列表</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link mb-sm-3 mb-md-0" id="link_table-tab" data-toggle="tab" href="#link_table" role="tab" aria-controls="link_table" aria-selected="false">线路列表</a>
+                    <a class="nav-link mb-sm-3 mb-md-0" id="link_table-tab" data-toggle="tab" href="#link_table" role="tab" aria-controls="link_table" aria-selected="false">链路表</a>
                   </li>
                 </ul>
               </div>
