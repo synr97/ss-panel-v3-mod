@@ -528,12 +528,10 @@ class LinkController extends BaseController
         $proxy_list = "";
         $clash_array = array();
 
-        if ($new == 0 || $surge == 2) {
-            $new = 0;
-            $surge = 2;
-        } elseif ($new == 1 || $surge == 3) {
-            $new = 1;
+        if ($new == 1) {
             $surge = 3;
+        } elseif ($new == 0) {
+            $surge = 2;
         }
 
         if ($clash == 1) {
@@ -549,12 +547,12 @@ class LinkController extends BaseController
             array_push($proxy_clash["proxies"], "Auto");
             array_push($proxy_clash["proxies"], "fallback");
         } else {
-            if ($new == 0 || $surge = 2 || $surfboard = 1) {
+            if ($surge = 2 || $surfboard = 1) {
                 $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/OldGeneral.conf");
                 $media = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Media.conf");
                 $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
                 $rules = $media."\n\n".$rule;
-            } elseif ($new == 1 || $surge = 3) {
+            } elseif ($surge = 3) {
                 $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
                 $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/NewRule.conf");
                 $url_rewrite = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20Rewrite.conf");
@@ -606,9 +604,9 @@ class LinkController extends BaseController
                     }
                 }
             } elseif ($list == 0) {
-                if ($new == 0 || $surge == 2) {
+                if ($surge == 2) {
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module'.URL::getSurgeObfs($item)."\n";
-                } elseif ($new == 1 || $surge == 3) {
+                } elseif ($surge == 3) {
                     $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd'].URL::getSurgeObfs($item)."\n";
                 }
 
@@ -716,7 +714,7 @@ Apple = select, Direct, Proxy
 Media = select, Proxy, Direct'.$global_media_name.'
 
 '.$rules.'';
-        } elseif ($new == 0 || $surge == 2) {
+        } elseif ($surge == 2) {
 			return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
 
 '.$general.'
@@ -736,7 +734,7 @@ Media = select, Proxy, Direct'.$global_media_name.'
 Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
 
 '.$rules.'';
-        } elseif ($new == 1 || $surge == 3) {
+        } elseif ($surge == 3) {
         	        return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
 
 '.$general.'
