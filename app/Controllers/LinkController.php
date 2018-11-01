@@ -528,7 +528,7 @@ class LinkController extends BaseController
         $proxy_list = "";
         $clash_array = array();
 
-        if ($new == 0 || $surge == 2)
+        if ($new == 0 || $surge == 2) {
             $new = 0;
             $surge = 2;
         } elseif ($new == 1 || $surge == 3) {
@@ -569,8 +569,7 @@ class LinkController extends BaseController
         foreach($items as $item) {
             if (strpos($item['remark'], "[SS]") !== false) {
                $item['remark'] = substr($item['remark'], 5);
-            }
-            else if (strpos($item['remark'], "[SSR]") !== false) {
+            } elseif (strpos($item['remark'], "[SSR]") !== false) {
                $item['remark'] = substr($item['remark'], 6);
             }
 
@@ -585,8 +584,7 @@ class LinkController extends BaseController
                 if (array_key_exists('obfs', $item) && $item['obfs'] != '') {
                     if (strpos($item['obfs'], 'http') != false) {
                        $em["obfs"] = 'http';
-                    }
-                    else if (strpos($item['obfs'], 'tls') != false) {
+                    } elseif (strpos($item['obfs'], 'tls') != false) {
                        $em["obfs"] = 'tls';
                     }
                 }
