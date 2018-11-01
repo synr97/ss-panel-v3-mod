@@ -528,9 +528,9 @@ class LinkController extends BaseController
         $proxy_list = "";
         $clash_array = array();
 
-        if ($new == 1) {
+        if ($new == 1 || $surge = 3) {
             $surge = 3;
-        } elseif ($new == 0) {
+        } elseif ($new == 0 || $surge = 2) {
             $surge = 2;
         }
 
