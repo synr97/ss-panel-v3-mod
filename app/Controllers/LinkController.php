@@ -205,9 +205,9 @@ class LinkController extends BaseController
                     $is_mu = $request->getQueryParams()["is_mu"];
                 }
 
-                $mitm = 0;
-                if (isset($request->getQueryParams()["mitm"])) {
-                    $mitm = $request->getQueryParams()["mitm"];
+                $surge = 0;
+                if (isset($request->getQueryParams()["surge2"])) {
+                    $surge2 = $request->getQueryParams()["surge2"];
                 }
 
                 $new = 0;
@@ -218,6 +218,11 @@ class LinkController extends BaseController
                 $clash = 0;
                 if (isset($request->getQueryParams()["clash"])) {
                     $clash = $request->getQueryParams()["clash"];
+                }
+
+                $surfboard = 0;
+                if (isset($request->getQueryParams()["surfboard"])) {
+                    $surfboard = $request->getQueryParams()["surfboard"];
                 }
 
                 $list = 0;
@@ -303,7 +308,7 @@ class LinkController extends BaseController
                 } elseif ($us_list == 1) {
                     $filename = 'us_proxy.list';
                 } elseif ($list == 1) {
-                    $filename = 'all.list';
+                    $filename = 'all_proxy.list';
                 } elseif ($clash == 1) {
                     $filename = 'config.yml';
                 } elseif ($is_mu == 1) {
@@ -316,7 +321,7 @@ class LinkController extends BaseController
 
                 $userinfo = "upload=".$user->u."; download=".$user->d.";total=".$user->transfer_enable;
                 $newResponse = $response->withHeader('Content-type', ' application/octet-stream; charset=utf-8')->withHeader('Subscription-userinfo',$userinfo)->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate')->withHeader('Content-Disposition', ' attachment; filename='.$filename);
-                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $mitm, $new, $clash, $list, $list_auto, $list_media, $list_back, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list));
+                $newResponse->getBody()->write(LinkController::GetIosConf($user, $is_mu, $is_ss, $new, $surge, $clash, $surfboard, $list, $list_auto, $list_media, $list_back, $cn_list, $hk_list, $jp_list, $tw_list, $kr_list, $sg_list, $ru_list, $us_list));
                 return $newResponse;
             case 3:
                 $type = "PROXY";
@@ -514,7 +519,7 @@ class LinkController extends BaseController
     }
 
 
-    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $mitm = 0, $new = 0, $clash = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_back = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
+    public static function GetIosConf($user, $is_mu = 0, $is_ss = 1, $surge = 0, $new = 0, $clash = 0, $surfboard = 0, $list = 0, $list_auto = 0, $list_media = 0, $list_back = 0, $cn_list = 0, $hk_list = 0, $jp_list = 0, $tw_list = 0, $kr_list = 0, $sg_list = 0, $ru_list = 0, $us_list = 0) {
         $proxy_name = "";
         $domestic_name = "";
         $china_media_name = "";
@@ -536,19 +541,19 @@ class LinkController extends BaseController
             array_push($proxy_clash["proxies"], "Auto");
             array_push($proxy_clash["proxies"], "fallback");
         } else {
-            if ($new == 0) {
+            if ($new == 0 || $surge = 2 || $surfboard = 1) {
                 $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/OldGeneral.conf");
                 $media = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Media.conf");
                 $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/Rule.conf");
                 $rules = $media."\n\n".$rule;
-            } elseif ($new == 1) {
-              $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
-              $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/NewRule.conf");
-              $url_rewrite = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20Rewrite.conf");
-              $url_reject = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20REJECT.conf");
-              $header = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/Header%20Rewrite.conf");
-              $mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
-              $rules = $rule."\n\n".$url_rewrite."\n".$url_reject."\n\n".$header."\n\n".$mitm;
+            } elseif ($new == 1 || $surge = 3) {
+                $general = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/General.conf");
+                $rule = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/NewRule.conf");
+                $url_rewrite = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20Rewrite.conf");
+                $url_reject = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/URL%20REJECT.conf");
+                $header = file_get_contents("https://raw.githubusercontent.com/lhie1/Rules/master/Auto/Header%20Rewrite.conf");
+                $mitm = file_get_contents("https://raw.githubusercontent.com/lhie1/black-hole/master/MitM.conf");
+                $rules = $rule."\n\n".$url_rewrite."\n".$url_reject."\n\n".$header."\n\n".$mitm;
             }
         }
 
@@ -595,9 +600,9 @@ class LinkController extends BaseController
                     }
                 }
             } elseif ($list == 0) {
-                if ($new == 0) {
+                if ($new == 0 || $surge == 2) {
                     $proxy_list .= $item['remark'].' = custom, '.$item['address'].', '.$item['port'].', '.$item['method'].', '.$item['passwd'].', https://dlercloud.com/SSEncrypt.module'.URL::getSurgeObfs($item)."\n";
-                } elseif ($new == 1) {
+                } elseif ($new == 1 || $surge == 3) {
                     $proxy_list .= $item['remark'].' = ss, '.$item['address'].', '.$item['port'].', encrypt-method='.$item['method'].', password='.$item['passwd'].URL::getSurgeObfs($item)."\n";
                 }
 
@@ -685,50 +690,67 @@ class LinkController extends BaseController
             if ($area != "" || $list_auto == 1 || $list_media == 1 || $list_back == 1) {
                 return ''.$proxy_list.'';
             } else {
-                return 'DIRECT = direct
+                return 'Direct = direct
 '.$proxy_list.'';
             }
-        } elseif ($new == 0) {
+        } elseif ($surfboard == 1) {
+            return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
+
+'.$general.'
+
+[Proxy]
+Direct = direct
+'.$proxy_list.'
+
+[Proxy Group]
+Proxy = select, Direct'.$proxy_name.'
+Domestic = select, Direct, Proxy'.$domestic_name.'
+Others = select, Proxy, Direct
+Apple = select, Direct, Proxy
+Media = select, Proxy, Direct'.$global_media_name.'
+
+'.$rules.'';
+        } elseif ($new == 0 || $surge == 2) {
 			return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
 
 '.$general.'
 
 [Proxy]
-DIRECT = direct
+Direct = direct
 Ad-Block = reject
 Ad-Pass = direct
 '.$proxy_list.'
 
 [Proxy Group]
-PROXY = select, Auto, DIRECT'.$proxy_name.'
-Domestic = select, DIRECT, PROXY'.$domestic_name.'
-Others = select, PROXY, DIRECT
+Proxy = select, Auto, Direct'.$proxy_name.'
+Domestic = select, Direct, Proxy'.$domestic_name.'
+Others = select, Proxy, Direct
 AdBlock = select, Ad-Block, Ad-Pass
-Apple = select, DIRECT, PROXY, Auto
-Media = select, PROXY, DIRECT'.$global_media_name.'
+Apple = select, Direct, Proxy, Auto
+Media = select, Proxy, Direct'.$global_media_name.'
 Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
 
 '.$rules.'';
-        } elseif ($new == 1) {
+        } elseif ($new == 1 || $surge == 3) {
         	        return '#!MANAGED-CONFIG '.Config::get('apiUrl').''.$_SERVER['REQUEST_URI'].'
 
 '.$general.'
 
 [Proxy]
-DIRECT = direct
+Direct = direct
 Ad-Pass = direct
 Ad-Block = reject
 Ad-GIF = reject-tinygif
 '.$proxy_list.'
 
 [Proxy Group]
-PROXY = select, Auto, fallback, DIRECT'.$proxy_name.'
-Domestic = select, DIRECT, PROXY'.$domestic_name.'
-Others = select, PROXY, DIRECT
+Proxy = select, Auto, fallback, Direct'.$proxy_name.'
+Domestic = select, Direct, Proxy'.$domestic_name.'
+Others = select, Proxy, Direct
 AdBlock = select, Ad-GIF, Ad-Block, Ad-Pass
-Apple = select, DIRECT, PROXY, Auto, fallback
-China_media = select, DIRECT, PROXY'.$china_media_name.'
-Global_media = select, PROXY, DIRECT'.$global_media_name.'
+Apple = select, Direct, Proxy, Auto, fallback
+China_media = select, Direct, Proxy'.$china_media_name.'
+Global_media = select, Proxy, Direct'.$global_media_name.'
 Auto = url-test'.$auto_name.', url = http://captive.apple.com, interval = 1200, tolerance = 200
 fallback = fallback'.$fallback_name.', url = http://captive.apple.com, interval = 1200
 

@@ -471,7 +471,10 @@ class URL
 					$plugin .= ", obfs=tls, obfs-host=wns.windows.com";
 				}
 			}
-			$plugin .= ", udp-relay=true, tfo=true";
+			if (strpos($node->name,"IPLC") != "") {
+				$plugin .= ", tfo=true";
+			} else {
+				$plugin .= ", udp-relay=true, tfo=true";
 		}
 		return $plugin;
 	}
