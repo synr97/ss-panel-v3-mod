@@ -196,12 +196,12 @@
 											{if URL::SSCanConnect($user)}
 												<p>Surfboard 个人端口配置</p>
 												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=0&surfboard=1">{$apiUrl}/link/{$ios_token}?is_mu=0&surfboard=1</a></code></p>
-												<p><a href="surge:///install-config?url={$surfboard_0}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surfboard<br>一键导入&规则</a></p>
+												<p><a href="surfboard:///install-config?url={$surfboard_0}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surfboard<br>一键导入&规则</a></p>
 											{/if}
 											{if URL::SSRCanConnect($user)}
 												<p>Surfboard 公共端口配置</p>
 												<p><code><a class="copy-text" data-clipboard-text="{$apiUrl}/link/{$ios_token}?is_mu=1&surfboard=1">{$apiUrl}/link/{$ios_token}?is_mu=1&surfboard=1</a></code></p>
-												<p><a href="surge:///install-config?url={$surfboard_1}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surfboard<br>一键导入&规则</a></p>
+												<p><a href="surfboard:///install-config?url={$surfboard_1}" target="_blank" class="btn btn-primary mt-4">&nbsp;Surfboard<br>一键导入&规则</a></p>
 											{/if}
 											<hr>
 											{if URL::SSCanConnect($user)}

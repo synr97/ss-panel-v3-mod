@@ -531,7 +531,7 @@ class LinkController extends BaseController
         if ($new == 0 || $surge == 2)
             $new = 0;
             $surge = 2;
-        } else ($new == 1 || $surge == 3) {
+        } elseif ($new == 1 || $surge == 3) {
             $new = 1;
             $surge = 3;
         }
