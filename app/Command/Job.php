@@ -132,7 +132,6 @@ class Job
     {
         $nodes = Node::all();
         foreach ($nodes as $node) {
-            $total_traffic += $node->node_bandwidth / 1024 / 1024 / 1024;
             if ($node->sort == 0 || $node->sort == 10 || $node->sort == 11) {
                 if (date("d")==$node->bandwidthlimit_resetday) {
                     $node->node_bandwidth = 0;
